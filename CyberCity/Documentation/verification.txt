@@ -1,0 +1,82 @@
+CyberCity verification
+PASS: 75 checks including twelve missions through runtime UI
+UTC: 2026-10-15T20:30:58.0304797Z
+
+PASS  Twelve validated offline missions
+PASS  Unique mission IDs
+PASS  Bundled campaign SHA-256 matches
+PASS  Invalid campaign rejected
+PASS  Missing learning questions rejected
+PASS  Unsupported scenario mentor rejected
+PASS  Flag requires reading evidence first
+PASS  Normal listing hides dot entries
+PASS  Hidden folder appears with ls -a
+PASS  Terminal navigation
+PASS  Terminal reads evidence
+PASS  Incorrect flag rejected
+PASS  Correct flag accepted
+PASS  Virtual path stays inside root
+PASS  External commands are unsupported
+PASS  Atomic save succeeds
+PASS  Save round trip preserves progress and position
+PASS  Damaged primary save recovers backup
+PASS  Damaged primary and backup recover fresh data
+PASS  Runtime game initialized
+PASS  WASD input moves Rigidbody2D
+PASS  Water collision blocks movement from the bridge
+PASS  Seven main NPCs present
+PASS  Later mentor content is locked
+PASS  Walkable route to Professor Byte
+PASS  Walkable route to Alex
+PASS  Walkable route to Maya
+PASS  Walkable route to Detective Byte
+PASS  Walkable route to SysAdmin Tux
+PASS  Walkable route to Red
+PASS  Walkable route to Blue
+PASS  Mission 1 unlocks in order
+PASS  Wrong answer gives feedback without advancing
+PASS  Mission 1 completes through its actual UI
+PASS  Mission 1 persists immediately
+PASS  Mission 2 unlocks in order
+PASS  Mission 2 completes through its actual UI
+PASS  Mission 2 persists immediately
+PASS  Mission 3 unlocks in order
+PASS  Evidence requires highlights before verdict: phishing
+PASS  Mission 3 completes through its actual UI
+PASS  Mission 3 persists immediately
+PASS  Mission 4 unlocks in order
+PASS  Evidence requires highlights before verdict: fake-site
+PASS  Mission 4 completes through its actual UI
+PASS  Mission 4 persists immediately
+PASS  Mission 5 unlocks in order
+PASS  Mission 5 completes through its actual UI
+PASS  Mission 5 persists immediately
+PASS  Mission 6 unlocks in order
+PASS  Web defense follows observation: idor
+PASS  Mission 6 completes through its actual UI
+PASS  Mission 6 persists immediately
+PASS  Mission 7 unlocks in order
+PASS  Web defense follows observation: xss
+PASS  Mission 7 completes through its actual UI
+PASS  Mission 7 persists immediately
+PASS  Mission 8 unlocks in order
+PASS  Web defense follows observation: sqli
+PASS  Mission 8 completes through its actual UI
+PASS  Mission 8 persists immediately
+PASS  Mission 9 unlocks in order
+PASS  Mission 9 completes through its actual UI
+PASS  Mission 9 persists immediately
+PASS  Mission 10 unlocks in order
+PASS  Mission 10 completes through its actual UI
+PASS  Mission 10 persists immediately
+PASS  Mission 11 unlocks in order
+PASS  Mission 11 completes through its actual UI
+PASS  Mission 11 persists immediately
+PASS  Mission 12 unlocks in order
+PASS  Mission 12 completes through its actual UI
+PASS  Mission 12 persists immediately
+PASS  Complete campaign scores once with retry penalty
+PASS  Final campaign state has no pending mission
+
+PASS  Targeted editor reload: interface rebuilt with zero runtime exceptions
+PASS  Targeted editor reload: E-key NPC interaction and module callbacks recovered

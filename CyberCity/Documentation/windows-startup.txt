@@ -1,0 +1,1 @@
+PASS: Windows x64 player stayed running in headless startup with no logged exceptions or errors. Visual gameplay and the twelve-mission playthrough were verified in the Unity editor.

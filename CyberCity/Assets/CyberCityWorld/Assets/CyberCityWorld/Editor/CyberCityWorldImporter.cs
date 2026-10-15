@@ -14,7 +14,7 @@ namespace CyberCityWorld.Editor
     // JSON coordinates start at the top left; Unity sprite rectangles start at the bottom left.
     public static class CyberCityWorldImporter
     {
-        const string Root = "Assets/CyberCityWorld";
+        const string Root = "Assets/CyberCityWorld/Assets/CyberCityWorld";
         const string Generated = Root + "/Generated";
         const float PPU = 32f;
 
