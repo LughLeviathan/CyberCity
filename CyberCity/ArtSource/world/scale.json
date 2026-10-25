@@ -1,0 +1,26 @@
+{
+  "referenceSize": [1600, 900],
+  "referencePlayerBoxXYXYExclusive": [756, 507, 788, 550],
+  "referencePlayerHeightPixels": 43,
+  "measurementUncertaintyPixels": 2,
+  "existingCharacterFrame": [24, 32],
+  "requiredCharacterFrame": [32, 32],
+  "existingPlayerAlphaBoxXYXYExclusive": [3, 4, 21, 31],
+  "existingPlayerVisibleHeight": 27,
+  "idealScaleFromVisibleHeight": 0.6279069767,
+  "selectedCanvas": [1024, 576],
+  "selectedScale": [0.64, 0.64],
+  "selectedReferencePlayerHeight": 27.52,
+  "relativeHeightMismatchPercent": 1.925925926,
+  "tileSize": 32,
+  "tiles": [32, 18],
+  "defaultCanvasComparison": {
+    "size": [1280, 704],
+    "scale": [0.8, 0.7822222222],
+    "referencePlayerHeight": 33.63555556,
+    "relativeHeightMismatchPercent": 24.57613169,
+    "verticalCompressionPercent": 2.22222222
+  },
+  "stage2Only": true,
+  "runtimeChangesDeferredUntilApproval": true
+}
