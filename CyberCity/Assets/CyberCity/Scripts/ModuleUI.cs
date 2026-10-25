@@ -51,7 +51,7 @@ namespace CyberCity
                     {
                         answered = true;
                         foreach (var b in buttons) b.interactable = false;
-                        feedback.text = "CORRECT  /  " + q.explanation; feedback.color = GameUI.Teal;
+                        feedback.text = "CORRECT  /  " + game.Personalize(q.explanation); feedback.color = GameUI.Teal;
                         game.Play(game.successSound);
                         ui.Button(c, questionIndex == mission.questions.Length - 1 ? "COMPLETE MISSION   >" : "NEXT DECISION   >", 0, 424, 480, 56,
                             () => { questionIndex++; ShowQuestion(); }, GameUI.Cyan);
@@ -59,7 +59,7 @@ namespace CyberCity
                     else
                     {
                         game.WrongAnswer(); buttons[option].interactable = false;
-                        feedback.text = "TRY AGAIN  /  " + q.explanation; feedback.color = GameUI.Gold;
+                        feedback.text = "TRY AGAIN  /  " + game.Personalize(q.explanation); feedback.color = GameUI.Gold;
                     }
                 }));
             }
@@ -85,7 +85,7 @@ namespace CyberCity
             {
                 int index = i; var item = mission.evidence[i];
                 var button = ui.Button(document, item.label + "   " + item.text, 14, 178 + i * 53, 622, 46, () => {
-                    detail.text = item.explanation;
+                    detail.text = game.Personalize(item.explanation);
                     detail.color = item.suspicious ? GameUI.Gold : GameUI.Teal;
                     if (item.suspicious)
                     {

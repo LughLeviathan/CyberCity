@@ -26,7 +26,7 @@
 ## Ordered tasks and verification contracts
 
 - [x] Phase 0 — Campaign.cs: dynamic count, unique IDs, optional non-quiz questions and new kind validation. ProgressStore.cs: campaign-aware v2 state and safe v1 reset. GameUI.cs: dynamic progress and score display. Builder: campaign-derived mentor unlocks; update current scene. Verification: reduced-pack acceptance, invalid packs, save bounds/backup, dynamic playthrough. Run Verify core systems; commit.
-- [ ] Phase 1 — PlayerIdentity.cs: trim/validate 3–16 letters/digits/spaces/underscore and Personalize. Start/pause/name label, NPC/toast/debrief rendering. Test valid/invalid names and unresolved tokens; run core + UI checks; commit.
+- [x] Phase 1 — PlayerIdentity.cs: trim/validate 3–16 letters/digits/spaces/underscore and Personalize. Start/pause/name label, NPC/toast/debrief rendering. Test valid/invalid names and unresolved tokens; run core + UI checks; commit.
 - [ ] Phase 2 — VirtualTerminal.cs: three challenge filesystems, commands/pipes, safe errors and least privilege. Save flag/hint state, challenge board. Test every correct/wrong route and save resume; run core + terminal UI; commit.
 - [ ] Phase 3 — WebScenario JSON models + WebLabSession.cs and FakeBrowser.cs. Editable address/history/reload, forms, network panel, data-driven patterns, source patch and identical-input retest. Test multiple payloads, false positives and patch ordering; run core + browser UI; commit.
 - [ ] Phase 4 — SocScenario JSON + SocSession.cs and SocUI.cs. Alert queue, packet table/details, filters, sequential deterministic triage/IP/classification/response/report. Test noise/invalid filters/wrong reports and valid route; run core + SOC UI; commit.
@@ -37,3 +37,5 @@
 - Baseline: all requested files read; Unity MCP root/version confirmed. Existing ProjectSettings.asset modification recorded. Original Verify core systems invoked before changes.
 
 - Phase 0 complete: RED short pack rejected by old exact-count validation; GREEN VerifyCore 27 checks. Dynamic save bounds, legacy reset, changed-route fallback and backup recovery verified. Fixed existing InvalidDataException fallback gap in both save and optional-pack paths.
+
+- Phase 1 complete: missing persisted identity reproduced before implementation. VerifyCore 43/43; complete runtime UI playthrough 113 checks passed. Name validation, trimming, save round-trip and unresolved-token checks included. SHA-256 regenerated.

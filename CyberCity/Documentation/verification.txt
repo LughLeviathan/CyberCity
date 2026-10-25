@@ -1,6 +1,6 @@
 CyberCity verification
-PASS: 27 core checks
-UTC: 2026-10-25T14:34:04.4663368Z
+PASS: 113 checks including all missions through runtime UI
+UTC: 2026-10-25T14:38:53.5626368Z
 
 PASS  Mission count follows scenario pack
 PASS  Validated offline missions
@@ -9,6 +9,22 @@ PASS  Bundled campaign SHA-256 matches
 PASS  Invalid campaign rejected
 PASS  Missing learning questions rejected
 PASS  Unsupported scenario mentor rejected
+PASS  Username trims surrounding whitespace
+PASS  Valid username: ABC
+PASS  Valid username: A B
+PASS  Valid username: Byte_42
+PASS  Valid username: abcdefghijklmnop
+PASS  Valid username: Nadia42
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Every player token resolves as plain text
+PASS  Invalid or missing identity uses a safe fallback
 PASS  Duplicate mission IDs rejected
 PASS  Non-quiz learning does not require questions
 PASS  Flag requires reading evidence first
@@ -21,7 +37,7 @@ PASS  Correct flag accepted
 PASS  Virtual path stays inside root
 PASS  External commands are unsupported
 PASS  Atomic save succeeds
-PASS  Save round trip preserves progress and position
+PASS  Save round trip preserves identity, progress and position
 PASS  Damaged primary save recovers backup
 PASS  Damaged primary and backup recover fresh data
 PASS  Legacy save resets safely with an explanation
@@ -29,3 +45,73 @@ PASS  Retry storage follows mission count
 PASS  Dynamic maximum score accepted
 PASS  Over-maximum score recovers valid backup
 PASS  Different course route resets safely
+PASS  Runtime game initialized
+PASS  Username required before patrol
+PASS  Valid username is trimmed and persisted
+PASS  WASD input moves Rigidbody2D
+PASS  Water collision blocks movement from the bridge
+PASS  Seven main NPCs present
+PASS  Later mentor content is locked
+PASS  Walkable route to Professor Byte
+PASS  Walkable route to Alex
+PASS  Walkable route to Maya
+PASS  Walkable route to Detective Byte
+PASS  Walkable route to SysAdmin Tux
+PASS  Walkable route to Red
+PASS  Walkable route to Blue
+PASS  Mission 1 unlocks in order
+PASS  Wrong answer gives feedback without advancing
+PASS  Player tokens resolved: orientation
+PASS  Mission 1 completes through its actual UI
+PASS  Mission 1 persists immediately
+PASS  Mission 2 unlocks in order
+PASS  Player tokens resolved: awareness
+PASS  Mission 2 completes through its actual UI
+PASS  Mission 2 persists immediately
+PASS  Mission 3 unlocks in order
+PASS  Evidence requires highlights before verdict: phishing
+PASS  Player tokens resolved: phishing
+PASS  Mission 3 completes through its actual UI
+PASS  Mission 3 persists immediately
+PASS  Mission 4 unlocks in order
+PASS  Evidence requires highlights before verdict: fake-site
+PASS  Player tokens resolved: fake-site
+PASS  Mission 4 completes through its actual UI
+PASS  Mission 4 persists immediately
+PASS  Mission 5 unlocks in order
+PASS  Player tokens resolved: linux
+PASS  Mission 5 completes through its actual UI
+PASS  Mission 5 persists immediately
+PASS  Mission 6 unlocks in order
+PASS  Web defense follows observation: idor
+PASS  Player tokens resolved: idor
+PASS  Mission 6 completes through its actual UI
+PASS  Mission 6 persists immediately
+PASS  Mission 7 unlocks in order
+PASS  Web defense follows observation: xss
+PASS  Player tokens resolved: xss
+PASS  Mission 7 completes through its actual UI
+PASS  Mission 7 persists immediately
+PASS  Mission 8 unlocks in order
+PASS  Web defense follows observation: sqli
+PASS  Player tokens resolved: sqli
+PASS  Mission 8 completes through its actual UI
+PASS  Mission 8 persists immediately
+PASS  Mission 9 unlocks in order
+PASS  Player tokens resolved: red-team
+PASS  Mission 9 completes through its actual UI
+PASS  Mission 9 persists immediately
+PASS  Mission 10 unlocks in order
+PASS  Player tokens resolved: blue-team
+PASS  Mission 10 completes through its actual UI
+PASS  Mission 10 persists immediately
+PASS  Mission 11 unlocks in order
+PASS  Player tokens resolved: final
+PASS  Mission 11 completes through its actual UI
+PASS  Mission 11 persists immediately
+PASS  Mission 12 unlocks in order
+PASS  Player tokens resolved: graduation
+PASS  Mission 12 completes through its actual UI
+PASS  Mission 12 persists immediately
+PASS  Complete campaign scores once with retry penalty
+PASS  Final campaign state has no pending mission

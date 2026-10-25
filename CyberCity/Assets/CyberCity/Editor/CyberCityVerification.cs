@@ -48,6 +48,13 @@ namespace CyberCity.Editor
             malformed.missions[0].npc = "Unknown mentor"; rejected = false;
             try { CampaignLoader.Parse(JsonUtility.ToJson(malformed)); } catch (InvalidDataException) { rejected = true; }
             Check(rejected, "Unsupported scenario mentor rejected");
+            Check(PlayerIdentity.TryValidate("  Byte_42  ", out string cleanName, out _) && cleanName == "Byte_42", "Username trims surrounding whitespace");
+            foreach (string valid in new[] { "ABC", "A B", "Byte_42", "abcdefghijklmnop", "Nadia42" })
+                Check(PlayerIdentity.TryValidate(valid, out _, out _), "Valid username: " + valid);
+            foreach (string invalid in new[] { "", "   ", "ab", "abcdefghijklmnopq", "<b>x</b>", "alice!", "A\nB", "A\tB" })
+                Check(!PlayerIdentity.TryValidate(invalid, out _, out string reason) && reason.Length > 0, "Invalid username rejected with inline reason");
+            Check(PlayerIdentity.Personalize("Welcome, {player}. Thanks, {player}.", "Byte_42") == "Welcome, Byte_42. Thanks, Byte_42.", "Every player token resolves as plain text");
+            Check(!PlayerIdentity.Personalize("Welcome, {player}.", "<invalid>").Contains("{player}"), "Invalid or missing identity uses a safe fallback");
             malformed = JsonUtility.FromJson<Campaign>(Resources.Load<TextAsset>("campaign").text);
             malformed.missions[1].id = malformed.missions[0].id; rejected = false;
             try { CampaignLoader.Parse(JsonUtility.ToJson(malformed)); } catch (InvalidDataException) { rejected = true; }
@@ -69,10 +76,10 @@ namespace CyberCity.Editor
             string folder = Path.Combine(Application.temporaryCachePath, "CyberCityVerification"); Directory.CreateDirectory(folder);
             string path = Path.Combine(folder, "progress.json");
             foreach (string suffix in new[] { "", ".bak", ".tmp" }) if (File.Exists(path + suffix)) File.Delete(path + suffix);
-            var first = ProgressStore.Create(campaign); first.completed = 3; first.score = 450; first.x = 5; first.y = -12; first.started = true;
+            var first = ProgressStore.Create(campaign); first.completed = 3; first.score = 450; first.x = 5; first.y = -12; first.started = true; first.playerName = "TestPatrol";
             Check(ProgressStore.Save(first, path), "Atomic save succeeds");
             var loaded = ProgressStore.Load(campaign, path);
-            Check(loaded.completed == 3 && loaded.score == 450 && loaded.x == 5, "Save round trip preserves progress and position");
+            Check(loaded.completed == 3 && loaded.score == 450 && loaded.x == 5 && loaded.playerName == "TestPatrol", "Save round trip preserves identity, progress and position");
             first.completed = 4; first.score = 600; ProgressStore.Save(first, path);
             File.WriteAllText(path, "damaged");
             Check(ProgressStore.Load(campaign, path).completed == 3, "Damaged primary save recovers backup");
@@ -106,7 +113,9 @@ namespace CyberCity.Editor
             }
             failure = null; actions.Clear(); running = true; Status = "Running full playthrough";
             EditorApplication.playModeStateChanged += RestoreAfterPlay;
-            Add(() => { game.NewPatrol(); game.UI.CloseModal(); });
+            Add(() => game.NewPatrol());
+            Add(() => { Click("BEGIN YOUR PATROL"); Check(!game.Started, "Username required before patrol"); FindInput().text = "  Byte_42  "; Click("BEGIN YOUR PATROL"); });
+            Add(() => Check(game.Started && game.Progress.playerName == "Byte_42", "Valid username is trimmed and persisted"));
             Add(() => Capture("02-city"));
             Add(() => { movementStart = game.player.transform.position; Press(Key.W); });
             Add(() => { Release(); Check(game.player.transform.position.y > movementStart.y + .25f, "WASD input moves Rigidbody2D"); });
@@ -150,7 +159,7 @@ namespace CyberCity.Editor
                     Add(() => Capture("05-" + mission.id));
                     Add(() => Click("SWITCH TO BLUE TEAM"));
                 }
-                for (int n = 0; n < mission.questions.Length; n++)
+                for (int n = 0; n < (mission.questions?.Length ?? 0); n++)
                 {
                     int question = n;
                     if (index == 0 && n == 0)
@@ -163,6 +172,7 @@ namespace CyberCity.Editor
                     Add(() => Click(question == mission.questions.Length-1 ? "COMPLETE MISSION" : "NEXT DECISION"));
                 }
                 Add(() => {
+                    Check(!VisibleText().Any(t => t.Contains("{player}")), "Player tokens resolved: " + mission.id);
                     Check(game.Progress.completed == index+1, "Mission " + (index+1) + " completes through its actual UI");
                     Check(ProgressStore.Load(game.Campaign).completed == index+1, "Mission " + (index+1) + " persists immediately");
                 });

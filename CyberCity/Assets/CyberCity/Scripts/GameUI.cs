@@ -57,7 +57,7 @@ namespace CyberCity
         {
             var r = Rect(parent, "Text", x, y, w, h); var t = r.gameObject.AddComponent<Text>();
             t.font = font; t.fontSize = size; t.color = color ?? White; t.fontStyle = bold ? FontStyle.Bold : FontStyle.Normal;
-            t.supportRichText = false; t.text = value; t.raycastTarget = false;
+            t.supportRichText = false; t.text = Game == null ? value : Game.Personalize(value); t.raycastTarget = false;
             t.horizontalOverflow = HorizontalWrapMode.Wrap; t.verticalOverflow = VerticalWrapMode.Truncate;
             return t;
         }
@@ -103,7 +103,7 @@ namespace CyberCity
                 var marker = Text(labels, "!", 0, 0, 36, 34, 28, Gold, true); marker.alignment = TextAnchor.MiddleCenter;
                 marker.gameObject.AddComponent<Outline>().effectColor = Ink; markers[citizen] = marker;
             }
-            playerLabel = Text(labels, "YOU", 0, 0, 60, 20, 13, Cyan, true); playerLabel.alignment = TextAnchor.MiddleCenter;
+            playerLabel = Text(labels, "{player}", 0, 0, 220, 24, 14, Cyan, true); playerLabel.alignment = TextAnchor.MiddleCenter;
             BuildHud(); ShowStart();
         }
 
@@ -153,6 +153,7 @@ namespace CyberCity
         public void RefreshHud()
         {
             if (Game == null || count == null) return;
+            playerLabel.text = Game.Personalize("{player}");
             count.text = Game.Progress.completed.ToString("00") + " / " + Game.Campaign.missions.Length + " complete";
             score.text = Game.Progress.score.ToString("0000") + "  XP";
             for (int i = 0; i < segments.Length; i++) segments[i].color = i < Game.Progress.completed ? Teal : i == Game.Progress.completed ? Gold : Raised;
@@ -192,7 +193,7 @@ namespace CyberCity
             if (Time.unscaledTime > toastUntil) toast.text = "";
         }
 
-        public void Toast(string message) { if (toast != null) { toast.text = message; toastUntil = Time.unscaledTime + 6; } }
+        public void Toast(string message) { if (toast != null) { toast.text = Game.Personalize(message); toastUntil = Time.unscaledTime + 6; } }
 
         public void CloseModal()
         {
@@ -230,14 +231,30 @@ namespace CyberCity
             Text(modal.transform, "CYBER\nCITY", 72, 187, 570, 250, 106, White, true);
             Box(modal.transform, "Title rule", 80, 446, 70, 5, Gold);
             Text(modal.transform, "THINK BEFORE YOU CLICK", 80, 482, 560, 40, 22, Gold, true);
-            Text(modal.transform, "A city of connections. A world of hidden risks.\nBecome the citizen who knows what to look for.", 80, 538, 510, 78, 20, Muted);
-            Button(modal.transform, Game.Progress.started ? "CONTINUE PATROL   >" : "BEGIN YOUR PATROL   >", 80, 655, 440, 64, Game.Begin, Cyan);
-            Text(modal.transform, Game.Campaign.missions.Length + " MISSIONS    /    " + Game.citizens.Length + " MENTORS    /    4 DISTRICTS", 80, 746, 590, 30, 13, Muted);
+            Text(modal.transform, "A city of connections. A world of hidden risks.\nBuild the skills to protect it, {player}.", 80, 538, 510, 65, 20, Muted);
+            bool returning = Game.Progress.started && PlayerIdentity.TryValidate(Game.Progress.playerName, out _, out _);
+            if (returning)
+            {
+                Text(modal.transform, "WELCOME BACK, {player}", 80, 617, 510, 30, 20, Teal, true);
+                Button(modal.transform, "CONTINUE PATROL   >", 80, 673, 440, 64, Game.Begin, Cyan);
+            }
+            else
+            {
+                var name = Input(modal.transform, 80, 620, 440, 48, "Choose your username (3–16 characters)");
+                name.characterLimit = 64; name.text = Game.Progress.playerName;
+                var error = Text(modal.transform, "Letters, numbers, spaces and underscore.", 80, 677, 510, 36, 15, Muted);
+                Button(modal.transform, "BEGIN YOUR PATROL   >", 80, 723, 440, 64, () => {
+                    if (!Game.SetPlayerName(name.text, out string reason)) { error.text = reason; error.color = Gold; return; }
+                    Game.Begin();
+                }, Cyan);
+                name.ActivateInputField();
+            }
+            Text(modal.transform, Game.Campaign.missions.Length + " MISSIONS    /    " + Game.citizens.Length + " MENTORS    /    4 DISTRICTS", 80, 805, 590, 26, 13, Muted);
             var card = Box(modal.transform, "Orientation", 1002, 668, 510, 150, Panel);
             Text(card, "YOUR FIRST ASSIGNMENT", 24, 19, 460, 24, 12, Cyan, true);
             Text(card, Game.Current == null ? "Patrol complete. Welcome back." : "Meet " + Game.Current.npc, 24, 52, 460, 34, 24, White, true);
             Text(card, "Explore with WASD. Talk with E. Learn by doing.", 24, 103, 460, 26, 16, Muted);
-            Text(modal.transform, CampaignLoader.Status + "   /   PROGRESS SAVED ON THIS DEVICE", 80, 848, 1200, 24, 12, Teal);
+            Text(modal.transform, ProgressStore.LastError ?? CampaignLoader.Status + "   /   PROGRESS SAVED ON THIS DEVICE", 80, 848, 1400, 40, 12, Teal);
         }
 
         public void ShowBriefing(Mission mission)
@@ -262,15 +279,15 @@ namespace CyberCity
         {
             var c = OpenModal("MISSION COMPLETE / " + mission.area, "Connection secured.", "+" + xp + " XP  /  " + Game.Progress.completed + " of " + Game.Campaign.missions.Length + " missions complete");
             Text(c, mission.takeaway, 0, 18, 1020, 150, 25);
-            Text(c, Game.Current == null ? "You completed the Citizen Security Program." : "NEXT ASSIGNMENT\n\n" + Game.Current.title + "\nFind " + Game.Current.npc + " at " + Game.Current.area + ".", 0, 205, 1000, 160, 21, Teal);
+            Text(c, Game.Current == null ? "{player}, you completed the Citizen Security Program." : "NEXT ASSIGNMENT FOR {player}\n\n" + Game.Current.title + "\nFind " + Game.Current.npc + " at " + Game.Current.area + ".", 0, 205, 1000, 160, 21, Teal);
             Button(c, Game.Current == null ? "VIEW PATROL REPORT   >" : "BACK TO THE CITY   >", 0, 414, 440, 60,
                 () => { if (Game.Current == null) ShowEnding(); else CloseModal(); }, Cyan);
         }
         public void ShowEnding()
         {
-            var c = OpenModal("CITIZEN SECURITY PROGRAM / COMPLETE", "CyberCity is in good hands.", "PATROL REPORT  /  ALL DISTRICTS SECURED");
+            var c = OpenModal("CITIZEN SECURITY PROGRAM / COMPLETE", "Well done, {player}.", "PATROL REPORT  /  ALL DISTRICTS SECURED");
             Text(c, Game.Progress.score + " / " + ProgressStore.MaximumScore(Game.Campaign) + " XP", 0, 0, 1000, 80, 60, Gold, true);
-            Text(c, "You investigated suspicious messages, verified a fake website, found a Linux flag, tested three fictional web vulnerabilities, and chose the defenses that stop them.", 0, 115, 1010, 120, 24);
+            Text(c, "{player}, you investigated suspicious messages, verified a fake website, practiced Linux, tested fictional web vulnerabilities, and chose the defenses that stop them.", 0, 115, 1010, 120, 24);
             Text(c, "YOUR FIELD RULE\nPause. Verify independently. Share less. Report early.", 0, 265, 1010, 90, 23, Teal);
             Button(c, "EXPLORE THE CITY", 0, 414, 350, 60, CloseModal, Cyan);
             Button(c, "Review field guide", 370, 414, 350, 60, ShowHelp);
@@ -350,7 +367,18 @@ namespace CyberCity
             Button(c, Game.effects.volume > 0 ? "Sound effects: ON" : "Sound effects: OFF", 550, 148, 450, 56, () => {
                 Game.effects.volume = Game.effects.volume > 0 ? 0 : .7f; PlayerPrefs.SetFloat("CyberCityEffects", Game.effects.volume); PlayerPrefs.Save(); ShowPause();
             });
-            Text(c, "WASD / Arrow keys    Move\nE    Talk to a nearby mentor\nJ    Journal     M    Map\nH    Field guide     ESC    Close / pause", 550, 246, 480, 150, 20, Muted);
+            Button(c, "Change username", 550, 226, 450, 56, ShowRename);
+            Text(c, "WASD / Arrow keys    Move\nE    Talk to a nearby mentor\nJ    Journal     M    Map\nH    Field guide     ESC    Close / pause", 550, 310, 480, 150, 20, Muted);
+        }
+        void ShowRename()
+        {
+            var c = OpenModal("PATROL IDENTITY", "Change your username", "Your mission progress stays with you, {player}.");
+            var input = Input(c, 0, 36, 650, 56, "New username"); input.text = Game.Progress.playerName; input.characterLimit = 64;
+            var error = Text(c, "Use 3–16 letters, numbers, spaces or underscore.", 0, 112, 1010, 60, 20, Muted);
+            Button(c, "SAVE USERNAME", 0, 220, 420, 58, () => {
+                if (!Game.SetPlayerName(input.text, out string reason)) { error.text = reason; error.color = Gold; return; }
+                ShowPause(); Toast("Patrol identity updated, {player}.");
+            }, Cyan);
         }
         public void ShowFatal(string error)
         {

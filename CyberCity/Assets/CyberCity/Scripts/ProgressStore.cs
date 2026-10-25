@@ -10,6 +10,7 @@ namespace CyberCity
         public int version = 2;
         public int completed;
         public int score;
+        public string playerName = "";
         public int[] attempts = Array.Empty<int>();
         public string[] missionIds = Array.Empty<string>();
         public bool started;
@@ -51,6 +52,8 @@ namespace CyberCity
                     throw new InvalidDataException("Invalid save or different course route.");
                     if (Array.Exists(data.attempts, value => value < 0 || value > 100000))
                         throw new InvalidDataException("Invalid retry counts.");
+                    if (PlayerIdentity.TryValidate(data.playerName, out string clean, out _)) data.playerName = clean;
+                    else data.playerName = ""; // Old v2 saves enter the name screen while retaining earned progress.
                     data.x = Mathf.Clamp(data.x, 0.5f, 27.5f);
                     data.y = Mathf.Clamp(data.y, -21.5f, -0.5f);
                     return data;

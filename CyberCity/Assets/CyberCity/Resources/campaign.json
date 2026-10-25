@@ -8,9 +8,9 @@
       "npc": "Professor Byte",
       "area": "Cyber Academy",
       "kind": "quiz",
-      "briefing": "Welcome, citizen. Every connection is a choice. Our city needs people who pause, verify, and help others do the same. Your patrol begins with a simple habit.",
+      "briefing": "Welcome, {player}. Every connection is a choice. Our city needs people who pause, verify, and help others do the same. Your patrol begins with a simple habit.",
       "objective": "Learn the city controls and choose the first response to an unexpected request.",
-      "takeaway": "Pause before acting on an unexpected request. Verify it through an official channel you already trust. The Internet Cafe is now open.",
+      "takeaway": "{player}, pause before acting on an unexpected request. Verify it through an official channel you already trust. The Internet Cafe is now open.",
       "questions": [
         {
           "prompt": "A message says your student account will close in ten minutes. What is your first move?",
@@ -40,9 +40,9 @@
       "npc": "Alex",
       "area": "Internet Cafe",
       "kind": "quiz",
-      "briefing": "I used to reuse one password everywhere. Then one leaked account put all my others at risk. Help me build a better routine before we investigate the cafe inbox.",
+      "briefing": "{player}, i used to reuse one password everywhere. Then one leaked account put all my others at risk. Help me build a better routine before we investigate the cafe inbox.",
       "objective": "Choose safer habits for passwords, verification codes, and software updates.",
-      "takeaway": "Use a unique password for each account, enable MFA, keep software updated, and never share one-time verification codes.",
+      "takeaway": "{player}, use a unique password for each account, enable MFA, keep software updated, and never share one-time verification codes.",
       "questions": [
         {
           "prompt": "Which password habit limits damage if one service is breached?",
@@ -82,9 +82,9 @@
       "npc": "Maya",
       "area": "Internet Cafe",
       "kind": "evidence",
-      "briefing": "This message arrived in our student inbox. It looks official at first glance, but something feels wrong. Inspect the sender, request, and destination before deciding what to do.",
+      "briefing": "{player}, this message arrived in our student inbox. It looks official at first glance, but something feels wrong. Inspect the sender, request, and destination before deciding what to do.",
       "objective": "Highlight all three suspicious indicators in the message and choose a safe response.",
-      "takeaway": "Check the actual sender and destination. Treat urgency and password requests as warning signs. Report the message, then verify through an official channel.",
+      "takeaway": "{player}, check the actual sender and destination. Treat urgency and password requests as warning signs. Report the message, then verify through an official channel.",
       "questions": [
         {
           "prompt": "The evidence points to phishing. What should Maya do next?",
@@ -134,9 +134,9 @@
       "npc": "Detective Byte",
       "area": "Internet Cafe",
       "kind": "evidence",
-      "briefing": "The cafe received a link to a scholarship page. The logo looks familiar. Investigate the address and the form. The real scholarship service is scholarships.academy.example.",
+      "briefing": "{player}, the cafe received a link to a scholarship page. The logo looks familiar. Investigate the address and the form. The real scholarship service is scholarships.academy.example.",
       "objective": "Inspect the fictional browser, identify three suspicious indicators, and classify the page.",
-      "takeaway": "Read the full domain, not just the logo. HTTPS protects a connection but does not prove the site is honest. A scholarship should not ask for your email password. The Linux Lab is now open.",
+      "takeaway": "{player}, read the full domain, not just the logo. HTTPS protects a connection but does not prove the site is honest. A scholarship should not ask for your email password. The Linux Lab is now open.",
       "questions": [
         {
           "prompt": "Which conclusion is supported by the evidence?",
@@ -186,9 +186,9 @@
       "npc": "SysAdmin Tux",
       "area": "Linux Lab",
       "kind": "terminal",
-      "briefing": "Welcome to the command line. You do not need to memorize everything. Investigate one folder at a time. The hidden archive contains a flag that proves you read the evidence.",
+      "briefing": "{player}, welcome to the command line. You do not need to memorize everything. Investigate one folder at a time. The hidden archive contains a flag that proves you read the evidence.",
       "objective": "Use pwd, ls -a, cd, and cat to find the hidden flag. Submit it in the terminal.",
-      "takeaway": "The terminal is a way to inspect files deliberately. pwd shows location, ls -a includes hidden entries, cd changes folder, and cat reads evidence. The Web Security Lab is now open.",
+      "takeaway": "{player}, the terminal is a way to inspect files deliberately. pwd shows location, ls -a includes hidden entries, cd changes folder, and cat reads evidence. The Web Security Lab is now open.",
       "questions": [
         {
           "prompt": "What does ls -a add to a normal directory listing?",
@@ -208,9 +208,9 @@
       "npc": "Red",
       "area": "Web Security Lab",
       "kind": "idor",
-      "briefing": "A training API checks that you are signed in, but forgets to check whose record you requested. Observe the flaw in our fictional profile service, then switch to defense.",
+      "briefing": "{player}, a training API checks that you are signed in, but forgets to check whose record you requested. Observe the flaw in our fictional profile service, then switch to defense.",
       "objective": "Request training profile 1002 while signed in as Alex (1001), then select a server-side defense.",
-      "takeaway": "IDOR is an authorization failure. Every server request must verify that the current user is allowed to access the requested object. Hiding IDs in the interface is not sufficient.",
+      "takeaway": "{player}, iDOR is an authorization failure. Every server request must verify that the current user is allowed to access the requested object. Hiding IDs in the interface is not sufficient.",
       "questions": [
         {
           "prompt": "What removes the cause of this IDOR flaw?",
@@ -230,9 +230,9 @@
       "npc": "Red",
       "area": "Web Security Lab",
       "kind": "xss",
-      "briefing": "An unsafe comment page can confuse user text with page markup. Use a harmless formatting marker to model the problem. The training preview is inert and runs no scripts.",
+      "briefing": "{player}, an unsafe comment page can confuse user text with page markup. Use a harmless formatting marker to model the problem. The training preview is inert and runs no scripts.",
       "objective": "Submit a harmless markup marker and choose the defense for untrusted output.",
-      "takeaway": "Treat user content as data. Encode output for its destination context, use safe rendering APIs, and sanitize deliberately allowed markup with a maintained allowlist.",
+      "takeaway": "{player}, treat user content as data. Encode output for its destination context, use safe rendering APIs, and sanitize deliberately allowed markup with a maintained allowlist.",
       "questions": [
         {
           "prompt": "Which defense addresses untrusted comments rendered into a page?",
@@ -252,9 +252,9 @@
       "npc": "Red",
       "area": "Web Security Lab",
       "kind": "sqli",
-      "briefing": "This fictional sign-in builds a database query by joining strings. Observe how a training input could alter its structure. No database is connected to this exercise.",
+      "briefing": "{player}, this fictional sign-in builds a database query by joining strings. Observe how a training input could alter its structure. No database is connected to this exercise.",
       "objective": "Inspect the simulated query and choose a defense that separates commands from values.",
-      "takeaway": "Use parameterized queries with bound values. This keeps user data separate from SQL structure. Input validation and limited database permissions add further protection.",
+      "takeaway": "{player}, use parameterized queries with bound values. This keeps user data separate from SQL structure. Input validation and limited database permissions add further protection.",
       "questions": [
         {
           "prompt": "What is the primary defense against this SQL injection flaw?",
@@ -274,9 +274,9 @@
       "npc": "Red",
       "area": "Web Security Lab",
       "kind": "quiz",
-      "briefing": "You have seen three weaknesses in isolation. Now explain the pattern from evidence, without guessing or touching external systems. Each finding must lead to a concrete defense.",
+      "briefing": "{player}, you have seen three weaknesses in isolation. Now explain the pattern from evidence, without guessing or touching external systems. Each finding must lead to a concrete defense.",
       "objective": "Match three observations to IDOR, XSS, and SQL injection.",
-      "takeaway": "A useful finding connects the trigger, unauthorized effect, and root cause. Test only within authorized scope, then pair every finding with a defense. Blue is ready to help.",
+      "takeaway": "{player}, a useful finding connects the trigger, unauthorized effect, and root cause. Test only within authorized scope, then pair every finding with a defense. Blue is ready to help.",
       "questions": [
         {
           "prompt": "Alex changes a training record number and receives Mira's private record. What failed?",
@@ -316,9 +316,9 @@
       "npc": "Blue",
       "area": "Web Security Lab",
       "kind": "quiz",
-      "briefing": "A finding becomes valuable when we can fix it. Choose a mitigation for each root cause. Defense is more than hiding a symptom: the trust boundary must be enforced.",
+      "briefing": "{player}, a finding becomes valuable when we can fix it. Choose a mitigation for each root cause. Defense is more than hiding a symptom: the trust boundary must be enforced.",
       "objective": "Choose a defense for authorization, output rendering, and database access.",
-      "takeaway": "Enforce authorization on the server, encode untrusted output for its context, and bind database parameters. Retest fixes, update dependencies, and monitor for suspicious activity.",
+      "takeaway": "{player}, enforce authorization on the server, encode untrusted output for its context, and bind database parameters. Retest fixes, update dependencies, and monitor for suspicious activity.",
       "questions": [
         {
           "prompt": "Which patch should protect GET /api/profile/{id}?",
@@ -358,9 +358,9 @@
       "npc": "Detective Byte",
       "area": "Internet Cafe",
       "kind": "quiz",
-      "briefing": "The city receives a scholarship email leading to a fake portal. A separate training API exposes records, and unsafe query construction appears in the logs. Coordinate a response using everything you learned.",
+      "briefing": "{player}, the city receives a scholarship email leading to a fake portal. A separate training API exposes records, and unsafe query construction appears in the logs. Coordinate a response using everything you learned.",
       "objective": "Verify the message, investigate the file evidence, identify the API flaw, and select the repair plan.",
-      "takeaway": "A complete response verifies sources, contains exposure, preserves evidence, fixes root causes, and retests. Report what happened clearly so the next citizen can avoid the same trap.",
+      "takeaway": "{player}, a complete response verifies sources, contains exposure, preserves evidence, fixes root causes, and retests. Report what happened clearly so the next citizen can avoid the same trap.",
       "questions": [
         {
           "prompt": "The scholarship email links to academy-awards.example. The known portal is scholarships.academy.example. What comes first?",
@@ -410,9 +410,9 @@
       "npc": "Professor Byte",
       "area": "Cyber Academy",
       "kind": "quiz",
-      "briefing": "You followed the evidence, practiced the tools, and repaired the causes. The final lesson is a habit you can use every day: make trust a decision, not an assumption.",
+      "briefing": "{player}, you followed the evidence, practiced the tools, and repaired the causes. The final lesson is a habit you can use every day: make trust a decision, not an assumption.",
       "objective": "Choose the response that combines verification, privacy, and reporting.",
-      "takeaway": "Patrol complete. You are a CyberCity citizen defender. Pause, verify independently, protect your accounts, and help others recognize the warning signs.",
+      "takeaway": "{player}, patrol complete. You are a CyberCity citizen defender. Pause, verify independently, protect your accounts, and help others recognize the warning signs.",
       "questions": [
         {
           "prompt": "An unexpected message asks for your login code to claim an urgent reward. Which habit will you carry forward?",

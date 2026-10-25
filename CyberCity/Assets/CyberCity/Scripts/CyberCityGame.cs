@@ -52,10 +52,11 @@ namespace CyberCity
 
         public void Begin()
         {
+            if (!PlayerIdentity.TryValidate(Progress.playerName, out _, out _)) { UI.ShowStart(); return; }
             string notice = ProgressStore.LastError;
             Started = true; Progress.started = true; UI.CloseModal(); UI.RefreshHud(); Save();
             if (!music.isPlaying) music.Play();
-            UI.Toast(notice ?? "Welcome to CyberCity. Follow the gold mission marker.");
+            UI.Toast(notice ?? "Welcome to CyberCity, {player}. Follow the gold mission marker.");
         }
 
         void Update()
@@ -82,10 +83,10 @@ namespace CyberCity
             if (!Started || UI.HasModal) return;
             Play(clickSound);
             if (Progress.completed < npc.unlockAfter)
-            { UI.ShowMessage(npc.citizenName, "This lab is still locked. Complete your current mission to earn access.", "Return to the city"); return; }
+            { UI.ShowMessage(npc.citizenName, "{player}, this lab is still locked. Complete your current mission to earn access.", "Return to the city"); return; }
             if (Current == null) { UI.ShowEnding(); return; }
             if (npc.citizenName != Current.npc)
-            { UI.ShowMessage(npc.citizenName + "  /  " + npc.role, "Your next mission is \"" + Current.title + "\". Find " + Current.npc + " at " + Current.area + ". Follow the gold marker on the map.", "Keep exploring"); return; }
+            { UI.ShowMessage(npc.citizenName + "  /  " + npc.role, "{player}, your next mission is \"" + Current.title + "\". Find " + Current.npc + " at " + Current.area + ". Follow the gold marker on the map.", "Keep exploring"); return; }
             UI.ShowBriefing(Current);
         }
 
@@ -114,7 +115,17 @@ namespace CyberCity
         public void NewPatrol()
         {
             Progress = ProgressStore.Create(Campaign); player.GetComponent<Rigidbody2D>().position = new Vector2(14, -8.2f);
-            Begin();
+            Started = false; UI.RefreshHud(); UI.ShowStart();
+        }
+
+        public string Personalize(string text) => PlayerIdentity.Personalize(text, Progress?.playerName);
+
+        public bool SetPlayerName(string value, out string error)
+        {
+            if (!PlayerIdentity.TryValidate(value, out string name, out error)) return false;
+            Progress.playerName = name; UI.RefreshHud();
+            if (Started) Save();
+            return true;
         }
 
         public void Play(AudioClip clip) { if (clip != null && effects != null) effects.PlayOneShot(clip); }
