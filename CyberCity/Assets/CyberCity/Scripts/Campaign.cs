@@ -29,6 +29,7 @@ namespace CyberCity
         public Evidence[] evidence;
         public WebScenario web;
         public SocScenario soc;
+        public WebScenario[] finalLabs;
     }
 
     [Serializable] public class Campaign
@@ -72,6 +73,12 @@ namespace CyberCity
                 if (m.kind == "idor" || m.kind == "xss" || m.kind == "sqli")
                 { if (m.web == null) throw new InvalidDataException("Missing browser scenario in " + m.id); m.web.Validate(m.kind); }
                 if (m.kind == "soc") { if (m.soc == null) throw new InvalidDataException("Missing SOC scenario in " + m.id); m.soc.Validate(); }
+                if (m.kind == "final")
+                {
+                    if (m.finalLabs == null || m.finalLabs.Length != 2 || m.finalLabs[0] == null || m.finalLabs[1] == null || m.soc == null)
+                        throw new InvalidDataException("Final mission needs an IDOR to SQLi chain and incident evidence.");
+                    m.finalLabs[0].Validate("idor"); m.finalLabs[1].Validate("sqli"); m.soc.Validate();
+                }
             }
             return data;
         }

@@ -62,7 +62,7 @@ namespace CyberCity.Editor
             var player = playerGo.AddComponent<PlayerController>();
             var citizenRoot = new GameObject("Seven mentors");
             string[] names = { "Professor Byte", "Alex", "Maya", "Detective Byte", "SysAdmin Tux", "Red", "Blue" };
-            string[] roles = { "Cyber awareness mentor", "Student ambassador", "Message investigator", "Digital detective", "Linux mentor", "Red-team analyst", "Blue-team engineer" };
+            string[] roles = { "Cyber awareness mentor", "Student ambassador", "Message investigator", "Digital detective", "Linux mentor", "Web security analyst", "SOC analyst" };
             string[] areas = { "Cyber Academy", "Internet Cafe", "Internet Cafe", "Internet Cafe", "Linux Lab", "Web Security Lab", "Web Security Lab" };
             Vector2[] positions = { new Vector2(14,-6), new Vector2(6.1f,-10.1f), new Vector2(5,-15.3f), new Vector2(8.9f,-12), new Vector2(23,-7.2f), new Vector2(22.2f,-15.2f), new Vector2(25.1f,-15.3f) };
             Color[] colors = { GameUI.White, GameUI.Violet, GameUI.Pink, GameUI.Gold, GameUI.Teal, GameUI.Pink, GameUI.Cyan };

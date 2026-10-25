@@ -1,6 +1,6 @@
 CyberCity verification
-PASS: 226 checks including all missions through runtime UI
-UTC: 2026-10-25T15:07:17.4202728Z
+PASS: 261 checks including all missions through runtime UI
+UTC: 2026-10-25T15:17:04.6093000Z
 
 PASS  Mission count follows scenario pack
 PASS  Validated offline missions
@@ -143,6 +143,19 @@ PASS  Simulated response requires all correct actions
 PASS  Incomplete incident report rejected
 PASS  Evidence-aligned incident report closes the case
 PASS  SOC report and investigation stage survive reload
+PASS  Bundled course follows the revised route with no redundant team quizzes
+PASS  Six light questions are limited to orientation, awareness and graduation
+PASS  Red follows Linux CTF and Blue follows SQLi
+PASS  Two flags cannot complete Linux CTF
+PASS  Three flags satisfy Linux CTF
+PASS  Final chain begins without completion evidence
+PASS  Both browser fixes still require final incident analysis
+PASS  Final requires browser chain and incident analysis together
+PASS  Final browser stage supports attack, patch and retest: idor
+PASS  Final browser stage supports attack, patch and retest: sqli
+PASS  Verified local pack can use a different mission count
+PASS  Corrupt optional pack falls back to verified offline course
+PASS  Malformed but hashed pack falls back safely
 PASS  Atomic save succeeds
 PASS  Save round trip preserves identity, progress and position
 PASS  Damaged primary save recovers backup
@@ -156,6 +169,9 @@ PASS  Flags and paid hints survive save/reload
 PASS  Runtime game initialized
 PASS  Username required before patrol
 PASS  Valid username is trimmed and persisted
+PASS  Invalid pause rename preserves stored identity
+PASS  Pause rename applies valid username
+PASS  Returning player sees saved name
 PASS  WASD input moves Rigidbody2D
 PASS  Water collision blocks movement from the bridge
 PASS  Seven main NPCs present
@@ -169,62 +185,81 @@ PASS  Walkable route to Red
 PASS  Walkable route to Blue
 PASS  Mission 1 unlocks in order
 PASS  Wrong answer gives feedback without advancing
+PASS  UI renders plain text: orientation
 PASS  Player tokens resolved: orientation
 PASS  Mission 1 completes through its actual UI
 PASS  Mission 1 persists immediately
 PASS  Mission 2 unlocks in order
+PASS  UI renders plain text: awareness
 PASS  Player tokens resolved: awareness
 PASS  Mission 2 completes through its actual UI
 PASS  Mission 2 persists immediately
 PASS  Mission 3 unlocks in order
 PASS  Evidence requires highlights before verdict: phishing
+PASS  UI renders plain text: phishing
 PASS  Player tokens resolved: phishing
 PASS  Mission 3 completes through its actual UI
 PASS  Mission 3 persists immediately
 PASS  Mission 4 unlocks in order
 PASS  Evidence requires highlights before verdict: fake-site
+PASS  UI renders plain text: fake-site
 PASS  Player tokens resolved: fake-site
 PASS  Mission 4 completes through its actual UI
 PASS  Mission 4 persists immediately
 PASS  Mission 5 unlocks in order
+PASS  Practical evidence gates mission completion: linux-ctf
 PASS  Earned flag remains after reopening terminal UI
+PASS  UI renders plain text: linux-ctf
 PASS  Player tokens resolved: linux-ctf
 PASS  Mission 5 completes through its actual UI
 PASS  Mission 5 persists immediately
 PASS  Mission 6 unlocks in order
-PASS  Source patch waits for observed attack: idor
+PASS  Practical evidence gates mission completion: idor
+PASS  Source patch waits for observed attack: idor/idor
 PASS  Web patch cannot skip retest: idor
+PASS  UI renders plain text: idor
 PASS  Player tokens resolved: idor
 PASS  Mission 6 completes through its actual UI
 PASS  Mission 6 persists immediately
 PASS  Mission 7 unlocks in order
-PASS  Source patch waits for observed attack: xss
+PASS  Practical evidence gates mission completion: xss
+PASS  Source patch waits for observed attack: xss/xss
 PASS  Web patch cannot skip retest: xss
+PASS  UI renders plain text: xss
 PASS  Player tokens resolved: xss
 PASS  Mission 7 completes through its actual UI
 PASS  Mission 7 persists immediately
 PASS  Mission 8 unlocks in order
-PASS  Source patch waits for observed attack: sqli
+PASS  Practical evidence gates mission completion: sqli
+PASS  Source patch waits for observed attack: sqli/sqli
 PASS  Web patch cannot skip retest: sqli
+PASS  UI renders plain text: sqli
 PASS  Player tokens resolved: sqli
 PASS  Mission 8 completes through its actual UI
 PASS  Mission 8 persists immediately
 PASS  Mission 9 unlocks in order
-PASS  Player tokens resolved: red-team
+PASS  Practical evidence gates mission completion: blue-soc
+PASS  Malformed SOC filter has inline feedback
+PASS  UI renders plain text: blue-soc
+PASS  Player tokens resolved: blue-soc
 PASS  Mission 9 completes through its actual UI
 PASS  Mission 9 persists immediately
 PASS  Mission 10 unlocks in order
+PASS  Practical evidence gates mission completion: final
+PASS  Source patch waits for observed attack: final/idor
+PASS  Web patch cannot skip retest: final
+PASS  Source patch waits for observed attack: final/sqli
+PASS  Web patch cannot skip retest: final
 PASS  Malformed SOC filter has inline feedback
-PASS  Player tokens resolved: blue-soc
+PASS  UI renders plain text: final
+PASS  Player tokens resolved: final
 PASS  Mission 10 completes through its actual UI
 PASS  Mission 10 persists immediately
 PASS  Mission 11 unlocks in order
-PASS  Player tokens resolved: final
+PASS  UI renders plain text: graduation
+PASS  Player tokens resolved: graduation
 PASS  Mission 11 completes through its actual UI
 PASS  Mission 11 persists immediately
-PASS  Mission 12 unlocks in order
-PASS  Player tokens resolved: graduation
-PASS  Mission 12 completes through its actual UI
-PASS  Mission 12 persists immediately
 PASS  Complete campaign scores once with retry penalty
 PASS  Final campaign state has no pending mission
+PASS  Completed campaign cannot grant XP twice

@@ -24,6 +24,8 @@ namespace CyberCity
                 case "terminal": ShowTerminal(); break;
                 case "idor": case "xss": case "sqli": ShowWebLab(); break;
                 case "soc": new SocUI(ui, mission, game.SocState(mission), Finish).Show(); break;
+                case "final": ShowFinal(); break;
+                case "graduation": ui.ShowGraduation(ShowQuestion); break;
                 default: ShowQuestion(); break;
             }
         }
@@ -94,7 +96,7 @@ namespace CyberCity
                         progress.text = marked.Count + " / " + total + " indicators highlighted";
                         if (marked.Count == total)
                         {
-                            verdict.interactable = true; verdict.GetComponentInChildren<Text>().text = "SUBMIT YOUR VERDICT   >";
+                            verdict.interactable = true; verdict.GetComponentInChildren<Text>().text = "REPORT EVIDENCE / COMPLETE   >";
                         }
                     }
                 });
@@ -157,6 +159,16 @@ namespace CyberCity
         void ShowWebLab()
         {
             new FakeBrowser(ui, mission, mission.web, game.WebState(mission, mission.kind), Finish).Show();
+        }
+
+        void ShowFinal()
+        {
+            foreach (var lab in mission.finalLabs)
+            {
+                var state = game.WebState(mission, lab.kind);
+                if (!state.verified) { new FakeBrowser(ui, mission, lab, state, ShowFinal).Show(); return; }
+            }
+            new SocUI(ui, mission, game.SocState(mission), Finish).Show();
         }
     }
 }

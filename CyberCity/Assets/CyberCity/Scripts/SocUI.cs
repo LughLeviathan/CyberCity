@@ -157,7 +157,7 @@ namespace CyberCity
             var inputs = new InputField[5];
             for (int i = 0; i < labels.Length; i++)
             {
-                int index = i; ui.Text(c, labels[i], 0, i * 70 + 10, 210, 44, 17, GameUI.Cyan, true);
+                ui.Text(c, labels[i], 0, i * 70 + 10, 210, 44, 17, GameUI.Cyan, true);
                 inputs[i] = ui.Input(c, 224, i * 70, 832, 52, labels[i]); inputs[i].gameObject.name = "Report-" + names[i]; inputs[i].characterLimit = 240; inputs[i].text = values[i];
                 inputs[i].onValueChanged.AddListener(_ => { StoreReport(inputs, report); });
                 inputs[i].onEndEdit.AddListener(_ => ui.Game.Save());

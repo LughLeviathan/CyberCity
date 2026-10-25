@@ -42,6 +42,7 @@ namespace CyberCity
             try { Campaign = CampaignLoader.Load(); }
             catch (Exception e) { Debug.LogError("CyberCity content error: " + e.Message); UI.ShowFatal(e.Message); enabled = false; return; }
             Progress = ProgressStore.Load(Campaign);
+            foreach (var npc in citizens) npc.unlockAfter = CampaignLoader.UnlockForNpc(Campaign, npc.citizenName);
             if (Physics2D.OverlapCircle(new Vector2(Progress.x, Progress.y + .15f), .22f) != null)
             { Progress.x = 14; Progress.y = -8.2f; }
             player.transform.position = new Vector3(Progress.x, Progress.y, 0);
@@ -99,6 +100,7 @@ namespace CyberCity
         public void CompleteMission()
         {
             if (Current == null) return;
+            if (!MissionRequirements.IsSatisfied(Current, Progress)) { UI.Toast("{player}, finish all required practical evidence before completing this mission."); return; }
             Mission finished = Current;
             int reward = ProgressStore.Reward(Progress.attempts[Progress.completed], Progress.hintUses[Progress.completed]);
             Progress.score += reward; Progress.completed++;

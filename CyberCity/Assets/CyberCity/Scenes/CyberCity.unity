@@ -151,10 +151,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CyberCity.Citizen
   citizenName: Blue
-  role: Blue-team engineer
+  role: SOC analyst
   area: Web Security Lab
   accent: {r: 0, g: 0.8980392, b: 1, a: 1}
-  unlockAfter: 9
+  unlockAfter: 8
   idleFrames:
   - {fileID: 214503933, guid: 75e0cc99409365a4b8c937866ff7dc3b, type: 3}
   - {fileID: -765641233, guid: 75e0cc99409365a4b8c937866ff7dc3b, type: 3}
@@ -1551,7 +1551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CyberCity.Citizen
   citizenName: Red
-  role: Red-team analyst
+  role: Web security analyst
   area: Web Security Lab
   accent: {r: 1, g: 0.1764706, b: 0.60784316, a: 1}
   unlockAfter: 5

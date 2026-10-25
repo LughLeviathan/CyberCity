@@ -32,7 +32,7 @@ namespace CyberCity.Editor
         public static void VerifyCore()
         {
             checks.Clear();
-            var campaign = CampaignLoader.Load();
+            var campaign = CampaignLoader.Parse(Resources.Load<TextAsset>("campaign").text);
             var shortPack = new Campaign { version = 1, title = "Short training pack", missions = campaign.missions.Take(2).ToArray() };
             Check(CampaignLoader.Parse(JsonUtility.ToJson(shortPack)).missions.Length == 2, "Mission count follows scenario pack");
             Check(campaign.missions.Length > 0, "Validated offline missions");
@@ -76,6 +76,8 @@ namespace CyberCity.Editor
             VerifyTerminalChallenges();
             VerifyWebLabs(campaign);
             foreach (var mission in campaign.missions.Where(m => m.kind == "soc")) VerifySoc(mission.soc);
+            VerifyFinalRequirements(campaign);
+            VerifyLocalPacks(campaign);
             string folder = Path.Combine(Application.temporaryCachePath, "CyberCityVerification"); Directory.CreateDirectory(folder);
             string path = Path.Combine(folder, "progress.json");
             foreach (string suffix in new[] { "", ".bak", ".tmp" }) if (File.Exists(path + suffix)) File.Delete(path + suffix);
@@ -196,6 +198,58 @@ namespace CyberCity.Editor
             Check(resumed.Stage == 5 && resumed.State.report.who == scenario.attackerIp, "SOC report and investigation stage survive reload");
         }
 
+        static void VerifyFinalRequirements(Campaign campaign)
+        {
+            string[] route = { "orientation", "awareness", "phishing", "fake-site", "linux-ctf", "idor", "xss", "sqli", "blue-soc", "final", "graduation" };
+            Check(campaign.missions.Select(m => m.id).SequenceEqual(route), "Bundled course follows the revised route with no redundant team quizzes");
+            Check(campaign.missions.Sum(m => m.questions?.Length ?? 0) == 6 && campaign.missions.Where(m => m.id != "orientation" && m.id != "awareness" && m.id != "graduation").All(m => (m.questions?.Length ?? 0) == 0), "Six light questions are limited to orientation, awareness and graduation");
+            Check(CampaignLoader.UnlockForNpc(campaign, "Red") == 5 && CampaignLoader.UnlockForNpc(campaign, "Blue") == 8, "Red follows Linux CTF and Blue follows SQLi");
+            var progress = ProgressStore.Create(campaign);
+            var linux = campaign.missions.First(m => m.id == "linux-ctf");
+            progress.terminal[0].solved = true; progress.terminal[1].solved = true;
+            Check(!MissionRequirements.IsSatisfied(linux, progress), "Two flags cannot complete Linux CTF");
+            progress.terminal[2].solved = true; Check(MissionRequirements.IsSatisfied(linux, progress), "Three flags satisfy Linux CTF");
+            var final = campaign.missions.First(m => m.kind == "final");
+            Check(!MissionRequirements.IsSatisfied(final, progress), "Final chain begins without completion evidence");
+            progress.web = final.finalLabs.Select(l => new WebProgress { missionId = final.id, kind = l.kind, verified = true }).ToArray();
+            Check(!MissionRequirements.IsSatisfied(final, progress), "Both browser fixes still require final incident analysis");
+            progress.soc = new[] { new SocProgress { missionId = final.id, complete = true } };
+            Check(MissionRequirements.IsSatisfied(final, progress), "Final requires browser chain and incident analysis together");
+            foreach (var lab in final.finalLabs)
+            {
+                var state = new WebProgress(); var session = new WebLabSession(lab, state);
+                string url = lab.kind == "idor" ? "https://" + lab.host + lab.path + "?id=" + lab.targetId : lab.StartUrl;
+                string payload = lab.kind == "idor" ? "" : "admin'--";
+                session.Request(url, payload); session.ApplyPatch(); session.Request(url, payload);
+                Check(state.verified, "Final browser stage supports attack, patch and retest: " + lab.kind);
+            }
+        }
+
+        static void VerifyLocalPacks(Campaign bundled)
+        {
+            string folder = Path.Combine(Application.persistentDataPath, "ScenarioPacks");
+            string path = Path.Combine(folder, "campaign.json"), checksum = path + ".sha256";
+            var backup = new Dictionary<string, byte[]>();
+            foreach (string file in new[] { path, checksum }) backup[file] = File.Exists(file) ? File.ReadAllBytes(file) : null;
+            try
+            {
+                Directory.CreateDirectory(folder);
+                var pack = new Campaign { version = 1, title = "Verified compact course", missions = bundled.missions.Take(2).ToArray() };
+                string json = JsonUtility.ToJson(pack); File.WriteAllText(path, json); File.WriteAllText(checksum, CampaignLoader.Hash(json));
+                Check(CampaignLoader.Load().missions.Length == 2 && CampaignLoader.Status == "LOCAL PACK / VERIFIED", "Verified local pack can use a different mission count");
+                File.WriteAllText(checksum, "invalid");
+                Check(CampaignLoader.Load().missions.Length == bundled.missions.Length && CampaignLoader.Status == "OFFLINE PACK / VERIFIED", "Corrupt optional pack falls back to verified offline course");
+                File.WriteAllText(path, "{\"version\":1,\"missions\":[]}"); File.WriteAllText(checksum, CampaignLoader.Hash(File.ReadAllText(path)));
+                Check(CampaignLoader.Load().missions.Length == bundled.missions.Length, "Malformed but hashed pack falls back safely");
+            }
+            finally
+            {
+                foreach (var pair in backup)
+                    if (pair.Value != null) File.WriteAllBytes(pair.Key, pair.Value); else if (File.Exists(pair.Key)) File.Delete(pair.Key);
+                CampaignLoader.Load();
+            }
+        }
+
         [MenuItem("Tools/CyberCity/Verify complete playthrough")]
         public static void StartPlaythrough()
         {
@@ -215,6 +269,11 @@ namespace CyberCity.Editor
             Add(() => game.NewPatrol());
             Add(() => { Click("BEGIN YOUR PATROL"); Check(!game.Started, "Username required before patrol"); FindInput().text = "  Byte_42  "; Click("BEGIN YOUR PATROL"); });
             Add(() => Check(game.Started && game.Progress.playerName == "Byte_42", "Valid username is trimmed and persisted"));
+            Add(() => game.UI.ShowPause());
+            Add(() => Click("Change username"));
+            Add(() => { FindInput().text = "ab"; Click("SAVE USERNAME"); Check(game.Progress.playerName == "Byte_42", "Invalid pause rename preserves stored identity"); });
+            Add(() => { FindInput().text = "Ada_Byte"; Click("SAVE USERNAME"); Check(game.Progress.playerName == "Ada_Byte", "Pause rename applies valid username"); });
+            Add(() => { game.UI.ShowStart(); Check(VisibleText().Any(t => t.Contains("WELCOME BACK, Ada_Byte")), "Returning player sees saved name"); Click("CONTINUE PATROL"); });
             Add(() => Capture("02-city"));
             Add(() => { movementStart = game.player.transform.position; Press(Key.W); });
             Add(() => { Release(); Check(game.player.transform.position.y > movementStart.y + .25f, "WASD input moves Rigidbody2D"); });
@@ -235,13 +294,15 @@ namespace CyberCity.Editor
             {
                 int index = i; Mission mission = game.Campaign.missions[index];
                 Add(() => { game.UI.CloseModal(); Check(game.Progress.completed == index, "Mission " + (index+1) + " unlocks in order"); game.player.GetComponent<Rigidbody2D>().position = (Vector2)game.Target.transform.position + Vector2.down; });
+                if (mission.kind != "quiz" && mission.kind != "evidence" && mission.kind != "graduation")
+                    Add(() => { game.CompleteMission(); Check(game.Progress.completed == index, "Practical evidence gates mission completion: " + mission.id); });
                 Add(() => game.Interact(game.Target));
                 Add(() => Click("START MISSION"));
                 if (mission.kind == "evidence")
                 {
                     Add(() => { Check(!FindButton("HIGHLIGHT").interactable, "Evidence requires highlights before verdict: " + mission.id); Capture("03-" + mission.id); });
                     foreach (var item in mission.evidence.Where(e => e.suspicious)) { string label = item.label; Add(() => Click(label)); }
-                    Add(() => Click("SUBMIT YOUR VERDICT"));
+                    Add(() => Click("REPORT EVIDENCE"));
                 }
                 else if (mission.kind == "terminal")
                 {
@@ -259,22 +320,14 @@ namespace CyberCity.Editor
                     { string value = cmd; Add(() => { FindInput().text = value; Click("RUN"); }); }
                     Add(() => Click("ALL FLAGS VERIFIED"));
                 }
-                else if (mission.kind == "idor" || mission.kind == "xss" || mission.kind == "sqli")
+                else if (mission.kind == "idor" || mission.kind == "xss" || mission.kind == "sqli") AddWebRoute(mission, mission.web);
+                else if (mission.kind == "soc") AddSocRoute(mission);
+                else if (mission.kind == "final")
                 {
-                    Add(() => {
-                        Check(!FindButton("APPLY PATCH").interactable, "Source patch waits for observed attack: " + mission.id);
-                        if (mission.kind == "idor") FindInput("Browser address").text = "https://" + mission.web.host + mission.web.path + "?id=" + mission.web.targetId;
-                        else FindInput("Browser form").text = mission.kind == "xss" ? "<script>alert(1)</script>" : "' OR '1'='1";
-                        Click("GO");
-                    });
-                    Add(() => { Click("DevTools / Network"); Capture("05-" + mission.id); });
-                    Add(() => Click("ENABLE FIX:"));
-                    Add(() => Click("APPLY PATCH"));
-                    Add(() => { Check(!game.WebState(mission, mission.kind).verified, "Web patch cannot skip retest: " + mission.id); Click("RETEST SAME REQUEST"); });
-                    Add(() => Capture("05-" + mission.id + "-patched"));
-                    Add(() => Click("CONTINUE TO DEBRIEF"));
+                    foreach (var lab in mission.finalLabs) AddWebRoute(mission, lab);
+                    AddSocRoute(mission);
                 }
-                if (mission.kind == "soc") AddSocRoute(mission);
+                else if (mission.kind == "graduation") Add(() => { Capture("09-graduation"); Click("TAKE THE FINAL PLEDGE"); });
                 for (int n = 0; n < (mission.questions?.Length ?? 0); n++)
                 {
                     int question = n;
@@ -288,6 +341,7 @@ namespace CyberCity.Editor
                     Add(() => Click(question == mission.questions.Length-1 ? "COMPLETE MISSION" : "NEXT DECISION"));
                 }
                 Add(() => {
+                    Check(UnityEngine.Object.FindObjectsByType<Text>(FindObjectsInactive.Exclude).All(t => !t.supportRichText), "UI renders plain text: " + mission.id);
                     Check(!VisibleText().Any(t => t.Contains("{player}")), "Player tokens resolved: " + mission.id);
                     Check(game.Progress.completed == index+1, "Mission " + (index+1) + " completes through its actual UI");
                     Check(ProgressStore.Load(game.Campaign).completed == index+1, "Mission " + (index+1) + " persists immediately");
@@ -296,6 +350,8 @@ namespace CyberCity.Editor
             Add(() => {
                 Check(game.Progress.completed == game.Campaign.missions.Length && game.Progress.score == ProgressStore.MaximumScore(game.Campaign) - ProgressStore.RetryPenalty, "Complete campaign scores once with retry penalty");
                 Check(game.Current == null && game.Target == null, "Final campaign state has no pending mission");
+                int completedScore = game.Progress.score; game.CompleteMission();
+                Check(game.Progress.score == completedScore, "Completed campaign cannot grant XP twice");
                 game.UI.ShowEnding();
             });
             Add(() => Capture("07-completion"));
@@ -304,6 +360,22 @@ namespace CyberCity.Editor
                 WriteReport(); Debug.Log("CyberCity " + Status); End();
             });
             next = EditorApplication.timeSinceStartup + .5; EditorApplication.update += Tick;
+        }
+
+        static void AddWebRoute(Mission mission, WebScenario scenario)
+        {
+            Add(() => {
+                Check(!FindButton("APPLY PATCH").interactable, "Source patch waits for observed attack: " + mission.id + "/" + scenario.kind);
+                if (scenario.kind == "idor") FindInput("Browser address").text = "https://" + scenario.host + scenario.path + "?id=" + scenario.targetId;
+                else FindInput("Browser form").text = scenario.kind == "xss" ? "<script>alert(1)</script>" : "admin'--";
+                Click("GO");
+            });
+            Add(() => { Click("DevTools / Network"); Capture("05-" + mission.id + "-" + scenario.kind); });
+            Add(() => Click("ENABLE FIX:"));
+            Add(() => Click("APPLY PATCH"));
+            Add(() => { Check(!game.WebState(mission, scenario.kind).verified, "Web patch cannot skip retest: " + mission.id); Click("RETEST SAME REQUEST"); });
+            Add(() => Capture("05-" + mission.id + "-" + scenario.kind + "-patched"));
+            Add(() => Click("CONTINUE TO DEBRIEF"));
         }
 
         static void AddSocRoute(Mission mission)

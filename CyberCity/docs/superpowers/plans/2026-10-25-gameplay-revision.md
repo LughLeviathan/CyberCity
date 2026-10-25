@@ -30,7 +30,7 @@
 - [x] Phase 2 — VirtualTerminal.cs: three challenge filesystems, commands/pipes, safe errors and least privilege. Save flag/hint state, challenge board. Test every correct/wrong route and save resume; run core + terminal UI; commit.
 - [x] Phase 3 — WebScenario JSON models + WebLabSession.cs and FakeBrowser.cs. Editable address/history/reload, forms, network panel, data-driven patterns, source patch and identical-input retest. Test multiple payloads, false positives and patch ordering; run core + browser UI; commit.
 - [x] Phase 4 — SocScenario JSON + SocSession.cs and SocUI.cs. Alert queue, packet table/details, filters, sequential deterministic triage/IP/classification/response/report. Test noise/invalid filters/wrong reports and valid route; run core + SOC UI; commit.
-- [ ] Phase 5 — Final chain reuses browser IDOR/SQLi then SOC analysis/response; graduation shows username, XP and area badges. Final campaign has 11 ordered missions and 6 quiz questions. Update verification for actual complete UI route; run both Verify menus, inspect screenshots/console, check GUID/meta integrity and prohibited APIs; commit.
+- [x] Phase 5 — Final chain reuses browser IDOR/SQLi then SOC analysis/response; graduation shows username, XP and area badges. Final campaign has 11 ordered missions and 6 quiz questions. Update verification for actual complete UI route; run both Verify menus, inspect screenshots/console, check GUID/meta integrity and prohibited APIs; commit.
 
 ## Execution ledger
 
@@ -45,3 +45,5 @@
 - Phase 3: RED missing scenario/browser state reproduced; VerifyCore 117 checks and full UI 191 checks passed. Browser patch screenshots inspected; reduced Reload label font to prevent wrapping. Added a regression for changed login-body retests. Browser state and paid hints persist with saves. JSON defines all three pages, patterns and source fixes.
 
 - Phase 4 complete: missing SOC model reproduced. VerifyCore 151 checks; full runtime UI 226 checks passed. SOC table/detail screenshot inspected. Alerts include authorized maintenance false positive, ordinary DNS and correlated IDOR/XSS/SQLi requests. Filters, evidence requirements, response and structured report validation tested.
+
+- Phase 5 complete: old red-team/quiz final reproduced before change. VerifyCore 164 checks; complete 11-mission runtime UI playthrough 261 checks passed. Six MCQs remain. Guarded practical completion, pause rename, returning-player start, final IDOR/SQLi/SOC chain, local-pack checksum/schema fallback and graduation tested. GUID/meta scan: 370 files, zero errors/warnings. Maximum XP 1650; deliberate single retry produces 1635.

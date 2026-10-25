@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
@@ -198,12 +199,12 @@ namespace CyberCity
         public void CloseModal()
         {
             if (Game != null && !Game.Started) return;
-            if (modal != null) { Destroy(modal); modal = null; Content = null; }
+            if (modal != null) { modal.SetActive(false); Destroy(modal); modal = null; Content = null; }
             EventSystem.current?.SetSelectedGameObject(null);
         }
         void RemoveModal()
         {
-            if (modal != null) Destroy(modal);
+            if (modal != null) { modal.SetActive(false); Destroy(modal); }
             modal = null;
         }
         public RectTransform OpenModal(string kicker, string title, string subtitle = "")
@@ -286,11 +287,30 @@ namespace CyberCity
         public void ShowEnding()
         {
             var c = OpenModal("CITIZEN SECURITY PROGRAM / COMPLETE", "Well done, {player}.", "PATROL REPORT  /  ALL DISTRICTS SECURED");
-            Text(c, Game.Progress.score + " / " + ProgressStore.MaximumScore(Game.Campaign) + " XP", 0, 0, 1000, 80, 60, Gold, true);
-            Text(c, "{player}, you investigated suspicious messages, verified a fake website, practiced Linux, tested fictional web vulnerabilities, and chose the defenses that stop them.", 0, 115, 1010, 120, 24);
-            Text(c, "YOUR FIELD RULE\nPause. Verify independently. Share less. Report early.", 0, 265, 1010, 90, 23, Teal);
+            PatrolReport(c);
             Button(c, "EXPLORE THE CITY", 0, 414, 350, 60, CloseModal, Cyan);
             Button(c, "Review field guide", 370, 414, 350, 60, ShowHelp);
+        }
+        public void ShowGraduation(Action pledge)
+        {
+            var c = OpenModal("CYBER ACADEMY / GRADUATION", "Your progress, {player}.", "Review your earned XP and area badges, then take the final security pledge.");
+            PatrolReport(c);
+            Button(c, "TAKE THE FINAL PLEDGE", 0, 414, 480, 60, pledge, Cyan);
+        }
+        void PatrolReport(RectTransform c)
+        {
+            Text(c, Game.Progress.score + " / " + ProgressStore.MaximumScore(Game.Campaign) + " XP", 0, 0, 1000, 78, 54, Gold, true);
+            Text(c, "{player}, your patrol joins evidence analysis, three Linux investigations, browser patch verification and SOC incident response.", 0, 86, 1030, 56, 20);
+            string[] areas = { "Cyber Academy", "Internet Cafe", "Linux Lab", "Web Security Lab" };
+            string[] badges = { "TRUST BUILDER", "EVIDENCE ANALYST", "FILESYSTEM INVESTIGATOR", "APPLICATION & SOC DEFENDER" };
+            for (int i = 0; i < areas.Length; i++)
+            {
+                bool earned = Game.Campaign.missions.Select((m, index) => new { m.area, index }).Where(m => m.area == areas[i]).All(m => m.index < Game.Progress.completed);
+                var badge = Box(c, "Badge / " + areas[i], i % 2 * 538, 158 + i / 2 * 85, 518, 73, Raised);
+                Text(badge, (earned ? "EARNED / " : "IN PROGRESS / ") + areas[i], 15, 10, 490, 24, 14, earned ? Teal : Gold, true);
+                Text(badge, badges[i], 15, 39, 490, 24, 16, White, true);
+            }
+            Text(c, "YOUR FIELD RULE: Pause. Verify independently. Share less. Report early.", 0, 347, 1050, 50, 19, Teal);
         }
         public void ShowJournal()
         {
