@@ -1,0 +1,322 @@
+{
+  "sourceSHA256": "0b11437d7e443fa04a78d5909196d14febffe16ca0a38a6d93c4f14c934c208e",
+  "canvas": [
+    1024,
+    576
+  ],
+  "operations": [
+    {
+      "kind": "reference_texture_clone",
+      "name": "title and tagline skyline",
+      "source": [
+        436,
+        0,
+        1120,
+        113
+      ],
+      "destination": [
+        0,
+        0,
+        436,
+        113
+      ]
+    },
+    {
+      "kind": "reference_texture_clone",
+      "name": "quest skyline",
+      "source": [
+        905,
+        0,
+        1120,
+        122
+      ],
+      "destination": [
+        1120,
+        0,
+        1442,
+        122
+      ]
+    },
+    {
+      "kind": "reference_texture_clone",
+      "name": "minimap skyline",
+      "source": [
+        450,
+        0,
+        620,
+        145
+      ],
+      "destination": [
+        1442,
+        0,
+        1600,
+        145
+      ]
+    },
+    {
+      "kind": "reference_texture_clone",
+      "name": "portrait treeline",
+      "source": [
+        370,
+        114,
+        510,
+        210
+      ],
+      "destination": [
+        0,
+        110,
+        140,
+        206
+      ]
+    },
+    {
+      "kind": "reference_texture_clone",
+      "name": "stats treeline",
+      "source": [
+        345,
+        112,
+        485,
+        198
+      ],
+      "destination": [
+        137,
+        110,
+        277,
+        196
+      ]
+    },
+    {
+      "kind": "reference_texture_clone",
+      "name": "lower-left text water",
+      "source": [
+        135,
+        722,
+        351,
+        797
+      ],
+      "destination": [
+        0,
+        788,
+        360,
+        900
+      ]
+    },
+    {
+      "kind": "reference_texture_clone",
+      "name": "lower-right text water",
+      "source": [
+        1135,
+        768,
+        1265,
+        895
+      ],
+      "destination": [
+        1354,
+        815,
+        1600,
+        900
+      ]
+    },
+    {
+      "kind": "reference_texture_clone",
+      "name": "palette panel water",
+      "source": [
+        133,
+        726,
+        350,
+        795
+      ],
+      "destination": [
+        462,
+        785,
+        1133,
+        900
+      ]
+    },
+    {
+      "kind": "local_diffusion",
+      "name": "baked people and player marker",
+      "regions": [
+        [
+          760,
+          207,
+          792,
+          244
+        ],
+        [
+          815,
+          232,
+          841,
+          285
+        ],
+        [
+          258,
+          326,
+          286,
+          375
+        ],
+        [
+          408,
+          332,
+          433,
+          375
+        ],
+        [
+          505,
+          396,
+          527,
+          441
+        ],
+        [
+          604,
+          375,
+          629,
+          416
+        ],
+        [
+          1034,
+          426,
+          1060,
+          480
+        ],
+        [
+          993,
+          481,
+          1020,
+          528
+        ],
+        [
+          1030,
+          268,
+          1057,
+          316
+        ],
+        [
+          1057,
+          293,
+          1087,
+          343
+        ],
+        [
+          1079,
+          269,
+          1107,
+          315
+        ],
+        [
+          1260,
+          532,
+          1284,
+          585
+        ],
+        [
+          1325,
+          550,
+          1352,
+          598
+        ],
+        [
+          235,
+          543,
+          261,
+          585
+        ],
+        [
+          310,
+          528,
+          335,
+          572
+        ],
+        [
+          364,
+          512,
+          393,
+          565
+        ],
+        [
+          502,
+          720,
+          534,
+          777
+        ],
+        [
+          681,
+          705,
+          711,
+          762
+        ],
+        [
+          839,
+          702,
+          870,
+          761
+        ],
+        [
+          765,
+          724,
+          787,
+          766
+        ],
+        [
+          611,
+          700,
+          637,
+          735
+        ],
+        [
+          931,
+          704,
+          955,
+          736
+        ],
+        [
+          749,
+          483,
+          794,
+          554
+        ]
+      ]
+    },
+    {
+      "kind": "plain_sign_inpaint",
+      "regions": [
+        [
+          465,
+          16,
+          485,
+          77
+        ],
+        [
+          517,
+          71,
+          551,
+          89
+        ],
+        [
+          676,
+          66,
+          695,
+          120
+        ],
+        [
+          699,
+          64,
+          717,
+          119
+        ],
+        [
+          1085,
+          2,
+          1109,
+          66
+        ],
+        [
+          636,
+          2,
+          651,
+          25
+        ]
+      ]
+    }
+  ]
+}
