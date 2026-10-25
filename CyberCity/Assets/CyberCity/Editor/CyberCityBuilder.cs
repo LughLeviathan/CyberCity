@@ -66,14 +66,14 @@ namespace CyberCity.Editor
             string[] areas = { "Cyber Academy", "Internet Cafe", "Internet Cafe", "Internet Cafe", "Linux Lab", "Web Security Lab", "Web Security Lab" };
             Vector2[] positions = { new Vector2(14,-6), new Vector2(6.1f,-10.1f), new Vector2(5,-15.3f), new Vector2(8.9f,-12), new Vector2(23,-7.2f), new Vector2(22.2f,-15.2f), new Vector2(25.1f,-15.3f) };
             Color[] colors = { GameUI.White, GameUI.Violet, GameUI.Pink, GameUI.Gold, GameUI.Teal, GameUI.Pink, GameUI.Cyan };
-            int[] unlock = { 0, 1, 1, 1, 4, 5, 9 };
+            var campaign = CampaignLoader.Load();
             var citizens = new Citizen[7];
             for (int i = 0; i < 7; i++)
             {
                 var go = Actor(names[i], characters[i + 1][0], positions[i], mat); go.transform.SetParent(citizenRoot.transform);
                 var col = go.AddComponent<CircleCollider2D>(); col.radius = .23f; col.offset = new Vector2(0,.17f);
                 var npc = go.AddComponent<Citizen>(); npc.citizenName = names[i]; npc.role = roles[i]; npc.area = areas[i];
-                npc.accent = colors[i]; npc.unlockAfter = unlock[i]; npc.idleFrames = new[] { characters[i + 1][0], characters[i + 1][3] };
+                npc.accent = colors[i]; npc.unlockAfter = CampaignLoader.UnlockForNpc(campaign, names[i]); npc.idleFrames = new[] { characters[i + 1][0], characters[i + 1][3] };
                 citizens[i] = npc;
             }
             AddBoundary("North boundary", new Vector2(14,.15f), new Vector2(29,.3f));
@@ -105,7 +105,7 @@ namespace CyberCity.Editor
                 SceneView.lastActiveSceneView.in2DMode = true;
                 SceneView.lastActiveSceneView.LookAt(new Vector3(14,-11,0), Quaternion.identity, 15);
             }
-            Debug.Log("CyberCity playable scene built: twelve missions, seven mentors, local campaign and saves.");
+            Debug.Log("CyberCity playable scene built: " + campaign.missions.Length + " missions, seven mentors, local campaign and saves.");
         }
 
         static GameObject Actor(string name, Sprite sprite, Vector2 position, Material material)

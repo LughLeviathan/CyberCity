@@ -1176,7 +1176,7 @@ MonoBehaviour:
   role: Digital detective
   area: Internet Cafe
   accent: {r: 1, g: 0.7019608, b: 0.2784314, a: 1}
-  unlockAfter: 1
+  unlockAfter: 3
   idleFrames:
   - {fileID: -1265926130, guid: ec53ff90b8328714ba63e333703e83ca, type: 3}
   - {fileID: 1936141839, guid: ec53ff90b8328714ba63e333703e83ca, type: 3}
@@ -1326,7 +1326,7 @@ MonoBehaviour:
   role: Message investigator
   area: Internet Cafe
   accent: {r: 1, g: 0.1764706, b: 0.60784316, a: 1}
-  unlockAfter: 1
+  unlockAfter: 2
   idleFrames:
   - {fileID: -1148122871, guid: c6eb6c039f248f04ea15b30e0f6a928c, type: 3}
   - {fileID: -1750159969, guid: c6eb6c039f248f04ea15b30e0f6a928c, type: 3}

@@ -33,8 +33,10 @@ namespace CyberCity.Editor
         {
             checks.Clear();
             var campaign = CampaignLoader.Load();
-            Check(campaign.missions.Length == 12, "Twelve validated offline missions");
-            Check(campaign.missions.Select(m => m.id).Distinct().Count() == 12, "Unique mission IDs");
+            var shortPack = new Campaign { version = 1, title = "Short training pack", missions = campaign.missions.Take(2).ToArray() };
+            Check(CampaignLoader.Parse(JsonUtility.ToJson(shortPack)).missions.Length == 2, "Mission count follows scenario pack");
+            Check(campaign.missions.Length > 0, "Validated offline missions");
+            Check(campaign.missions.Select(m => m.id).Distinct().Count() == campaign.missions.Length, "Unique mission IDs");
             Check(CampaignLoader.Hash(Resources.Load<TextAsset>("campaign").text) == Resources.Load<TextAsset>("campaign_hash").text.Trim(), "Bundled campaign SHA-256 matches");
             bool rejected = false; try { CampaignLoader.Parse("{\"version\":2}"); } catch (InvalidDataException) { rejected = true; }
             Check(rejected, "Invalid campaign rejected");
@@ -46,6 +48,13 @@ namespace CyberCity.Editor
             malformed.missions[0].npc = "Unknown mentor"; rejected = false;
             try { CampaignLoader.Parse(JsonUtility.ToJson(malformed)); } catch (InvalidDataException) { rejected = true; }
             Check(rejected, "Unsupported scenario mentor rejected");
+            malformed = JsonUtility.FromJson<Campaign>(Resources.Load<TextAsset>("campaign").text);
+            malformed.missions[1].id = malformed.missions[0].id; rejected = false;
+            try { CampaignLoader.Parse(JsonUtility.ToJson(malformed)); } catch (InvalidDataException) { rejected = true; }
+            Check(rejected, "Duplicate mission IDs rejected");
+            malformed = JsonUtility.FromJson<Campaign>(Resources.Load<TextAsset>("campaign").text);
+            foreach (var m in malformed.missions.Where(m => m.kind != "quiz")) m.questions = null;
+            Check(CampaignLoader.Parse(JsonUtility.ToJson(malformed)) != null, "Non-quiz learning does not require questions");
             var terminal = new VirtualTerminal();
             Check(!terminal.Execute("submit " + VirtualTerminal.Flag).Contains("VERIFIED"), "Flag requires reading evidence first");
             Check(terminal.Execute("ls").Contains("README.txt") && !terminal.Execute("ls").Contains(".archive"), "Normal listing hides dot entries");
@@ -60,15 +69,23 @@ namespace CyberCity.Editor
             string folder = Path.Combine(Application.temporaryCachePath, "CyberCityVerification"); Directory.CreateDirectory(folder);
             string path = Path.Combine(folder, "progress.json");
             foreach (string suffix in new[] { "", ".bak", ".tmp" }) if (File.Exists(path + suffix)) File.Delete(path + suffix);
-            var first = new ProgressData { completed = 3, score = 450, x = 5, y = -12, started = true };
+            var first = ProgressStore.Create(campaign); first.completed = 3; first.score = 450; first.x = 5; first.y = -12; first.started = true;
             Check(ProgressStore.Save(first, path), "Atomic save succeeds");
-            var loaded = ProgressStore.Load(path);
+            var loaded = ProgressStore.Load(campaign, path);
             Check(loaded.completed == 3 && loaded.score == 450 && loaded.x == 5, "Save round trip preserves progress and position");
             first.completed = 4; first.score = 600; ProgressStore.Save(first, path);
             File.WriteAllText(path, "damaged");
-            Check(ProgressStore.Load(path).completed == 3, "Damaged primary save recovers backup");
+            Check(ProgressStore.Load(campaign, path).completed == 3, "Damaged primary save recovers backup");
             File.WriteAllText(path + ".bak", "damaged");
-            Check(ProgressStore.Load(path).completed == 0, "Damaged primary and backup recover fresh data");
+            Check(ProgressStore.Load(campaign, path).completed == 0, "Damaged primary and backup recover fresh data");
+            File.WriteAllText(path, "{\"version\":1,\"completed\":10,\"score\":1500}");
+            Check(ProgressStore.Load(campaign, path).version == 2 && ProgressStore.LastError.Contains("version 1"), "Legacy save resets safely with an explanation");
+            var compact = ProgressStore.Create(shortPack); compact.completed = 2; compact.score = 300;
+            Check(compact.attempts.Length == 2 && ProgressStore.Save(compact, path), "Retry storage follows mission count");
+            Check(ProgressStore.Load(shortPack, path).score == 300, "Dynamic maximum score accepted");
+            compact.score = 301; ProgressStore.Save(compact, path);
+            Check(ProgressStore.Load(shortPack, path).score == 300, "Over-maximum score recovers valid backup");
+            Check(ProgressStore.Load(campaign, path).completed == 0, "Different course route resets safely");
             foreach (string suffix in new[] { "", ".bak", ".tmp" }) if (File.Exists(path + suffix)) File.Delete(path + suffix);
             Status = "PASS: " + checks.Count + " core checks"; WriteReport(); Debug.Log("CyberCity " + Status);
         }
@@ -106,7 +123,7 @@ namespace CyberCity.Editor
                 Check(VisibleText().Any(t => t.Contains("still locked")), "Later mentor content is locked"); game.UI.CloseModal();
             });
             Add(() => VerifyReachability());
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < game.Campaign.missions.Length; i++)
             {
                 int index = i; Mission mission = game.Campaign.missions[index];
                 Add(() => { game.UI.CloseModal(); Check(game.Progress.completed == index, "Mission " + (index+1) + " unlocks in order"); game.player.GetComponent<Rigidbody2D>().position = (Vector2)game.Target.transform.position + Vector2.down; });
@@ -147,17 +164,17 @@ namespace CyberCity.Editor
                 }
                 Add(() => {
                     Check(game.Progress.completed == index+1, "Mission " + (index+1) + " completes through its actual UI");
-                    Check(ProgressStore.Load().completed == index+1, "Mission " + (index+1) + " persists immediately");
+                    Check(ProgressStore.Load(game.Campaign).completed == index+1, "Mission " + (index+1) + " persists immediately");
                 });
             }
             Add(() => {
-                Check(game.Progress.completed == 12 && game.Progress.score == 1785, "Complete campaign scores once with retry penalty");
+                Check(game.Progress.completed == game.Campaign.missions.Length && game.Progress.score == ProgressStore.MaximumScore(game.Campaign) - ProgressStore.RetryPenalty, "Complete campaign scores once with retry penalty");
                 Check(game.Current == null && game.Target == null, "Final campaign state has no pending mission");
                 game.UI.ShowEnding();
             });
             Add(() => Capture("07-completion"));
             Add(() => {
-                Status = "PASS: " + checks.Count + " checks including twelve missions through runtime UI";
+                Status = "PASS: " + checks.Count + " checks including all missions through runtime UI";
                 WriteReport(); Debug.Log("CyberCity " + Status); End();
             });
             next = EditorApplication.timeSinceStartup + .5; EditorApplication.update += Tick;

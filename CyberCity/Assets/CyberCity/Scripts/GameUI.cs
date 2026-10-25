@@ -77,6 +77,17 @@ namespace CyberCity
             input.textComponent = value; input.placeholder = hint; input.characterLimit = 200; return input;
         }
 
+        public RectTransform Scroll(Transform parent, string name, float x, float y, float w, float h, float contentHeight)
+        {
+            var viewport = Box(parent, name, x, y, w, h, Panel);
+            viewport.gameObject.AddComponent<RectMask2D>();
+            var content = Rect(viewport, "Scrollable content", 0, 0, w, Mathf.Max(h, contentHeight));
+            var scroll = viewport.gameObject.AddComponent<ScrollRect>();
+            scroll.viewport = viewport; scroll.content = content; scroll.horizontal = false;
+            scroll.movementType = ScrollRect.MovementType.Clamped; scroll.scrollSensitivity = 28;
+            return content;
+        }
+
         public void Initialize(CyberCityGame game)
         {
             if (CanvasRoot != null) Destroy(CanvasRoot.gameObject);
@@ -112,8 +123,9 @@ namespace CyberCity
             var side = Box(hud, "Mission console", 1262, 106, 310, 746, Panel);
             Text(side, "YOUR PATROL", 24, 22, 250, 24, 13, Cyan, true);
             count = Text(side, "", 24, 57, 260, 32, 25, White, true);
-            segments = new Image[12];
-            for (int i = 0; i < 12; i++) segments[i] = Box(side, "Mission " + i, 24 + i * 22, 105, 17, 5, Raised).GetComponent<Image>();
+            segments = new Image[Game.Campaign.missions.Length];
+            float segmentWidth = 262f / segments.Length;
+            for (int i = 0; i < segments.Length; i++) segments[i] = Box(side, "Mission " + i, 24 + i * segmentWidth, 105, segmentWidth * .78f, 5, Raised).GetComponent<Image>();
             Text(side, "CURRENT OBJECTIVE", 24, 142, 270, 22, 12, Muted, true);
             objective = Text(side, "", 24, 178, 268, 72, 24, White, true);
             objectiveBody = Text(side, "", 24, 258, 264, 100, 17, Muted);
@@ -141,18 +153,19 @@ namespace CyberCity
         public void RefreshHud()
         {
             if (Game == null || count == null) return;
-            count.text = Game.Progress.completed.ToString("00") + " / 12 complete";
+            count.text = Game.Progress.completed.ToString("00") + " / " + Game.Campaign.missions.Length + " complete";
             score.text = Game.Progress.score.ToString("0000") + "  XP";
-            for (int i = 0; i < 12; i++) segments[i].color = i < Game.Progress.completed ? Teal : i == Game.Progress.completed ? Gold : Raised;
-            int[] unlocks = { 0, 1, 4, 5 };
+            for (int i = 0; i < segments.Length; i++) segments[i].color = i < Game.Progress.completed ? Teal : i == Game.Progress.completed ? Gold : Raised;
+            string[] areas = { "Cyber Academy", "Internet Cafe", "Linux Lab", "Web Security Lab" };
             for (int i = 0; i < 4; i++)
             {
-                bool open = Game.Progress.completed >= unlocks[i];
-                districtStates[i].text = open ? "ACCESS GRANTED" : "COMPLETE MISSION " + unlocks[i].ToString("00") + " TO UNLOCK";
+                int unlock = CampaignLoader.UnlockForArea(Game.Campaign, areas[i]);
+                bool open = Game.Progress.completed >= unlock;
+                districtStates[i].text = open ? "ACCESS GRANTED" : "COMPLETE MISSION " + unlock.ToString("00") + " TO UNLOCK";
                 districtStates[i].color = open ? Teal : Muted;
             }
             objective.text = Game.Current == null ? "City secured." : Game.Current.title;
-            objectiveBody.text = Game.Current == null ? "All twelve missions complete. Your field guide is always available." :
+            objectiveBody.text = Game.Current == null ? "All missions complete. Your field guide is always available." :
                 "Find " + Game.Current.npc + "\n" + Game.Current.area + "\n\nApproach and press E.";
         }
 
@@ -219,7 +232,7 @@ namespace CyberCity
             Text(modal.transform, "THINK BEFORE YOU CLICK", 80, 482, 560, 40, 22, Gold, true);
             Text(modal.transform, "A city of connections. A world of hidden risks.\nBecome the citizen who knows what to look for.", 80, 538, 510, 78, 20, Muted);
             Button(modal.transform, Game.Progress.started ? "CONTINUE PATROL   >" : "BEGIN YOUR PATROL   >", 80, 655, 440, 64, Game.Begin, Cyan);
-            Text(modal.transform, "12 MISSIONS    /    7 MENTORS    /    4 DISTRICTS", 80, 746, 590, 30, 13, Muted);
+            Text(modal.transform, Game.Campaign.missions.Length + " MISSIONS    /    " + Game.citizens.Length + " MENTORS    /    4 DISTRICTS", 80, 746, 590, 30, 13, Muted);
             var card = Box(modal.transform, "Orientation", 1002, 668, 510, 150, Panel);
             Text(card, "YOUR FIRST ASSIGNMENT", 24, 19, 460, 24, 12, Cyan, true);
             Text(card, Game.Current == null ? "Patrol complete. Welcome back." : "Meet " + Game.Current.npc, 24, 52, 460, 34, 24, White, true);
@@ -247,7 +260,7 @@ namespace CyberCity
         }
         public void ShowDebrief(Mission mission, int xp)
         {
-            var c = OpenModal("MISSION COMPLETE / " + mission.area, "Connection secured.", "+" + xp + " XP  /  " + Game.Progress.completed + " of 12 missions complete");
+            var c = OpenModal("MISSION COMPLETE / " + mission.area, "Connection secured.", "+" + xp + " XP  /  " + Game.Progress.completed + " of " + Game.Campaign.missions.Length + " missions complete");
             Text(c, mission.takeaway, 0, 18, 1020, 150, 25);
             Text(c, Game.Current == null ? "You completed the Citizen Security Program." : "NEXT ASSIGNMENT\n\n" + Game.Current.title + "\nFind " + Game.Current.npc + " at " + Game.Current.area + ".", 0, 205, 1000, 160, 21, Teal);
             Button(c, Game.Current == null ? "VIEW PATROL REPORT   >" : "BACK TO THE CITY   >", 0, 414, 440, 60,
@@ -256,7 +269,7 @@ namespace CyberCity
         public void ShowEnding()
         {
             var c = OpenModal("CITIZEN SECURITY PROGRAM / COMPLETE", "CyberCity is in good hands.", "PATROL REPORT  /  ALL DISTRICTS SECURED");
-            Text(c, Game.Progress.score + " / 1800 XP", 0, 0, 1000, 80, 60, Gold, true);
+            Text(c, Game.Progress.score + " / " + ProgressStore.MaximumScore(Game.Campaign) + " XP", 0, 0, 1000, 80, 60, Gold, true);
             Text(c, "You investigated suspicious messages, verified a fake website, found a Linux flag, tested three fictional web vulnerabilities, and chose the defenses that stop them.", 0, 115, 1010, 120, 24);
             Text(c, "YOUR FIELD RULE\nPause. Verify independently. Share less. Report early.", 0, 265, 1010, 90, 23, Teal);
             Button(c, "EXPLORE THE CITY", 0, 414, 350, 60, CloseModal, Cyan);
@@ -265,10 +278,12 @@ namespace CyberCity
         public void ShowJournal()
         {
             var c = OpenModal("FIELD JOURNAL", "Your learning route", "Complete assignments in order to unlock each district and its simulations.");
-            for (int i = 0; i < 12; i++)
+            int rows = (Game.Campaign.missions.Length + 1) / 2;
+            var journal = Scroll(c, "Mission list", 0, 0, 1056, 425, rows * 70);
+            for (int i = 0; i < Game.Campaign.missions.Length; i++)
             {
-                int col = i / 6, row = i % 6; var m = Game.Campaign.missions[i];
-                var line = Box(c, m.id, col * 537, row * 70, 518, 60, Raised);
+                int col = i / rows, row = i % rows; var m = Game.Campaign.missions[i];
+                var line = Box(journal, m.id, col * 537, row * 70, 518, 60, Raised);
                 Color color = i < Game.Progress.completed ? Teal : i == Game.Progress.completed ? Gold : Muted;
                 Text(line, i < Game.Progress.completed ? "OK" : (i + 1).ToString("00"), 13, 16, 35, 27, 16, color, true);
                 Text(line, m.title, 60, 8, 446, 27, 18, color, true);
@@ -282,11 +297,11 @@ namespace CyberCity
             var p = Rect(c, "Map image", 0, -2, 620, 486).gameObject.AddComponent<Image>(); p.sprite = cityPreview; p.preserveAspect = true;
             string[] area = { "Cyber Academy", "Internet Cafe", "Linux Lab", "Web Security Lab" };
             string[] pos = { "NORTH / Professor Byte", "WEST / Alex, Maya, Detective Byte", "NORTHEAST / SysAdmin Tux", "EAST / Red and Blue" };
-            int[] unlock = { 0, 1, 4, 5 };
             for (int i = 0; i < 4; i++)
             {
-                Text(c, area[i], 658, i * 82, 390, 30, 23, Game.Progress.completed >= unlock[i] ? Cyan : Muted, true);
-                Text(c, pos[i] + (Game.Progress.completed >= unlock[i] ? " / OPEN" : " / LOCKED"), 658, 37 + i * 82, 390, 36, 13, Muted);
+                bool open = Game.Progress.completed >= CampaignLoader.UnlockForArea(Game.Campaign, area[i]);
+                Text(c, area[i], 658, i * 82, 390, 30, 23, open ? Cyan : Muted, true);
+                Text(c, pos[i] + (open ? " / OPEN" : " / LOCKED"), 658, 37 + i * 82, 390, 36, 13, Muted);
             }
             Text(c, Game.Current == null ? "All missions complete." : "CURRENT: " + Game.Current.npc + "\n" + Game.Current.title, 658, 345, 390, 70, 19, Gold);
             Button(c, "Back to exploring", 658, 432, 390, 50, CloseModal, Cyan);

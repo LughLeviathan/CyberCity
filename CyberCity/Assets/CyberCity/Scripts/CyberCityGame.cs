@@ -41,7 +41,7 @@ namespace CyberCity
             UI = GetComponent<GameUI>();
             try { Campaign = CampaignLoader.Load(); }
             catch (Exception e) { Debug.LogError("CyberCity content error: " + e.Message); UI.ShowFatal(e.Message); enabled = false; return; }
-            Progress = ProgressStore.Load();
+            Progress = ProgressStore.Load(Campaign);
             if (Physics2D.OverlapCircle(new Vector2(Progress.x, Progress.y + .15f), .22f) != null)
             { Progress.x = 14; Progress.y = -8.2f; }
             player.transform.position = new Vector3(Progress.x, Progress.y, 0);
@@ -52,9 +52,10 @@ namespace CyberCity
 
         public void Begin()
         {
+            string notice = ProgressStore.LastError;
             Started = true; Progress.started = true; UI.CloseModal(); UI.RefreshHud(); Save();
             if (!music.isPlaying) music.Play();
-            UI.Toast(ProgressStore.LastError ?? "Welcome to CyberCity. Follow the gold mission marker.");
+            UI.Toast(notice ?? "Welcome to CyberCity. Follow the gold mission marker.");
         }
 
         void Update()
@@ -98,7 +99,7 @@ namespace CyberCity
         {
             if (Current == null) return;
             Mission finished = Current;
-            int reward = Mathf.Max(75, 150 - Progress.attempts[Progress.completed] * 15);
+            int reward = ProgressStore.Reward(Progress.attempts[Progress.completed]);
             Progress.score += reward; Progress.completed++;
             Save(); Play(successSound); UI.RefreshHud(); UI.ShowDebrief(finished, reward);
         }
@@ -112,7 +113,7 @@ namespace CyberCity
 
         public void NewPatrol()
         {
-            Progress = new ProgressData(); player.GetComponent<Rigidbody2D>().position = new Vector2(14, -8.2f);
+            Progress = ProgressStore.Create(Campaign); player.GetComponent<Rigidbody2D>().position = new Vector2(14, -8.2f);
             Begin();
         }
 
