@@ -181,26 +181,15 @@
       ]
     },
     {
-      "id": "linux",
-      "title": "A flag in the filesystem",
+      "id": "linux-ctf",
+      "title": "Three flags, three investigations",
       "npc": "SysAdmin Tux",
       "area": "Linux Lab",
       "kind": "terminal",
-      "briefing": "{player}, welcome to the command line. You do not need to memorize everything. Investigate one folder at a time. The hidden archive contains a flag that proves you read the evidence.",
-      "objective": "Use pwd, ls -a, cd, and cat to find the hidden flag. Submit it in the terminal.",
-      "takeaway": "{player}, the terminal is a way to inspect files deliberately. pwd shows location, ls -a includes hidden entries, cd changes folder, and cat reads evidence. The Web Security Lab is now open.",
-      "questions": [
-        {
-          "prompt": "What does ls -a add to a normal directory listing?",
-          "options": [
-            "It downloads every file.",
-            "It includes hidden entries whose names start with a dot.",
-            "It gives administrator rights."
-          ],
-          "answer": 1,
-          "explanation": "The -a option includes hidden entries. It does not change file permissions or execute files."
-        }
-      ]
+      "briefing": "{player}, each training filesystem hides a different clue. Explore an archive, investigate failed sign-ins, then restore the minimum file permission. Type help whenever you need a command reference.",
+      "objective": "Find and submit one flag in each of the three challenge filesystems.",
+      "takeaway": "{player}, investigate before acting. Hidden files, focused log searches and owner-only read permissions each reveal a different kind of evidence. The Web Security Lab is now open.",
+      "questions": []
     },
     {
       "id": "idor",

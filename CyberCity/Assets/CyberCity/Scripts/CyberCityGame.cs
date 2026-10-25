@@ -100,7 +100,7 @@ namespace CyberCity
         {
             if (Current == null) return;
             Mission finished = Current;
-            int reward = ProgressStore.Reward(Progress.attempts[Progress.completed]);
+            int reward = ProgressStore.Reward(Progress.attempts[Progress.completed], Progress.hintUses[Progress.completed]);
             Progress.score += reward; Progress.completed++;
             Save(); Play(successSound); UI.RefreshHud(); UI.ShowDebrief(finished, reward);
         }

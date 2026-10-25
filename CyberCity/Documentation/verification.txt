@@ -1,6 +1,6 @@
 CyberCity verification
-PASS: 113 checks including all missions through runtime UI
-UTC: 2026-10-25T14:38:53.5626368Z
+PASS: 131 checks including all missions through runtime UI
+UTC: 2026-10-25T14:46:16.4460773Z
 
 PASS  Mission count follows scenario pack
 PASS  Validated offline missions
@@ -36,6 +36,22 @@ PASS  Incorrect flag rejected
 PASS  Correct flag accepted
 PASS  Virtual path stays inside root
 PASS  External commands are unsupported
+PASS  Log flag needs evidence before submission
+PASS  find locates the authentication evidence
+PASS  Pipe isolates four failed sign-ins from noise
+PASS  Repeated attacker counted from evidence
+PASS  head and tail inspect boundaries
+PASS  Bad command arguments return useful errors
+PASS  Wrong log source rejected
+PASS  Log hunt solved by highest failed source
+PASS  Permissions show current owner and missing read access
+PASS  Unreadable evidence stays protected
+PASS  Excessive permissions cannot solve challenge
+PASS  Wrong permissions flag rejected
+PASS  Owner-only read permission solves challenge
+PASS  Symbolic owner read command supported
+PASS  Challenge filesystems are isolated
+PASS  Hints reduce reward without crossing minimum
 PASS  Atomic save succeeds
 PASS  Save round trip preserves identity, progress and position
 PASS  Damaged primary save recovers backup
@@ -45,6 +61,7 @@ PASS  Retry storage follows mission count
 PASS  Dynamic maximum score accepted
 PASS  Over-maximum score recovers valid backup
 PASS  Different course route resets safely
+PASS  Flags and paid hints survive save/reload
 PASS  Runtime game initialized
 PASS  Username required before patrol
 PASS  Valid username is trimmed and persisted
@@ -79,7 +96,8 @@ PASS  Player tokens resolved: fake-site
 PASS  Mission 4 completes through its actual UI
 PASS  Mission 4 persists immediately
 PASS  Mission 5 unlocks in order
-PASS  Player tokens resolved: linux
+PASS  Earned flag remains after reopening terminal UI
+PASS  Player tokens resolved: linux-ctf
 PASS  Mission 5 completes through its actual UI
 PASS  Mission 5 persists immediately
 PASS  Mission 6 unlocks in order

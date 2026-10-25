@@ -73,6 +73,7 @@ namespace CyberCity.Editor
             terminal.Execute("submit " + VirtualTerminal.Flag); Check(terminal.Solved, "Correct flag accepted");
             terminal.Execute("cd ../../../../../../"); Check(terminal.Directory == "/", "Virtual path stays inside root");
             Check(terminal.Execute("curl https://example.com").StartsWith("Unknown command"), "External commands are unsupported");
+            VerifyTerminalChallenges();
             string folder = Path.Combine(Application.temporaryCachePath, "CyberCityVerification"); Directory.CreateDirectory(folder);
             string path = Path.Combine(folder, "progress.json");
             foreach (string suffix in new[] { "", ".bak", ".tmp" }) if (File.Exists(path + suffix)) File.Delete(path + suffix);
@@ -93,8 +94,37 @@ namespace CyberCity.Editor
             compact.score = 301; ProgressStore.Save(compact, path);
             Check(ProgressStore.Load(shortPack, path).score == 300, "Over-maximum score recovers valid backup");
             Check(ProgressStore.Load(campaign, path).completed == 0, "Different course route resets safely");
+            var resumed = ProgressStore.Create(campaign); resumed.playerName = "Byte_42";
+            resumed.terminal[0].solved = true; resumed.terminal[1].hints = 2; resumed.hintUses[0] = 2;
+            ProgressStore.Save(resumed, path); var restored = ProgressStore.Load(campaign, path);
+            Check(restored.terminal[0].solved && restored.terminal[1].hints == 2 && restored.hintUses[0] == 2, "Flags and paid hints survive save/reload");
             foreach (string suffix in new[] { "", ".bak", ".tmp" }) if (File.Exists(path + suffix)) File.Delete(path + suffix);
             Status = "PASS: " + checks.Count + " core checks"; WriteReport(); Debug.Log("CyberCity " + Status);
+        }
+
+        static void VerifyTerminalChallenges()
+        {
+            var logs = new VirtualTerminal("log-hunt");
+            Check(!logs.Solved && !logs.Execute("submit CYBER{203.0.113.42}").Contains("VERIFIED"), "Log flag needs evidence before submission");
+            Check(logs.Execute("find . -name auth.log").Contains("/logs/auth.log"), "find locates the authentication evidence");
+            Check(logs.Execute("cat logs/auth.log | grep Failed | wc -l") == "4", "Pipe isolates four failed sign-ins from noise");
+            Check(logs.Execute("grep 203.0.113.42 logs/auth.log | wc -l") == "3", "Repeated attacker counted from evidence");
+            Check(logs.Execute("head -n 1 logs/auth.log").StartsWith("09:00 Failed") && logs.Execute("tail -n 1 logs/auth.log").StartsWith("09:04 Failed"), "head and tail inspect boundaries");
+            Check(logs.Execute("head -n nope logs/auth.log").StartsWith("ERROR:") && logs.Execute("cat missing").StartsWith("ERROR:"), "Bad command arguments return useful errors");
+            logs.Execute("submit CYBER{203.0.113.77}"); Check(!logs.Solved, "Wrong log source rejected");
+            logs.Execute("submit CYBER{203.0.113.42}"); Check(logs.Solved, "Log hunt solved by highest failed source");
+            var permissions = new VirtualTerminal("permissions");
+            Check(permissions.Execute("whoami") == "trainee" && permissions.Execute("ls -l private").Contains("---------- trainee"), "Permissions show current owner and missing read access");
+            Check(permissions.Execute("cat private/flag.txt").Contains("Permission denied"), "Unreadable evidence stays protected");
+            permissions.Execute("chmod 777 private/flag.txt"); permissions.Execute("cat private/flag.txt");
+            Check(permissions.Execute("submit CYBER{owner_read_only}").Contains("Least privilege") && !permissions.Solved, "Excessive permissions cannot solve challenge");
+            permissions.Execute("chmod 400 private/flag.txt"); permissions.Execute("cat private/flag.txt");
+            permissions.Execute("submit wrong"); Check(!permissions.Solved, "Wrong permissions flag rejected");
+            permissions.Execute("submit CYBER{owner_read_only}"); Check(permissions.Solved, "Owner-only read permission solves challenge");
+            var symbolic = new VirtualTerminal("permissions"); symbolic.Execute("chmod u+r private/flag.txt");
+            Check(symbolic.Execute("cat private/flag.txt").Contains("CYBER{owner_read_only}"), "Symbolic owner read command supported");
+            Check(!new VirtualTerminal("hidden-file").Execute("cat logs/auth.log").Contains("Failed"), "Challenge filesystems are isolated");
+            Check(ProgressStore.Reward(0, 2) == 140 && ProgressStore.Reward(100, 6) == 75, "Hints reduce reward without crossing minimum");
         }
 
         [MenuItem("Tools/CyberCity/Verify complete playthrough")]
@@ -147,8 +177,18 @@ namespace CyberCity.Editor
                 else if (mission.kind == "terminal")
                 {
                     Add(() => Capture("04-terminal"));
-                    foreach (string cmd in new[] { "pwd", "cat README.txt", "ls -a", "cd .archive", "cat access.txt", "submit " + VirtualTerminal.Flag })
+                    foreach (string cmd in new[] { "ls -a", "cd .archive", "cat access.txt", "submit CYBER{verify_first}" })
                     { string value = cmd; Add(() => { FindInput().text = value; Click("RUN"); }); }
+                    Add(() => game.UI.CloseModal());
+                    Add(() => game.Interact(game.Target));
+                    Add(() => Click("START MISSION"));
+                    Add(() => { Check(VisibleText().Any(t => t.Contains("FLAGS 1/3")), "Earned flag remains after reopening terminal UI"); Click("02  Log hunt"); });
+                    foreach (string cmd in new[] { "find . -name auth.log", "grep Failed logs/auth.log", "submit CYBER{203.0.113.42}" })
+                    { string value = cmd; Add(() => { FindInput().text = value; Click("RUN"); }); }
+                    Add(() => Click("03  Least privilege"));
+                    foreach (string cmd in new[] { "whoami", "ls -l private", "cat private/flag.txt", "chmod 400 private/flag.txt", "cat private/flag.txt", "submit CYBER{owner_read_only}" })
+                    { string value = cmd; Add(() => { FindInput().text = value; Click("RUN"); }); }
+                    Add(() => Click("ALL FLAGS VERIFIED"));
                 }
                 else if (mission.kind == "idor" || mission.kind == "xss" || mission.kind == "sqli")
                 {
@@ -216,7 +256,7 @@ namespace CyberCity.Editor
         static void Release() { if (Keyboard.current != null) InputSystem.QueueStateEvent(Keyboard.current, new KeyboardState()); }
         static Button FindButton(string prefix)
         {
-            return UnityEngine.Object.FindObjectsByType<Button>(FindObjectsInactive.Exclude, FindObjectsSortMode.None)
+            return UnityEngine.Object.FindObjectsByType<Button>(FindObjectsInactive.Exclude)
                 .FirstOrDefault(b => b.GetComponentInChildren<Text>()?.text.StartsWith(prefix, StringComparison.Ordinal) == true)
                 ?? throw new Exception("Button not found: " + prefix);
         }
@@ -225,7 +265,7 @@ namespace CyberCity.Editor
             var b = FindButton(prefix); if (!b.interactable) throw new Exception("Button disabled: " + prefix); b.onClick.Invoke();
         }
         static InputField FindInput() => UnityEngine.Object.FindAnyObjectByType<InputField>();
-        static IEnumerable<string> VisibleText() => UnityEngine.Object.FindObjectsByType<Text>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Select(t => t.text);
+        static IEnumerable<string> VisibleText() => UnityEngine.Object.FindObjectsByType<Text>(FindObjectsInactive.Exclude).Select(t => t.text);
         static void Capture(string name)
         {
             Directory.CreateDirectory("Documentation/Screenshots");

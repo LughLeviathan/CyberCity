@@ -13,6 +13,8 @@ namespace CyberCity
         public string playerName = "";
         public int[] attempts = Array.Empty<int>();
         public string[] missionIds = Array.Empty<string>();
+        public int[] hintUses = Array.Empty<int>();
+        public TerminalProgress[] terminal = TerminalChallenges.Fresh();
         public bool started;
         public float x = 14, y = -8.2f;
     }
@@ -26,7 +28,7 @@ namespace CyberCity
         public static string LastError { get; private set; }
 
         public static ProgressData Create(Campaign campaign) => new ProgressData {
-            attempts = new int[campaign.missions.Length], missionIds = campaign.missions.Select(m => m.id).ToArray()
+            attempts = new int[campaign.missions.Length], hintUses = new int[campaign.missions.Length], missionIds = campaign.missions.Select(m => m.id).ToArray()
         };
 
         public static ProgressData Load(Campaign campaign, string path = null)
@@ -52,6 +54,12 @@ namespace CyberCity
                     throw new InvalidDataException("Invalid save or different course route.");
                     if (Array.Exists(data.attempts, value => value < 0 || value > 100000))
                         throw new InvalidDataException("Invalid retry counts.");
+                    if (data.hintUses == null || data.hintUses.Length == 0) data.hintUses = new int[count];
+                    if (data.hintUses.Length != count || Array.Exists(data.hintUses, value => value < 0 || value > 100))
+                        throw new InvalidDataException("Invalid hint counts.");
+                    if (data.terminal == null || data.terminal.Length == 0) data.terminal = TerminalChallenges.Fresh();
+                    if (data.terminal.Length != TerminalChallenges.All.Length || data.terminal.Where((t, i) => t == null || t.id != TerminalChallenges.All[i].id || t.hints < 0 || t.hints > 2).Any())
+                        throw new InvalidDataException("Invalid terminal progress.");
                     if (PlayerIdentity.TryValidate(data.playerName, out string clean, out _)) data.playerName = clean;
                     else data.playerName = ""; // Old v2 saves enter the name screen while retaining earned progress.
                     data.x = Mathf.Clamp(data.x, 0.5f, 27.5f);

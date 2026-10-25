@@ -101,36 +101,56 @@ namespace CyberCity
             }
         }
 
-        void ShowTerminal()
+        void ShowTerminal(int selected = 0)
         {
-            var terminal = new VirtualTerminal();
-            var c = ui.OpenModal("LINUX LAB / SYSADMIN TUX", "A flag in the filesystem", "Use the virtual terminal to investigate. Every file lives only inside this simulation.");
+            var state = game.Progress.terminal[selected];
+            var terminal = new VirtualTerminal(state.id, state);
+            var challenge = terminal.Challenge;
+            int solved = game.Progress.terminal.Count(t => t.solved);
+            var c = ui.OpenModal("LINUX CTF / SYSADMIN TUX", mission.title, "FLAGS " + solved + "/" + TerminalChallenges.All.Length + "  /  Three isolated, fictional filesystems. Hints cost 5 XP each.");
             ui.Box(c, "Terminal", 0, 0, 740, 416, GameUI.Ink);
-            var transcript = ui.Text(c, "CyberCity Training Linux [offline]\nType help for commands. Start with cat README.txt\n\n", 18, 12, 702, 325, 18, GameUI.Teal);
-            var command = ui.Input(c, 16, 351, 566, 49, "citizen@cybercity:~$  command");
-            var history = new List<string> { "CyberCity Training Linux [offline]", "Type help. Start with cat README.txt", "" };
+            var log = ui.Scroll(c, "Terminal history", 14, 12, 710, 316, 316);
+            log.GetComponentInParent<ScrollRect>().GetComponent<Image>().color = GameUI.Ink;
+            var transcript = ui.Text(log, "", 0, 0, 700, 316, 17, GameUI.Teal);
+            var command = ui.Input(c, 14, 351, 566, 49, "trainee@cybercity:~$  command");
+            command.gameObject.name = "Terminal command";
+            var history = new List<string> { "CyberCity Training Linux / " + challenge.title, "Type help to inspect available commands.", "" };
+            for (int i = 0; i < state.hints; i++) history.Add("HINT: " + challenge.hints[i]);
+            System.Action refresh = () => {
+                while (history.Count > 120) history.RemoveAt(0);
+                transcript.text = game.Personalize(string.Join("\n", history));
+                float height = Mathf.Max(316, history.Count * 23f);
+                transcript.rectTransform.sizeDelta = new Vector2(700, height); log.sizeDelta = new Vector2(710, height);
+                Canvas.ForceUpdateCanvases(); log.GetComponentInParent<ScrollRect>().verticalNormalizedPosition = 0;
+            };
             System.Action run = () => {
                 string text = command.text.Trim(); if (text.Length == 0) return;
                 if (text == "clear") history.Clear();
-                else
-                {
-                    history.Add("> " + text);
-                    string output = terminal.Execute(text); history.AddRange(output.Split('\n'));
-                }
-                while (history.Count > 15) history.RemoveAt(0);
-                transcript.text = string.Join("\n", history); command.text = "";
-                if (terminal.Solved) ShowQuestion(); else command.ActivateInputField();
+                else { history.Add("> " + text); history.AddRange(terminal.Execute(text).Split('\n')); }
+                command.text = ""; refresh();
+                if (terminal.Solved) { game.Save(); ShowTerminal(selected); }
+                else { if (text.StartsWith("submit ")) game.WrongAnswer(); command.ActivateInputField(); }
             };
             ui.Button(c, "RUN", 594, 351, 128, 49, run, GameUI.Cyan);
             command.onEndEdit.AddListener(_ => { if (Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame) run(); });
-            ui.Text(c, "INVESTIGATION CHECKLIST", 770, 10, 280, 27, 13, GameUI.Cyan, true);
-            ui.Text(c, "1. Read README.txt\n\n2. List hidden files\n\n3. Enter the hidden folder\n\n4. Read access.txt\n\n5. submit <flag>", 770, 55, 280, 280, 21, GameUI.White);
-            ui.Button(c, "Need a hint?", 770, 351, 280, 49, () => {
-                history.Add("HINT: ls -a  >  cd .archive  >  cat access.txt");
-                while (history.Count > 15) history.RemoveAt(0); transcript.text = string.Join("\n", history);
+            for (int i = 0; i < TerminalChallenges.All.Length; i++)
+            {
+                int index = i; var item = TerminalChallenges.All[i];
+                ui.Button(c, (game.Progress.terminal[i].solved ? "OK  " : "0" + (i + 1) + "  ") + item.title, 770, i * 56, 280, 46, () => ShowTerminal(index), i == selected ? GameUI.Cyan : (Color?)null);
+            }
+            ui.Text(c, challenge.objective, 770, 184, 280, 124, 19, GameUI.White);
+            Button hintButton = null;
+            hintButton = ui.Button(c, "HINT " + (Mathf.Min(state.hints + 1, 2)) + "/2  (-5 XP)", 770, 351, 280, 49, () => {
+                if (state.hints < challenge.hints.Length && !state.solved) { state.hints++; game.Progress.hintUses[game.Progress.completed]++; game.Save(); }
+                history.Add("HINT: " + challenge.hints[Mathf.Max(0, state.hints - 1)]); refresh();
+                hintButton.GetComponentInChildren<Text>().text = "HINT " + Mathf.Min(state.hints + 1, 2) + "/2  (-5 XP)";
+                hintButton.interactable = state.hints < 2 && !state.solved;
             });
-            ui.Text(c, "SUPPORTED: help, pwd, ls, ls -a, cd, cat, clear, submit   /   No operating-system access.", 0, 447, 1050, 36, 14, GameUI.Muted);
-            command.ActivateInputField();
+            hintButton.interactable = state.hints < 2 && !state.solved;
+            if (solved == TerminalChallenges.All.Length)
+                ui.Button(c, "ALL FLAGS VERIFIED / COMPLETE MISSION", 0, 435, 740, 49, Finish, GameUI.Cyan);
+            else ui.Text(c, state.solved ? "Flag verified. Choose another challenge from the board." : "Read evidence, investigate and submit <flag>. All three flags are required.", 0, 435, 1040, 48, 18, GameUI.Muted);
+            refresh(); command.ActivateInputField();
         }
 
         void ShowWebLab()
