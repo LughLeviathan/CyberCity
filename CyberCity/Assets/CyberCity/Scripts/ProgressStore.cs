@@ -68,8 +68,29 @@ namespace CyberCity
                         (w.patched && !w.demonstrated) || (w.verified && !w.patched) ||
                         (w.demonstrated && (string.IsNullOrEmpty(w.attackUrl) || (w.attackInput ?? "").Length > 512))))
                         throw new InvalidDataException("Invalid browser progress.");
+                    if (data.web.GroupBy(w => new { w.missionId, w.kind }).Any(group => group.Count() > 1))
+                        throw new InvalidDataException("Duplicate browser progress.");
+                    foreach (var state in data.web)
+                    {
+                        var mission = campaign.missions.First(m => m.id == state.missionId);
+                        var scenario = mission.web?.kind == state.kind ? mission.web : mission.finalLabs?.FirstOrDefault(l => l.kind == state.kind);
+                        if (scenario == null) throw new InvalidDataException("Browser progress does not belong to this mission.");
+                        if (!state.demonstrated) continue;
+                        if (state.attackInput == null || state.attackPassword == null || state.attackUrl.Length > 512 || state.attackPassword.Length > 512)
+                            throw new InvalidDataException("Incomplete captured request.");
+                        // Non-login pages have no editable password field; their UI always passes this dummy value.
+                        if (scenario.kind != "sqli" && state.attackPassword != "training")
+                            throw new InvalidDataException("Captured request cannot be restored by this browser page.");
+                        var proof = new WebProgress(); var replay = new WebLabSession(scenario, proof);
+                        replay.Request(state.attackUrl, state.attackInput, state.attackPassword);
+                        if (!proof.demonstrated || proof.attackUrl != state.attackUrl || proof.attackInput != state.attackInput)
+                            throw new InvalidDataException("Captured request is not a valid training attack.");
+                        replay.ApplyPatch(); replay.Request(state.attackUrl, state.attackInput, state.attackPassword);
+                        if (!proof.verified) throw new InvalidDataException("Captured request cannot verify the source fix.");
+                    }
                     if (data.soc == null) data.soc = Array.Empty<SocProgress>();
-                    if (data.soc.Length > count) throw new InvalidDataException("Invalid SOC progress count.");
+                    if (data.soc.Length > count || data.soc.Any(s => s == null) || data.soc.GroupBy(s => s.missionId).Any(group => group.Count() > 1))
+                        throw new InvalidDataException("Invalid SOC progress count.");
                     foreach (var state in data.soc)
                     {
                         var scenario = campaign.missions.FirstOrDefault(m => m.id == state?.missionId)?.soc;
@@ -85,6 +106,9 @@ namespace CyberCity
                             throw new InvalidDataException("Invalid SOC investigation state.");
                         if (state.report == null) state.report = new IncidentReport();
                     }
+                    for (int i = 0; i < data.completed; i++)
+                        if (!MissionRequirements.IsSatisfied(campaign.missions[i], data))
+                            throw new InvalidDataException("A completed mission is missing its practical evidence.");
                     if (PlayerIdentity.TryValidate(data.playerName, out string clean, out _)) data.playerName = clean;
                     else data.playerName = ""; // Old v2 saves enter the name screen while retaining earned progress.
                     data.x = Mathf.Clamp(data.x, 0.5f, 27.5f);

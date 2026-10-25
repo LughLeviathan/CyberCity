@@ -29,10 +29,11 @@ namespace CyberCity
             ui.Text(c, "ALERT QUEUE", 0, 0, 208, 25, 13, GameUI.Cyan, true);
             ui.Text(c, "TRAFFIC / " + mission.soc.packets.Length + " FICTIONAL RECORDS", 224, 0, 546, 25, 13, GameUI.Cyan, true);
             ui.Text(c, "EVIDENCE DETAILS", 790, 0, 266, 25, 13, GameUI.Cyan, true);
+            var alertQueue = ui.Scroll(c, "Alert queue", 0, 34, 208, 352, mission.soc.alerts.Length * 110);
             for (int i = 0; i < mission.soc.alerts.Length; i++)
             {
                 var alert = mission.soc.alerts[i]; bool done = session.State.triaged.Contains(alert.id);
-                var b = ui.Button(c, (done ? "OK / " : "OPEN / ") + alert.title, 0, 34 + i * 110, 208, 96, () => InspectAlert(alert), done ? GameUI.Teal : (Color?)null);
+                var b = ui.Button(alertQueue, (done ? "OK / " : "OPEN / ") + alert.title, 0, i * 110, 208, 96, () => InspectAlert(alert), done ? GameUI.Teal : (Color?)null);
                 b.gameObject.name = "Alert-" + alert.id; b.GetComponentInChildren<Text>().fontSize = 16;
             }
             ui.Button(c, "TRUE POSITIVE", 0, 400, 208, 40, () => Triage(true)).GetComponentInChildren<Text>().fontSize = 14;
@@ -76,12 +77,13 @@ namespace CyberCity
         {
             if (selectedAlert == null) { feedback.text = "Inspect an alert before recording a verdict."; return; }
             bool accepted = session.Triage(selectedAlert, truePositive, out message); ui.Game.Save();
-            if (!accepted) { ui.Game.WrongAnswer(); feedback.text = message; return; }
+            if (!accepted) { ui.Game.WrongAnswer(); feedback.text = ui.Game.Personalize(message); return; }
             Show();
         }
         void ApplyFilter()
         {
             bool valid = session.ApplyFilter(filter.text); feedback.text = valid ? session.Visible.Length + " matching records. Select a row to inspect it." : session.FilterError;
+            if (string.IsNullOrEmpty(session.State.selectedPacket)) detail.text = "Select a packet from a valid filter result to inspect evidence.";
             ui.Game.Save(); DrawRows();
         }
         void DrawRows()
@@ -145,7 +147,7 @@ namespace CyberCity
         void CheckTask(bool valid)
         {
             if (!valid) ui.Game.WrongAnswer(); else ui.Game.Save();
-            feedback.text = message; DrawTask();
+            feedback.text = ui.Game.Personalize(message); DrawTask();
         }
         void ShowReport()
         {
@@ -165,7 +167,7 @@ namespace CyberCity
             var result = ui.Text(c, session.State.complete ? "Report accepted. All evidence agrees." : "Explain the impact and include the block, patch and reset actions.", 0, 358, 1040, 60, 18, GameUI.Muted);
             ui.Button(c, session.State.complete ? "COMPLETE SOC MISSION" : "SUBMIT INCIDENT REPORT", 0, 432, 620, 56, () => {
                 StoreReport(inputs, report);
-                if (!session.State.complete && !session.SubmitReport(report, out message)) { ui.Game.WrongAnswer(); result.text = message; result.color = GameUI.Gold; return; }
+                if (!session.State.complete && !session.SubmitReport(report, out message)) { ui.Game.WrongAnswer(); result.text = ui.Game.Personalize(message); result.color = GameUI.Gold; return; }
                 ui.Game.Save(); completed();
             }, GameUI.Cyan);
             ui.Button(c, "BACK TO EVIDENCE", 640, 432, 416, 56, () => { StoreReport(inputs, report); ui.Game.Save(); Show(); });

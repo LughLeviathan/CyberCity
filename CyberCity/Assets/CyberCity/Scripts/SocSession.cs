@@ -83,6 +83,7 @@ namespace CyberCity
                 rows = rows.Where(p => string.Equals(p.protocol, filter, StringComparison.OrdinalIgnoreCase));
             else if (filter.Length > 0) rows = rows.Where(p => (p.time + " " + p.src + " " + p.dst + " " + p.protocol + " " + p.info).IndexOf(filter, StringComparison.OrdinalIgnoreCase) >= 0);
             Visible = FilterError.Length > 0 ? Array.Empty<PacketLog>() : rows.ToArray();
+            if (!Visible.Any(p => p.id == State.selectedPacket)) State.selectedPacket = "";
             return FilterError.Length == 0;
         }
         public bool SelectPacket(string id)
@@ -103,6 +104,8 @@ namespace CyberCity
         public bool Classify(string kind, out string feedback)
         {
             if (Stage != 2) { feedback = "Identify the attacker before tagging the attacks."; return false; }
+            if (FilterError.Length > 0 || !Visible.Any(p => p.id == State.selectedPacket))
+            { feedback = "Apply a valid filter and select visible attack evidence before tagging it."; return false; }
             var attack = scenario.attacks.FirstOrDefault(a => a.packetIds.Contains(State.selectedPacket));
             if (attack == null) { feedback = "Select an attack request. Ordinary DNS and health checks are noise."; return false; }
             if (!string.Equals(attack.kind, kind, StringComparison.OrdinalIgnoreCase)) { feedback = "Compare the request with ownership, comment output and query boundaries."; return false; }

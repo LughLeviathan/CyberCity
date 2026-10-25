@@ -1,6 +1,6 @@
 CyberCity verification
-PASS: 261 checks including all missions through runtime UI
-UTC: 2026-10-25T15:17:04.6093000Z
+PASS: 273 checks including all missions through runtime UI
+UTC: 2026-10-25T19:47:56.5432153Z
 
 PASS  Mission count follows scenario pack
 PASS  Validated offline missions
@@ -156,6 +156,11 @@ PASS  Final browser stage supports attack, patch and retest: sqli
 PASS  Verified local pack can use a different mission count
 PASS  Corrupt optional pack falls back to verified offline course
 PASS  Malformed but hashed pack falls back safely
+PASS  Completed practical missions require saved evidence or recover backup
+PASS  Invalid captured URL recovers usable backup
+PASS  Invalid captured body recovers usable backup
+PASS  Malformed filter cannot classify stale evidence
+PASS  Filtered-out evidence cannot advance classification
 PASS  Atomic save succeeds
 PASS  Save round trip preserves identity, progress and position
 PASS  Damaged primary save recovers backup
@@ -172,6 +177,13 @@ PASS  Valid username is trimmed and persisted
 PASS  Invalid pause rename preserves stored identity
 PASS  Pause rename applies valid username
 PASS  Returning player sees saved name
+PASS  Dynamic HUD resolves player token
+PASS  Refreshed browser source labels resolve player token
+PASS  Previously paid browser hints can be reviewed after reopen
+PASS  Unlocked hints render together with personalized text
+PASS  Reviewing unlocked hints is free
+PASS  Accepted eight-alert SOC packs have a scrollable queue
+PASS  Last alert scrolls into the visible viewport
 PASS  WASD input moves Rigidbody2D
 PASS  Water collision blocks movement from the bridge
 PASS  Seven main NPCs present

@@ -24,14 +24,14 @@ namespace CyberCity.Editor
         public static string Status { get; private set; } = "Not run";
         static void Check(bool condition, string name)
         {
-            if (!condition) throw new Exception("FAIL: " + name);
+            if (!condition) { Status = "FAILED: " + name; WriteReport(); throw new Exception("FAIL: " + name); }
             checks.Add(name);
         }
 
         [MenuItem("Tools/CyberCity/Verify core systems")]
         public static void VerifyCore()
         {
-            checks.Clear();
+            checks.Clear(); failure = null;
             var campaign = CampaignLoader.Parse(Resources.Load<TextAsset>("campaign").text);
             var shortPack = new Campaign { version = 1, title = "Short training pack", missions = campaign.missions.Take(2).ToArray() };
             Check(CampaignLoader.Parse(JsonUtility.ToJson(shortPack)).missions.Length == 2, "Mission count follows scenario pack");
@@ -78,6 +78,9 @@ namespace CyberCity.Editor
             foreach (var mission in campaign.missions.Where(m => m.kind == "soc")) VerifySoc(mission.soc);
             VerifyFinalRequirements(campaign);
             VerifyLocalPacks(campaign);
+            VerifySaveEvidence(campaign);
+            VerifyCapturedRequestSave(campaign);
+            VerifySocFilterEvidence(campaign);
             string folder = Path.Combine(Application.temporaryCachePath, "CyberCityVerification"); Directory.CreateDirectory(folder);
             string path = Path.Combine(folder, "progress.json");
             foreach (string suffix in new[] { "", ".bak", ".tmp" }) if (File.Exists(path + suffix)) File.Delete(path + suffix);
@@ -250,6 +253,105 @@ namespace CyberCity.Editor
             }
         }
 
+        public static void VerifySaveEvidence(Campaign campaign)
+        {
+            string path = ReviewSavePath();
+            try
+            {
+                var valid = ProgressStore.Create(campaign); valid.completed = 4; valid.score = 600; ProgressStore.Save(valid, path);
+                valid.completed = 6; valid.score = 900; valid.terminal = null; valid.web = null; valid.soc = null;
+                ProgressStore.Save(valid, path);
+                Check(ProgressStore.Load(campaign, path).completed == 4, "Completed practical missions require saved evidence or recover backup");
+            }
+            finally { DeleteReviewSave(path); }
+        }
+        public static void VerifyCapturedRequestSave(Campaign campaign)
+        {
+            foreach (bool invalidUrl in new[] { true, false })
+            {
+                string path = ReviewSavePath();
+                try
+                {
+                    var valid = ProgressStore.Create(campaign); valid.completed = 4; ProgressStore.Save(valid, path);
+                    valid.completed = 5; foreach (var t in valid.terminal) t.solved = true;
+                    var mission = campaign.missions.First(m => m.id == "idor"); var state = new WebProgress { missionId = mission.id, kind = mission.kind };
+                    var lab = new WebLabSession(mission.web, state);
+                    lab.Request("https://" + mission.web.host + mission.web.path + "?id=" + mission.web.targetId); lab.ApplyPatch();
+                    if (invalidUrl) state.attackUrl = "broken"; else state.attackPassword = null;
+                    valid.web = new[] { state }; ProgressStore.Save(valid, path);
+                    Check(ProgressStore.Load(campaign, path).completed == 4, "Invalid captured " + (invalidUrl ? "URL" : "body") + " recovers usable backup");
+                }
+                finally { DeleteReviewSave(path); }
+            }
+        }
+        public static void VerifySocFilterEvidence(Campaign campaign)
+        {
+            var scenario = campaign.missions.First(m => m.kind == "soc").soc;
+            var state = new SocProgress(); var soc = new SocSession(scenario, state);
+            foreach (var a in scenario.alerts) soc.Triage(a.id, a.truePositive, out _);
+            var attack = scenario.attacks[0]; soc.ApplyFilter("ip.src == " + scenario.attackerIp); soc.SelectPacket(attack.packetIds[0]);
+            soc.IdentifyAttacker(scenario.attackerIp, out _); soc.ApplyFilter("ip.src = wrong");
+            Check(!soc.Classify(attack.kind, out _) && state.classified.Length == 0, "Malformed filter cannot classify stale evidence");
+            soc.ApplyFilter("ip.src == " + scenario.attackerIp); soc.SelectPacket(attack.packetIds[0]); soc.ApplyFilter("dns");
+            Check(!soc.Classify(attack.kind, out _) && state.classified.Length == 0, "Filtered-out evidence cannot advance classification");
+        }
+        static string ReviewSavePath()
+        {
+            string directory = Path.Combine(Application.temporaryCachePath, "CyberCityVerification"); Directory.CreateDirectory(directory);
+            return Path.Combine(directory, "review-" + Guid.NewGuid().ToString("N") + ".json");
+        }
+        static void DeleteReviewSave(string path)
+        { foreach (string suffix in new[] { "", ".bak", ".tmp" }) if (File.Exists(path + suffix)) File.Delete(path + suffix); }
+
+        [MenuItem("Tools/CyberCity/Verify interface edge cases")]
+        public static void VerifyInterfaceEdgeCases()
+        {
+            if (!EditorApplication.isPlaying) throw new InvalidOperationException("Enter Play mode first.");
+            game = UnityEngine.Object.FindAnyObjectByType<CyberCityGame>();
+            var failures = new List<string>();
+            Action<bool, string> expect = (valid, label) => { if (valid) checks.Add(label); else failures.Add(label); };
+            var current = game.Current; string title = current?.title;
+            var mission = game.Campaign.missions.First(m => m.kind == "idor"); string patchLabel = mission.web.patchLabel; var hints = mission.web.hints;
+            try
+            {
+                if (current != null) current.title = "Patrol for {player}";
+                game.UI.RefreshHud(); expect(!VisibleText().Any(t => t.Contains("{player}")), "Dynamic HUD resolves player token");
+                if (current != null) current.title = title;
+                game.UI.RefreshHud();
+                mission.web.patchLabel = "{player}: ownership check"; mission.web.hints = new[] { "{player}, compare the owner.", "{player}, inspect the other training ID." };
+                var state = new WebProgress { missionId = mission.id, kind = mission.kind, hints = 2 };
+                new FakeBrowser(game.UI, mission, mission.web, state, () => { }).Show();
+                expect(!VisibleText().Any(t => t.Contains("{player}")), "Refreshed browser source labels resolve player token");
+                var review = UnityEngine.Object.FindObjectsByType<Button>(FindObjectsInactive.Exclude).FirstOrDefault(b => b.GetComponentInChildren<Text>()?.text.StartsWith("REVIEW HINTS", StringComparison.Ordinal) == true);
+                expect(review != null && review.interactable, "Previously paid browser hints can be reviewed after reopen");
+                if (review != null && review.interactable)
+                {
+                    int paid = game.Progress.hintUses.Sum(); review.onClick.Invoke();
+                    expect(VisibleText().Any(t => t.Contains("compare the owner") && t.Contains("other training ID")) && !VisibleText().Any(t => t.Contains("{player}")), "Unlocked hints render together with personalized text");
+                    expect(game.Progress.hintUses.Sum() == paid, "Reviewing unlocked hints is free");
+                }
+                var socMission = game.Campaign.missions.First(m => m.kind == "soc");
+                var fixture = JsonUtility.FromJson<Mission>(JsonUtility.ToJson(socMission));
+                fixture.soc.alerts = Enumerable.Range(1, 8).Select(i => new SocAlert { id = "review-" + i, title = "Review alert " + i, context = "Approved training evidence", packetIds = fixture.soc.alerts[0].packetIds, truePositive = true }).ToArray();
+                fixture.soc.Validate(); new SocUI(game.UI, fixture, new SocProgress { missionId = fixture.id }, () => { }).Show();
+                var queue = UnityEngine.Object.FindObjectsByType<ScrollRect>(FindObjectsInactive.Exclude).FirstOrDefault(s => s.gameObject.name == "Alert queue");
+                expect(queue != null && queue.content.rect.height > queue.viewport.rect.height && queue.content.GetComponentsInChildren<Button>().Length == 8, "Accepted eight-alert SOC packs have a scrollable queue");
+                if (queue != null)
+                {
+                    Canvas.ForceUpdateCanvases(); queue.verticalNormalizedPosition = 0; Canvas.ForceUpdateCanvases();
+                    var last = queue.content.GetComponentsInChildren<Button>().Last(); var corners = new Vector3[4]; queue.viewport.GetWorldCorners(corners);
+                    Vector3 center = last.GetComponent<RectTransform>().TransformPoint(last.GetComponent<RectTransform>().rect.center);
+                    expect(center.y >= corners[0].y && center.y <= corners[1].y, "Last alert scrolls into the visible viewport");
+                }
+            }
+            finally
+            {
+                if (current != null) current.title = title; mission.web.patchLabel = patchLabel; mission.web.hints = hints;
+                game.UI.RefreshHud(); if (game.Started) game.UI.CloseModal(); else game.UI.ShowStart();
+            }
+            if (failures.Count > 0) throw new Exception("Interface regressions: " + string.Join("; ", failures));
+        }
+
         [MenuItem("Tools/CyberCity/Verify complete playthrough")]
         public static void StartPlaythrough()
         {
@@ -274,6 +376,7 @@ namespace CyberCity.Editor
             Add(() => { FindInput().text = "ab"; Click("SAVE USERNAME"); Check(game.Progress.playerName == "Byte_42", "Invalid pause rename preserves stored identity"); });
             Add(() => { FindInput().text = "Ada_Byte"; Click("SAVE USERNAME"); Check(game.Progress.playerName == "Ada_Byte", "Pause rename applies valid username"); });
             Add(() => { game.UI.ShowStart(); Check(VisibleText().Any(t => t.Contains("WELCOME BACK, Ada_Byte")), "Returning player sees saved name"); Click("CONTINUE PATROL"); });
+            Add(VerifyInterfaceEdgeCases);
             Add(() => Capture("02-city"));
             Add(() => { movementStart = game.player.transform.position; Press(Key.W); });
             Add(() => { Release(); Check(game.player.transform.position.y > movementStart.y + .25f, "WASD input moves Rigidbody2D"); });

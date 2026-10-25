@@ -166,9 +166,9 @@ namespace CyberCity
                 districtStates[i].text = open ? "ACCESS GRANTED" : "COMPLETE MISSION " + unlock.ToString("00") + " TO UNLOCK";
                 districtStates[i].color = open ? Teal : Muted;
             }
-            objective.text = Game.Current == null ? "City secured." : Game.Current.title;
-            objectiveBody.text = Game.Current == null ? "All missions complete. Your field guide is always available." :
-                "Find " + Game.Current.npc + "\n" + Game.Current.area + "\n\nApproach and press E.";
+            objective.text = Game.Personalize(Game.Current == null ? "City secured." : Game.Current.title);
+            objectiveBody.text = Game.Personalize(Game.Current == null ? "All missions complete. Your field guide is always available." :
+                "Find " + Game.Current.npc + "\n" + Game.Current.area + "\n\nApproach and press E.");
         }
 
         void PositionLabel(Text label, Vector3 world, float dx = 0)

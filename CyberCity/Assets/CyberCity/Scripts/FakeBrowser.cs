@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -18,9 +19,9 @@ namespace CyberCity
         int historyIndex = -1;
         bool codeEnabled;
         InputField address, form, password;
-        Text output, network, stage, guidance;
+        Text output, network, stage, guidance, hintText;
         Button back, forward, patch, enable, finish;
-        RectTransform networkContent;
+        RectTransform networkContent, hintOverlay, hintHistory;
 
         public FakeBrowser(GameUI ui, Mission mission, WebScenario scenario, WebProgress state, Action completed)
         { this.ui = ui; this.mission = mission; this.scenario = scenario; session = new WebLabSession(scenario, state); this.completed = completed; }
@@ -61,13 +62,19 @@ namespace CyberCity
             devtools.gameObject.SetActive(false);
             ui.Button(browser, "DevTools / Network", 10, 344, 285, 34, () => devtools.gameObject.SetActive(!devtools.gameObject.activeSelf));
             Button hint = null;
-            hint = ui.Button(browser, "Hint (-5 XP)", 430, 344, 270, 34, () => {
+            Button reviewHints = null;
+            hint = ui.Button(browser, "HINT " + Math.Min(session.State.hints + 1, 2) + "/2 (-5 XP)", 430, 344, 270, 34, () => {
                 if (session.State.hints >= scenario.hints.Length) return;
-                guidance.text = scenario.hints[session.State.hints++];
+                session.State.hints++;
                 ui.Game.Progress.hintUses[ui.Game.Progress.completed]++; ui.Game.Save();
                 hint.interactable = session.State.hints < scenario.hints.Length;
+                hint.GetComponentInChildren<Text>().text = "HINT " + Math.Min(session.State.hints + 1, 2) + "/2 (-5 XP)";
+                reviewHints.interactable = true; ShowHints();
             });
+            hint.GetComponentInChildren<Text>().fontSize = 15;
             hint.interactable = session.State.hints < scenario.hints.Length && !session.State.verified;
+            reviewHints = ui.Button(browser, "REVIEW HINTS", 302, 344, 120, 34, ShowHints);
+            reviewHints.GetComponentInChildren<Text>().fontSize = 12; reviewHints.interactable = session.State.hints > 0;
             stage = ui.Text(c, "", 734, 0, 320, 30, 16, GameUI.Gold, true);
             guidance = ui.Text(c, "", 734, 39, 320, 75, 17, GameUI.White);
             ui.Text(c, "VULNERABLE SOURCE", 734, 117, 320, 25, 12, GameUI.Muted, true);
@@ -90,7 +97,22 @@ namespace CyberCity
                 if (password != null) password.text = session.State.attackPassword; Navigate();
             }, GameUI.Cyan);
             finish.GetComponentInChildren<Text>().fontSize = 15;
+            hintOverlay = ui.Box(browser, "Unlocked browser hints", 20, 106, 670, 226, GameUI.Panel);
+            ui.Text(hintOverlay, "YOUR UNLOCKED HINTS / FREE TO REVIEW", 14, 10, 590, 26, 14, GameUI.Gold, true);
+            var closeHints = ui.Button(hintOverlay, "X", 606, 5, 52, 34, () => hintOverlay.gameObject.SetActive(false));
+            closeHints.gameObject.name = "Close browser hints";
+            hintHistory = ui.Scroll(hintOverlay, "Hint history", 14, 46, 642, 166, 166);
+            hintText = ui.Text(hintHistory, "", 0, 0, 630, 166, 17, GameUI.White);
+            hintOverlay.gameObject.SetActive(false);
             Navigate();
+        }
+        void ShowHints()
+        {
+            if (session.State.hints == 0) return;
+            string text = ui.Game.Personalize(string.Join("\n\n", Enumerable.Range(0, session.State.hints).Select(i => "HINT " + (i + 1) + "\n" + scenario.hints[i])));
+            float height = Mathf.Max(166, (text.Length / 65 + text.Count(c => c == '\n') + 2) * 24);
+            hintText.text = text; hintText.rectTransform.sizeDelta = new Vector2(630, height); hintHistory.sizeDelta = new Vector2(642, height);
+            hintOverlay.gameObject.SetActive(true);
         }
         void Travel(int delta)
         {
@@ -101,7 +123,7 @@ namespace CyberCity
         {
             var response = session.Request(address.text, form == null ? "" : form.text, password == null ? "training" : password.text);
             output.text = ui.Game.Personalize(response.page); output.color = response.fakeAlert ? GameUI.Gold : GameUI.Teal;
-            network.text = response.network;
+            network.text = ui.Game.Personalize(response.network);
             if (record)
             {
                 if (historyIndex < history.Count - 1) history.RemoveRange(historyIndex + 1, history.Count - historyIndex - 1);
@@ -116,7 +138,7 @@ namespace CyberCity
             stage.text = s.verified ? "03 / PATCH VERIFIED" : s.patched ? "03 / REPLAY THE ATTACK" : s.demonstrated ? "02 / BLUE TEAM PATCH" : "01 / OBSERVE THE FLAW";
             guidance.text = s.verified ? "The captured attack is now safe. Review the debrief to learn why." : s.patched ? "Run the same URL and input again. A different request cannot verify this fix." : s.demonstrated ? "Attack captured. Enable the source fix and apply the patch." : "Inspect the page and change its URL or form. DevTools shows fictional requests.";
             enable.interactable = s.demonstrated && !s.patched;
-            enable.GetComponentInChildren<Text>().text = (codeEnabled ? "[ON] " : "ENABLE FIX: ") + scenario.patchLabel;
+            enable.GetComponentInChildren<Text>().text = ui.Game.Personalize((codeEnabled ? "[ON] " : "ENABLE FIX: ") + scenario.patchLabel);
             patch.interactable = s.demonstrated && codeEnabled && !s.patched;
             finish.interactable = s.patched;
             finish.GetComponentInChildren<Text>().text = s.verified ? "CONTINUE TO DEBRIEF" : "RETEST SAME REQUEST";
