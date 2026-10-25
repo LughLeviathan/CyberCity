@@ -1,6 +1,6 @@
 CyberCity verification
-PASS: 131 checks including all missions through runtime UI
-UTC: 2026-10-25T14:46:16.4460773Z
+PASS: 125 core checks
+UTC: 2026-10-25T14:57:13.5819345Z
 
 PASS  Mission count follows scenario pack
 PASS  Validated offline missions
@@ -52,6 +52,71 @@ PASS  Owner-only read permission solves challenge
 PASS  Symbolic owner read command supported
 PASS  Challenge filesystems are isolated
 PASS  Hints reduce reward without crossing minimum
+PASS  Cannot patch before observing flaw: idor
+PASS  Router keeps requests within fictional scenario: idor
+PASS  Benign or false condition cannot demonstrate attack: idor
+PASS  Varied attack demonstrated: idor / 
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: idor
+PASS  Changed form body does not verify captured request: idor
+PASS  Different request does not verify captured attack: idor
+PASS  Same attack is rejected or encoded after patch and reload: idor
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Cannot patch before observing flaw: xss
+PASS  Router keeps requests within fictional scenario: xss
+PASS  Benign or false condition cannot demonstrate attack: xss
+PASS  Varied attack demonstrated: xss / <script>alert(1)</script>
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: xss
+PASS  Changed form body does not verify captured request: xss
+PASS  Different request does not verify captured attack: xss
+PASS  Same attack is rejected or encoded after patch and reload: xss
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Varied attack demonstrated: xss / <IMG SRC=x ONERROR=alert(2)>
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: xss
+PASS  Changed form body does not verify captured request: xss
+PASS  Different request does not verify captured attack: xss
+PASS  Same attack is rejected or encoded after patch and reload: xss
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Varied attack demonstrated: xss / <svg onload=alert(3)>
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: xss
+PASS  Changed form body does not verify captured request: xss
+PASS  Different request does not verify captured attack: xss
+PASS  Same attack is rejected or encoded after patch and reload: xss
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Cannot patch before observing flaw: sqli
+PASS  Router keeps requests within fictional scenario: sqli
+PASS  Benign or false condition cannot demonstrate attack: sqli
+PASS  Varied attack demonstrated: sqli / ' OR '1'='1
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: sqli
+PASS  Changed form body does not verify captured request: sqli
+PASS  Different request does not verify captured attack: sqli
+PASS  Same attack is rejected or encoded after patch and reload: sqli
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Varied attack demonstrated: sqli / ' OR 1=1 --
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: sqli
+PASS  Changed form body does not verify captured request: sqli
+PASS  Different request does not verify captured attack: sqli
+PASS  Same attack is rejected or encoded after patch and reload: sqli
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Varied attack demonstrated: sqli / admin'--
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: sqli
+PASS  Changed form body does not verify captured request: sqli
+PASS  Different request does not verify captured attack: sqli
+PASS  Same attack is rejected or encoded after patch and reload: sqli
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Varied attack demonstrated: sqli / ' oR true --
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: sqli
+PASS  Changed form body does not verify captured request: sqli
+PASS  Different request does not verify captured attack: sqli
+PASS  Same attack is rejected or encoded after patch and reload: sqli
+PASS  SQLi patch uses a bound value in displayed query
 PASS  Atomic save succeeds
 PASS  Save round trip preserves identity, progress and position
 PASS  Damaged primary save recovers backup
@@ -62,74 +127,3 @@ PASS  Dynamic maximum score accepted
 PASS  Over-maximum score recovers valid backup
 PASS  Different course route resets safely
 PASS  Flags and paid hints survive save/reload
-PASS  Runtime game initialized
-PASS  Username required before patrol
-PASS  Valid username is trimmed and persisted
-PASS  WASD input moves Rigidbody2D
-PASS  Water collision blocks movement from the bridge
-PASS  Seven main NPCs present
-PASS  Later mentor content is locked
-PASS  Walkable route to Professor Byte
-PASS  Walkable route to Alex
-PASS  Walkable route to Maya
-PASS  Walkable route to Detective Byte
-PASS  Walkable route to SysAdmin Tux
-PASS  Walkable route to Red
-PASS  Walkable route to Blue
-PASS  Mission 1 unlocks in order
-PASS  Wrong answer gives feedback without advancing
-PASS  Player tokens resolved: orientation
-PASS  Mission 1 completes through its actual UI
-PASS  Mission 1 persists immediately
-PASS  Mission 2 unlocks in order
-PASS  Player tokens resolved: awareness
-PASS  Mission 2 completes through its actual UI
-PASS  Mission 2 persists immediately
-PASS  Mission 3 unlocks in order
-PASS  Evidence requires highlights before verdict: phishing
-PASS  Player tokens resolved: phishing
-PASS  Mission 3 completes through its actual UI
-PASS  Mission 3 persists immediately
-PASS  Mission 4 unlocks in order
-PASS  Evidence requires highlights before verdict: fake-site
-PASS  Player tokens resolved: fake-site
-PASS  Mission 4 completes through its actual UI
-PASS  Mission 4 persists immediately
-PASS  Mission 5 unlocks in order
-PASS  Earned flag remains after reopening terminal UI
-PASS  Player tokens resolved: linux-ctf
-PASS  Mission 5 completes through its actual UI
-PASS  Mission 5 persists immediately
-PASS  Mission 6 unlocks in order
-PASS  Web defense follows observation: idor
-PASS  Player tokens resolved: idor
-PASS  Mission 6 completes through its actual UI
-PASS  Mission 6 persists immediately
-PASS  Mission 7 unlocks in order
-PASS  Web defense follows observation: xss
-PASS  Player tokens resolved: xss
-PASS  Mission 7 completes through its actual UI
-PASS  Mission 7 persists immediately
-PASS  Mission 8 unlocks in order
-PASS  Web defense follows observation: sqli
-PASS  Player tokens resolved: sqli
-PASS  Mission 8 completes through its actual UI
-PASS  Mission 8 persists immediately
-PASS  Mission 9 unlocks in order
-PASS  Player tokens resolved: red-team
-PASS  Mission 9 completes through its actual UI
-PASS  Mission 9 persists immediately
-PASS  Mission 10 unlocks in order
-PASS  Player tokens resolved: blue-team
-PASS  Mission 10 completes through its actual UI
-PASS  Mission 10 persists immediately
-PASS  Mission 11 unlocks in order
-PASS  Player tokens resolved: final
-PASS  Mission 11 completes through its actual UI
-PASS  Mission 11 persists immediately
-PASS  Mission 12 unlocks in order
-PASS  Player tokens resolved: graduation
-PASS  Mission 12 completes through its actual UI
-PASS  Mission 12 persists immediately
-PASS  Complete campaign scores once with retry penalty
-PASS  Final campaign state has no pending mission

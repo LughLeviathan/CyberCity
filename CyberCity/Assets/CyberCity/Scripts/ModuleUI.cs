@@ -155,37 +155,7 @@ namespace CyberCity
 
         void ShowWebLab()
         {
-            var c = ui.OpenModal("WEB SECURITY LAB / RED TEAM TO BLUE TEAM", mission.title, "First observe the simulated flaw. Then choose the defense that removes its cause.");
-            bool idor = mission.kind == "idor", xss = mission.kind == "xss";
-            ui.Text(c, idor ? "REQUEST INSPECTOR" : xss ? "COMMENT PREVIEW" : "QUERY INSPECTOR", 0, 0, 700, 25, 13, GameUI.Cyan, true);
-            ui.Text(c, idor ? "Signed in: Alex (1001). The API trusts a profile ID in the URL.\nTry requesting the other training profile: /api/profile/1002" : xss ?
-                "The training comment box mixes input and page markup.\nTry a harmless formatting marker: <b>hello</b>" :
-                "A fictional sign-in concatenates input into a query.\nTry this training value: ' OR '1'='1", 0, 43, 1020, 79, 21, GameUI.White);
-            var field = ui.Input(c, 0, 140, 820, 54, idor ? "/api/profile/1001" : xss ? "Enter a training comment" : "Enter a fictional username");
-            field.text = idor ? "/api/profile/1001" : "";
-            var outputBox = ui.Box(c, "Simulated response", 0, 218, 1056, 177, GameUI.Ink);
-            var output = ui.Text(outputBox, "SIMULATION READY\n\nRun a training request to inspect the result.", 20, 16, 1015, 151, 20, GameUI.Teal);
-            Button defend = ui.Button(c, "OBSERVE THE FLAW BEFORE CONTINUING", 0, 425, 670, 56, ShowQuestion, GameUI.Cyan); defend.interactable = false;
-            ui.Button(c, "SIMULATE", 838, 140, 218, 54, () => {
-                string value = field.text.Trim(); bool found = false;
-                if (idor)
-                {
-                    found = value == "/api/profile/1002";
-                    output.text = found ? "200 OK  /  Mira (1002): fictional private contact card\n\nFLAW: Alex received another user's record. A hidden button cannot enforce ownership." :
-                        value == "/api/profile/1001" ? "200 OK / Alex (1001): your own training record.\nTry the other profile ID shown above." : "404 / Only training profiles 1001 and 1002 exist.";
-                }
-                else if (xss)
-                {
-                    found = value.Contains("<") && value.Contains(">");
-                    output.text = found ? "INERT MARKER RECEIVED: " + value + "\n\nFLAW MODEL: raw input could be treated as markup by an unsafe renderer. This preview displays literal text; no script runs." : "Text comment received. Try the harmless markup marker shown above.";
-                }
-                else
-                {
-                    found = value.Contains("'") && value.ToUpperInvariant().Contains(" OR ");
-                    output.text = found ? "SIMULATED QUERY: SELECT * FROM users WHERE name = '" + value + "'\n\nFLAW MODEL: concatenated input changes query structure. The simulator flags this condition; no database is connected." : "No change in the fictional query. Try the training value shown above.";
-                }
-                if (found) { defend.interactable = true; defend.GetComponentInChildren<Text>().text = "SWITCH TO BLUE TEAM: CHOOSE A DEFENSE   >"; game.Play(game.successSound); }
-            }, GameUI.Cyan);
+            new FakeBrowser(ui, mission, mission.web, game.WebState(mission, mission.kind), Finish).Show();
         }
     }
 }

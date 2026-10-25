@@ -197,21 +197,29 @@
       "npc": "Red",
       "area": "Web Security Lab",
       "kind": "idor",
-      "briefing": "{player}, a training API checks that you are signed in, but forgets to check whose record you requested. Observe the flaw in our fictional profile service, then switch to defense.",
-      "objective": "Request training profile 1002 while signed in as Alex (1001), then select a server-side defense.",
-      "takeaway": "{player}, iDOR is an authorization failure. Every server request must verify that the current user is allowed to access the requested object. Hiding IDs in the interface is not sufficient.",
-      "questions": [
-        {
-          "prompt": "What removes the cause of this IDOR flaw?",
-          "options": [
-            "Hide the profile ID in the page.",
-            "Rename the API endpoint.",
-            "Verify record ownership or an allowed role on the server for every request."
-          ],
-          "answer": 2,
-          "explanation": "Server-side object authorization must run for each request. A signed-in user is not entitled to every object."
-        }
-      ]
+      "briefing": "{player}, investigate this fictional website using its editable URL, forms and DevTools. Capture a flaw, repair its cause, then prove the same request is safe.",
+      "objective": "Demonstrate the flaw in the fake browser, enable and apply the source patch, then replay the identical attack.",
+      "takeaway": "{player}, Every object request must check the caller owns it or has an allowed role. The repeated request now returns 403.",
+      "questions": [],
+      "web": {
+        "kind": "idor",
+        "host": "profiles.cybercity.example",
+        "title": "City Profile Service",
+        "path": "/api/profile",
+        "ownId": "1001",
+        "targetId": "1002",
+        "ownRecord": "200 OK / Alex (1001): your own profile. Reference: another trainee is 1002.",
+        "privateRecord": "200 OK / Mira (1002): private contact card exposed to Alex. This violates object ownership.",
+        "description": "Signed in as Alex (1001). Your profile ID is in the editable address bar.",
+        "vulnerableCode": "return profiles[id];",
+        "patchedCode": "if (profiles[id].owner != session.user) return 403;",
+        "patchLabel": "Server ownership check",
+        "debrief": "Every object request must check the caller owns it or has an allowed role. The repeated request now returns 403.",
+        "hints": [
+          "Compare your session identity with the object ID in the address bar.",
+          "Change the id query value to the other trainee reference shown on your profile."
+        ]
+      }
     },
     {
       "id": "xss",
@@ -219,21 +227,30 @@
       "npc": "Red",
       "area": "Web Security Lab",
       "kind": "xss",
-      "briefing": "{player}, an unsafe comment page can confuse user text with page markup. Use a harmless formatting marker to model the problem. The training preview is inert and runs no scripts.",
-      "objective": "Submit a harmless markup marker and choose the defense for untrusted output.",
-      "takeaway": "{player}, treat user content as data. Encode output for its destination context, use safe rendering APIs, and sanitize deliberately allowed markup with a maintained allowlist.",
-      "questions": [
-        {
-          "prompt": "Which defense addresses untrusted comments rendered into a page?",
-          "options": [
-            "Encode output for the context and use safe text rendering.",
-            "Block only the word script.",
-            "Trust comments from signed-in users."
-          ],
-          "answer": 0,
-          "explanation": "Context-aware output encoding and safe rendering prevent text from being interpreted as code or markup."
-        }
-      ]
+      "briefing": "{player}, investigate this fictional website using its editable URL, forms and DevTools. Capture a flaw, repair its cause, then prove the same request is safe.",
+      "objective": "Demonstrate the flaw in the fake browser, enable and apply the source patch, then replay the identical attack.",
+      "takeaway": "{player}, Context-aware encoding and a safe text sink display user content as data. The same marker is now escaped and cannot trigger the fake alert.",
+      "questions": [],
+      "web": {
+        "kind": "xss",
+        "host": "comments.cybercity.example",
+        "title": "Commons Comment Board",
+        "path": "/comments",
+        "description": "Comments are mixed with markup. Try a training script or an image event handler.",
+        "vulnerableCode": "page.innerHTML = comment;",
+        "patchedCode": "page.textContent = comment; // encode for context",
+        "patchLabel": "Safe text + output encoding",
+        "debrief": "Context-aware encoding and a safe text sink display user content as data. The same marker is now escaped and cannot trigger the fake alert.",
+        "payloadPatterns": [
+          "<script\\b[^>]*>.*?</script\\s*>",
+          "<img\\b[^>]*\\bonerror\\s*=",
+          "<svg\\b[^>]*\\bonload\\s*="
+        ],
+        "hints": [
+          "A script element or an image event handler changes the modeled rendering context.",
+          "Try <script>alert(1)</script>, or an image with an onerror attribute."
+        ]
+      }
     },
     {
       "id": "sqli",
@@ -241,21 +258,30 @@
       "npc": "Red",
       "area": "Web Security Lab",
       "kind": "sqli",
-      "briefing": "{player}, this fictional sign-in builds a database query by joining strings. Observe how a training input could alter its structure. No database is connected to this exercise.",
-      "objective": "Inspect the simulated query and choose a defense that separates commands from values.",
-      "takeaway": "{player}, use parameterized queries with bound values. This keeps user data separate from SQL structure. Input validation and limited database permissions add further protection.",
-      "questions": [
-        {
-          "prompt": "What is the primary defense against this SQL injection flaw?",
-          "options": [
-            "Remove spaces from every input.",
-            "Use parameterized queries and bind input as values.",
-            "Use a hidden login form."
-          ],
-          "answer": 1,
-          "explanation": "Bound parameters keep values separate from query syntax. Filters and hidden interfaces do not provide that separation."
-        }
-      ]
+      "briefing": "{player}, investigate this fictional website using its editable URL, forms and DevTools. Capture a flaw, repair its cause, then prove the same request is safe.",
+      "objective": "Demonstrate the flaw in the fake browser, enable and apply the source patch, then replay the identical attack.",
+      "takeaway": "{player}, Bound values cannot change the query structure. The same bypass now produces a denied login because the whole input is a username value.",
+      "questions": [],
+      "web": {
+        "kind": "sqli",
+        "host": "accounts.cybercity.example",
+        "title": "City Account Sign-in",
+        "path": "/login",
+        "description": "Training login joins strings into SQL. The password check is fictional; no database runs.",
+        "vulnerableCode": "query = \"name = '\" + username + \"'\";",
+        "patchedCode": "query = \"name = @name\"; bind(\"@name\", username);",
+        "patchLabel": "Bind query parameters",
+        "debrief": "Bound values cannot change the query structure. The same bypass now produces a denied login because the whole input is a username value.",
+        "payloadPatterns": [
+          "['\\\"]\\s*or\\s+['\\\"]?1['\\\"]?\\s*=\\s*['\\\"]?1(?:['\\\"]|\\b)",
+          "\\badmin['\\\"]\\s*--",
+          "['\\\"]\\s*or\\s+true\\b"
+        ],
+        "hints": [
+          "A quote may end the fictional name value. Compare the generated query in DevTools.",
+          "Try a true OR expression such as ' OR '1'='1, or admin'--."
+        ]
+      }
     },
     {
       "id": "red-team",

@@ -27,6 +27,7 @@ namespace CyberCity
         public string sender, subject, address, document, hint;
         public Question[] questions;
         public Evidence[] evidence;
+        public WebScenario web;
     }
 
     [Serializable] public class Campaign
@@ -67,6 +68,8 @@ namespace CyberCity
                             throw new InvalidDataException("Invalid question in " + m.id);
                 if (m.kind == "evidence" && (m.evidence == null || m.evidence.Length < 3 || m.evidence.Length > 4 || Array.Exists(m.evidence, e => e == null) || !Array.Exists(m.evidence, e => e.suspicious)))
                     throw new InvalidDataException("Evidence is missing in " + m.id);
+                if (m.kind == "idor" || m.kind == "xss" || m.kind == "sqli")
+                { if (m.web == null) throw new InvalidDataException("Missing browser scenario in " + m.id); m.web.Validate(m.kind); }
             }
             return data;
         }

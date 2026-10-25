@@ -120,6 +120,15 @@ namespace CyberCity
 
         public string Personalize(string text) => PlayerIdentity.Personalize(text, Progress?.playerName);
 
+        public WebProgress WebState(Mission mission, string kind)
+        {
+            var state = Progress.web.FirstOrDefault(w => w.missionId == mission.id && w.kind == kind);
+            if (state != null) return state;
+            state = new WebProgress { missionId = mission.id, kind = kind };
+            Array.Resize(ref Progress.web, Progress.web.Length + 1); Progress.web[Progress.web.Length - 1] = state;
+            return state;
+        }
+
         public bool SetPlayerName(string value, out string error)
         {
             if (!PlayerIdentity.TryValidate(value, out string name, out error)) return false;

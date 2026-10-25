@@ -74,6 +74,7 @@ namespace CyberCity.Editor
             terminal.Execute("cd ../../../../../../"); Check(terminal.Directory == "/", "Virtual path stays inside root");
             Check(terminal.Execute("curl https://example.com").StartsWith("Unknown command"), "External commands are unsupported");
             VerifyTerminalChallenges();
+            VerifyWebLabs(campaign);
             string folder = Path.Combine(Application.temporaryCachePath, "CyberCityVerification"); Directory.CreateDirectory(folder);
             string path = Path.Combine(folder, "progress.json");
             foreach (string suffix in new[] { "", ".bak", ".tmp" }) if (File.Exists(path + suffix)) File.Delete(path + suffix);
@@ -125,6 +126,38 @@ namespace CyberCity.Editor
             Check(symbolic.Execute("cat private/flag.txt").Contains("CYBER{owner_read_only}"), "Symbolic owner read command supported");
             Check(!new VirtualTerminal("hidden-file").Execute("cat logs/auth.log").Contains("Failed"), "Challenge filesystems are isolated");
             Check(ProgressStore.Reward(0, 2) == 140 && ProgressStore.Reward(100, 6) == 75, "Hints reduce reward without crossing minimum");
+        }
+
+        static void VerifyWebLabs(Campaign campaign)
+        {
+            foreach (var mission in campaign.missions.Where(m => m.kind == "idor" || m.kind == "xss" || m.kind == "sqli"))
+            {
+                var s = mission.web;
+                string target = s.kind == "idor" ? "https://" + s.host + s.path + "?id=" + s.targetId : s.StartUrl;
+                string[] payloads = s.kind == "idor" ? new[] { "" } : s.kind == "xss" ? new[] { "<script>alert(1)</script>", "<IMG SRC=x ONERROR=alert(2)>", "<svg onload=alert(3)>" } :
+                    new[] { "' OR '1'='1", "' OR 1=1 --", "admin'--", "' oR true --" };
+                var empty = new WebLabSession(s, new WebProgress());
+                Check(!empty.ApplyPatch(), "Cannot patch before observing flaw: " + s.kind);
+                Check(empty.Request("https://outside.example/").status == 400 && empty.Request("/missing").status == 404, "Router keeps requests within fictional scenario: " + s.kind);
+                empty.Request(s.StartUrl, s.kind == "sqli" ? "' OR 1=2" : "ordinary training text");
+                Check(!empty.State.demonstrated, "Benign or false condition cannot demonstrate attack: " + s.kind);
+                foreach (string payload in payloads)
+                {
+                    var state = new WebProgress { missionId = mission.id, kind = s.kind };
+                    var lab = new WebLabSession(s, state); var before = lab.Request(target, payload);
+                    Check(state.demonstrated && !state.verified && before.status == 200, "Varied attack demonstrated: " + s.kind + " / " + payload);
+                    Check(s.kind != "xss" || before.fakeAlert, "XSS produces a fake game alert only");
+                    Check(lab.ApplyPatch() && !state.verified, "Applying source fix still requires retest: " + s.kind);
+                    lab.Request(target, payload, "different-password");
+                    Check(!state.verified, "Changed form body does not verify captured request: " + s.kind);
+                    lab.Request(s.StartUrl, "different request");
+                    Check(!state.verified, "Different request does not verify captured attack: " + s.kind);
+                    var reloaded = new WebLabSession(s, JsonUtility.FromJson<WebProgress>(JsonUtility.ToJson(state)));
+                    var after = reloaded.Request(target, payload);
+                    Check(reloaded.State.verified && !after.fakeAlert && (s.kind == "idor" ? after.status == 403 : s.kind == "sqli" ? after.status == 401 : after.page.Contains("&lt;")), "Same attack is rejected or encoded after patch and reload: " + s.kind);
+                    Check(s.kind != "sqli" || after.network.Contains("@name"), "SQLi patch uses a bound value in displayed query");
+                }
+            }
         }
 
         [MenuItem("Tools/CyberCity/Verify complete playthrough")]
@@ -193,11 +226,17 @@ namespace CyberCity.Editor
                 else if (mission.kind == "idor" || mission.kind == "xss" || mission.kind == "sqli")
                 {
                     Add(() => {
-                        Check(!FindButton("OBSERVE THE FLAW").interactable, "Web defense follows observation: " + mission.id);
-                        FindInput().text = mission.kind == "idor" ? "/api/profile/1002" : mission.kind == "xss" ? "<b>hello</b>" : "' OR '1'='1"; Click("SIMULATE");
+                        Check(!FindButton("APPLY PATCH").interactable, "Source patch waits for observed attack: " + mission.id);
+                        if (mission.kind == "idor") FindInput("Browser address").text = "https://" + mission.web.host + mission.web.path + "?id=" + mission.web.targetId;
+                        else FindInput("Browser form").text = mission.kind == "xss" ? "<script>alert(1)</script>" : "' OR '1'='1";
+                        Click("GO");
                     });
-                    Add(() => Capture("05-" + mission.id));
-                    Add(() => Click("SWITCH TO BLUE TEAM"));
+                    Add(() => { Click("DevTools / Network"); Capture("05-" + mission.id); });
+                    Add(() => Click("ENABLE FIX:"));
+                    Add(() => Click("APPLY PATCH"));
+                    Add(() => { Check(!game.WebState(mission, mission.kind).verified, "Web patch cannot skip retest: " + mission.id); Click("RETEST SAME REQUEST"); });
+                    Add(() => Capture("05-" + mission.id + "-patched"));
+                    Add(() => Click("CONTINUE TO DEBRIEF"));
                 }
                 for (int n = 0; n < (mission.questions?.Length ?? 0); n++)
                 {
@@ -264,7 +303,8 @@ namespace CyberCity.Editor
         {
             var b = FindButton(prefix); if (!b.interactable) throw new Exception("Button disabled: " + prefix); b.onClick.Invoke();
         }
-        static InputField FindInput() => UnityEngine.Object.FindAnyObjectByType<InputField>();
+        static InputField FindInput(string objectName = null) => UnityEngine.Object.FindObjectsByType<InputField>(FindObjectsInactive.Exclude)
+            .FirstOrDefault(i => objectName == null || i.gameObject.name == objectName) ?? throw new Exception("Input not found: " + objectName);
         static IEnumerable<string> VisibleText() => UnityEngine.Object.FindObjectsByType<Text>(FindObjectsInactive.Exclude).Select(t => t.text);
         static void Capture(string name)
         {
