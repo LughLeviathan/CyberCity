@@ -23,6 +23,7 @@ namespace CyberCity
                 case "evidence": ShowEvidence(); break;
                 case "terminal": ShowTerminal(); break;
                 case "idor": case "xss": case "sqli": ShowWebLab(); break;
+                case "soc": new SocUI(ui, mission, game.SocState(mission), Finish).Show(); break;
                 default: ShowQuestion(); break;
             }
         }

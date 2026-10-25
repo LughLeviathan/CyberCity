@@ -28,6 +28,7 @@ namespace CyberCity
         public Question[] questions;
         public Evidence[] evidence;
         public WebScenario web;
+        public SocScenario soc;
     }
 
     [Serializable] public class Campaign
@@ -70,6 +71,7 @@ namespace CyberCity
                     throw new InvalidDataException("Evidence is missing in " + m.id);
                 if (m.kind == "idor" || m.kind == "xss" || m.kind == "sqli")
                 { if (m.web == null) throw new InvalidDataException("Missing browser scenario in " + m.id); m.web.Validate(m.kind); }
+                if (m.kind == "soc") { if (m.soc == null) throw new InvalidDataException("Missing SOC scenario in " + m.id); m.soc.Validate(); }
             }
             return data;
         }

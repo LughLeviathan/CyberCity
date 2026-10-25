@@ -16,6 +16,7 @@ namespace CyberCity
         public int[] hintUses = Array.Empty<int>();
         public TerminalProgress[] terminal = TerminalChallenges.Fresh();
         public WebProgress[] web = Array.Empty<WebProgress>();
+        public SocProgress[] soc = Array.Empty<SocProgress>();
         public bool started;
         public float x = 14, y = -8.2f;
     }
@@ -67,6 +68,23 @@ namespace CyberCity
                         (w.patched && !w.demonstrated) || (w.verified && !w.patched) ||
                         (w.demonstrated && (string.IsNullOrEmpty(w.attackUrl) || (w.attackInput ?? "").Length > 512))))
                         throw new InvalidDataException("Invalid browser progress.");
+                    if (data.soc == null) data.soc = Array.Empty<SocProgress>();
+                    if (data.soc.Length > count) throw new InvalidDataException("Invalid SOC progress count.");
+                    foreach (var state in data.soc)
+                    {
+                        var scenario = campaign.missions.FirstOrDefault(m => m.id == state?.missionId)?.soc;
+                        if (scenario == null || state.triaged == null || state.classified == null || state.responses == null ||
+                            state.triaged.Distinct().Count() != state.triaged.Length || state.classified.Distinct().Count() != state.classified.Length ||
+                            state.triaged.Any(id => !scenario.alerts.Any(a => a.id == id)) || state.classified.Any(id => !scenario.attacks.Any(a => a.id == id)) ||
+                            state.responses.Any(id => !scenario.requiredResponses.Contains(id)) ||
+                            (!string.IsNullOrEmpty(state.attacker) && state.attacker != scenario.attackerIp) ||
+                            (state.attacker == scenario.attackerIp && state.triaged.Length != scenario.alerts.Length) ||
+                            (state.classified.Length > 0 && state.attacker != scenario.attackerIp) ||
+                            (state.responseApplied && (state.classified.Length != scenario.attacks.Length || !state.responses.OrderBy(r => r).SequenceEqual(scenario.requiredResponses.OrderBy(r => r)))) ||
+                            (state.complete && (!state.responseApplied || !new SocSession(scenario, state).ValidateReport(state.report, out _))))
+                            throw new InvalidDataException("Invalid SOC investigation state.");
+                        if (state.report == null) state.report = new IncidentReport();
+                    }
                     if (PlayerIdentity.TryValidate(data.playerName, out string clean, out _)) data.playerName = clean;
                     else data.playerName = ""; // Old v2 saves enter the name screen while retaining earned progress.
                     data.x = Mathf.Clamp(data.x, 0.5f, 27.5f);

@@ -75,6 +75,7 @@ namespace CyberCity.Editor
             Check(terminal.Execute("curl https://example.com").StartsWith("Unknown command"), "External commands are unsupported");
             VerifyTerminalChallenges();
             VerifyWebLabs(campaign);
+            foreach (var mission in campaign.missions.Where(m => m.kind == "soc")) VerifySoc(mission.soc);
             string folder = Path.Combine(Application.temporaryCachePath, "CyberCityVerification"); Directory.CreateDirectory(folder);
             string path = Path.Combine(folder, "progress.json");
             foreach (string suffix in new[] { "", ".bak", ".tmp" }) if (File.Exists(path + suffix)) File.Delete(path + suffix);
@@ -160,6 +161,41 @@ namespace CyberCity.Editor
             }
         }
 
+        static void VerifySoc(SocScenario scenario)
+        {
+            var state = new SocProgress(); var soc = new SocSession(scenario, state);
+            Check(!soc.SubmitReport(new IncidentReport(), out _) && !state.complete, "SOC report cannot skip investigation stages");
+            var first = scenario.alerts[0];
+            Check(!soc.Triage(first.id, !first.truePositive, out _) && state.triaged.Length == 0, "Wrong triage verdict cannot advance");
+            foreach (var alert in scenario.alerts) Check(soc.Triage(alert.id, alert.truePositive, out _), "Alert triaged from context: " + alert.id);
+            Check(soc.Stage == 1, "All triage verdicts precede source identification");
+            Check(!soc.ApplyFilter("ip.src = 203.0.113.42") && soc.FilterError.Contains("syntax"), "Malformed filter explains expected syntax");
+            Check(!soc.ApplyFilter("ip.src == 203.0.113.999"), "Invalid filter IP rejected");
+            Check(soc.ApplyFilter("dns") && soc.Visible.All(p => p.protocol == "DNS"), "DNS quick filter excludes web attacks");
+            Check(!soc.IdentifyAttacker(scenario.attackerIp, out _), "Guessed source needs filtered packet evidence");
+            Check(soc.ApplyFilter("<script>") && soc.Visible.Length > 0 && soc.Visible.All(p => p.info.Contains("<script>")), "Free-text filter matches packet body");
+            soc.ApplyFilter("ip.src == " + scenario.attackerIp);
+            Check(soc.Visible.All(p => p.src == scenario.attackerIp) && soc.Visible.Length > 0, "Source filter correlates attacker traffic");
+            string firstPacket = scenario.attacks[0].packetIds[0]; soc.SelectPacket(firstPacket);
+            Check(!soc.IdentifyAttacker("203.0.113.7", out _), "Maintenance source cannot impersonate attacker");
+            Check(soc.IdentifyAttacker(scenario.attackerIp, out _) && soc.Stage == 2, "Attacker confirmed from actual filtered evidence");
+            Check(!soc.Respond(scenario.requiredResponses, out _), "Response cannot skip attack classification");
+            foreach (var attack in scenario.attacks)
+            {
+                soc.SelectPacket(attack.packetIds[0]);
+                Check(!soc.Classify(attack.kind == "IDOR" ? "XSS" : "IDOR", out _), "Wrong attack tag rejected: " + attack.id);
+                Check(soc.Classify(attack.kind, out _), "Evidence classified: " + attack.kind);
+            }
+            Check(!soc.Respond(new[] { "block-ip" }, out _), "Containment alone leaves root cause and accounts exposed");
+            Check(soc.Respond(scenario.requiredResponses, out _) && soc.Stage == 4, "Simulated response requires all correct actions");
+            Check(!soc.SubmitReport(new IncidentReport { who = scenario.attackerIp }, out _), "Incomplete incident report rejected");
+            var report = new IncidentReport { who = scenario.attackerIp, what = string.Join(", ", scenario.attacks.Select(a => a.kind)), when = scenario.firstSeen,
+                impact = "Private profiles and accounts were exposed.", mitigation = "Blocked the source, patched the apps and reset credentials." };
+            Check(soc.SubmitReport(report, out _) && state.complete, "Evidence-aligned incident report closes the case");
+            var resumed = new SocSession(scenario, JsonUtility.FromJson<SocProgress>(JsonUtility.ToJson(state)));
+            Check(resumed.Stage == 5 && resumed.State.report.who == scenario.attackerIp, "SOC report and investigation stage survive reload");
+        }
+
         [MenuItem("Tools/CyberCity/Verify complete playthrough")]
         public static void StartPlaythrough()
         {
@@ -238,6 +274,7 @@ namespace CyberCity.Editor
                     Add(() => Capture("05-" + mission.id + "-patched"));
                     Add(() => Click("CONTINUE TO DEBRIEF"));
                 }
+                if (mission.kind == "soc") AddSocRoute(mission);
                 for (int n = 0; n < (mission.questions?.Length ?? 0); n++)
                 {
                     int question = n;
@@ -267,6 +304,45 @@ namespace CyberCity.Editor
                 WriteReport(); Debug.Log("CyberCity " + Status); End();
             });
             next = EditorApplication.timeSinceStartup + .5; EditorApplication.update += Tick;
+        }
+
+        static void AddSocRoute(Mission mission)
+        {
+            var scenario = mission.soc;
+            foreach (var alert in scenario.alerts)
+            {
+                string id = alert.id; bool verdict = alert.truePositive;
+                Add(() => ClickNamed("Alert-" + id));
+                Add(() => Click(verdict ? "TRUE POSITIVE" : "FALSE POSITIVE"));
+            }
+            Add(() => { FindInput("SOC filter").text = "ip.src = wrong"; Click("APPLY FILTER"); Check(VisibleText().Any(t => t.Contains("Filter syntax")), "Malformed SOC filter has inline feedback"); });
+            Add(() => { FindInput("SOC filter").text = "ip.src == " + scenario.attackerIp; Click("APPLY FILTER"); });
+            Add(() => { ClickNamed("Packet-" + scenario.attacks[0].packetIds[0]); Capture("08-soc-traffic"); });
+            Add(() => { FindInput("SOC attacker").text = scenario.attackerIp; Click("SET ATTACKER"); });
+            foreach (var attack in scenario.attacks)
+            {
+                string packet = attack.packetIds[0], kind = attack.kind;
+                Add(() => ClickNamed("Packet-" + packet)); Add(() => Click("TAG " + kind));
+            }
+            foreach (string label in new[] { "[ ] BLOCK IP", "[ ] PATCH APPS", "[ ] RESET ACCOUNTS" })
+            { string button = label; Add(() => Click(button)); }
+            Add(() => Click("APPLY RESPONSE"));
+            Add(() => Click("OPEN REPORT TEMPLATE"));
+            Add(() => {
+                FindInput("Report-who").text = scenario.attackerIp;
+                FindInput("Report-what").text = string.Join(", ", scenario.attacks.Select(a => a.kind));
+                FindInput("Report-when").text = scenario.firstSeen;
+                FindInput("Report-impact").text = "Private profiles and accounts exposed.";
+                FindInput("Report-mitigation").text = "Block source, patch apps, reset credentials.";
+                Capture("08-soc-report");
+            });
+            Add(() => Click("SUBMIT INCIDENT REPORT"));
+        }
+
+        static void ClickNamed(string name)
+        {
+            var button = UnityEngine.Object.FindObjectsByType<Button>(FindObjectsInactive.Exclude).First(b => b.gameObject.name == name);
+            if (!button.interactable) throw new Exception("Button disabled: " + name); button.onClick.Invoke();
         }
 
         static void Add(Action action) { actions.Enqueue(action); }

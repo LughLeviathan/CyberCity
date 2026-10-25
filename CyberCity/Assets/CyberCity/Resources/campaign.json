@@ -326,46 +326,151 @@
       ]
     },
     {
-      "id": "blue-team",
-      "title": "Repair the trust boundaries",
+      "id": "blue-soc",
+      "title": "Blue SOC: follow the traffic",
       "npc": "Blue",
       "area": "Web Security Lab",
-      "kind": "quiz",
-      "briefing": "{player}, a finding becomes valuable when we can fix it. Choose a mitigation for each root cause. Defense is more than hiding a symptom: the trust boundary must be enforced.",
-      "objective": "Choose a defense for authorization, output rendering, and database access.",
-      "takeaway": "{player}, enforce authorization on the server, encode untrusted output for its context, and bind database parameters. Retest fixes, update dependencies, and monitor for suspicious activity.",
-      "questions": [
-        {
-          "prompt": "Which patch should protect GET /api/profile/{id}?",
-          "options": [
-            "Require login, then allow every numeric ID.",
-            "Hide the request from browser tools.",
-            "Check the caller's ownership or allowed role before returning the record."
-          ],
-          "answer": 2,
-          "explanation": "Authentication identifies a caller. Authorization checks what that caller may access."
-        },
-        {
-          "prompt": "Which approach is safest when displaying an untrusted comment as plain text?",
-          "options": [
-            "Insert it with a safe text API and context-aware output encoding.",
-            "Join it directly into HTML.",
-            "Reject only lowercase tags."
-          ],
-          "answer": 0,
-          "explanation": "A safe text sink treats the comment as data rather than interpreting it as markup."
-        },
-        {
-          "prompt": "Which query approach keeps the username separate from SQL syntax?",
-          "options": [
-            "Concatenate it after removing spaces.",
-            "Use a prepared statement with a bound username parameter.",
-            "Let the browser build the database query."
-          ],
-          "answer": 1,
-          "explanation": "Prepared statements with bound parameters preserve the intended query structure."
-        }
-      ]
+      "kind": "soc",
+      "briefing": "{player}, the training SIEM collected traces from our Web Lab alongside ordinary browsing and maintenance. Separate the real alerts from noise, correlate their source and file an evidence-based response.",
+      "objective": "Triage all alerts, filter and identify the attacker, tag each attack, apply the simulated response and file an incident report.",
+      "takeaway": "{player}, correlation turns isolated alerts into a case. Preserve evidence, contain the source, repair root causes, reset exposed credentials and document the impact.",
+      "questions": [],
+      "soc": {
+        "title": "Blue SOC: follow the traffic",
+        "attackerIp": "203.0.113.42",
+        "firstSeen": "09:10",
+        "packets": [
+          {
+            "id": "n01",
+            "time": "09:09",
+            "src": "10.0.0.8",
+            "dst": "10.0.0.53",
+            "protocol": "DNS",
+            "info": "DNS scholarships.academy.example -> 10.0.0.20; ordinary browsing"
+          },
+          {
+            "id": "p01",
+            "time": "09:10",
+            "src": "203.0.113.42",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "GET /api/profile?id=1001 -> 200; beginning of a rapid ID sequence"
+          },
+          {
+            "id": "n02",
+            "time": "09:10",
+            "src": "203.0.113.7",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "GET /health -> 200; approved scheduled maintenance probe"
+          },
+          {
+            "id": "p02",
+            "time": "09:11",
+            "src": "203.0.113.42",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "GET /api/profile?id=1002 -> 200; Alex session received another owner profile"
+          },
+          {
+            "id": "p03",
+            "time": "09:12",
+            "src": "203.0.113.42",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "GET /api/profile?id=1003 -> 200; another private profile exposed"
+          },
+          {
+            "id": "n03",
+            "time": "09:12",
+            "src": "10.0.0.8",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "GET /home -> 200; routine local student session"
+          },
+          {
+            "id": "p04",
+            "time": "09:13",
+            "src": "203.0.113.42",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "POST /login username=' OR '1'='1 -> 200; account check bypassed"
+          },
+          {
+            "id": "p05",
+            "time": "09:14",
+            "src": "203.0.113.42",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "POST /comments body=<script>alert(1)</script> -> unsafe render in simulation"
+          }
+        ],
+        "alerts": [
+          {
+            "id": "enumeration",
+            "title": "Profile request burst",
+            "context": "A signed-in Alex session requested sequential IDs. Compare object ownership in p02 and p03.",
+            "packetIds": [
+              "p01",
+              "p02",
+              "p03"
+            ],
+            "truePositive": true
+          },
+          {
+            "id": "unsafe-forms",
+            "title": "Unusual form activity",
+            "context": "The same external source sent query syntax to login and markup to comments. Inspect request bodies.",
+            "packetIds": [
+              "p04",
+              "p05"
+            ],
+            "truePositive": true
+          },
+          {
+            "id": "maintenance",
+            "title": "Periodic HTTP probe",
+            "context": "The maintenance roster authorizes 203.0.113.7 to probe /health at 09:10. No private object or form was touched.",
+            "packetIds": [
+              "n02"
+            ],
+            "truePositive": false
+          }
+        ],
+        "attacks": [
+          {
+            "id": "profile-enumeration",
+            "kind": "IDOR",
+            "packetIds": [
+              "p02",
+              "p03"
+            ]
+          },
+          {
+            "id": "login-bypass",
+            "kind": "SQLi",
+            "packetIds": [
+              "p04"
+            ]
+          },
+          {
+            "id": "comment-injection",
+            "kind": "XSS",
+            "packetIds": [
+              "p05"
+            ]
+          }
+        ],
+        "requiredResponses": [
+          "block-ip",
+          "patch",
+          "reset-credentials"
+        ],
+        "impactTerms": [
+          "profile",
+          "account"
+        ]
+      }
     },
     {
       "id": "final",

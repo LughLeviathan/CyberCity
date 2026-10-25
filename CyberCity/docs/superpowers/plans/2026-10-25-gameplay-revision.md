@@ -29,7 +29,7 @@
 - [x] Phase 1 — PlayerIdentity.cs: trim/validate 3–16 letters/digits/spaces/underscore and Personalize. Start/pause/name label, NPC/toast/debrief rendering. Test valid/invalid names and unresolved tokens; run core + UI checks; commit.
 - [x] Phase 2 — VirtualTerminal.cs: three challenge filesystems, commands/pipes, safe errors and least privilege. Save flag/hint state, challenge board. Test every correct/wrong route and save resume; run core + terminal UI; commit.
 - [x] Phase 3 — WebScenario JSON models + WebLabSession.cs and FakeBrowser.cs. Editable address/history/reload, forms, network panel, data-driven patterns, source patch and identical-input retest. Test multiple payloads, false positives and patch ordering; run core + browser UI; commit.
-- [ ] Phase 4 — SocScenario JSON + SocSession.cs and SocUI.cs. Alert queue, packet table/details, filters, sequential deterministic triage/IP/classification/response/report. Test noise/invalid filters/wrong reports and valid route; run core + SOC UI; commit.
+- [x] Phase 4 — SocScenario JSON + SocSession.cs and SocUI.cs. Alert queue, packet table/details, filters, sequential deterministic triage/IP/classification/response/report. Test noise/invalid filters/wrong reports and valid route; run core + SOC UI; commit.
 - [ ] Phase 5 — Final chain reuses browser IDOR/SQLi then SOC analysis/response; graduation shows username, XP and area badges. Final campaign has 11 ordered missions and 6 quiz questions. Update verification for actual complete UI route; run both Verify menus, inspect screenshots/console, check GUID/meta integrity and prohibited APIs; commit.
 
 ## Execution ledger
@@ -43,3 +43,5 @@
 - Phase 2 complete: unsupported whoami reproduced before implementation. VerifyCore 60 checks; complete runtime playthrough 131 checks passed, including close/reopen flag persistence. Terminal screenshot inspected. Three isolated filesystems, least-privilege rejection and hint costs verified. Removed deprecated sorting overloads from verification for Unity 6000.6.
 
 - Phase 3: RED missing scenario/browser state reproduced; VerifyCore 117 checks and full UI 191 checks passed. Browser patch screenshots inspected; reduced Reload label font to prevent wrapping. Added a regression for changed login-body retests. Browser state and paid hints persist with saves. JSON defines all three pages, patterns and source fixes.
+
+- Phase 4 complete: missing SOC model reproduced. VerifyCore 151 checks; full runtime UI 226 checks passed. SOC table/detail screenshot inspected. Alerts include authorized maintenance false positive, ordinary DNS and correlated IDOR/XSS/SQLi requests. Filters, evidence requirements, response and structured report validation tested.

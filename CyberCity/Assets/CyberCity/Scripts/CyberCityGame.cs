@@ -129,6 +129,15 @@ namespace CyberCity
             return state;
         }
 
+        public SocProgress SocState(Mission mission)
+        {
+            var state = Progress.soc.FirstOrDefault(s => s.missionId == mission.id);
+            if (state != null) return state;
+            state = new SocProgress { missionId = mission.id };
+            Array.Resize(ref Progress.soc, Progress.soc.Length + 1); Progress.soc[Progress.soc.Length - 1] = state;
+            return state;
+        }
+
         public bool SetPlayerName(string value, out string error)
         {
             if (!PlayerIdentity.TryValidate(value, out string name, out error)) return false;
