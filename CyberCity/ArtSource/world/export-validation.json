@@ -1,0 +1,10 @@
+{
+  "groundReconstructionMismatchPixels": 0,
+  "fullReconstructionMismatchPixels": 0,
+  "uniqueTiles": 308,
+  "tileCells": 576,
+  "bottomPivotSprites": 39,
+  "waterFrames": 3,
+  "paletteColors": 47,
+  "sourceFiles": 63
+}

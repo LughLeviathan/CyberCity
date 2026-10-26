@@ -1,0 +1,1289 @@
+fileFormatVersion: 2
+guid: 4fbfc7f89cef1174eb40a918603085fe
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7775045886984487928
+    second: cyber_corp_glow_0
+  - first:
+      213: -6998197292744576333
+    second: cyber_corp_glow_1
+  - first:
+      213: 2737126972015325714
+    second: cyber_corp_glow_2
+  - first:
+      213: -9035271376356571665
+    second: cyber_corp_glow_3
+  - first:
+      213: -879164045786693346
+    second: cyber_corp_glow_4
+  - first:
+      213: -2050938383017085472
+    second: cyber_corp_glow_5
+  - first:
+      213: 8219911200327023341
+    second: cyber_corp_glow_6
+  - first:
+      213: -8008984295750493812
+    second: cyber_corp_glow_7
+  - first:
+      213: 8046694184797330868
+    second: cyber_corp_glow_8
+  - first:
+      213: 3684719526098542056
+    second: cyber_corp_glow_9
+  - first:
+      213: 7304415827720335294
+    second: cyber_corp_glow_10
+  - first:
+      213: -2384040001884997379
+    second: cyber_corp_glow_11
+  - first:
+      213: 4596633035204071741
+    second: cyber_corp_glow_12
+  - first:
+      213: -1015445141225486982
+    second: cyber_corp_glow_13
+  - first:
+      213: 5150151376092575816
+    second: cyber_corp_glow_14
+  - first:
+      213: -6014532849156517972
+    second: cyber_corp_glow_15
+  - first:
+      213: 2378523265055610350
+    second: cyber_corp_glow_16
+  - first:
+      213: 4319538489019491892
+    second: cyber_corp_glow_17
+  - first:
+      213: -8217545466857226299
+    second: cyber_corp_glow_18
+  - first:
+      213: -5027598352533221972
+    second: cyber_corp_glow_19
+  - first:
+      213: 9176360529245715930
+    second: cyber_corp_glow_20
+  - first:
+      213: 2172298891508473818
+    second: cyber_corp_glow_21
+  - first:
+      213: -4208043394793125126
+    second: cyber_corp_glow_22
+  - first:
+      213: 53774007687124435
+    second: cyber_corp_glow_23
+  - first:
+      213: 8651538315974561769
+    second: cyber_corp_glow_24
+  - first:
+      213: -5504545778700415457
+    second: cyber_corp_glow_25
+  - first:
+      213: 7025201013557667268
+    second: cyber_corp_glow_26
+  - first:
+      213: 7214924084647236467
+    second: cyber_corp_glow_27
+  - first:
+      213: -1766909286990943851
+    second: cyber_corp_glow_28
+  - first:
+      213: -8370942856887371206
+    second: cyber_corp_glow_29
+  - first:
+      213: 5242173100509662905
+    second: cyber_corp_glow_30
+  - first:
+      213: 3059450914397962050
+    second: cyber_corp_glow_31
+  - first:
+      213: -7948751075473603626
+    second: cyber_corp_glow_32
+  - first:
+      213: 3172893280215525120
+    second: cyber_corp_glow_33
+  - first:
+      213: 601917052950295687
+    second: cyber_corp_glow_34
+  - first:
+      213: -5086162322494105707
+    second: cyber_corp_glow_35
+  - first:
+      213: -7582544515452333771
+    second: cyber_corp_glow_36
+  - first:
+      213: 8349723149070253137
+    second: cyber_corp_glow_37
+  - first:
+      213: -5708536432298446123
+    second: cyber_corp_glow_38
+  - first:
+      213: -167037126659652594
+    second: cyber_corp_glow_39
+  - first:
+      213: 7501916501099614782
+    second: cyber_corp_glow_40
+  - first:
+      213: 727189255562870986
+    second: cyber_corp_glow_41
+  - first:
+      213: -6572844114066007834
+    second: cyber_corp_glow_42
+  - first:
+      213: 6629205979906713223
+    second: cyber_corp_glow_43
+  - first:
+      213: 8251930635520285689
+    second: cyber_corp_glow_44
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cyber_corp_glow_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 49
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80c7de1b5fc791490800000000000000
+      internalID: -7775045886984487928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_1
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 44
+        width: 6
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b2fbd9e3a861ee90800000000000000
+      internalID: -6998197292744576333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_2
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 65
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2123d18aa7a3cf520800000000000000
+      internalID: 2737126972015325714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_3
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 20
+        width: 91
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe5030bdd844c9280800000000000000
+      internalID: -9035271376356571665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_4
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 99
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e11c69755f49cc3f0800000000000000
+      internalID: -879164045786693346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_5
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 56
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e57d00386a9983e0800000000000000
+      internalID: -2050938383017085472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_6
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 56
+        width: 8
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dea3fbc8fadf21270800000000000000
+      internalID: 8219911200327023341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_7
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 49
+        width: 133
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c891c18673f5ad090800000000000000
+      internalID: -8008984295750493812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_8
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 81
+        width: 77
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bddb055ab99baf60800000000000000
+      internalID: 8046694184797330868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_9
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 69
+        width: 13
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ed9c02f2e0c22330800000000000000
+      internalID: 3684719526098542056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_10
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 94
+        width: 11
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebfe20fae7f7e5560800000000000000
+      internalID: 7304415827720335294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_11
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 58
+        width: 56
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df8b25ddf303aeed0800000000000000
+      internalID: -2384040001884997379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_12
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 29
+        width: 6
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d311a2a34658acf30800000000000000
+      internalID: 4596633035204071741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_13
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 34
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a75cb5c260a68e1f0800000000000000
+      internalID: -1015445141225486982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_14
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 12
+        width: 10
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 848bc7fc363097740800000000000000
+      internalID: 5150151376092575816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_15
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 6
+        width: 14
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caf8b147d36188ca0800000000000000
+      internalID: -6014532849156517972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 16
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee554afbe46320120800000000000000
+      internalID: 2378523265055610350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_17
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 41
+        width: 77
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43662afae5512fb30800000000000000
+      internalID: 4319538489019491892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_18
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 11
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cf7a52bfe965fd80800000000000000
+      internalID: -8217545466857226299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_19
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 34
+        width: 25
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cad0beb8fe16a3ab0800000000000000
+      internalID: -5027598352533221972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_20
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 35
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: add3b9c684bf85f70800000000000000
+      internalID: 9176360529245715930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_21
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 15
+        width: 10
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adf565e155e852e10800000000000000
+      internalID: 2172298891508473818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_22
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 32
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afa4dedd3d60a95c0800000000000000
+      internalID: -4208043394793125126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_23
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 21
+        width: 13
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d51752dc2b0fb000800000000000000
+      internalID: 53774007687124435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_24
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 8
+        width: 11
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ef4854b240701870800000000000000
+      internalID: 8651538315974561769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_25
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 0
+        width: 26
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1e8fa257cceb93b0800000000000000
+      internalID: -5504545778700415457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_26
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 27
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c5a1d8c9178e7160800000000000000
+      internalID: 7025201013557667268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_27
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 17
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3731fca8a3f802460800000000000000
+      internalID: 7214924084647236467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_28
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 6
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 599e09e6d5daa77e0800000000000000
+      internalID: -1766909286990943851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_29
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 16
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3a7224a2df64db80800000000000000
+      internalID: -8370942856887371206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_30
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 16
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9be8cf229a0ffb840800000000000000
+      internalID: 5242173100509662905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_31
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 4
+        width: 53
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24f3f60a56a557a20800000000000000
+      internalID: 3059450914397962050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_32
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 16
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d3446ad20d50b190800000000000000
+      internalID: -7948751075473603626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_33
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 30
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 007687da0a1680c20800000000000000
+      internalID: 3172893280215525120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_34
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 4
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7843a5dde507a5800800000000000000
+      internalID: 601917052950295687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_35
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 18
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59753c9b0525a69b0800000000000000
+      internalID: -5086162322494105707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_36
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 13
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53190eeefe365c690800000000000000
+      internalID: -7582544515452333771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_37
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 9
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15c303127fc20e370800000000000000
+      internalID: 8349723149070253137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_38
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 3
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d2b9752c5437c0b0800000000000000
+      internalID: -5708536432298446123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_39
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 4
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0446294e909eadf0800000000000000
+      internalID: -167037126659652594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_40
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 4
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e321fa69f492c1860800000000000000
+      internalID: 7501916501099614782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_41
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 4
+        width: 27
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac04e4e66ce771a00800000000000000
+      internalID: 727189255562870986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_42
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 4
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e814194a1198c4a0800000000000000
+      internalID: -6572844114066007834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_43
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 4
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7862c3737bbaffb50800000000000000
+      internalID: 6629205979906713223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyber_corp_glow_44
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 6
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fb9951413fb48270800000000000000
+      internalID: 8251930635520285689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cyber_corp_glow_0: -7775045886984487928
+      cyber_corp_glow_1: -6998197292744576333
+      cyber_corp_glow_10: 7304415827720335294
+      cyber_corp_glow_11: -2384040001884997379
+      cyber_corp_glow_12: 4596633035204071741
+      cyber_corp_glow_13: -1015445141225486982
+      cyber_corp_glow_14: 5150151376092575816
+      cyber_corp_glow_15: -6014532849156517972
+      cyber_corp_glow_16: 2378523265055610350
+      cyber_corp_glow_17: 4319538489019491892
+      cyber_corp_glow_18: -8217545466857226299
+      cyber_corp_glow_19: -5027598352533221972
+      cyber_corp_glow_2: 2737126972015325714
+      cyber_corp_glow_20: 9176360529245715930
+      cyber_corp_glow_21: 2172298891508473818
+      cyber_corp_glow_22: -4208043394793125126
+      cyber_corp_glow_23: 53774007687124435
+      cyber_corp_glow_24: 8651538315974561769
+      cyber_corp_glow_25: -5504545778700415457
+      cyber_corp_glow_26: 7025201013557667268
+      cyber_corp_glow_27: 7214924084647236467
+      cyber_corp_glow_28: -1766909286990943851
+      cyber_corp_glow_29: -8370942856887371206
+      cyber_corp_glow_3: -9035271376356571665
+      cyber_corp_glow_30: 5242173100509662905
+      cyber_corp_glow_31: 3059450914397962050
+      cyber_corp_glow_32: -7948751075473603626
+      cyber_corp_glow_33: 3172893280215525120
+      cyber_corp_glow_34: 601917052950295687
+      cyber_corp_glow_35: -5086162322494105707
+      cyber_corp_glow_36: -7582544515452333771
+      cyber_corp_glow_37: 8349723149070253137
+      cyber_corp_glow_38: -5708536432298446123
+      cyber_corp_glow_39: -167037126659652594
+      cyber_corp_glow_4: -879164045786693346
+      cyber_corp_glow_40: 7501916501099614782
+      cyber_corp_glow_41: 727189255562870986
+      cyber_corp_glow_42: -6572844114066007834
+      cyber_corp_glow_43: 6629205979906713223
+      cyber_corp_glow_44: 8251930635520285689
+      cyber_corp_glow_5: -2050938383017085472
+      cyber_corp_glow_6: 8219911200327023341
+      cyber_corp_glow_7: -8008984295750493812
+      cyber_corp_glow_8: 8046694184797330868
+      cyber_corp_glow_9: 3684719526098542056
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

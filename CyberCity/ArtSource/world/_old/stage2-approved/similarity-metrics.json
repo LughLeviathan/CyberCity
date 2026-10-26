@@ -1,0 +1,323 @@
+{
+  "method": "Luminance SSIM, Rec.709 weights, 11x11 Gaussian sigma=1.5, population variance, K1=.01 K2=.03, data_range=255. RGB MSE over unfiltered equal-size images. 5 px SSIM border excluded.",
+  "baseline": "Preserved reference JPEG decoded and resized with BOX to 1024x576, including its original HUD/text. The initial extract_palette call re-encoded the supplied JPEG before this snapshot.",
+  "whole_map": {
+    "SSIM_luminance": 0.6156527580865431,
+    "MSE_RGB_0_255": 1788.3947414822048,
+    "RMSE_RGB_0_255": 42.289416423996734,
+    "normalized_MSE": 0.027503187104685963,
+    "pixels": 589824,
+    "SSIM_window_centers": 573924
+  },
+  "excluding_two_replacement_regions": {
+    "SSIM_luminance": 0.6557753034454606,
+    "MSE_RGB_0_255": 1690.2992512046753,
+    "RMSE_RGB_0_255": 41.11324909569512,
+    "normalized_MSE": 0.025994605939326034,
+    "pixels": 545721,
+    "SSIM_window_centers": 526371
+  },
+  "intentional_replacement_pixel_fraction": 0.07477315266927083,
+  "landmark_registration": [
+    {
+      "landmark": "Cyber Academy emblem",
+      "referencePatchXYWH": [
+        477,
+        51,
+        44,
+        30
+      ],
+      "bestShiftPixels": [
+        0,
+        0
+      ],
+      "distanceTiles": 0.0,
+      "MSE": 627.2808080808081
+    },
+    {
+      "landmark": "Player House gable",
+      "referencePatchXYWH": [
+        195,
+        126,
+        40,
+        35
+      ],
+      "bestShiftPixels": [
+        0,
+        0
+      ],
+      "distanceTiles": 0.0,
+      "MSE": 236.72047619047618
+    },
+    {
+      "landmark": "Internet Cafe emblem",
+      "referencePatchXYWH": [
+        129,
+        254,
+        42,
+        35
+      ],
+      "bestShiftPixels": [
+        0,
+        0
+      ],
+      "distanceTiles": 0.0,
+      "MSE": 1035.5458049886622
+    },
+    {
+      "landmark": "Linux Lab penguin",
+      "referencePatchXYWH": [
+        733,
+        92,
+        30,
+        45
+      ],
+      "bestShiftPixels": [
+        0,
+        0
+      ],
+      "distanceTiles": 0.0,
+      "MSE": 379.0283950617284
+    },
+    {
+      "landmark": "Web Security Lab shield",
+      "referencePatchXYWH": [
+        756,
+        263,
+        30,
+        36
+      ],
+      "bestShiftPixels": [
+        0,
+        0
+      ],
+      "distanceTiles": 0.0,
+      "MSE": 650.6333333333333
+    },
+    {
+      "landmark": "Cyber Corp emblem",
+      "referencePatchXYWH": [
+        477,
+        373,
+        45,
+        35
+      ],
+      "bestShiftPixels": [
+        0,
+        0
+      ],
+      "distanceTiles": 0.0,
+      "MSE": 325.65777777777777
+    },
+    {
+      "landmark": "Plaza globe",
+      "referencePatchXYWH": [
+        460,
+        192,
+        65,
+        67
+      ],
+      "bestShiftPixels": [
+        0,
+        0
+      ],
+      "distanceTiles": 0.0,
+      "MSE": 809.7174894756985
+    },
+    {
+      "landmark": "West bridge arch",
+      "referencePatchXYWH": [
+        163,
+        436,
+        42,
+        33
+      ],
+      "bestShiftPixels": [
+        0,
+        0
+      ],
+      "distanceTiles": 0.0,
+      "MSE": 311.43578643578644
+    },
+    {
+      "landmark": "Southeast bridge rail",
+      "referencePatchXYWH": [
+        724,
+        408,
+        55,
+        34
+      ],
+      "bestShiftPixels": [
+        0,
+        0
+      ],
+      "distanceTiles": 0.0,
+      "MSE": 191.5547237076649
+    }
+  ],
+  "landmark_caveat": "Translation-only local RGB MSE registration of nine visible landmarks, search +/-32 px. This does not validate whole silhouettes, collisions or navigation.",
+  "palette": {
+    "count": 47,
+    "maximum": 48,
+    "offPaletteColors": 0,
+    "brandColorsPresent": {
+      "#0B1026": true,
+      "#1F2A6B": true,
+      "#00E5FF": true,
+      "#00D4B7": true,
+      "#8B5CF6": true,
+      "#FF2D9B": true,
+      "#FFB347": true,
+      "#FFF4D6": true
+    }
+  },
+  "layers": {
+    "buildings_academy": {
+      "opaquePixels": 35844,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "boundsXYXYExclusive": [
+        331,
+        8,
+        615,
+        172
+      ]
+    },
+    "buildings_cyber_corp": {
+      "opaquePixels": 39752,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "boundsXYXYExclusive": [
+        309,
+        343,
+        672,
+        486
+      ]
+    },
+    "buildings_internet_cafe": {
+      "opaquePixels": 26499,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "boundsXYXYExclusive": [
+        34,
+        250,
+        284,
+        383
+      ]
+    },
+    "buildings_linux_lab": {
+      "opaquePixels": 22749,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "boundsXYXYExclusive": [
+        640,
+        85,
+        859,
+        224
+      ]
+    },
+    "buildings_player_house": {
+      "opaquePixels": 20174,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "boundsXYXYExclusive": [
+        88,
+        95,
+        283,
+        237
+      ]
+    },
+    "buildings_web_lab": {
+      "opaquePixels": 20465,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "boundsXYXYExclusive": [
+        726,
+        248,
+        957,
+        377
+      ]
+    },
+    "glow": {
+      "opaquePixels": 19366,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "boundsXYXYExclusive": [
+        38,
+        12,
+        955,
+        485
+      ]
+    },
+    "ground": {
+      "opaquePixels": 589824,
+      "alphaValues": [
+        255
+      ],
+      "boundsXYXYExclusive": [
+        0,
+        0,
+        1024,
+        576
+      ]
+    },
+    "props": {
+      "opaquePixels": 32602,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "boundsXYXYExclusive": [
+        28,
+        112,
+        890,
+        512
+      ]
+    },
+    "scenery_edge": {
+      "opaquePixels": 146913,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "boundsXYXYExclusive": [
+        0,
+        0,
+        1024,
+        549
+      ]
+    },
+    "water": {
+      "opaquePixels": 103596,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "boundsXYXYExclusive": [
+        0,
+        229,
+        1024,
+        576
+      ]
+    }
+  },
+  "groundDistinct32pxCellsBeforeTilesetOptimization": 308,
+  "groundCellCount": 576,
+  "actualExportedTilesetCount": 0,
+  "runtimeVerification": "Not run: user approval gate after stage 2",
+  "previewSHA256": "ad9fccdd08bc4a203b315ad6e5081fdb4f0d5a86b6bf0f53bf083e75754d5378"
+}

@@ -1,0 +1,925 @@
+fileFormatVersion: 2
+guid: 906334a69d4a2bc41ab0aff67d2eba4e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2014484027026224028
+    second: player_house_glow_0
+  - first:
+      213: 5690197559341822432
+    second: player_house_glow_1
+  - first:
+      213: 8920757991598537499
+    second: player_house_glow_2
+  - first:
+      213: -159180322505707889
+    second: player_house_glow_3
+  - first:
+      213: -6678737267896332591
+    second: player_house_glow_4
+  - first:
+      213: -578318440931041703
+    second: player_house_glow_5
+  - first:
+      213: 1202217445995999983
+    second: player_house_glow_6
+  - first:
+      213: -5582220182403540547
+    second: player_house_glow_7
+  - first:
+      213: -2523569514274123192
+    second: player_house_glow_8
+  - first:
+      213: 8967030425721227676
+    second: player_house_glow_9
+  - first:
+      213: -3652175383830319855
+    second: player_house_glow_10
+  - first:
+      213: -4009027140073378672
+    second: player_house_glow_11
+  - first:
+      213: 6667671078123069482
+    second: player_house_glow_12
+  - first:
+      213: -1974619575404268772
+    second: player_house_glow_13
+  - first:
+      213: -4559705360039916464
+    second: player_house_glow_14
+  - first:
+      213: -6606248570029232393
+    second: player_house_glow_15
+  - first:
+      213: 5304515803796273154
+    second: player_house_glow_16
+  - first:
+      213: 3364221432850461822
+    second: player_house_glow_17
+  - first:
+      213: 3397491327905460783
+    second: player_house_glow_18
+  - first:
+      213: -8804151246843543987
+    second: player_house_glow_19
+  - first:
+      213: -9108269955279628127
+    second: player_house_glow_20
+  - first:
+      213: 5106459323941783030
+    second: player_house_glow_21
+  - first:
+      213: 2226978469335195978
+    second: player_house_glow_22
+  - first:
+      213: -3091380196159236209
+    second: player_house_glow_23
+  - first:
+      213: 734386954276710896
+    second: player_house_glow_24
+  - first:
+      213: -8064754297499946551
+    second: player_house_glow_25
+  - first:
+      213: 4122052826729266117
+    second: player_house_glow_26
+  - first:
+      213: -5914049660518891705
+    second: player_house_glow_27
+  - first:
+      213: -7925395926098586811
+    second: player_house_glow_28
+  - first:
+      213: 1512991037535703489
+    second: player_house_glow_29
+  - first:
+      213: 4231829140703889434
+    second: player_house_glow_30
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: player_house_glow_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 104
+        width: 26
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46c476b537d1b04e0800000000000000
+      internalID: -2014484027026224028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_1
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 89
+        width: 36
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e13d524884a7fe40800000000000000
+      internalID: 5690197559341822432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_2
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 96
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1b35701126eccb70800000000000000
+      internalID: 8920757991598537499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 84
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8ea0dd075a7acdf0800000000000000
+      internalID: -159180322505707889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_4
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 84
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1de40ee17db5053a0800000000000000
+      internalID: -6678737267896332591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_5
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 70
+        width: 10
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95e5f39217669f7f0800000000000000
+      internalID: -578318440931041703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_6
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 70
+        width: 11
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe27e53c5622fa010800000000000000
+      internalID: 1202217445995999983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_7
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 67
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db912d9e158f782b0800000000000000
+      internalID: -5582220182403540547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_8
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 73
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8429fafa5ea7afcd0800000000000000
+      internalID: -2523569514274123192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_9
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 78
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c99cb3fa9aa417c70800000000000000
+      internalID: 8967030425721227676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_10
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 81
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11d2e55a6ddd05dc0800000000000000
+      internalID: -3652175383830319855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_11
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 47
+        width: 8
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09ca60d8e031d58c0800000000000000
+      internalID: -4009027140073378672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_12
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 39
+        width: 10
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a20ebaac483588c50800000000000000
+      internalID: 6667671078123069482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_13
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 28
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c13fe7945fdb894e0800000000000000
+      internalID: -1974619575404268772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_14
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 58
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05c4066222ca8b0c0800000000000000
+      internalID: -4559705360039916464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_15
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 44
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fea97d4de3e154a0800000000000000
+      internalID: -6606248570029232393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_16
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 57
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 208f8bed40d6d9940800000000000000
+      internalID: 5304515803796273154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_17
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 37
+        width: 23
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e74beca919d10be20800000000000000
+      internalID: 3364221432850461822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_18
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 29
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f22764fac50562f20800000000000000
+      internalID: 3397491327905460783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_19
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 12
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4ef31f561f51d580800000000000000
+      internalID: -8804151246843543987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_20
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 6
+        width: 39
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a8d13dbbbce89180800000000000000
+      internalID: -9108269955279628127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_21
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 10
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f5088f23b9cdd640800000000000000
+      internalID: 5106459323941783030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_22
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 6
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a41ea2b6e11d7ee10800000000000000
+      internalID: 2226978469335195978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_23
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 17
+        width: 25
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f87504627163915d0800000000000000
+      internalID: -3091380196159236209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_24
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 10
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f928514b01113a00800000000000000
+      internalID: 734386954276710896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_25
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 1
+        width: 17
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c1f5b002bc341090800000000000000
+      internalID: -8064754297499946551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_26
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 10
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cbb792d439743930800000000000000
+      internalID: 4122052826729266117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_27
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 16
+        width: 6
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74f70c0fa231deda0800000000000000
+      internalID: -5914049660518891705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_28
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 10
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 543d0905566530290800000000000000
+      internalID: -7925395926098586811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_29
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 10
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c15aac15593ff410800000000000000
+      internalID: 1512991037535703489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_house_glow_30
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 3
+        width: 38
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a184dc9ae2a7aba30800000000000000
+      internalID: 4231829140703889434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      player_house_glow_0: -2014484027026224028
+      player_house_glow_1: 5690197559341822432
+      player_house_glow_10: -3652175383830319855
+      player_house_glow_11: -4009027140073378672
+      player_house_glow_12: 6667671078123069482
+      player_house_glow_13: -1974619575404268772
+      player_house_glow_14: -4559705360039916464
+      player_house_glow_15: -6606248570029232393
+      player_house_glow_16: 5304515803796273154
+      player_house_glow_17: 3364221432850461822
+      player_house_glow_18: 3397491327905460783
+      player_house_glow_19: -8804151246843543987
+      player_house_glow_2: 8920757991598537499
+      player_house_glow_20: -9108269955279628127
+      player_house_glow_21: 5106459323941783030
+      player_house_glow_22: 2226978469335195978
+      player_house_glow_23: -3091380196159236209
+      player_house_glow_24: 734386954276710896
+      player_house_glow_25: -8064754297499946551
+      player_house_glow_26: 4122052826729266117
+      player_house_glow_27: -5914049660518891705
+      player_house_glow_28: -7925395926098586811
+      player_house_glow_29: 1512991037535703489
+      player_house_glow_3: -159180322505707889
+      player_house_glow_30: 4231829140703889434
+      player_house_glow_4: -6678737267896332591
+      player_house_glow_5: -578318440931041703
+      player_house_glow_6: 1202217445995999983
+      player_house_glow_7: -5582220182403540547
+      player_house_glow_8: -2523569514274123192
+      player_house_glow_9: 8967030425721227676
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

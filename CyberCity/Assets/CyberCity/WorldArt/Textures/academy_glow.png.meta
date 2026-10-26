@@ -1,0 +1,561 @@
+fileFormatVersion: 2
+guid: 8c73e1abe8a0c464395bc1d5c46c07e3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6474760149219394314
+    second: academy_glow_0
+  - first:
+      213: 9089565812983729089
+    second: academy_glow_1
+  - first:
+      213: -8654365408811802115
+    second: academy_glow_2
+  - first:
+      213: 279086060324577210
+    second: academy_glow_3
+  - first:
+      213: -374186142920129985
+    second: academy_glow_4
+  - first:
+      213: -3255502513219927102
+    second: academy_glow_5
+  - first:
+      213: -1666370893559987642
+    second: academy_glow_6
+  - first:
+      213: -5166903125335861832
+    second: academy_glow_7
+  - first:
+      213: -3773795756042847885
+    second: academy_glow_8
+  - first:
+      213: -2852895577107532074
+    second: academy_glow_9
+  - first:
+      213: -8280038256814645829
+    second: academy_glow_10
+  - first:
+      213: 1392401689182872885
+    second: academy_glow_11
+  - first:
+      213: -1477079687953236088
+    second: academy_glow_12
+  - first:
+      213: -5178371413860918494
+    second: academy_glow_13
+  - first:
+      213: 4088926997674337439
+    second: academy_glow_14
+  - first:
+      213: -431512030000372856
+    second: academy_glow_15
+  - first:
+      213: -8794044508186372403
+    second: academy_glow_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: academy_glow_0
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 85
+        width: 195
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fc3ce3f2f70526a0800000000000000
+      internalID: -6474760149219394314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_1
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 120
+        width: 29
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cb0e65c2ff942e70800000000000000
+      internalID: 9089565812983729089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_2
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 62
+        width: 6
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df12853738485e780800000000000000
+      internalID: -8654365408811802115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_3
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 98
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abfd86f0b438fd300800000000000000
+      internalID: 279086060324577210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_4
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 91
+        width: 30
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f324f5f7faf9ecaf0800000000000000
+      internalID: -374186142920129985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_5
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 41
+        width: 29
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c3822e66b122d2d0800000000000000
+      internalID: -3255502513219927102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_6
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 78
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6428e49408cdfd8e0800000000000000
+      internalID: -1666370893559987642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_7
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 73
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b51081abf87b48b0800000000000000
+      internalID: -5166903125335861832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_8
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 45
+        width: 6
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 379703a11c8c0abc0800000000000000
+      internalID: -3773795756042847885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_9
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 19
+        width: 30
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d6f831869a7868d0800000000000000
+      internalID: -2852895577107532074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_10
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 34
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbd1bef2315671d80800000000000000
+      internalID: -8280038256814645829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_11
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 11
+        width: 84
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 535266485fdc25310800000000000000
+      internalID: 1392401689182872885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_12
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 13
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88f3a9689db508be0800000000000000
+      internalID: -1477079687953236088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_13
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 18
+        width: 30
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22b58c1a2aab228b0800000000000000
+      internalID: -5178371413860918494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_14
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 0
+        width: 31
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9422e8b079ceb830800000000000000
+      internalID: 4088926997674337439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_15
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 10
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 883258f4816f20af0800000000000000
+      internalID: -431512030000372856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: academy_glow_16
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 8
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc69396dc1745f580800000000000000
+      internalID: -8794044508186372403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      academy_glow_0: -6474760149219394314
+      academy_glow_1: 9089565812983729089
+      academy_glow_10: -8280038256814645829
+      academy_glow_11: 1392401689182872885
+      academy_glow_12: -1477079687953236088
+      academy_glow_13: -5178371413860918494
+      academy_glow_14: 4088926997674337439
+      academy_glow_15: -431512030000372856
+      academy_glow_16: -8794044508186372403
+      academy_glow_2: -8654365408811802115
+      academy_glow_3: 279086060324577210
+      academy_glow_4: -374186142920129985
+      academy_glow_5: -3255502513219927102
+      academy_glow_6: -1666370893559987642
+      academy_glow_7: -5166903125335861832
+      academy_glow_8: -3773795756042847885
+      academy_glow_9: -2852895577107532074
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
