@@ -46,8 +46,8 @@ namespace CyberCity
         {
             body.linearVelocity = CanMove ? input * speed : Vector2.zero;
             Vector2 p = body.position;
-            if (p.x < 0.5f || p.x > 27.5f || p.y < -21.5f || p.y > -0.5f)
-                body.position = new Vector2(Mathf.Clamp(p.x, 0.5f, 27.5f), Mathf.Clamp(p.y, -21.5f, -0.5f));
+            Vector2 clamped = WorldLayout.Clamp(p);
+            if (clamped != p) body.position = clamped;
         }
     }
 }

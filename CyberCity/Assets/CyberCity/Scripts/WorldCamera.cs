@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CyberCity
 {
-    // PixelPerfectCamera owns the projection. Keep the city centered in the HUD's left region.
+    // PixelPerfectCamera owns the projection; reserve the console and header before fitting the map.
     [RequireComponent(typeof(Camera))]
     public sealed class WorldCamera : MonoBehaviour
     {
@@ -10,8 +10,12 @@ namespace CyberCity
         void Awake() { view = GetComponent<Camera>(); }
         void LateUpdate()
         {
+            // URP PixelPerfectCamera resets Camera.rect while fitting the integer pixel scale.
+            // Offset the fixed camera instead so that the full map stays in the console's left region.
+            view.rect = new Rect(0, 0, 1, 1);
             float halfWidth = view.orthographicSize * view.aspect;
-            transform.position = new Vector3(14 + halfWidth * .22f, -11, -10);
+            transform.position = new Vector3(WorldLayout.Center.x + halfWidth * .22f,
+                WorldLayout.Center.y + view.orthographicSize * (50f / 900), -10);
         }
     }
 }

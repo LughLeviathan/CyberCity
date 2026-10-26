@@ -18,7 +18,7 @@ namespace CyberCity
         public WebProgress[] web = Array.Empty<WebProgress>();
         public SocProgress[] soc = Array.Empty<SocProgress>();
         public bool started;
-        public float x = 14, y = -8.2f;
+        public float x = WorldLayout.SpawnX, y = WorldLayout.SpawnY;
     }
 
     public static class ProgressStore
@@ -111,8 +111,8 @@ namespace CyberCity
                             throw new InvalidDataException("A completed mission is missing its practical evidence.");
                     if (PlayerIdentity.TryValidate(data.playerName, out string clean, out _)) data.playerName = clean;
                     else data.playerName = ""; // Old v2 saves enter the name screen while retaining earned progress.
-                    data.x = Mathf.Clamp(data.x, 0.5f, 27.5f);
-                    data.y = Mathf.Clamp(data.y, -21.5f, -0.5f);
+                    var position = WorldLayout.Clamp(new Vector2(data.x, data.y));
+                    data.x = position.x; data.y = position.y;
                     return data;
                 }
                 catch (Exception e) when (e is IOException || e is InvalidDataException || e is UnauthorizedAccessException || e is ArgumentException)

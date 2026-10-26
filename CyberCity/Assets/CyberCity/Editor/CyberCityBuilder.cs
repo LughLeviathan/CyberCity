@@ -18,7 +18,6 @@ namespace CyberCity.Editor
     {
         const string Root = "Assets/CyberCity";
         const string Art = Root + "/Generated";
-        const string World = "Assets/CyberCityWorld/Assets/CyberCityWorld";
         public const string ScenePath = Root + "/Scenes/CyberCity.unity";
 
         [MenuItem("Tools/CyberCity/Build playable game")]
@@ -32,28 +31,25 @@ namespace CyberCity.Editor
             var controller = BuildAnimator(characters[0]);
             BuildAudio();
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-            var source = AssetDatabase.LoadAssetAtPath<GameObject>(World + "/Generated/CyberCityLobby.prefab");
-            if (source == null) throw new FileNotFoundException("The existing city prefab is missing.");
-            var world = (GameObject)PrefabUtility.InstantiatePrefab(source);
-            world.name = "CyberCity / Existing world art";
             var shader = Shader.Find("Universal Render Pipeline/2D/Sprite-Unlit-Default");
             var materialPath = Art + "/PixelUnlit.mat";
             var mat = AssetDatabase.LoadAssetAtPath<Material>(materialPath);
             if (mat == null) { mat = new Material(shader); AssetDatabase.CreateAsset(mat, materialPath); }
+            var world = CyberCityWorldBuilder.BuildWorld(mat);
             foreach (var sr in world.GetComponentsInChildren<SpriteRenderer>()) sr.sharedMaterial = mat;
             foreach (var tm in world.GetComponentsInChildren<UnityEngine.Tilemaps.TilemapRenderer>()) tm.sharedMaterial = mat;
             var cameraGo = new GameObject("Main Camera", typeof(Camera), typeof(AudioListener), typeof(UniversalAdditionalCameraData));
             cameraGo.tag = "MainCamera";
-            cameraGo.transform.position = new Vector3(14, -11, -10);
-            var camera = cameraGo.GetComponent<Camera>(); camera.orthographic = true; camera.orthographicSize = 12.5f;
+            cameraGo.transform.position = new Vector3(WorldLayout.Center.x, WorldLayout.Center.y, -10);
+            var camera = cameraGo.GetComponent<Camera>(); camera.orthographic = true; camera.orthographicSize = WorldLayout.Height / 2;
             camera.rect = new Rect(0, 0, 1, 1); camera.clearFlags = CameraClearFlags.SolidColor;
             camera.backgroundColor = GameUI.Ink; camera.nearClipPlane = .1f; camera.farClipPlane = 100;
             camera.allowHDR = false; camera.allowMSAA = false;
             var pixel = cameraGo.AddComponent<PixelPerfectCamera>();
-            pixel.assetsPPU = 32; pixel.refResolutionX = 960; pixel.refResolutionY = 768;
+            pixel.assetsPPU = 32; pixel.refResolutionX = WorldLayout.PixelWidth; pixel.refResolutionY = WorldLayout.PixelHeight;
             pixel.gridSnapping = PixelPerfectCamera.GridSnapping.PixelSnapping;
             cameraGo.AddComponent<WorldCamera>();
-            var playerGo = Actor("Citizen / Player", characters[0][0], new Vector2(14, -8.2f), mat);
+            var playerGo = Actor("Citizen / Player", characters[0][0], WorldLayout.Spawn, mat);
             playerGo.tag = "Player";
             var body = playerGo.AddComponent<Rigidbody2D>(); body.gravityScale = 0; body.freezeRotation = true;
             body.collisionDetectionMode = CollisionDetectionMode2D.Continuous; body.interpolation = RigidbodyInterpolation2D.Interpolate;
@@ -64,7 +60,7 @@ namespace CyberCity.Editor
             string[] names = { "Professor Byte", "Alex", "Maya", "Detective Byte", "SysAdmin Tux", "Red", "Blue" };
             string[] roles = { "Cyber awareness mentor", "Student ambassador", "Message investigator", "Digital detective", "Linux mentor", "Web security analyst", "SOC analyst" };
             string[] areas = { "Cyber Academy", "Internet Cafe", "Internet Cafe", "Internet Cafe", "Linux Lab", "Web Security Lab", "Web Security Lab" };
-            Vector2[] positions = { new Vector2(14,-6), new Vector2(6.1f,-10.1f), new Vector2(5,-15.3f), new Vector2(8.9f,-12), new Vector2(23,-7.2f), new Vector2(22.2f,-15.2f), new Vector2(25.1f,-15.3f) };
+            Vector2[] positions = { WorldLayout.FromPixel(498,185), WorldLayout.FromPixel(214,398), WorldLayout.FromPixel(175,409), WorldLayout.FromPixel(252,390), WorldLayout.FromPixel(745,242), WorldLayout.FromPixel(817,391), WorldLayout.FromPixel(860,413) };
             Color[] colors = { GameUI.White, GameUI.Violet, GameUI.Pink, GameUI.Gold, GameUI.Teal, GameUI.Pink, GameUI.Cyan };
             var campaign = CampaignLoader.Load();
             var citizens = new Citizen[7];
@@ -76,15 +72,15 @@ namespace CyberCity.Editor
                 npc.accent = colors[i]; npc.unlockAfter = CampaignLoader.UnlockForNpc(campaign, names[i]); npc.idleFrames = new[] { characters[i + 1][0], characters[i + 1][3] };
                 citizens[i] = npc;
             }
-            AddBoundary("North boundary", new Vector2(14,.15f), new Vector2(29,.3f));
-            AddBoundary("South boundary", new Vector2(14,-22.15f), new Vector2(29,.3f));
-            AddBoundary("West boundary", new Vector2(-.15f,-11), new Vector2(.3f,23));
-            AddBoundary("East boundary", new Vector2(28.15f,-11), new Vector2(.3f,23));
+            AddBoundary("North boundary", new Vector2(WorldLayout.Width/2,.15f), new Vector2(WorldLayout.Width+1,.3f));
+            AddBoundary("South boundary", new Vector2(WorldLayout.Width/2,-WorldLayout.Height-.15f), new Vector2(WorldLayout.Width+1,.3f));
+            AddBoundary("West boundary", new Vector2(-.15f,-WorldLayout.Height/2), new Vector2(.3f,WorldLayout.Height+1));
+            AddBoundary("East boundary", new Vector2(WorldLayout.Width+.15f,-WorldLayout.Height/2), new Vector2(.3f,WorldLayout.Height+1));
             var systems = new GameObject("CyberCity / Game systems");
             var ui = systems.AddComponent<GameUI>();
-            ConfigureTexture("Assets/CyberCityWorld/Previews/lobby_unity.png");
-            ui.cityPreview = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/CyberCityWorld/Previews/lobby_unity.png");
+            ui.cityPreview = AssetDatabase.LoadAssetAtPath<Sprite>(CyberCityWorldBuilder.Textures + "world_preview.png");
             var game = systems.AddComponent<CyberCityGame>(); game.player = player; game.citizens = citizens; game.worldCamera = camera;
+            game.areas = world.GetComponentsInChildren<WorldArea>();
             game.music = systems.AddComponent<AudioSource>(); game.music.clip = AssetDatabase.LoadAssetAtPath<AudioClip>(Art + "/CityAmbience.wav"); game.music.loop = true; game.music.playOnAwake = false;
             game.effects = systems.AddComponent<AudioSource>(); game.effects.playOnAwake = false;
             game.clickSound = AssetDatabase.LoadAssetAtPath<AudioClip>(Art + "/Interface.wav");
@@ -103,7 +99,7 @@ namespace CyberCity.Editor
             if (SceneView.lastActiveSceneView != null)
             {
                 SceneView.lastActiveSceneView.in2DMode = true;
-                SceneView.lastActiveSceneView.LookAt(new Vector3(14,-11,0), Quaternion.identity, 15);
+                SceneView.lastActiveSceneView.LookAt(new Vector3(WorldLayout.Center.x,WorldLayout.Center.y,0), Quaternion.identity, 18);
             }
             Debug.Log("CyberCity playable scene built: " + campaign.missions.Length + " missions, seven mentors, local campaign and saves.");
         }
@@ -122,14 +118,14 @@ namespace CyberCity.Editor
         static Sprite[] BuildCharacter(int index)
         {
             string path = Art + "/Citizen" + index + ".png";
-            var texture = new Texture2D(96,96,TextureFormat.RGBA32,false); texture.SetPixels(new Color[96*96]);
+            var texture = new Texture2D(128,96,TextureFormat.RGBA32,false); texture.SetPixels(new Color[128*96]);
             Color outline = GameUI.Ink, skin = GameUI.White, pants = GameUI.Hex("1F2A68");
             Color[] jackets = { GameUI.Cyan, GameUI.White, GameUI.Violet, GameUI.Pink, GameUI.Gold, GameUI.Teal, GameUI.Pink, GameUI.Cyan };
             Color jacket = jackets[index];
             for (int dir = 0; dir < 3; dir++)
             for (int frame = 0; frame < 4; frame++)
             {
-                int ox = frame * 24, oy = dir * 32;
+                int ox = frame * 32 + 4, oy = dir * 32;
                 Action<int,int,int,int,Color> fill = (x,y,w,h,color) => {
                     for (int xx=x; xx<x+w; xx++) for (int yy=y; yy<y+h; yy++)
                         texture.SetPixel(ox+xx, 95-(oy+yy), color);
@@ -176,7 +172,7 @@ namespace CyberCity.Editor
             for (int i=0; i<12; i++)
             {
                 string name = "Citizen" + index + "_" + i.ToString("00");
-                rectangles[i] = new SpriteRect { name=name, rect=new Rect(i%4*24,96-(i/4+1)*32,24,32),
+                rectangles[i] = new SpriteRect { name=name, rect=new Rect(i%4*32,96-(i/4+1)*32,32,32),
                     alignment=SpriteAlignment.Custom,pivot=new Vector2(.5f,.1f),spriteID=existing.TryGetValue(name,out var id)?id:GUID.Generate() };
             }
             provider.SetSpriteRects(rectangles);

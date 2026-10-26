@@ -10,6 +10,8 @@ namespace CyberCity
     {
         public PlayerController player;
         public Citizen[] citizens;
+        public WorldArea[] areas;
+        public event Action<int, int> ProgressChanged;
         public Camera worldCamera;
         public AudioSource music, effects;
         public AudioClip clickSound, successSound, errorSound;
@@ -20,6 +22,7 @@ namespace CyberCity
         public Mission Current => Progress.completed < Campaign.missions.Length ? Campaign.missions[Progress.completed] : null;
         public Citizen Target => Current == null ? null : citizens.FirstOrDefault(n => n.citizenName == Current.npc);
         public Citizen Nearest { get; private set; }
+        public WorldArea NearestDoor { get; private set; }
         float saveTimer;
 
         void OnEnable()
@@ -43,12 +46,13 @@ namespace CyberCity
             catch (Exception e) { Debug.LogError("CyberCity content error: " + e.Message); UI.ShowFatal(e.Message); enabled = false; return; }
             Progress = ProgressStore.Load(Campaign);
             foreach (var npc in citizens) npc.unlockAfter = CampaignLoader.UnlockForNpc(Campaign, npc.citizenName);
-            if (Physics2D.OverlapCircle(new Vector2(Progress.x, Progress.y + .15f), .22f) != null)
-            { Progress.x = 14; Progress.y = -8.2f; }
+            if (Physics2D.OverlapCircleAll(new Vector2(Progress.x, Progress.y + .15f), .22f).Any(c => c.GetComponent<PlayerController>() == null))
+            { Progress.x = WorldLayout.SpawnX; Progress.y = WorldLayout.SpawnY; }
             player.transform.position = new Vector3(Progress.x, Progress.y, 0);
             music.volume = PlayerPrefs.GetFloat("CyberCityMusic", .32f);
             effects.volume = PlayerPrefs.GetFloat("CyberCityEffects", .7f);
             UI.Initialize(this);
+            foreach (var area in areas) area.Initialize(this);
         }
 
         public void Begin()
@@ -65,13 +69,16 @@ namespace CyberCity
             if (Campaign == null) return;
             Nearest = citizens.OrderBy(n => Vector2.Distance(player.transform.position, n.transform.position)).FirstOrDefault();
             if (Nearest != null && Vector2.Distance(player.transform.position, Nearest.transform.position) > 1.65f) Nearest = null;
+            NearestDoor = areas.OrderBy(a => Vector2.Distance(player.transform.position, a.door.position)).FirstOrDefault();
+            if (NearestDoor != null && Vector2.Distance(player.transform.position, NearestDoor.door.position) > 1.65f) NearestDoor = null;
             player.CanMove = Started && !UI.HasModal;
             UI.UpdateWorldLabels();
             var k = Keyboard.current;
             if (Started && k != null)
             {
                 if (k.escapeKey.wasPressedThisFrame) { if (UI.HasModal) UI.CloseModal(); else UI.ShowPause(); }
-                else if (!UI.HasModal && k.eKey.wasPressedThisFrame && Nearest != null) Interact(Nearest);
+                else if (!UI.HasModal && k.eKey.wasPressedThisFrame)
+                { if (Nearest != null) Interact(Nearest); else if (NearestDoor != null) InteractArea(NearestDoor); }
                 else if (!UI.HasModal && k.jKey.wasPressedThisFrame) UI.ShowJournal();
                 else if (!UI.HasModal && k.hKey.wasPressedThisFrame) UI.ShowHelp();
                 else if (!UI.HasModal && k.mKey.wasPressedThisFrame) UI.ShowMap();
@@ -91,6 +98,13 @@ namespace CyberCity
             UI.ShowBriefing(Current);
         }
 
+        public void InteractArea(WorldArea area)
+        {
+            var mentor = citizens.FirstOrDefault(n => n.area == area.areaName && n == Target)
+                ?? citizens.FirstOrDefault(n => n.area == area.areaName);
+            if (mentor != null) Interact(mentor);
+        }
+
         public void WrongAnswer()
         {
             Progress.attempts[Progress.completed]++;
@@ -105,6 +119,7 @@ namespace CyberCity
             int reward = ProgressStore.Reward(Progress.attempts[Progress.completed], Progress.hintUses[Progress.completed]);
             Progress.score += reward; Progress.completed++;
             Save(); Play(successSound); UI.RefreshHud(); UI.ShowDebrief(finished, reward);
+            ProgressChanged?.Invoke(Progress.completed - 1, Progress.completed);
         }
 
         public void Save()
@@ -116,8 +131,10 @@ namespace CyberCity
 
         public void NewPatrol()
         {
-            Progress = ProgressStore.Create(Campaign); player.GetComponent<Rigidbody2D>().position = new Vector2(14, -8.2f);
+            int before = Progress.completed;
+            Progress = ProgressStore.Create(Campaign); player.GetComponent<Rigidbody2D>().position = WorldLayout.Spawn;
             Started = false; UI.RefreshHud(); UI.ShowStart();
+            ProgressChanged?.Invoke(before, 0);
         }
 
         public string Personalize(string text) => PlayerIdentity.Personalize(text, Progress?.playerName);

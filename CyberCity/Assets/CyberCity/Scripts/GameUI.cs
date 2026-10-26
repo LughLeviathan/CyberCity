@@ -144,8 +144,6 @@ namespace CyberCity
             var foot = Box(hud, "Controls", 0, 864, 1600, 36, Ink);
             Text(foot, "W A S D   Move      E   Talk / interact      J   Journal      M   Map      H   Field guide", 28, 9, 1100, 24, 13, Muted);
             Text(foot, "FICTIONAL SYSTEMS / LOCAL ONLY", 1280, 10, 300, 22, 11, Teal);
-            var location = Box(hud, "Location", 28, 108, 290, 42, Panel);
-            Text(location, "SECTOR 01  /  THE COMMONS", 16, 12, 265, 22, 13, Cyan, true);
             prompt = Text(hud, "", 330, 793, 610, 43, 22, Gold, true); prompt.alignment = TextAnchor.MiddleCenter;
             toast = Text(hud, "", 34, 838, 1200, 25, 15, Teal);
             RefreshHud();
@@ -185,12 +183,14 @@ namespace CyberCity
             labels.gameObject.SetActive(Game.Started && !HasModal);
             foreach (var n in Game.citizens)
             {
+                nameLabels[n].gameObject.SetActive(n == Game.Target || n == Game.Nearest);
                 PositionLabel(nameLabels[n], n.transform.position + Vector3.down * .12f);
                 markers[n].gameObject.SetActive(n == Game.Target);
                 PositionLabel(markers[n], n.transform.position + Vector3.up * (1.25f + Mathf.Sin(Time.time * 3) * .08f));
             }
             PositionLabel(playerLabel, Game.player.transform.position + Vector3.up * 1.05f);
-            prompt.text = !HasModal && Game.Nearest != null ? "[ E ]  Talk to " + Game.Nearest.citizenName : "";
+            prompt.text = HasModal ? "" : Game.Nearest != null ? "[ E ]  Talk to " + Game.Nearest.citizenName :
+                Game.NearestDoor != null ? "[ E ]  " + Game.NearestDoor.areaName : "";
             if (Time.unscaledTime > toastUntil) toast.text = "";
         }
 
@@ -332,6 +332,16 @@ namespace CyberCity
         {
             var c = OpenModal("CITY ATLAS", "Four districts. One connected city.", "Gold marker = current mentor. Walk to them and press E to begin.");
             var p = Rect(c, "Map image", 0, -2, 620, 486).gameObject.AddComponent<Image>(); p.sprite = cityPreview; p.preserveAspect = true;
+            var destination = Game.Current == null ? null : Game.areas.FirstOrDefault(a => a.areaName == Game.Current.area);
+            if (destination != null)
+            {
+                Vector3 door = destination.door.position;
+                float x = door.x / WorldLayout.Width * 620;
+                float y = (486 - 348.75f) * .5f - 2 - door.y / WorldLayout.Height * 348.75f;
+                var marker = Text(c, "!", x - 14, y - 30, 28, 34, 30, Gold, true);
+                marker.name = "Active mission building"; marker.alignment = TextAnchor.MiddleCenter;
+                marker.gameObject.AddComponent<Outline>().effectColor = Ink;
+            }
             string[] area = { "Cyber Academy", "Internet Cafe", "Linux Lab", "Web Security Lab" };
             string[] pos = { "NORTH / Professor Byte", "WEST / Alex, Maya, Detective Byte", "NORTHEAST / SysAdmin Tux", "EAST / Red and Blue" };
             for (int i = 0; i < 4; i++)
