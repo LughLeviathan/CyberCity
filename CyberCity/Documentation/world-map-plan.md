@@ -12,13 +12,13 @@
 
 - [x] Inspect reference, Builder, importer, existing textures/scene, gameplay, UI, progression and reachability code.
 - [x] MCP workflow guide; create, draw, export and verify a 32×32 smoke test.
-- [ ] Record scale and asset inventory; checkpoint stage 0.
-- [ ] Preserve the reference, extract <=40 colors, add eight exact brand colors, remove HUD/text/people with reference-derived preprocessing.
-- [ ] Redraw the two right-side sites as fenced gardens, rebuild concealed edges with Aseprite drawing tools, quantize and export ref_clean.png; checkpoint stage 1.
-- [ ] Import ref_clean.png as tracing reference; split semantic layers with binary masks, reconstruct hidden surfaces, refine major edges and props with MCP tools.
-- [ ] View each major layer, inspect composite and enlarged details, verify palette/layer coverage and exports.
-- [ ] Measure whole-image and right-area-excluded SSIM/MSE, record landmark offsets, export preview/comparison, checkpoint stage 2.
-- [ ] Stop and request approval before stage 3.
+- [x] Record scale and asset inventory; checkpoint stage 0.
+- [x] Preserve the reference, extract <=40 colors, add eight exact brand colors, remove HUD/text/people with reference-derived preprocessing. Initial extraction re-encoded the input JPEG; disclosed in report.
+- [x] Redraw the two right-side sites as fenced gardens, rebuild concealed edges with Aseprite drawing tools, quantize and export ref_clean.png; checkpoint stage 1.
+- [x] Import ref_clean.png as tracing reference; split semantic layers with binary masks, reconstruct hidden surfaces, refine major edges and props with MCP tools.
+- [x] View each major layer, inspect composite and enlarged details, verify palette/layer coverage and exports.
+- [x] Measure whole-image and right-area-excluded SSIM/MSE, record landmark offsets, export preview/comparison, checkpoint stage 2.
+- [x] Stop at the stage-2 review handoff; approval is still required before stage 3.
 
 ## Review focus
 

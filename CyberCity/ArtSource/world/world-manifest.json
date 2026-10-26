@@ -1,0 +1,809 @@
+{
+  "canvas": [
+    1024,
+    576
+  ],
+  "tileSize": 32,
+  "pixelsPerUnit": 32,
+  "palette": "palette.json",
+  "source": "world.aseprite",
+  "approvalStatus": "stage2-review-pending",
+  "runtimeIntegrated": false,
+  "pixelCounts": {
+    "ground": 589824,
+    "water": 73166,
+    "scenery_edge": 146912,
+    "buildings_academy": 35844,
+    "buildings_player_house": 20102,
+    "buildings_internet_cafe": 26498,
+    "buildings_linux_lab": 22749,
+    "buildings_web_lab": 20465,
+    "buildings_cyber_corp": 39752,
+    "props": 30509,
+    "glow": 19043
+  },
+  "buildings": [
+    {
+      "id": "academy",
+      "name": "Cyber Academy",
+      "layer": "buildings_academy",
+      "role": "mission",
+      "boundsXYXYExclusive": [
+        331,
+        8,
+        615,
+        172
+      ],
+      "outline": [
+        [
+          331,
+          63
+        ],
+        [
+          357,
+          53
+        ],
+        [
+          357,
+          30
+        ],
+        [
+          368,
+          24
+        ],
+        [
+          368,
+          13
+        ],
+        [
+          385,
+          22
+        ],
+        [
+          386,
+          36
+        ],
+        [
+          404,
+          43
+        ],
+        [
+          414,
+          44
+        ],
+        [
+          414,
+          21
+        ],
+        [
+          424,
+          9
+        ],
+        [
+          453,
+          13
+        ],
+        [
+          464,
+          35
+        ],
+        [
+          497,
+          34
+        ],
+        [
+          508,
+          39
+        ],
+        [
+          534,
+          38
+        ],
+        [
+          537,
+          8
+        ],
+        [
+          566,
+          10
+        ],
+        [
+          568,
+          47
+        ],
+        [
+          591,
+          51
+        ],
+        [
+          614,
+          65
+        ],
+        [
+          613,
+          145
+        ],
+        [
+          594,
+          160
+        ],
+        [
+          577,
+          167
+        ],
+        [
+          559,
+          160
+        ],
+        [
+          442,
+          160
+        ],
+        [
+          430,
+          171
+        ],
+        [
+          413,
+          168
+        ],
+        [
+          390,
+          164
+        ],
+        [
+          374,
+          153
+        ],
+        [
+          332,
+          142
+        ]
+      ],
+      "doorPixel": [
+        498,
+        155
+      ],
+      "pivotPixel": [
+        473,
+        172
+      ],
+      "unlockAfterCompleted": 0,
+      "collision": "footprint guide only; integrate after approval"
+    },
+    {
+      "id": "player_house",
+      "name": "Player House",
+      "layer": "buildings_player_house",
+      "role": "decoration",
+      "boundsXYXYExclusive": [
+        88,
+        95,
+        283,
+        237
+      ],
+      "outline": [
+        [
+          88,
+          139
+        ],
+        [
+          88,
+          125
+        ],
+        [
+          111,
+          116
+        ],
+        [
+          114,
+          111
+        ],
+        [
+          166,
+          115
+        ],
+        [
+          178,
+          95
+        ],
+        [
+          198,
+          118
+        ],
+        [
+          221,
+          126
+        ],
+        [
+          236,
+          137
+        ],
+        [
+          266,
+          143
+        ],
+        [
+          275,
+          159
+        ],
+        [
+          282,
+          165
+        ],
+        [
+          282,
+          225
+        ],
+        [
+          253,
+          229
+        ],
+        [
+          242,
+          231
+        ],
+        [
+          156,
+          236
+        ],
+        [
+          132,
+          222
+        ],
+        [
+          111,
+          213
+        ],
+        [
+          94,
+          202
+        ]
+      ],
+      "doorPixel": [
+        219,
+        225
+      ],
+      "pivotPixel": [
+        186,
+        237
+      ],
+      "unlockAfterCompleted": null,
+      "collision": "footprint guide only; integrate after approval"
+    },
+    {
+      "id": "internet_cafe",
+      "name": "Internet Cafe",
+      "layer": "buildings_internet_cafe",
+      "role": "mission",
+      "boundsXYXYExclusive": [
+        34,
+        250,
+        284,
+        383
+      ],
+      "outline": [
+        [
+          34,
+          299
+        ],
+        [
+          45,
+          281
+        ],
+        [
+          62,
+          273
+        ],
+        [
+          122,
+          269
+        ],
+        [
+          130,
+          256
+        ],
+        [
+          160,
+          253
+        ],
+        [
+          178,
+          250
+        ],
+        [
+          224,
+          250
+        ],
+        [
+          257,
+          268
+        ],
+        [
+          283,
+          286
+        ],
+        [
+          283,
+          339
+        ],
+        [
+          266,
+          351
+        ],
+        [
+          247,
+          361
+        ],
+        [
+          219,
+          366
+        ],
+        [
+          131,
+          381
+        ],
+        [
+          91,
+          382
+        ],
+        [
+          58,
+          373
+        ],
+        [
+          37,
+          355
+        ]
+      ],
+      "doorPixel": [
+        214,
+        358
+      ],
+      "pivotPixel": [
+        159,
+        383
+      ],
+      "unlockAfterCompleted": 1,
+      "collision": "footprint guide only; integrate after approval"
+    },
+    {
+      "id": "linux_lab",
+      "name": "Linux Lab",
+      "layer": "buildings_linux_lab",
+      "role": "mission",
+      "boundsXYXYExclusive": [
+        640,
+        85,
+        859,
+        224
+      ],
+      "outline": [
+        [
+          640,
+          127
+        ],
+        [
+          652,
+          114
+        ],
+        [
+          670,
+          107
+        ],
+        [
+          689,
+          106
+        ],
+        [
+          690,
+          90
+        ],
+        [
+          707,
+          85
+        ],
+        [
+          722,
+          95
+        ],
+        [
+          736,
+          94
+        ],
+        [
+          755,
+          99
+        ],
+        [
+          771,
+          95
+        ],
+        [
+          801,
+          100
+        ],
+        [
+          816,
+          109
+        ],
+        [
+          820,
+          126
+        ],
+        [
+          847,
+          134
+        ],
+        [
+          858,
+          141
+        ],
+        [
+          855,
+          211
+        ],
+        [
+          824,
+          223
+        ],
+        [
+          802,
+          221
+        ],
+        [
+          762,
+          215
+        ],
+        [
+          718,
+          208
+        ],
+        [
+          670,
+          202
+        ],
+        [
+          645,
+          190
+        ]
+      ],
+      "doorPixel": [
+        739,
+        207
+      ],
+      "pivotPixel": [
+        750,
+        224
+      ],
+      "unlockAfterCompleted": 4,
+      "collision": "footprint guide only; integrate after approval"
+    },
+    {
+      "id": "web_lab",
+      "name": "Web Security Lab",
+      "layer": "buildings_web_lab",
+      "role": "mission",
+      "boundsXYXYExclusive": [
+        726,
+        248,
+        957,
+        377
+      ],
+      "outline": [
+        [
+          726,
+          277
+        ],
+        [
+          734,
+          260
+        ],
+        [
+          762,
+          248
+        ],
+        [
+          795,
+          254
+        ],
+        [
+          805,
+          250
+        ],
+        [
+          832,
+          256
+        ],
+        [
+          856,
+          260
+        ],
+        [
+          874,
+          270
+        ],
+        [
+          887,
+          281
+        ],
+        [
+          919,
+          283
+        ],
+        [
+          925,
+          279
+        ],
+        [
+          940,
+          283
+        ],
+        [
+          954,
+          293
+        ],
+        [
+          956,
+          352
+        ],
+        [
+          941,
+          369
+        ],
+        [
+          916,
+          376
+        ],
+        [
+          883,
+          368
+        ],
+        [
+          845,
+          358
+        ],
+        [
+          820,
+          348
+        ],
+        [
+          785,
+          346
+        ],
+        [
+          749,
+          333
+        ],
+        [
+          728,
+          315
+        ]
+      ],
+      "doorPixel": [
+        824,
+        358
+      ],
+      "pivotPixel": [
+        842,
+        377
+      ],
+      "unlockAfterCompleted": 5,
+      "collision": "footprint guide only; integrate after approval"
+    },
+    {
+      "id": "cyber_corp",
+      "name": "Cyber Corp",
+      "layer": "buildings_cyber_corp",
+      "role": "decoration",
+      "boundsXYXYExclusive": [
+        309,
+        343,
+        672,
+        486
+      ],
+      "outline": [
+        [
+          309,
+          402
+        ],
+        [
+          322,
+          396
+        ],
+        [
+          356,
+          402
+        ],
+        [
+          356,
+          367
+        ],
+        [
+          370,
+          357
+        ],
+        [
+          397,
+          358
+        ],
+        [
+          397,
+          348
+        ],
+        [
+          407,
+          343
+        ],
+        [
+          428,
+          347
+        ],
+        [
+          435,
+          360
+        ],
+        [
+          453,
+          359
+        ],
+        [
+          473,
+          368
+        ],
+        [
+          504,
+          365
+        ],
+        [
+          531,
+          370
+        ],
+        [
+          561,
+          370
+        ],
+        [
+          563,
+          355
+        ],
+        [
+          579,
+          353
+        ],
+        [
+          598,
+          358
+        ],
+        [
+          603,
+          370
+        ],
+        [
+          622,
+          370
+        ],
+        [
+          631,
+          378
+        ],
+        [
+          658,
+          378
+        ],
+        [
+          669,
+          388
+        ],
+        [
+          671,
+          463
+        ],
+        [
+          661,
+          476
+        ],
+        [
+          637,
+          483
+        ],
+        [
+          601,
+          485
+        ],
+        [
+          574,
+          481
+        ],
+        [
+          556,
+          480
+        ],
+        [
+          431,
+          480
+        ],
+        [
+          403,
+          484
+        ],
+        [
+          365,
+          476
+        ],
+        [
+          348,
+          468
+        ],
+        [
+          316,
+          457
+        ]
+      ],
+      "doorPixel": [
+        499,
+        483
+      ],
+      "pivotPixel": [
+        490,
+        486
+      ],
+      "unlockAfterCompleted": null,
+      "collision": "footprint guide only; integrate after approval"
+    }
+  ],
+  "replacementRegions": {
+    "northeast": [
+      [
+        880,
+        93
+      ],
+      [
+        1023,
+        93
+      ],
+      [
+        1023,
+        242
+      ],
+      [
+        884,
+        216
+      ],
+      [
+        863,
+        189
+      ]
+    ],
+    "southeast": [
+      [
+        858,
+        426
+      ],
+      [
+        902,
+        400
+      ],
+      [
+        1023,
+        377
+      ],
+      [
+        1023,
+        538
+      ],
+      [
+        906,
+        533
+      ],
+      [
+        846,
+        497
+      ],
+      [
+        840,
+        449
+      ]
+    ]
+  }
+}
