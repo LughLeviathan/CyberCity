@@ -2,18 +2,18 @@
   "method": "Luminance SSIM, Rec.709 weights, 11x11 Gaussian sigma=1.5, population variance, K1=.01 K2=.03, data_range=255. RGB MSE over unfiltered equal-size images. 5 px SSIM border excluded.",
   "baseline": "Preserved reference JPEG decoded and resized with BOX to 1024x576, including its original HUD/text. The initial extract_palette call re-encoded the supplied JPEG before this snapshot.",
   "whole_map": {
-    "SSIM_luminance": 0.6156527580865431,
-    "MSE_RGB_0_255": 1788.3947414822048,
-    "RMSE_RGB_0_255": 42.289416423996734,
-    "normalized_MSE": 0.027503187104685963,
+    "SSIM_luminance": 0.6047684432886752,
+    "MSE_RGB_0_255": 1815.816340693721,
+    "RMSE_RGB_0_255": 42.61239656125575,
+    "normalized_MSE": 0.027924895666185636,
     "pixels": 589824,
     "SSIM_window_centers": 573924
   },
   "excluding_two_replacement_regions": {
-    "SSIM_luminance": 0.6557753034454606,
-    "MSE_RGB_0_255": 1690.2992512046753,
-    "RMSE_RGB_0_255": 41.11324909569512,
-    "normalized_MSE": 0.025994605939326034,
+    "SSIM_luminance": 0.6439077259630963,
+    "MSE_RGB_0_255": 1719.9369549641667,
+    "RMSE_RGB_0_255": 41.47212262429024,
+    "normalized_MSE": 0.026450395308945277,
     "pixels": 545721,
     "SSIM_window_centers": 526371
   },
@@ -319,5 +319,5 @@
   "groundCellCount": 576,
   "actualExportedTilesetCount": 0,
   "runtimeVerification": "Not run: user approval gate after stage 2",
-  "previewSHA256": "ad9fccdd08bc4a203b315ad6e5081fdb4f0d5a86b6bf0f53bf083e75754d5378"
+  "previewSHA256": "02f56297625eb0d3cdafb122bafe732150f20fc8206280ca484f25242d61f4b5"
 }

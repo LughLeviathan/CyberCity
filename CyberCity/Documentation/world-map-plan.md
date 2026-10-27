@@ -18,7 +18,7 @@
 - [x] Import ref_clean.png as tracing reference; split semantic layers with binary masks, reconstruct hidden surfaces, refine major edges and props with MCP tools.
 - [x] View each major layer, inspect composite and enlarged details, verify palette/layer coverage and exports.
 - [x] Measure whole-image and right-area-excluded SSIM/MSE, record landmark offsets, export preview/comparison, checkpoint stage 2.
-- [x] Stop at the stage-2 review handoff; approval is still required before stage 3.
+- [x] Stop at the stage-2 review handoff. User subsequently approved stages 3–5 with slightly wider roads; see world-integration-plan.md.
 
 ## Review focus
 
@@ -30,10 +30,10 @@
 
 ## Deferred integration contract (stages 3–5)
 
-Canvas choice: 1024×576, 32×18 tiles. PixelPerfectCamera reference 1024×576, centered at (16,-9); proposed player clamp x .5–31.5, y -17.5–-.5. Apply together in Builder, WorldCamera, PlayerController, ProgressStore, spawn/reset/fallback and VerifyReachability after approval. HUD must fit around the complete view. Reference player feet (771,550) become (493.44,352), approximately Unity (15.42,-11).
+Canvas choice: 1024×576, 32×18 tiles. Initial camera proposal was 1024×576; implementation uses **1344×704** to reserve HUD space before choosing integer zoom, while the map remains 1024×576. Map center (16,-9), clamp x .5–31.5 and y -17.5–-.5. Builder, WorldCamera, PlayerController, ProgressStore, spawn/reset/fallback and VerifyReachability now share WorldLayout. Reference player feet (771,550) become (493.44,352), rounded spawn (493/32,-352/32).
 
 Existing character frames are actually 24×32, visible alpha bbox 18×27. Pad to requested 32×32 without enlarging visible artwork at integration. Preserve sprite IDs/animation references.
 
 Use CampaignLoader.UnlockForArea / UnlockForNpc and Progress.completed. Area thresholds 0/1/4/5; NPC thresholds retain their distinct mission indices. Completion event drives unlock animations/toasts. Roads remain open. Player House/Cyber Corp remain decoration. No second unlock system.
 
-Old runtime PNGs/scenes remain usable during the art gate. They will be moved to the prepared `_old/` archive when the replacement importer is installed; old source documents can be archived now. Unity core/playthrough verification and Game View screenshots are deferred to stage 5.
+Old runtime assets were kept during the art gate, then moved with their metadata to `_old/legacy_runtime` after confirming no external GUID references remained. The stage-0 snapshot also remains in `_old/CyberCityWorld`. Unity verification and screenshots are tracked in the integration plan/report.

@@ -188,9 +188,9 @@ namespace CyberCity
                 markers[n].gameObject.SetActive(n == Game.Target);
                 PositionLabel(markers[n], n.transform.position + Vector3.up * (1.25f + Mathf.Sin(Time.time * 3) * .08f));
             }
-            PositionLabel(playerLabel, Game.player.transform.position + Vector3.up * 1.05f);
-            prompt.text = HasModal ? "" : Game.Nearest != null ? "[ E ]  Talk to " + Game.Nearest.citizenName :
-                Game.NearestDoor != null ? "[ E ]  " + Game.NearestDoor.areaName : "";
+            PositionLabel(playerLabel, Game.player.transform.position + (Game.Nearest != null ? Vector3.down * .3f : Vector3.up * 1.05f));
+            prompt.text = HasModal ? "" : Game.DoorIsNearest ? "[ E ]  " + Game.NearestDoor.areaName :
+                Game.Nearest != null ? "[ E ]  Talk to " + Game.Nearest.citizenName : "";
             if (Time.unscaledTime > toastUntil) toast.text = "";
         }
 

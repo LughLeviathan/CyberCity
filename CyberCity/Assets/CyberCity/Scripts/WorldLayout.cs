@@ -5,6 +5,8 @@ namespace CyberCity
     public static class WorldLayout
     {
         public const int PixelWidth = 1024, PixelHeight = 576, Ppu = 32;
+        // Include HUD space when the pixel camera chooses an integer zoom level.
+        public const int CameraWidth = 1344, CameraHeight = 704;
         public const float Width = 32, Height = 18, SpawnX = 493f / 32, SpawnY = -352f / 32;
         public static Vector2 Spawn => new Vector2(SpawnX, SpawnY);
         public static Vector2 Center => new Vector2(Width / 2, -Height / 2);

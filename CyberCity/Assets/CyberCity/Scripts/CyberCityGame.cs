@@ -23,6 +23,8 @@ namespace CyberCity
         public Citizen Target => Current == null ? null : citizens.FirstOrDefault(n => n.citizenName == Current.npc);
         public Citizen Nearest { get; private set; }
         public WorldArea NearestDoor { get; private set; }
+        public bool DoorIsNearest => NearestDoor != null && (Nearest == null ||
+            Vector2.Distance(player.transform.position, NearestDoor.door.position) < Vector2.Distance(player.transform.position, Nearest.transform.position));
         float saveTimer;
 
         void OnEnable()
@@ -37,6 +39,7 @@ namespace CyberCity
         {
             yield return null;
             UI = GetComponent<GameUI>(); UI.Initialize(this);
+            foreach (var area in areas) area.Initialize(this);
         }
 
         void Start()
@@ -78,7 +81,7 @@ namespace CyberCity
             {
                 if (k.escapeKey.wasPressedThisFrame) { if (UI.HasModal) UI.CloseModal(); else UI.ShowPause(); }
                 else if (!UI.HasModal && k.eKey.wasPressedThisFrame)
-                { if (Nearest != null) Interact(Nearest); else if (NearestDoor != null) InteractArea(NearestDoor); }
+                { if (DoorIsNearest) InteractArea(NearestDoor); else if (Nearest != null) Interact(Nearest); }
                 else if (!UI.HasModal && k.jKey.wasPressedThisFrame) UI.ShowJournal();
                 else if (!UI.HasModal && k.hKey.wasPressedThisFrame) UI.ShowHelp();
                 else if (!UI.HasModal && k.mKey.wasPressedThisFrame) UI.ShowMap();

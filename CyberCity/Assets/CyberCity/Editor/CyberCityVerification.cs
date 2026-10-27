@@ -17,6 +17,10 @@ namespace CyberCity.Editor
         static readonly Queue<Action> actions = new Queue<Action>();
         static readonly Dictionary<string, byte[]> saveBackup = new Dictionary<string, byte[]>();
         static double next;
+        static int nextFrame;
+        static InputSettings originalInputSettings, verificationInputSettings;
+        static Keyboard verificationKeyboard, originalKeyboard;
+        static readonly List<Keyboard> pausedKeyboards = new List<Keyboard>();
         static bool running;
         static CyberCityGame game;
         static Vector3 movementStart;
@@ -357,6 +361,7 @@ namespace CyberCity.Editor
         {
             if (!EditorApplication.isPlaying) throw new InvalidOperationException("Enter Play mode first.");
             if (running) throw new InvalidOperationException("Verification is already running.");
+            EditorWindow.GetWindow(typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.GameView")).Focus();
             VerifyCore();
             game = UnityEngine.Object.FindAnyObjectByType<CyberCityGame>();
             Check(game != null && game.Campaign != null, "Runtime game initialized");
@@ -368,6 +373,7 @@ namespace CyberCity.Editor
             }
             failure = null; actions.Clear(); running = true; Status = "Running full playthrough";
             EditorApplication.playModeStateChanged += RestoreAfterPlay;
+            ConfigureVerificationInput();
             Add(() => game.NewPatrol());
             Add(() => { Click("BEGIN YOUR PATROL"); Check(!game.Started, "Username required before patrol"); FindInput().text = "  Byte_42  "; Click("BEGIN YOUR PATROL"); });
             Add(() => Check(game.Started && game.Progress.playerName == "Byte_42", "Valid username is trimmed and persisted"));
@@ -379,11 +385,11 @@ namespace CyberCity.Editor
             Add(VerifyInterfaceEdgeCases);
             Add(() => Capture("02-city"));
             Add(() => { movementStart = game.player.transform.position; Press(Key.W); });
-            Add(() => { Release(); Check(game.player.transform.position.y > movementStart.y + .25f, "WASD input moves Rigidbody2D"); });
-            Add(() => { game.player.GetComponent<Rigidbody2D>().position = new Vector2(14,-18.3f); Press(Key.A); });
+            Add(() => { var position = game.player.transform.position; Debug.Log("Movement probe: " + movementStart + " -> " + position + "; enabled=" + game.player.CanMove + "; key=" + Keyboard.current.wKey.isPressed + "; keyboard enabled=" + Keyboard.current.enabled + "; velocity=" + game.player.GetComponent<Rigidbody2D>().linearVelocity); Release(); Check(position.y > movementStart.y + .25f, "WASD input moves Rigidbody2D"); });
+            Add(() => { game.player.GetComponent<Rigidbody2D>().position = WorldLayout.FromPixel(180,407); Press(Key.S); });
             Add(() => { }); Add(() => { }); Add(() => {
-                Release(); Check(game.player.transform.position.x > 11.2f, "Water collision blocks movement from the bridge");
-                game.player.GetComponent<Rigidbody2D>().position = new Vector2(14,-8.2f);
+                Release(); Check(game.player.transform.position.y > -14.4f, "Water collision blocks movement from the bridge");
+                game.player.GetComponent<Rigidbody2D>().position = WorldLayout.Spawn;
             });
             Add(() => {
                 Check(game.citizens.Length == 7, "Seven main NPCs present");
@@ -393,6 +399,41 @@ namespace CyberCity.Editor
                 Check(VisibleText().Any(t => t.Contains("still locked")), "Later mentor content is locked"); game.UI.CloseModal();
             });
             Add(() => VerifyReachability());
+            Add(() => { CyberCityWorldVerification.VerifyProgression(game); Check(true, "48 area/progression combinations and actual door gates"); });
+            Add(() => {
+                game.Progress.completed = 2;
+                foreach (var area in game.areas) area.Initialize(game);
+                game.player.GetComponent<Rigidbody2D>().position = WorldLayout.FromPixel(214,376);
+            });
+            Add(() => { Check(game.DoorIsNearest && game.NearestDoor.areaName == "Internet Cafe", "Cafe entrance takes priority over a farther NPC"); Press(Key.E); });
+            Add(() => { Release(); Check(VisibleText().Any(t => t.Contains(game.Current.title)) && FindButton("START MISSION") != null, "E at Cafe door routes to current mentor Maya"); game.UI.CloseModal(); });
+            Add(() => {
+                game.Progress.completed = 0;
+                foreach (var area in game.areas) area.Initialize(game);
+                game.player.GetComponent<Rigidbody2D>().position = WorldLayout.Spawn; game.UI.RefreshHud();
+            });
+            Add(() => {
+                // Emulate the nonserialized event delegate loss of Unity's script reload.
+                typeof(CyberCityGame).GetField("ProgressChanged", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(game, null);
+                game.StartCoroutine("RestoreInterface");
+            });
+            Add(() => { game.UI.CloseModal(); Check(game.areas.All(a => a.IsOpen == (game.Progress.completed >= a.UnlockAfter)), "Reload path silently restores area visuals and subscriptions"); });
+            foreach (var resolution in new[] { new Vector2Int(1600,900), new Vector2Int(2048,1152), new Vector2Int(2560,1440), new Vector2Int(3840,2160), new Vector2Int(1920,1080) })
+            {
+                var size = resolution;
+                Add(() => CyberCityWorldVerification.SetGameViewResolution(size.x, size.y));
+                Add(() => { CyberCityWorldVerification.VerifyFraming(game, size.x, size.y); Check(true, "Whole map fits outside HUD at " + size); });
+            }
+            Add(() => Capture("world-plaza-start"));
+            AddWorldCapture("academy-open", 498, 205);
+            AddWorldCapture("internet-cafe-locked", 218, 411);
+            AddWorldCapture("linux-lab-locked", 746, 260);
+            AddWorldCapture("web-lab-locked", 817, 409);
+            AddWorldCapture("player-house", 220, 245);
+            AddWorldCapture("cyber-corp", 499, 499);
+            AddWorldCapture("bridge-west", 180, 407);
+            AddWorldCapture("bridge-east", 738, 413);
+            AddWorldCapture("edge-south", 666, 495);
             for (int i = 0; i < game.Campaign.missions.Length; i++)
             {
                 int index = i; Mission mission = game.Campaign.missions[index];
@@ -449,7 +490,28 @@ namespace CyberCity.Editor
                     Check(game.Progress.completed == index+1, "Mission " + (index+1) + " completes through its actual UI");
                     Check(ProgressStore.Load(game.Campaign).completed == index+1, "Mission " + (index+1) + " persists immediately");
                 });
+                if (index == 0 || index == 3 || index == 4)
+                {
+                    string areaName = index == 0 ? "Internet Cafe" : index == 3 ? "Linux Lab" : "Web Security Lab";
+                    string slug = index == 0 ? "internet-cafe" : index == 3 ? "linux-lab" : "web-lab";
+                    Add(() => game.UI.CloseModal());
+                    Add(() => {
+                        var area = game.areas.Single(a => a.areaName == areaName);
+                        Check(area.IsOpen && area.IsAnimating && area.UnlockAnimations == 1, "Mission event animates unlock once: " + areaName);
+                        Capture("world-" + slug + "-unlock");
+                    });
+                    Add(() => { });
+                    Add(() => {
+                        var area = game.areas.Single(a => a.areaName == areaName);
+                        Check(area.IsOpen && !area.IsAnimating && area.glow.enabled && !area.lockIcon.enabled, "Unlock settles into open state: " + areaName);
+                        Capture("world-" + slug + "-open");
+                    });
+                    Add(() => game.UI.ShowMap());
+                    Add(() => { Check(GameObject.Find("Active mission building") != null, "Atlas marks next mission building"); Capture("world-atlas-" + slug); game.UI.CloseModal(); });
+                }
             }
+            Add(() => { game.UI.CloseModal(); game.player.GetComponent<Rigidbody2D>().position = WorldLayout.Spawn; });
+            Add(() => Capture("world-all-open"));
             Add(() => {
                 Check(game.Progress.completed == game.Campaign.missions.Length && game.Progress.score == ProgressStore.MaximumScore(game.Campaign) - ProgressStore.RetryPenalty, "Complete campaign scores once with retry penalty");
                 Check(game.Current == null && game.Target == null, "Final campaign state has no pending mission");
@@ -462,7 +524,7 @@ namespace CyberCity.Editor
                 Status = "PASS: " + checks.Count + " checks including all missions through runtime UI";
                 WriteReport(); Debug.Log("CyberCity " + Status); End();
             });
-            next = EditorApplication.timeSinceStartup + .5; EditorApplication.update += Tick;
+            next = Time.unscaledTimeAsDouble + .5; nextFrame = Time.frameCount + 2; EditorApplication.update += Tick;
         }
 
         static void AddWebRoute(Mission mission, WebScenario scenario)
@@ -521,20 +583,28 @@ namespace CyberCity.Editor
         }
 
         static void Add(Action action) { actions.Enqueue(action); }
+        static void AddWorldCapture(string name, float x, float y)
+        {
+            Add(() => { game.UI.CloseModal(); game.player.GetComponent<Rigidbody2D>().position = WorldLayout.FromPixel(x, y); });
+            Add(() => Capture("world-" + name));
+        }
         static void Tick()
         {
-            if (!running || EditorApplication.timeSinceStartup < next) return;
-            next = EditorApplication.timeSinceStartup + .4;
+            // Editor wall time advances during screenshot/import stalls while no player loop runs.
+            // Give input, physics, coroutines and deferred UI destruction actual game frames.
+            if (!running || Time.unscaledTimeAsDouble < next || Time.frameCount < nextFrame) return;
+            next = Time.unscaledTimeAsDouble + .4; nextFrame = Time.frameCount + 2;
             try { if (actions.Count > 0) actions.Dequeue()(); }
             catch (Exception e) { failure = e.ToString(); Status = "FAILED: " + e.Message; WriteReport(); Debug.LogError(Status); End(); }
         }
         static void End()
         {
-            Release(); running = false; EditorApplication.update -= Tick; EditorApplication.isPlaying = false;
+            Release(); RestoreVerificationInput(); running = false; EditorApplication.update -= Tick; EditorApplication.isPlaying = false;
         }
         static void RestoreAfterPlay(PlayModeStateChange state)
         {
             if (state != PlayModeStateChange.EnteredEditMode) return;
+            RestoreVerificationInput();
             foreach (var pair in saveBackup)
             {
                 if (pair.Value != null) File.WriteAllBytes(pair.Key, pair.Value);
@@ -542,8 +612,37 @@ namespace CyberCity.Editor
             }
             EditorApplication.update -= Tick; EditorApplication.playModeStateChanged -= RestoreAfterPlay; running = false;
         }
-        static void Press(Key key) { InputSystem.QueueStateEvent(Keyboard.current, new KeyboardState(key)); }
-        static void Release() { if (Keyboard.current != null) InputSystem.QueueStateEvent(Keyboard.current, new KeyboardState()); }
+        static void ConfigureVerificationInput()
+        {
+            // Editor input buffers differ from runtime buffers when the desktop is unfocused.
+            // Clone settings for this run and use a virtual keyboard; no project/user input settings are saved.
+            originalInputSettings = InputSystem.settings;
+            verificationInputSettings = UnityEngine.Object.Instantiate(originalInputSettings);
+            verificationInputSettings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
+            verificationInputSettings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
+            InputSystem.settings = verificationInputSettings;
+            originalKeyboard = Keyboard.current;
+            pausedKeyboards.Clear();
+            foreach (var keyboard in InputSystem.devices.OfType<Keyboard>().Where(k => k.enabled).ToArray())
+            { pausedKeyboards.Add(keyboard); InputSystem.DisableDevice(keyboard); }
+            verificationKeyboard = InputSystem.AddDevice<Keyboard>("CyberCity verification keyboard");
+            verificationKeyboard.MakeCurrent();
+        }
+        static void RestoreVerificationInput()
+        {
+            if (verificationKeyboard != null && verificationKeyboard.added) InputSystem.RemoveDevice(verificationKeyboard);
+            verificationKeyboard = null;
+            foreach (var keyboard in pausedKeyboards) if (keyboard.added) InputSystem.EnableDevice(keyboard);
+            pausedKeyboards.Clear();
+            if (originalKeyboard != null && originalKeyboard.added) originalKeyboard.MakeCurrent();
+            originalKeyboard = null;
+            if (originalInputSettings != null) InputSystem.settings = originalInputSettings;
+            originalInputSettings = null;
+            if (verificationInputSettings != null) UnityEngine.Object.DestroyImmediate(verificationInputSettings);
+            verificationInputSettings = null;
+        }
+        static void Press(Key key) { verificationKeyboard.MakeCurrent(); InputSystem.QueueStateEvent(verificationKeyboard, new KeyboardState(key)); }
+        static void Release() { if (verificationKeyboard != null && verificationKeyboard.added) InputSystem.QueueStateEvent(verificationKeyboard, new KeyboardState()); }
         static Button FindButton(string prefix)
         {
             return UnityEngine.Object.FindObjectsByType<Button>(FindObjectsInactive.Exclude)
@@ -573,7 +672,8 @@ namespace CyberCity.Editor
         static void VerifyReachability()
         {
             // Check a half-unit navigation grid against actual scene colliders, ignoring only the player.
-            var start = new Vector2Int(28, -16); var visited = new HashSet<Vector2Int> { start }; var queue = new Queue<Vector2Int>(); queue.Enqueue(start);
+            Physics2D.SyncTransforms();
+            var start = Vector2Int.RoundToInt(WorldLayout.Spawn * 2); var visited = new HashSet<Vector2Int> { start }; var queue = new Queue<Vector2Int>(); queue.Enqueue(start);
             Vector2Int[] directions = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
             while(queue.Count>0)
             {
@@ -581,7 +681,7 @@ namespace CyberCity.Editor
                 foreach(var direction in directions)
                 {
                     var nextNode = node + direction;
-                    if(nextNode.x<1||nextNode.x>55||nextNode.y>-1||nextNode.y<-43||visited.Contains(nextNode))continue;
+                    if(nextNode.x<1||nextNode.x>WorldLayout.Width*2-1||nextNode.y>-1||nextNode.y<-WorldLayout.Height*2+1||visited.Contains(nextNode))continue;
                     var colliders=Physics2D.OverlapCircleAll((Vector2)nextNode*.5f+Vector2.up*.16f,.22f);
                     if(colliders.Any(c=>c.GetComponent<PlayerController>()==null))continue;
                     visited.Add(nextNode);queue.Enqueue(nextNode);
@@ -589,6 +689,10 @@ namespace CyberCity.Editor
             }
             foreach(var citizen in game.citizens)
                 Check(visited.Any(p=>Vector2.Distance((Vector2)p*.5f,citizen.transform.position)<1.45f), "Walkable route to " + citizen.citizenName);
+            foreach(var area in game.areas)
+                Check(visited.Any(p=>Vector2.Distance((Vector2)p*.5f,area.door.position)<1.45f), "Walkable route to door / " + area.areaName);
+            foreach(var waypoint in new[] { WorldLayout.FromPixel(180,407), WorldLayout.FromPixel(738,413), WorldLayout.FromPixel(666,495) })
+                Check(visited.Any(p=>Vector2.Distance((Vector2)p*.5f,waypoint)<.75f), "Walkable bridge/edge route " + waypoint);
         }
     }
 }

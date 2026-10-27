@@ -46,7 +46,7 @@ namespace CyberCity.Editor
             camera.backgroundColor = GameUI.Ink; camera.nearClipPlane = .1f; camera.farClipPlane = 100;
             camera.allowHDR = false; camera.allowMSAA = false;
             var pixel = cameraGo.AddComponent<PixelPerfectCamera>();
-            pixel.assetsPPU = 32; pixel.refResolutionX = WorldLayout.PixelWidth; pixel.refResolutionY = WorldLayout.PixelHeight;
+            pixel.assetsPPU = 32; pixel.refResolutionX = WorldLayout.CameraWidth; pixel.refResolutionY = WorldLayout.CameraHeight;
             pixel.gridSnapping = PixelPerfectCamera.GridSnapping.PixelSnapping;
             cameraGo.AddComponent<WorldCamera>();
             var playerGo = Actor("Citizen / Player", characters[0][0], WorldLayout.Spawn, mat);

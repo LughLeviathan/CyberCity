@@ -7,8 +7,8 @@
   "pixelsPerUnit": 32,
   "palette": "palette.json",
   "source": "world.aseprite",
-  "approvalStatus": "stage2-review-pending",
-  "runtimeIntegrated": false,
+  "approvalStatus": "approved-with-wider-roads",
+  "runtimeIntegrated": true,
   "pixelCounts": {
     "ground": 589824,
     "water": 73166,
@@ -169,7 +169,7 @@
         172
       ],
       "unlockAfterCompleted": 0,
-      "collision": "footprint guide only; integrate after approval"
+      "collision": "static footprint in Assets/CyberCity/WorldArt/world.json"
     },
     {
       "id": "player_house",
@@ -269,7 +269,7 @@
         237
       ],
       "unlockAfterCompleted": null,
-      "collision": "footprint guide only; integrate after approval"
+      "collision": "static footprint in Assets/CyberCity/WorldArt/world.json"
     },
     {
       "id": "internet_cafe",
@@ -365,7 +365,7 @@
         383
       ],
       "unlockAfterCompleted": 1,
-      "collision": "footprint guide only; integrate after approval"
+      "collision": "static footprint in Assets/CyberCity/WorldArt/world.json"
     },
     {
       "id": "linux_lab",
@@ -477,7 +477,7 @@
         224
       ],
       "unlockAfterCompleted": 4,
-      "collision": "footprint guide only; integrate after approval"
+      "collision": "static footprint in Assets/CyberCity/WorldArt/world.json"
     },
     {
       "id": "web_lab",
@@ -589,7 +589,7 @@
         377
       ],
       "unlockAfterCompleted": 5,
-      "collision": "footprint guide only; integrate after approval"
+      "collision": "static footprint in Assets/CyberCity/WorldArt/world.json"
     },
     {
       "id": "cyber_corp",
@@ -749,7 +749,7 @@
         486
       ],
       "unlockAfterCompleted": null,
-      "collision": "footprint guide only; integrate after approval"
+      "collision": "static footprint in Assets/CyberCity/WorldArt/world.json"
     }
   ],
   "replacementRegions": {

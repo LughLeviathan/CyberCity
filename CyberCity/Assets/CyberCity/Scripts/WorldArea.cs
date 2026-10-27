@@ -26,6 +26,7 @@ namespace CyberCity
         void OnDestroy() { if (game != null) game.ProgressChanged -= ProgressChanged; }
         void ProgressChanged(int before, int after)
         {
+            if (after == 0) UnlockAnimations = 0;
             bool open = after >= UnlockAfter;
             StopAllCoroutines();
             if (open && !IsOpen && after > before) { IsOpen = true; StartCoroutine(Unlock()); }

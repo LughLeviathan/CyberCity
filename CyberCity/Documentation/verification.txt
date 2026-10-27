@@ -1,6 +1,6 @@
 CyberCity verification
-PASS: 273 checks including all missions through runtime UI
-UTC: 2026-10-25T19:47:56.5432153Z
+PASS: 298 checks including all missions through runtime UI
+UTC: 2026-10-27T00:37:47.0926510Z
 
 PASS  Mission count follows scenario pack
 PASS  Validated offline missions
@@ -195,12 +195,31 @@ PASS  Walkable route to Detective Byte
 PASS  Walkable route to SysAdmin Tux
 PASS  Walkable route to Red
 PASS  Walkable route to Blue
+PASS  Walkable route to door / Cyber Academy
+PASS  Walkable route to door / Internet Cafe
+PASS  Walkable route to door / Linux Lab
+PASS  Walkable route to door / Web Security Lab
+PASS  Walkable bridge/edge route (5.63, -12.72)
+PASS  Walkable bridge/edge route (23.06, -12.91)
+PASS  Walkable bridge/edge route (20.81, -15.47)
+PASS  48 area/progression combinations and actual door gates
+PASS  Cafe entrance takes priority over a farther NPC
+PASS  E at Cafe door routes to current mentor Maya
+PASS  Reload path silently restores area visuals and subscriptions
+PASS  Whole map fits outside HUD at (1600, 900)
+PASS  Whole map fits outside HUD at (2048, 1152)
+PASS  Whole map fits outside HUD at (2560, 1440)
+PASS  Whole map fits outside HUD at (3840, 2160)
+PASS  Whole map fits outside HUD at (1920, 1080)
 PASS  Mission 1 unlocks in order
 PASS  Wrong answer gives feedback without advancing
 PASS  UI renders plain text: orientation
 PASS  Player tokens resolved: orientation
 PASS  Mission 1 completes through its actual UI
 PASS  Mission 1 persists immediately
+PASS  Mission event animates unlock once: Internet Cafe
+PASS  Unlock settles into open state: Internet Cafe
+PASS  Atlas marks next mission building
 PASS  Mission 2 unlocks in order
 PASS  UI renders plain text: awareness
 PASS  Player tokens resolved: awareness
@@ -218,6 +237,9 @@ PASS  UI renders plain text: fake-site
 PASS  Player tokens resolved: fake-site
 PASS  Mission 4 completes through its actual UI
 PASS  Mission 4 persists immediately
+PASS  Mission event animates unlock once: Linux Lab
+PASS  Unlock settles into open state: Linux Lab
+PASS  Atlas marks next mission building
 PASS  Mission 5 unlocks in order
 PASS  Practical evidence gates mission completion: linux-ctf
 PASS  Earned flag remains after reopening terminal UI
@@ -225,6 +247,9 @@ PASS  UI renders plain text: linux-ctf
 PASS  Player tokens resolved: linux-ctf
 PASS  Mission 5 completes through its actual UI
 PASS  Mission 5 persists immediately
+PASS  Mission event animates unlock once: Web Security Lab
+PASS  Unlock settles into open state: Web Security Lab
+PASS  Atlas marks next mission building
 PASS  Mission 6 unlocks in order
 PASS  Practical evidence gates mission completion: idor
 PASS  Source patch waits for observed attack: idor/idor

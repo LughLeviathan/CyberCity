@@ -1,0 +1,21 @@
+{
+  "phase": 3,
+  "authoring": "MCP Aseprite only for final raster edits/exports",
+  "roadRevision": "road-revision.json",
+  "passes": [
+    "Preserve approved world/preview/metrics in _old/stage2-approved",
+    "Ground: draw_polygon for seven widened road shoulders, then sparse pavement seams with draw_pixels_at; save and inspect composite",
+    "export_layers -> export/layers; copy_region for 308 unique32px ground tiles; crop_canvas and export terrain",
+    "copy_layers_between_sprites and crop_canvas for six buildings and33 prop groups, export each PNG",
+    "copy_layers_between_sprites/crop_canvas for six building glow overlays; scenery export",
+    "Water add_frames/copy_frame, draw_pixels_at for moving reflections, export horizontal3frame sheet",
+    "Lock canvas16x20, draw_pixels_at, export for Unity whole/half slices",
+    "Comparison2048x576 via import_image_as_layer of reference and revised preview, export side-by-side"
+  ],
+  "checks": {
+    "reconstructionDifferencePixels": 0,
+    "paletteColors": 47,
+    "roadChangedPixels": 7146
+  },
+  "scriptsRunInAseprite": []
+}
