@@ -1,6 +1,6 @@
 CyberCity verification
-PASS: 298 checks including all missions through runtime UI
-UTC: 2026-10-27T00:37:47.0926510Z
+PASS: 350 checks including all missions through runtime UI
+UTC: 2026-10-27T11:54:15.1311056Z
 
 PASS  Mission count follows scenario pack
 PASS  Validated offline missions
@@ -172,6 +172,9 @@ PASS  Over-maximum score recovers valid backup
 PASS  Different course route resets safely
 PASS  Flags and paid hints survive save/reload
 PASS  Runtime game initialized
+PASS  Welcome covers display and centers content at (2560, 1080)
+PASS  Welcome covers display and centers content at (1440, 1080)
+PASS  Welcome covers display and centers content at (1920, 1080)
 PASS  Username required before patrol
 PASS  Valid username is trimmed and persisted
 PASS  Invalid pause rename preserves stored identity
@@ -206,11 +209,46 @@ PASS  48 area/progression combinations and actual door gates
 PASS  Cafe entrance takes priority over a farther NPC
 PASS  E at Cafe door routes to current mentor Maya
 PASS  Reload path silently restores area visuals and subscriptions
-PASS  Whole map fits outside HUD at (1600, 900)
-PASS  Whole map fits outside HUD at (2048, 1152)
-PASS  Whole map fits outside HUD at (2560, 1440)
-PASS  Whole map fits outside HUD at (3840, 2160)
-PASS  Whole map fits outside HUD at (1920, 1080)
+PASS  Minimal HUD, quest slot, XP and player identity refresh
+PASS  Complete centered map with preserved aspect at (1920, 1080)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (1920, 1080)
+PASS  J opens Journal at (1920, 1080)
+PASS  ESC closes Journal at (1920, 1080)
+PASS  Complete centered map with preserved aspect at (1366, 768)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (1366, 768)
+PASS  J opens Journal at (1366, 768)
+PASS  ESC closes Journal at (1366, 768)
+PASS  Complete centered map with preserved aspect at (2560, 1440)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (2560, 1440)
+PASS  J opens Journal at (2560, 1440)
+PASS  ESC closes Journal at (2560, 1440)
+PASS  Complete centered map with preserved aspect at (1280, 720)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (1280, 720)
+PASS  J opens Journal at (1280, 720)
+PASS  ESC closes Journal at (1280, 720)
+PASS  Complete centered map with preserved aspect at (1920, 1200)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (1920, 1200)
+PASS  J opens Journal at (1920, 1200)
+PASS  ESC closes Journal at (1920, 1200)
+PASS  Complete centered map with preserved aspect at (2560, 1080)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (2560, 1080)
+PASS  J opens Journal at (2560, 1080)
+PASS  ESC closes Journal at (2560, 1080)
+PASS  Complete centered map with preserved aspect at (1440, 1080)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (1440, 1080)
+PASS  J opens Journal at (1440, 1080)
+PASS  ESC closes Journal at (1440, 1080)
+PASS  M opens Map with active objective
+PASS  H opens Field guide
+PASS  ESC opens Pause
+PASS  Quest slot Journal button opens Journal
 PASS  Mission 1 unlocks in order
 PASS  Wrong answer gives feedback without advancing
 PASS  UI renders plain text: orientation
@@ -220,6 +258,20 @@ PASS  Mission 1 persists immediately
 PASS  Mission event animates unlock once: Internet Cafe
 PASS  Unlock settles into open state: Internet Cafe
 PASS  Atlas marks next mission building
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (1920, 1080)
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (1366, 768)
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (2560, 1440)
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (1280, 720)
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (1920, 1200)
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (2560, 1080)
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (1440, 1080)
 PASS  Mission 2 unlocks in order
 PASS  UI renders plain text: awareness
 PASS  Player tokens resolved: awareness

@@ -75,7 +75,6 @@ namespace CyberCity
             NearestDoor = areas.OrderBy(a => Vector2.Distance(player.transform.position, a.door.position)).FirstOrDefault();
             if (NearestDoor != null && Vector2.Distance(player.transform.position, NearestDoor.door.position) > 1.65f) NearestDoor = null;
             player.CanMove = Started && !UI.HasModal;
-            UI.UpdateWorldLabels();
             var k = Keyboard.current;
             if (Started && k != null)
             {

@@ -47,7 +47,12 @@ namespace CyberCity.Editor
             camera.allowHDR = false; camera.allowMSAA = false;
             var pixel = cameraGo.AddComponent<PixelPerfectCamera>();
             pixel.assetsPPU = 32; pixel.refResolutionX = WorldLayout.CameraWidth; pixel.refResolutionY = WorldLayout.CameraHeight;
-            pixel.gridSnapping = PixelPerfectCamera.GridSnapping.PixelSnapping;
+            pixel.gridSnapping = PixelPerfectCamera.GridSnapping.UpscaleRenderTexture;
+            pixel.cropFrame = PixelPerfectCamera.CropFrame.StretchFill;
+            // URP exposes this setting in its inspector, but has no public filter setter.
+            var pixelSettings = new SerializedObject(pixel);
+            pixelSettings.FindProperty("m_FilterMode").enumValueIndex = (int)PixelPerfectCamera.PixelPerfectFilterMode.Point;
+            pixelSettings.ApplyModifiedPropertiesWithoutUndo();
             cameraGo.AddComponent<WorldCamera>();
             var playerGo = Actor("Citizen / Player", characters[0][0], WorldLayout.Spawn, mat);
             playerGo.tag = "Player";

@@ -37,7 +37,8 @@ namespace CyberCity.Editor
         {
             Require(GameObject.Find("CyberCity / Reference world") != null, "Reference map replaces old prefab");
             var camera = Camera.main.GetComponent<PixelPerfectCamera>();
-            Require(camera.assetsPPU == 32 && camera.refResolutionX == WorldLayout.CameraWidth && camera.refResolutionY == WorldLayout.CameraHeight, "Map camera includes HUD space when selecting integer zoom");
+            Require(camera.assetsPPU == 32 && camera.refResolutionX == WorldLayout.CameraWidth && camera.refResolutionY == WorldLayout.CameraHeight, "Map camera matches map reference resolution");
+            CyberCityFullscreenVerification.VerifyScene();
             for (int i = 0; i < 8; i++)
                 Require(AssetDatabase.LoadAllAssetsAtPath("Assets/CyberCity/Generated/Citizen" + i + ".png").OfType<Sprite>().All(s => s.rect.width == 32 && s.rect.height == 32), "Character frames padded to 32x32");
             var world = GameObject.Find("CyberCity / Reference world");
@@ -93,11 +94,14 @@ namespace CyberCity.Editor
 
         public static void VerifyFraming(CyberCityGame game, int width = 1920, int height = 1080)
         {
-            Require(Screen.width == width && Screen.height == height, "Game View target is " + width + "x" + height);
+            Require(Screen.width == width && Screen.height == height, "Game View target is " + width + "x" + height + "; actual " + Screen.width + "x" + Screen.height);
             var topLeft = game.worldCamera.WorldToScreenPoint(Vector3.zero);
             var bottomRight = game.worldCamera.WorldToScreenPoint(new Vector3(WorldLayout.Width, -WorldLayout.Height, 0));
-            Require(topLeft.x >= 0 && bottomRight.x <= Screen.width * (1248f / 1600), "Map fits left of mission console");
-            Require(topLeft.y <= Screen.height * (814f / 900) && bottomRight.y >= Screen.height * (36f / 900), "Header/footer do not cover map");
+            float mapWidth = bottomRight.x - topLeft.x, mapHeight = topLeft.y - bottomRight.y;
+            Require(topLeft.x >= -1 && bottomRight.x <= width + 1 && topLeft.y <= height + 1 && bottomRight.y >= -1, "Entire map stays inside display");
+            Require(Vector2.Distance((topLeft + bottomRight) / 2, new Vector2(width / 2f, height / 2f)) < 1.1f, "Map is centered on display");
+            Require(Mathf.Abs(mapWidth / mapHeight - 16f / 9) < .002f, "Map keeps its 16:9 aspect ratio");
+            Require(Mathf.Abs(mapWidth - width) < 1.1f || Mathf.Abs(mapHeight - height) < 1.1f, "Map fills one display dimension without integer zoom margins");
             Require(WorldLayout.Clamp(new Vector2(-100, -100)) == new Vector2(.5f, -17.5f) && WorldLayout.Clamp(new Vector2(100, 100)) == new Vector2(31.5f, -.5f), "Map clamp matches new extents");
         }
 

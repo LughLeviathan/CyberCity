@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 namespace CyberCity
 {
+    [DefaultExecutionOrder(20)]
     public sealed class GameUI : MonoBehaviour
     {
         public Sprite cityPreview;
@@ -17,13 +18,14 @@ namespace CyberCity
         public CyberCityGame Game { get; private set; }
         public RectTransform CanvasRoot { get; private set; }
         public RectTransform Content { get; private set; }
+        // After Initialize, replace the Journal child with your own button under this slot.
+        public RectTransform QuestButtonSlot { get; private set; }
         public bool HasModal => modal != null;
         Font font;
         GameObject modal;
         RectTransform hud, labels;
-        Text objective, objectiveBody, score, count, prompt, toast, status;
-        Image[] segments;
-        Text[] districtStates;
+        Text score, prompt, toast;
+        RectTransform[] cropBars;
         readonly Dictionary<Citizen, Text> nameLabels = new Dictionary<Citizen, Text>();
         readonly Dictionary<Citizen, Text> markers = new Dictionary<Citizen, Text>();
         Text playerLabel;
@@ -39,7 +41,7 @@ namespace CyberCity
             CanvasRoot = (RectTransform)go.transform;
             go.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             var scaler = go.GetComponent<CanvasScaler>(); scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1600, 900); scaler.matchWidthOrHeight = .5f;
+            scaler.referenceResolution = new Vector2(1600, 900); scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
             if (FindAnyObjectByType<EventSystem>() == null)
                 new GameObject("EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));
         }
@@ -95,6 +97,12 @@ namespace CyberCity
             CanvasRoot = null; modal = null; Content = null;
             nameLabels.Clear(); markers.Clear();
             Game = game; EnsureCanvas(); modules = new ModuleUI(this);
+            cropBars = new RectTransform[4];
+            for (int i = 0; i < cropBars.Length; i++)
+            {
+                cropBars[i] = Box(CanvasRoot, "Map crop bar " + i, 0, 0, 0, 0, Ink);
+                cropBars[i].GetComponent<Image>().raycastTarget = false;
+            }
             labels = Rect(CanvasRoot, "World labels", 0, 0, 1600, 900);
             foreach (var citizen in game.citizens)
             {
@@ -105,68 +113,70 @@ namespace CyberCity
                 marker.gameObject.AddComponent<Outline>().effectColor = Ink; markers[citizen] = marker;
             }
             playerLabel = Text(labels, "{player}", 0, 0, 220, 24, 14, Cyan, true); playerLabel.alignment = TextAnchor.MiddleCenter;
+            OutlineLabel(playerLabel);
             BuildHud(); ShowStart();
         }
 
         void BuildHud()
         {
-            hud = Rect(CanvasRoot, "Patrol HUD", 0, 0, 1600, 900);
-            var top = Box(hud, "Header", 0, 0, 1600, 86, Ink);
-            Box(top, "Accent", 28, 24, 5, 38, Cyan);
-            Text(top, "CYBERCITY", 48, 16, 260, 34, 29, White, true);
-            Text(top, "THINK BEFORE YOU CLICK", 49, 51, 320, 22, 12, Muted);
-            Text(top, "CITIZEN SECURITY PROGRAM", 550, 25, 360, 25, 14, Muted);
-            status = Text(top, CampaignLoader.Status, 550, 49, 360, 20, 11, Teal);
-            score = Text(top, "", 1050, 26, 195, 32, 22, Gold, true);
-            Button(top, "J  Journal", 1270, 22, 146, 42, ShowJournal);
-            Button(top, "ESC  Menu", 1428, 22, 144, 42, ShowPause);
-            Box(hud, "Header rule", 0, 85, 1600, 1, Raised);
-            var side = Box(hud, "Mission console", 1262, 106, 310, 746, Panel);
-            Text(side, "YOUR PATROL", 24, 22, 250, 24, 13, Cyan, true);
-            count = Text(side, "", 24, 57, 260, 32, 25, White, true);
-            segments = new Image[Game.Campaign.missions.Length];
-            float segmentWidth = 262f / segments.Length;
-            for (int i = 0; i < segments.Length; i++) segments[i] = Box(side, "Mission " + i, 24 + i * segmentWidth, 105, segmentWidth * .78f, 5, Raised).GetComponent<Image>();
-            Text(side, "CURRENT OBJECTIVE", 24, 142, 270, 22, 12, Muted, true);
-            objective = Text(side, "", 24, 178, 268, 72, 24, White, true);
-            objectiveBody = Text(side, "", 24, 258, 264, 100, 17, Muted);
-            Box(side, "Divider", 24, 374, 262, 1, Raised);
-            Text(side, "CITY DISTRICTS", 24, 400, 260, 24, 12, Muted, true);
-            string[] areas = { "Cyber Academy", "Internet Cafe", "Linux Lab", "Web Security Lab" };
-            districtStates = new Text[4];
-            for (int i = 0; i < 4; i++)
-            {
-                Text(side, "0" + (i + 1), 24, 445 + i * 48, 30, 26, 14, Cyan, true);
-                Text(side, areas[i], 65, 442 + i * 48, 230, 24, 16, White);
-                districtStates[i] = Text(side, "", 65, 464 + i * 48, 230, 16, 9, Muted);
-            }
-            Button(side, "M  City map", 24, 670, 262, 48, ShowMap);
-            var foot = Box(hud, "Controls", 0, 864, 1600, 36, Ink);
-            Text(foot, "W A S D   Move      E   Talk / interact      J   Journal      M   Map      H   Field guide", 28, 9, 1100, 24, 13, Muted);
-            Text(foot, "FICTIONAL SYSTEMS / LOCAL ONLY", 1280, 10, 300, 22, 11, Teal);
-            prompt = Text(hud, "", 330, 793, 610, 43, 22, Gold, true); prompt.alignment = TextAnchor.MiddleCenter;
-            toast = Text(hud, "", 34, 838, 1200, 25, 15, Teal);
+            hud = Rect(CanvasRoot, "Patrol HUD", 0, 0, 1600, 900); Stretch(hud);
+            var title = Text(hud, "CYBERCITY", 24, 20, 176, 32, 22, White, true); OutlineLabel(title);
+            score = Text(hud, "", 218, 21, 190, 32, 20, Gold, true); OutlineLabel(score);
+            QuestButtonSlot = Rect(hud, "QuestButtonSlot", 0, 0, 146, 40);
+            Anchor(QuestButtonSlot, Vector2.one, Vector2.one, new Vector2(-180, -16));
+            var journal = Button(QuestButtonSlot, "J  Journal", 0, 0, 146, 40, ShowJournal);
+            journal.GetComponent<Image>().color = new Color(Ink.r, Ink.g, Ink.b, .55f);
+            var pause = Button(hud, "ESC  Menu", 0, 0, 144, 40, ShowPause);
+            Anchor(pause.GetComponent<RectTransform>(), Vector2.one, Vector2.one, new Vector2(-24, -16));
+            pause.GetComponent<Image>().color = new Color(Ink.r, Ink.g, Ink.b, .55f);
+            var controls = Text(hud, "WASD  Move     E  Interact     J  Journal     M  Map     H  Field guide", 0, 0, 850, 26, 15, White);
+            controls.gameObject.name = "Controls"; controls.alignment = TextAnchor.MiddleCenter; OutlineLabel(controls);
+            Anchor(controls.rectTransform, new Vector2(.5f, 0), new Vector2(.5f, 0), new Vector2(0, 12));
+            prompt = Text(hud, "", 0, 0, 440, 34, 18, Gold, true);
+            prompt.gameObject.name = "Interaction prompt"; prompt.alignment = TextAnchor.MiddleCenter; OutlineLabel(prompt);
+            Anchor(prompt.rectTransform, new Vector2(.5f, 0), new Vector2(.5f, 0), new Vector2(0, 48));
+            toast = Text(hud, "", 0, 0, 1100, 30, 17, Teal, true);
+            toast.gameObject.name = "Patrol toast"; toast.alignment = TextAnchor.MiddleCenter; OutlineLabel(toast);
+            Anchor(toast.rectTransform, new Vector2(.5f, 1), new Vector2(.5f, 1), new Vector2(0, -64));
             RefreshHud();
         }
 
         public void RefreshHud()
         {
-            if (Game == null || count == null) return;
-            playerLabel.text = Game.Personalize("{player}");
-            count.text = Game.Progress.completed.ToString("00") + " / " + Game.Campaign.missions.Length + " complete";
-            score.text = Game.Progress.score.ToString("0000") + "  XP";
-            for (int i = 0; i < segments.Length; i++) segments[i].color = i < Game.Progress.completed ? Teal : i == Game.Progress.completed ? Gold : Raised;
-            string[] areas = { "Cyber Academy", "Internet Cafe", "Linux Lab", "Web Security Lab" };
-            for (int i = 0; i < 4; i++)
+            if (Game?.Progress == null) return;
+            if (playerLabel != null) playerLabel.text = Game.Personalize("{player}");
+            if (score != null) score.text = Game.Progress.score.ToString("0000") + "  XP";
+        }
+
+        static void Stretch(RectTransform rect)
+        {
+            rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one;
+            rect.offsetMin = rect.offsetMax = Vector2.zero;
+        }
+        static void Anchor(RectTransform rect, Vector2 anchor, Vector2 pivot, Vector2 position)
+        { rect.anchorMin = rect.anchorMax = anchor; rect.pivot = pivot; rect.anchoredPosition = position; }
+        static void OutlineLabel(Text text)
+        {
+            var outline = text.gameObject.AddComponent<Outline>();
+            outline.effectColor = Ink; outline.effectDistance = new Vector2(1, -1);
+        }
+        void LateUpdate()
+        {
+            if (Game == null || CanvasRoot == null) return;
+            UpdateCropBars(); UpdateWorldLabels();
+        }
+        void UpdateCropBars()
+        {
+            // URP clears cropped borders black; tint only the unused screen space.
+            if (cropBars == null || Game.worldCamera == null) return;
+            var viewport = Game.worldCamera.rect;
+            Vector2[] mins = { Vector2.zero, new Vector2(viewport.xMax, 0), new Vector2(viewport.xMin, 0), new Vector2(viewport.xMin, viewport.yMax) };
+            Vector2[] maxs = { new Vector2(viewport.xMin, 1), Vector2.one, new Vector2(viewport.xMax, viewport.yMin), new Vector2(viewport.xMax, 1) };
+            for (int i = 0; i < cropBars.Length; i++)
             {
-                int unlock = CampaignLoader.UnlockForArea(Game.Campaign, areas[i]);
-                bool open = Game.Progress.completed >= unlock;
-                districtStates[i].text = open ? "ACCESS GRANTED" : "COMPLETE MISSION " + unlock.ToString("00") + " TO UNLOCK";
-                districtStates[i].color = open ? Teal : Muted;
+                cropBars[i].anchorMin = mins[i]; cropBars[i].anchorMax = maxs[i];
+                cropBars[i].offsetMin = cropBars[i].offsetMax = Vector2.zero;
             }
-            objective.text = Game.Personalize(Game.Current == null ? "City secured." : Game.Current.title);
-            objectiveBody.text = Game.Personalize(Game.Current == null ? "All missions complete. Your field guide is always available." :
-                "Find " + Game.Current.npc + "\n" + Game.Current.area + "\n\nApproach and press E.");
         }
 
         void PositionLabel(Text label, Vector3 world, float dx = 0)
@@ -191,6 +201,9 @@ namespace CyberCity
             PositionLabel(playerLabel, Game.player.transform.position + (Game.Nearest != null ? Vector3.down * .3f : Vector3.up * 1.05f));
             prompt.text = HasModal ? "" : Game.DoorIsNearest ? "[ E ]  " + Game.NearestDoor.areaName :
                 Game.Nearest != null ? "[ E ]  Talk to " + Game.Nearest.citizenName : "";
+            // All interactable doors/NPCs are above the southern waterfront. Keep this hint
+            // in that clear lower strip so it cannot cover their sprites or the plaza globe.
+            hud.gameObject.SetActive(Game.Started);
             if (Time.unscaledTime > toastUntil) toast.text = "";
         }
 
@@ -211,7 +224,9 @@ namespace CyberCity
         {
             EnsureCanvas(); RemoveModal();
             modal = Box(CanvasRoot, "Modal scrim", 0, 0, 1600, 900, new Color(.015f,.025f,.065f,.94f)).gameObject;
-            var panel = Box(modal.transform, "Module panel", 240, 104, 1120, 696, Panel);
+            Stretch((RectTransform)modal.transform);
+            var panel = Box(modal.transform, "Module panel", 0, 0, 1120, 696, Panel);
+            Anchor(panel, new Vector2(.5f, .5f), new Vector2(.5f, .5f), Vector2.zero);
             Box(panel, "Top accent", 0, 0, 1120, 3, Cyan);
             Text(panel, kicker.ToUpperInvariant(), 32, 25, 1010, 23, 12, Cyan, true);
             Text(panel, title, 32, 58, 990, 49, 34, White, true);
@@ -225,37 +240,40 @@ namespace CyberCity
         {
             RemoveModal();
             modal = Box(CanvasRoot, "Welcome", 0, 0, 1600, 900, Ink).gameObject;
-            var picture = Rect(modal.transform, "City illustration", 600, 48, 1015, 798).gameObject.AddComponent<Image>();
+            Stretch((RectTransform)modal.transform);
+            var welcome = Rect(modal.transform, "Welcome content", 0, 0, 1600, 900);
+            Anchor(welcome, new Vector2(.5f, .5f), new Vector2(.5f, .5f), Vector2.zero);
+            var picture = Rect(welcome, "City illustration", 600, 48, 1015, 798).gameObject.AddComponent<Image>();
             picture.sprite = cityPreview; picture.preserveAspect = true; picture.color = new Color(.7f,.8f,1,.67f); picture.raycastTarget = false;
-            Box(modal.transform, "Title back", 0, 0, 660, 900, new Color(.035f,.059f,.133f,.96f));
-            Text(modal.transform, "S I J A W   /   FIELD OPERATIONS", 80, 114, 560, 30, 14, Cyan, true);
-            Text(modal.transform, "CYBER\nCITY", 72, 187, 570, 250, 106, White, true);
-            Box(modal.transform, "Title rule", 80, 446, 70, 5, Gold);
-            Text(modal.transform, "THINK BEFORE YOU CLICK", 80, 482, 560, 40, 22, Gold, true);
-            Text(modal.transform, "A city of connections. A world of hidden risks.\nBuild the skills to protect it, {player}.", 80, 538, 510, 65, 20, Muted);
+            Box(welcome, "Title back", 0, 0, 660, 900, new Color(.035f,.059f,.133f,.96f));
+            Text(welcome, "S I J A W   /   FIELD OPERATIONS", 80, 114, 560, 30, 14, Cyan, true);
+            Text(welcome, "CYBER\nCITY", 72, 187, 570, 250, 106, White, true);
+            Box(welcome, "Title rule", 80, 446, 70, 5, Gold);
+            Text(welcome, "THINK BEFORE YOU CLICK", 80, 482, 560, 40, 22, Gold, true);
+            Text(welcome, "A city of connections. A world of hidden risks.\nBuild the skills to protect it, {player}.", 80, 538, 510, 65, 20, Muted);
             bool returning = Game.Progress.started && PlayerIdentity.TryValidate(Game.Progress.playerName, out _, out _);
             if (returning)
             {
-                Text(modal.transform, "WELCOME BACK, {player}", 80, 617, 510, 30, 20, Teal, true);
-                Button(modal.transform, "CONTINUE PATROL   >", 80, 673, 440, 64, Game.Begin, Cyan);
+                Text(welcome, "WELCOME BACK, {player}", 80, 617, 510, 30, 20, Teal, true);
+                Button(welcome, "CONTINUE PATROL   >", 80, 673, 440, 64, Game.Begin, Cyan);
             }
             else
             {
-                var name = Input(modal.transform, 80, 620, 440, 48, "Choose your username (3–16 characters)");
+                var name = Input(welcome, 80, 620, 440, 48, "Choose your username (3–16 characters)");
                 name.characterLimit = 64; name.text = Game.Progress.playerName;
-                var error = Text(modal.transform, "Letters, numbers, spaces and underscore.", 80, 677, 510, 36, 15, Muted);
-                Button(modal.transform, "BEGIN YOUR PATROL   >", 80, 723, 440, 64, () => {
+                var error = Text(welcome, "Letters, numbers, spaces and underscore.", 80, 677, 510, 36, 15, Muted);
+                Button(welcome, "BEGIN YOUR PATROL   >", 80, 723, 440, 64, () => {
                     if (!Game.SetPlayerName(name.text, out string reason)) { error.text = reason; error.color = Gold; return; }
                     Game.Begin();
                 }, Cyan);
                 name.ActivateInputField();
             }
-            Text(modal.transform, Game.Campaign.missions.Length + " MISSIONS    /    " + Game.citizens.Length + " MENTORS    /    4 DISTRICTS", 80, 805, 590, 26, 13, Muted);
-            var card = Box(modal.transform, "Orientation", 1002, 668, 510, 150, Panel);
+            Text(welcome, Game.Campaign.missions.Length + " MISSIONS    /    " + Game.citizens.Length + " MENTORS    /    4 DISTRICTS", 80, 805, 590, 26, 13, Muted);
+            var card = Box(welcome, "Orientation", 1002, 668, 510, 150, Panel);
             Text(card, "YOUR FIRST ASSIGNMENT", 24, 19, 460, 24, 12, Cyan, true);
             Text(card, Game.Current == null ? "Patrol complete. Welcome back." : "Meet " + Game.Current.npc, 24, 52, 460, 34, 24, White, true);
             Text(card, "Explore with WASD. Talk with E. Learn by doing.", 24, 103, 460, 26, 16, Muted);
-            Text(modal.transform, ProgressStore.LastError ?? CampaignLoader.Status + "   /   PROGRESS SAVED ON THIS DEVICE", 80, 848, 1400, 40, 12, Teal);
+            Text(welcome, ProgressStore.LastError ?? CampaignLoader.Status + "   /   PROGRESS SAVED ON THIS DEVICE", 80, 848, 1400, 40, 12, Teal);
         }
 
         public void ShowBriefing(Mission mission)

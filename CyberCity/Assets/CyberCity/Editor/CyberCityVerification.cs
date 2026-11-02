@@ -18,6 +18,8 @@ namespace CyberCity.Editor
         static readonly Dictionary<string, byte[]> saveBackup = new Dictionary<string, byte[]>();
         static double next;
         static int nextFrame;
+        static Vector2Int pendingResolution;
+        static double resizeDeadline;
         static InputSettings originalInputSettings, verificationInputSettings;
         static Keyboard verificationKeyboard, originalKeyboard;
         static readonly List<Keyboard> pausedKeyboards = new List<Keyboard>();
@@ -375,6 +377,12 @@ namespace CyberCity.Editor
             EditorApplication.playModeStateChanged += RestoreAfterPlay;
             ConfigureVerificationInput();
             Add(() => game.NewPatrol());
+            foreach (var resolution in new[] { new Vector2Int(2560,1080), new Vector2Int(1440,1080), new Vector2Int(1920,1080) })
+            {
+                var size = resolution;
+                Add(() => SetFullscreenResolution(size.x, size.y));
+                Add(() => { CyberCityFullscreenVerification.VerifyWelcome(game); Check(true, "Welcome covers display and centers content at " + size); Capture("fullscreen-" + size.x + "x" + size.y + "-welcome"); });
+            }
             Add(() => { Click("BEGIN YOUR PATROL"); Check(!game.Started, "Username required before patrol"); FindInput().text = "  Byte_42  "; Click("BEGIN YOUR PATROL"); });
             Add(() => Check(game.Started && game.Progress.playerName == "Byte_42", "Valid username is trimmed and persisted"));
             Add(() => game.UI.ShowPause());
@@ -418,12 +426,28 @@ namespace CyberCity.Editor
                 game.StartCoroutine("RestoreInterface");
             });
             Add(() => { game.UI.CloseModal(); Check(game.areas.All(a => a.IsOpen == (game.Progress.completed >= a.UnlockAfter)), "Reload path silently restores area visuals and subscriptions"); });
-            foreach (var resolution in new[] { new Vector2Int(1600,900), new Vector2Int(2048,1152), new Vector2Int(2560,1440), new Vector2Int(3840,2160), new Vector2Int(1920,1080) })
+            Add(() => { CyberCityFullscreenVerification.VerifyHud(game); Check(true, "Minimal HUD, quest slot, XP and player identity refresh"); });
+            foreach (var resolution in FullscreenResolutions)
             {
                 var size = resolution;
-                Add(() => CyberCityWorldVerification.SetGameViewResolution(size.x, size.y));
-                Add(() => { CyberCityWorldVerification.VerifyFraming(game, size.x, size.y); Check(true, "Whole map fits outside HUD at " + size); });
+                Add(() => SetFullscreenResolution(size.x, size.y));
+                Add(() => { game.player.GetComponent<Rigidbody2D>().position = WorldLayout.Spawn; });
+                Add(() => { CyberCityWorldVerification.VerifyFraming(game, size.x, size.y); Check(true, "Complete centered map with preserved aspect at " + size); Capture("fullscreen-" + size.x + "x" + size.y + "-start"); });
+                Add(PositionForFullscreenCapture);
+                Add(() => { CyberCityFullscreenVerification.VerifyLabels(game); Check(true, "NPC/player labels, gold marker and E prompt register at " + size); Capture("fullscreen-" + size.x + "x" + size.y + "-interact"); });
+                Add(() => Press(Key.J));
+                Add(() => { Release(); Check(game.UI.HasModal && VisibleText().Any(t => t.Contains("JOURNAL")), "J opens Journal at " + size); CyberCityFullscreenVerification.VerifyModal(game); Capture("fullscreen-" + size.x + "x" + size.y + "-journal"); });
+                Add(() => Press(Key.Escape));
+                Add(() => { Release(); Check(!game.UI.HasModal, "ESC closes Journal at " + size); });
             }
+            Add(() => SetFullscreenResolution(1920, 1080));
+            Add(() => Press(Key.M));
+            Add(() => { Release(); Check(game.UI.HasModal && GameObject.Find("Active mission building") != null, "M opens Map with active objective"); game.UI.CloseModal(); });
+            Add(() => Press(Key.H));
+            Add(() => { Release(); Check(game.UI.HasModal, "H opens Field guide"); CyberCityFullscreenVerification.VerifyModal(game); game.UI.CloseModal(); });
+            Add(() => Press(Key.Escape));
+            Add(() => { Release(); Check(game.UI.HasModal && FindButton("Change username") != null, "ESC opens Pause"); CyberCityFullscreenVerification.VerifyModal(game); game.UI.CloseModal(); });
+            Add(() => { game.UI.QuestButtonSlot.GetComponentInChildren<Button>().onClick.Invoke(); Check(game.UI.HasModal, "Quest slot Journal button opens Journal"); game.UI.CloseModal(); game.player.GetComponent<Rigidbody2D>().position = WorldLayout.Spawn; });
             Add(() => Capture("world-plaza-start"));
             AddWorldCapture("academy-open", 498, 205);
             AddWorldCapture("internet-cafe-locked", 218, 411);
@@ -471,7 +495,8 @@ namespace CyberCity.Editor
                     foreach (var lab in mission.finalLabs) AddWebRoute(mission, lab);
                     AddSocRoute(mission);
                 }
-                else if (mission.kind == "graduation") Add(() => { Capture("09-graduation"); Click("TAKE THE FINAL PLEDGE"); });
+                else if (mission.kind == "graduation")
+                { Add(() => Capture("09-graduation")); Add(() => Click("TAKE THE FINAL PLEDGE")); }
                 for (int n = 0; n < (mission.questions?.Length ?? 0); n++)
                 {
                     int question = n;
@@ -507,7 +532,19 @@ namespace CyberCity.Editor
                         Capture("world-" + slug + "-open");
                     });
                     Add(() => game.UI.ShowMap());
-                    Add(() => { Check(GameObject.Find("Active mission building") != null, "Atlas marks next mission building"); Capture("world-atlas-" + slug); game.UI.CloseModal(); });
+                    Add(() => { Check(GameObject.Find("Active mission building") != null, "Atlas marks next mission building"); Capture("world-atlas-" + slug); });
+                    Add(() => game.UI.CloseModal());
+                    if (index == 0)
+                    {
+                        foreach (var resolution in FullscreenResolutions)
+                        {
+                            var size = resolution;
+                            Add(() => SetFullscreenResolution(size.x, size.y));
+                            Add(PositionForFullscreenCapture);
+                            Add(() => { CyberCityWorldVerification.VerifyFraming(game, size.x, size.y); CyberCityFullscreenVerification.VerifyLabels(game); Check(game.areas.Single(a => a.areaName == "Internet Cafe").IsOpen, "Cafe remains unlocked at " + size); Capture("fullscreen-" + size.x + "x" + size.y + "-open"); });
+                        }
+                        Add(() => SetFullscreenResolution(1920, 1080));
+                    }
                 }
             }
             Add(() => { game.UI.CloseModal(); game.player.GetComponent<Rigidbody2D>().position = WorldLayout.Spawn; });
@@ -583,6 +620,23 @@ namespace CyberCity.Editor
         }
 
         static void Add(Action action) { actions.Enqueue(action); }
+        static void SetFullscreenResolution(int width, int height)
+        {
+            CyberCityWorldVerification.SetGameViewResolution(width, height);
+            pendingResolution = new Vector2Int(width, height); resizeDeadline = EditorApplication.timeSinceStartup + 20;
+        }
+        static void PositionForFullscreenCapture()
+        {
+            // Keep evidence on the academy approach / cafe bridge, never teleport into water.
+            Vector2 point = game.Progress.completed == 0 ? WorldLayout.FromPixel(498, 205) : WorldLayout.FromPixel(230, 406);
+            Physics2D.SyncTransforms();
+            Check(!Physics2D.OverlapCircleAll(point + Vector2.up * .16f, .22f).Any(c => c.GetComponent<PlayerController>() == null), "Fullscreen capture position is walkable");
+            game.player.GetComponent<Rigidbody2D>().position = point;
+        }
+        static readonly Vector2Int[] FullscreenResolutions = {
+            new Vector2Int(1920,1080), new Vector2Int(1366,768), new Vector2Int(2560,1440),
+            new Vector2Int(1280,720), new Vector2Int(1920,1200), new Vector2Int(2560,1080), new Vector2Int(1440,1080)
+        };
         static void AddWorldCapture(string name, float x, float y)
         {
             Add(() => { game.UI.CloseModal(); game.player.GetComponent<Rigidbody2D>().position = WorldLayout.FromPixel(x, y); });
@@ -594,12 +648,27 @@ namespace CyberCity.Editor
             // Give input, physics, coroutines and deferred UI destruction actual game frames.
             if (!running || Time.unscaledTimeAsDouble < next || Time.frameCount < nextFrame) return;
             next = Time.unscaledTimeAsDouble + .4; nextFrame = Time.frameCount + 2;
-            try { if (actions.Count > 0) actions.Dequeue()(); }
+            try
+            {
+                if (pendingResolution != Vector2Int.zero)
+                {
+                    // Game View selection and its actual render target update on different editor ticks.
+                    if (Screen.width != pendingResolution.x || Screen.height != pendingResolution.y)
+                    {
+                        if (EditorApplication.timeSinceStartup > resizeDeadline)
+                            throw new Exception("Game View resize timed out: expected " + pendingResolution + ", actual " + Screen.width + "x" + Screen.height);
+                        return;
+                    }
+                    pendingResolution = Vector2Int.zero;
+                    return; // Let camera projection and canvas layout see the new render target too.
+                }
+                if (actions.Count > 0) actions.Dequeue()();
+            }
             catch (Exception e) { failure = e.ToString(); Status = "FAILED: " + e.Message; WriteReport(); Debug.LogError(Status); End(); }
         }
         static void End()
         {
-            Release(); RestoreVerificationInput(); running = false; EditorApplication.update -= Tick; EditorApplication.isPlaying = false;
+            Release(); RestoreVerificationInput(); pendingResolution = Vector2Int.zero; running = false; EditorApplication.update -= Tick; EditorApplication.isPlaying = false;
         }
         static void RestoreAfterPlay(PlayModeStateChange state)
         {
@@ -658,6 +727,8 @@ namespace CyberCity.Editor
         static IEnumerable<string> VisibleText() => UnityEngine.Object.FindObjectsByType<Text>(FindObjectsInactive.Exclude).Select(t => t.text);
         static void Capture(string name)
         {
+            if (game.UI.HasModal && game.UI.Content != null) CyberCityFullscreenVerification.VerifyModal(game);
+            if (!name.StartsWith("fullscreen-", StringComparison.Ordinal)) name = "fullscreen-" + name;
             Directory.CreateDirectory("Documentation/Screenshots");
             ScreenCapture.CaptureScreenshot("Documentation/Screenshots/" + name + ".png");
         }
