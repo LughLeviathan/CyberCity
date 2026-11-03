@@ -16,6 +16,11 @@ namespace CyberCity
         public int UnlockAfter => CampaignLoader.UnlockForArea(game.Campaign, areaName);
         CyberCityGame game;
         static readonly Color LockedTint = new Color(.38f, .42f, .55f, 1);
+        float VfxScale => game != null && game.UI != null ? game.UI.VfxScale : .85f;
+        public void RefreshVfx()
+        {
+            if (!IsAnimating && glow != null) glow.color = new Color(1, 1, 1, VfxScale);
+        }
 
         public void Initialize(CyberCityGame owner)
         {
@@ -36,7 +41,7 @@ namespace CyberCity
         {
             IsOpen = open; IsAnimating = false;
             building.color = open ? Color.white : LockedTint;
-            glow.enabled = open; glow.color = Color.white;
+            glow.enabled = open; glow.color = new Color(1, 1, 1, VfxScale);
             lockIcon.enabled = !open;
             foreach (var f in fragments) f.enabled = false;
         }
@@ -52,14 +57,14 @@ namespace CyberCity
             {
                 float a = Mathf.Clamp01(t / .85f);
                 building.color = Color.Lerp(LockedTint, Color.white, a);
-                glow.color = new Color(1, 1, 1, a);
+                glow.color = new Color(1, 1, 1, a * VfxScale);
                 for (int i = 0; i < fragments.Length; i++)
                 {
                     var f = fragments[i]; float direction = i == 0 ? -1 : 1;
                     f.enabled = true;
                     f.transform.localPosition = origin + new Vector3(direction * (.125f + a * .55f), a * .3f - a * a * .65f, 0);
                     f.transform.localRotation = Quaternion.Euler(0, 0, direction * a * 75);
-                    f.color = new Color(1, 1, 1, 1 - a);
+                    f.color = new Color(1, 1, 1, (1 - a) * VfxScale);
                 }
                 yield return null;
             }

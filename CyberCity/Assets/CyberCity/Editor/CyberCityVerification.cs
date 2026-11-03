@@ -20,7 +20,9 @@ namespace CyberCity.Editor
         static int nextFrame;
         static Vector2Int pendingResolution;
         static double resizeDeadline;
-        static InputSettings originalInputSettings, verificationInputSettings;
+        static InputSettings originalInputSettings;
+        static InputSettings.EditorInputBehaviorInPlayMode originalEditorInputBehavior;
+        static InputSettings.BackgroundBehavior originalBackgroundBehavior;
         static Keyboard verificationKeyboard, originalKeyboard;
         static readonly List<Keyboard> pausedKeyboards = new List<Keyboard>();
         static bool running;
@@ -383,13 +385,15 @@ namespace CyberCity.Editor
                 Add(() => SetFullscreenResolution(size.x, size.y));
                 Add(() => { CyberCityFullscreenVerification.VerifyWelcome(game); Check(true, "Welcome covers display and centers content at " + size); Capture("fullscreen-" + size.x + "x" + size.y + "-welcome"); });
             }
-            Add(() => { Click("BEGIN YOUR PATROL"); Check(!game.Started, "Username required before patrol"); FindInput().text = "  Byte_42  "; Click("BEGIN YOUR PATROL"); });
+            Add(() => { Click(MenuLocale.Get("menu.start", game.UI.Language)); Click(MenuLocale.Get("name.begin", game.UI.Language)); Check(!game.Started, "Username required before patrol"); FindInput().text = "  Byte_42  "; Click(MenuLocale.Get("name.begin", game.UI.Language)); });
+            Add(() => { }); Add(() => { }); Add(() => { }); Add(() => { });
             Add(() => Check(game.Started && game.Progress.playerName == "Byte_42", "Valid username is trimmed and persisted"));
             Add(() => game.UI.ShowPause());
             Add(() => Click("Change username"));
             Add(() => { FindInput().text = "ab"; Click("SAVE USERNAME"); Check(game.Progress.playerName == "Byte_42", "Invalid pause rename preserves stored identity"); });
             Add(() => { FindInput().text = "Ada_Byte"; Click("SAVE USERNAME"); Check(game.Progress.playerName == "Ada_Byte", "Pause rename applies valid username"); });
-            Add(() => { game.UI.ShowStart(); Check(VisibleText().Any(t => t.Contains("WELCOME BACK, Ada_Byte")), "Returning player sees saved name"); Click("CONTINUE PATROL"); });
+            Add(() => { game.UI.ShowStart(); Click(MenuLocale.Get("menu.start", game.UI.Language)); Check(FindInput().text == "Ada_Byte", "Returning player sees saved name in popup"); Click(MenuLocale.Get("name.begin", game.UI.Language)); });
+            Add(() => { }); Add(() => { }); Add(() => { }); Add(() => { });
             Add(VerifyInterfaceEdgeCases);
             Add(() => Capture("02-city"));
             Add(() => { movementStart = game.player.transform.position; Press(Key.W); });
@@ -684,31 +688,49 @@ namespace CyberCity.Editor
         static void ConfigureVerificationInput()
         {
             // Editor input buffers differ from runtime buffers when the desktop is unfocused.
-            // Clone settings for this run and use a virtual keyboard; no project/user input settings are saved.
+            // Keep Unity's settings object alive: replacing HideAndDontSave defaults causes
+            // InputManager to destroy them, leaving a dead reference on the next Play session.
+            if (originalInputSettings != null) throw new InvalidOperationException("Verification input is already configured.");
             originalInputSettings = InputSystem.settings;
-            verificationInputSettings = UnityEngine.Object.Instantiate(originalInputSettings);
-            verificationInputSettings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
-            verificationInputSettings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
-            InputSystem.settings = verificationInputSettings;
-            originalKeyboard = Keyboard.current;
-            pausedKeyboards.Clear();
-            foreach (var keyboard in InputSystem.devices.OfType<Keyboard>().Where(k => k.enabled).ToArray())
-            { pausedKeyboards.Add(keyboard); InputSystem.DisableDevice(keyboard); }
-            verificationKeyboard = InputSystem.AddDevice<Keyboard>("CyberCity verification keyboard");
-            verificationKeyboard.MakeCurrent();
+            originalEditorInputBehavior = originalInputSettings.editorInputBehaviorInPlayMode;
+            originalBackgroundBehavior = originalInputSettings.backgroundBehavior;
+            EditorApplication.playModeStateChanged += RestoreInputOnPlayModeChange;
+            AssemblyReloadEvents.beforeAssemblyReload += RestoreVerificationInput;
+            EditorApplication.quitting += RestoreVerificationInput;
+            try
+            {
+                originalInputSettings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
+                originalInputSettings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
+                originalKeyboard = Keyboard.current;
+                pausedKeyboards.Clear();
+                foreach (var keyboard in InputSystem.devices.OfType<Keyboard>().Where(k => k.enabled).ToArray())
+                { pausedKeyboards.Add(keyboard); InputSystem.DisableDevice(keyboard); }
+                verificationKeyboard = InputSystem.AddDevice<Keyboard>("CyberCity verification keyboard");
+                verificationKeyboard.MakeCurrent();
+            }
+            catch { RestoreVerificationInput(); throw; }
+        }
+        static void RestoreInputOnPlayModeChange(PlayModeStateChange state)
+        {
+            if (state == PlayModeStateChange.ExitingPlayMode) RestoreVerificationInput();
         }
         static void RestoreVerificationInput()
         {
+            EditorApplication.playModeStateChanged -= RestoreInputOnPlayModeChange;
+            AssemblyReloadEvents.beforeAssemblyReload -= RestoreVerificationInput;
+            EditorApplication.quitting -= RestoreVerificationInput;
             if (verificationKeyboard != null && verificationKeyboard.added) InputSystem.RemoveDevice(verificationKeyboard);
             verificationKeyboard = null;
             foreach (var keyboard in pausedKeyboards) if (keyboard.added) InputSystem.EnableDevice(keyboard);
             pausedKeyboards.Clear();
             if (originalKeyboard != null && originalKeyboard.added) originalKeyboard.MakeCurrent();
             originalKeyboard = null;
-            if (originalInputSettings != null) InputSystem.settings = originalInputSettings;
+            if (originalInputSettings != null)
+            {
+                originalInputSettings.editorInputBehaviorInPlayMode = originalEditorInputBehavior;
+                originalInputSettings.backgroundBehavior = originalBackgroundBehavior;
+            }
             originalInputSettings = null;
-            if (verificationInputSettings != null) UnityEngine.Object.DestroyImmediate(verificationInputSettings);
-            verificationInputSettings = null;
         }
         static void Press(Key key) { verificationKeyboard.MakeCurrent(); InputSystem.QueueStateEvent(verificationKeyboard, new KeyboardState(key)); }
         static void Release() { if (verificationKeyboard != null && verificationKeyboard.added) InputSystem.QueueStateEvent(verificationKeyboard, new KeyboardState()); }

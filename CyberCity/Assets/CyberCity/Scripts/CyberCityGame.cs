@@ -76,7 +76,7 @@ namespace CyberCity
             if (NearestDoor != null && Vector2.Distance(player.transform.position, NearestDoor.door.position) > 1.65f) NearestDoor = null;
             player.CanMove = Started && !UI.HasModal;
             var k = Keyboard.current;
-            if (Started && k != null)
+            if (Started && k != null && !UI.FrontEndActive)
             {
                 if (k.escapeKey.wasPressedThisFrame) { if (UI.HasModal) UI.CloseModal(); else UI.ShowPause(); }
                 else if (!UI.HasModal && k.eKey.wasPressedThisFrame)

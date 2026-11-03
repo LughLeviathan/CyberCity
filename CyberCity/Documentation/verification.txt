@@ -1,6 +1,6 @@
 CyberCity verification
 PASS: 350 checks including all missions through runtime UI
-UTC: 2026-10-27T11:54:15.1311056Z
+UTC: 2026-11-03T03:11:08.5732756Z
 
 PASS  Mission count follows scenario pack
 PASS  Validated offline missions
@@ -55,7 +55,7 @@ PASS  Hints reduce reward without crossing minimum
 PASS  Cannot patch before observing flaw: idor
 PASS  Router keeps requests within fictional scenario: idor
 PASS  Benign or false condition cannot demonstrate attack: idor
-PASS  Varied attack demonstrated: idor / 
+PASS  Varied attack demonstrated: idor /
 PASS  XSS produces a fake game alert only
 PASS  Applying source fix still requires retest: idor
 PASS  Changed form body does not verify captured request: idor
@@ -179,7 +179,7 @@ PASS  Username required before patrol
 PASS  Valid username is trimmed and persisted
 PASS  Invalid pause rename preserves stored identity
 PASS  Pause rename applies valid username
-PASS  Returning player sees saved name
+PASS  Returning player sees saved name in popup
 PASS  Dynamic HUD resolves player token
 PASS  Refreshed browser source labels resolve player token
 PASS  Previously paid browser hints can be reviewed after reopen

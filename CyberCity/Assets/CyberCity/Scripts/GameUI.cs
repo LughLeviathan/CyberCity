@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
@@ -20,7 +22,27 @@ namespace CyberCity
         public RectTransform Content { get; private set; }
         // After Initialize, replace the Journal child with your own button under this slot.
         public RectTransform QuestButtonSlot { get; private set; }
-        public bool HasModal => modal != null;
+        public bool HasModal => modal != null || transitionOverlay != null;
+        public bool FrontEndActive => frontScreen != FrontScreen.None;
+        public const string LanguagePreference = "CyberCityLanguage", SfxPreference = "CyberCityEffects", VfxPreference = "CyberCityVfx";
+        public string Language { get; private set; } = "id";
+        public float VfxIntensity { get; private set; } = 85;
+        public float VfxScale => VfxIntensity / 100f;
+        enum FrontScreen { None, Main, Settings, Username, Transition }
+        enum MenuVariant { Primary, Secondary, Quiet }
+        FrontScreen frontScreen;
+        Font menuTitleFont, pixelFont, bodyFont, mediumFont, semiboldFont;
+        RectTransform welcomeContent;
+        GameObject frontLayer, transitionOverlay;
+        CanvasGroup menuGroup;
+        InputField username;
+        Text usernameHelp;
+        MenuSurface usernameSurface;
+        readonly List<Selectable> frontControls = new List<Selectable>();
+        readonly List<Graphic> menuLights = new List<Graphic>();
+        Coroutine transitionRoutine;
+        bool previousNavigation;
+        int frontOpenedFrame;
         Font font;
         GameObject modal;
         RectTransform hud, labels;
@@ -31,6 +53,21 @@ namespace CyberCity
         Text playerLabel;
         float toastUntil;
         ModuleUI modules;
+
+        string L(string key) => MenuLocale.Get(key, Language);
+        static Color Alpha(Color color, float alpha) { color.a = alpha; return color; }
+        void LoadMenuSettings()
+        {
+            string savedLanguage = PlayerPrefs.GetString(LanguagePreference, "id");
+            Language = Array.IndexOf(MenuLocale.Codes, savedLanguage) >= 0 ? savedLanguage : "id";
+            VfxIntensity = Mathf.Clamp(PlayerPrefs.GetFloat(VfxPreference, 85), 0, 100);
+            if (Game?.effects != null) Game.effects.volume = Mathf.Clamp01(PlayerPrefs.GetFloat(SfxPreference, .7f));
+            menuTitleFont = Resources.Load<Font>("CyberCityFonts/Silkscreen-Bold");
+            pixelFont = Resources.Load<Font>("CyberCityFonts/PixelifySans-Bold");
+            bodyFont = Resources.Load<Font>("CyberCityFonts/ChakraPetch-Regular");
+            mediumFont = Resources.Load<Font>("CyberCityFonts/ChakraPetch-Medium");
+            semiboldFont = Resources.Load<Font>("CyberCityFonts/ChakraPetch-SemiBold");
+        }
 
         public static Color Hex(string hex) { ColorUtility.TryParseHtmlString("#" + hex, out Color c); return c; }
         void EnsureCanvas()
@@ -93,10 +130,11 @@ namespace CyberCity
 
         public void Initialize(CyberCityGame game)
         {
+            CancelTransition(); RestoreNavigation();
             if (CanvasRoot != null) Destroy(CanvasRoot.gameObject);
             CanvasRoot = null; modal = null; Content = null;
             nameLabels.Clear(); markers.Clear();
-            Game = game; EnsureCanvas(); modules = new ModuleUI(this);
+            Game = game; EnsureCanvas(); LoadMenuSettings(); modules = new ModuleUI(this);
             cropBars = new RectTransform[4];
             for (int i = 0; i < cropBars.Length; i++)
             {
@@ -211,14 +249,17 @@ namespace CyberCity
 
         public void CloseModal()
         {
+            if (frontScreen == FrontScreen.Transition) return;
+            if (frontScreen == FrontScreen.Settings || frontScreen == FrontScreen.Username) { BackToMenu(); return; }
             if (Game != null && !Game.Started) return;
-            if (modal != null) { modal.SetActive(false); Destroy(modal); modal = null; Content = null; }
+            RemoveModal();
             EventSystem.current?.SetSelectedGameObject(null);
         }
         void RemoveModal()
         {
             if (modal != null) { modal.SetActive(false); Destroy(modal); }
-            modal = null;
+            modal = null; Content = null; frontLayer = null; username = null;
+            frontControls.Clear(); menuLights.Clear(); RestoreNavigation(); frontScreen = FrontScreen.None;
         }
         public RectTransform OpenModal(string kicker, string title, string subtitle = "")
         {
@@ -236,44 +277,333 @@ namespace CyberCity
             return Content;
         }
 
+        // Front-end screens keep the existing top-left 1600x900 coordinate system.
+        MenuSurface Rounded(Transform parent, string name, float x, float y, float w, float h,
+            Color fill, float radius = 16, Color? stroke = null, float strokeWidth = 2)
+        {
+            var surface = Rect(parent, name, x, y, w, h).gameObject.AddComponent<MenuSurface>();
+            surface.color = fill; surface.radius = radius; surface.stroke = stroke ?? fill;
+            surface.strokeWidth = stroke.HasValue ? strokeWidth : 0;
+            return surface;
+        }
+        Text MenuText(Transform parent, string value, float x, float y, float w, float h,
+            int size, Color color, Font face = null, float tracking = 0, TextAnchor align = TextAnchor.MiddleLeft)
+        {
+            var t = Text(parent, value, x, y, w, h, size, color);
+            t.font = face != null ? face : bodyFont != null ? bodyFont : font;
+            t.alignment = align;
+            if (tracking != 0) t.gameObject.AddComponent<MenuTracking>().spacing = size * tracking;
+            return t;
+        }
+        Button MenuAction(Transform parent, string name, string index, string key, float x, float y,
+            float width, Action action, MenuVariant variant)
+        {
+            Color fill = variant == MenuVariant.Primary ? Cyan : variant == MenuVariant.Secondary ? Raised : Ink;
+            Color text = variant == MenuVariant.Primary ? Ink : variant == MenuVariant.Secondary ? White : Muted;
+            Color? stroke = variant == MenuVariant.Primary ? (Color?)null : Alpha(variant == MenuVariant.Secondary ? Cyan : Muted, .35f);
+            var surface = Rounded(parent, name, x, y, width, 72, fill, 16, stroke);
+            var button = surface.gameObject.AddComponent<MenuButton>();
+            button.surface = surface; button.restingStroke = surface.stroke; button.targetGraphic = surface;
+            var colors = button.colors;
+            colors.normalColor = Color.white; colors.highlightedColor = colors.selectedColor = new Color(1.12f, 1.12f, 1.12f, 1);
+            colors.pressedColor = new Color(.85f, .85f, .85f, 1); colors.fadeDuration = .08f; button.colors = colors;
+            button.navigation = new Navigation { mode = Navigation.Mode.None };
+            // Put the label first in the hierarchy for existing automation/accessibility consumers.
+            float indexWidth = index.Length > 3 ? 56 : index.Length > 2 ? 38 : 20;
+            float labelX = 24 + indexWidth + 16;
+            string label = L(key);
+            int labelSize = 26;
+            if (label.Length > 14) labelSize = 23;
+            MenuText(surface.transform, label, labelX, 0, width - labelX - 64, 72, labelSize, text, menuTitleFont, .06f);
+            MenuText(surface.transform, index, 24, 0, indexWidth + 4, 72, 14, Alpha(text, .65f), semiboldFont, .12f);
+            MenuText(surface.transform, L("icon.arrow"), width - 46, 0, 26, 72, 26, text, pixelFont, 0, TextAnchor.MiddleCenter);
+            button.onClick.AddListener(() => { if (Game != null) Game.Play(Game.clickSound); action(); });
+            frontControls.Add(button); return button;
+        }
+        void TakeNavigation()
+        {
+            if (frontScreen == FrontScreen.None && EventSystem.current != null)
+            {
+                previousNavigation = EventSystem.current.sendNavigationEvents;
+                EventSystem.current.sendNavigationEvents = false;
+            }
+        }
+        void RestoreNavigation()
+        {
+            if (frontScreen != FrontScreen.None && EventSystem.current != null)
+                EventSystem.current.sendNavigationEvents = previousNavigation;
+        }
         public void ShowStart()
         {
-            RemoveModal();
+            CancelTransition(); RemoveModal(); EnsureCanvas();
+            if (bodyFont == null) LoadMenuSettings();
+            TakeNavigation(); frontScreen = FrontScreen.Main; frontOpenedFrame = Time.frameCount;
             modal = Box(CanvasRoot, "Welcome", 0, 0, 1600, 900, Ink).gameObject;
             Stretch((RectTransform)modal.transform);
-            var welcome = Rect(modal.transform, "Welcome content", 0, 0, 1600, 900);
-            Anchor(welcome, new Vector2(.5f, .5f), new Vector2(.5f, .5f), Vector2.zero);
-            var picture = Rect(welcome, "City illustration", 600, 48, 1015, 798).gameObject.AddComponent<Image>();
-            picture.sprite = cityPreview; picture.preserveAspect = true; picture.color = new Color(.7f,.8f,1,.67f); picture.raycastTarget = false;
-            Box(welcome, "Title back", 0, 0, 660, 900, new Color(.035f,.059f,.133f,.96f));
-            Text(welcome, "S I J A W   /   FIELD OPERATIONS", 80, 114, 560, 30, 14, Cyan, true);
-            Text(welcome, "CYBER\nCITY", 72, 187, 570, 250, 106, White, true);
-            Box(welcome, "Title rule", 80, 446, 70, 5, Gold);
-            Text(welcome, "THINK BEFORE YOU CLICK", 80, 482, 560, 40, 22, Gold, true);
-            Text(welcome, "A city of connections. A world of hidden risks.\nBuild the skills to protect it, {player}.", 80, 538, 510, 65, 20, Muted);
-            bool returning = Game.Progress.started && PlayerIdentity.TryValidate(Game.Progress.playerName, out _, out _);
-            if (returning)
+            welcomeContent = Rect(modal.transform, "Welcome content", 0, 0, 1600, 900);
+            Anchor(welcomeContent, new Vector2(.5f, .5f), new Vector2(.5f, .5f), Vector2.zero);
+            menuGroup = welcomeContent.gameObject.AddComponent<CanvasGroup>();
+            BuildMenuContents();
+            SelectControl(0);
+        }
+        void BuildMenuContents()
+        {
+            frontControls.Clear(); menuLights.Clear();
+            BuildSkyline(welcomeContent);
+            var fade = Rect(welcomeContent, "Left fade", 0, 0, 980, 900).gameObject.AddComponent<MenuGradient>();
+            fade.color = Ink; fade.raycastTarget = false;
+            MenuText(welcomeContent, L("menu.eyebrow"), 80, 92, 600, 24, 14, Cyan, semiboldFont);
+            // Unity's font line metric includes extra leading; use explicit baseline separation.
+            string[] titleLines = L("menu.title").Split('\n');
+            for (int i = 0; i < titleLines.Length; i++)
+                MenuText(welcomeContent, titleLines[i], 76, 128 + i * 112 * .88f, 650, 112, 112, White, menuTitleFont, .02f).verticalOverflow = VerticalWrapMode.Overflow;
+            Box(welcomeContent, "Title rule", 80, 372, 72, 5, Gold).GetComponent<Image>().raycastTarget = false;
+            MenuText(welcomeContent, L("menu.tagline"), 80, 396, 620, 30, 20, Gold, semiboldFont, .1f);
+            MenuAction(welcomeContent, "Menu Start", "01", "menu.start", 80, 500, 440, ShowUsername, MenuVariant.Primary);
+            MenuAction(welcomeContent, "Menu Settings", "02", "menu.settings", 80, 588, 440, ShowSettings, MenuVariant.Secondary);
+            MenuAction(welcomeContent, "Menu Quit", "03", "menu.quit", 80, 676, 440, QuitGame, MenuVariant.Quiet);
+            MenuText(welcomeContent, L("menu.hint"), 80, 806, 640, 28, 14, Muted);
+        }
+        void BuildSkyline(Transform parent)
+        {
+            var random = new System.Random(314159);
+            int x = 640, index = 0;
+            while (x < 1600)
             {
-                Text(welcome, "WELCOME BACK, {player}", 80, 617, 510, 30, 20, Teal, true);
-                Button(welcome, "CONTINUE PATROL   >", 80, 673, 440, 64, Game.Begin, Cyan);
+                int width = random.Next(70, 131), height = random.Next(190, 521);
+                width = Mathf.Min(width, 1600 - x);
+                var building = Box(parent, "Skyline " + index, x, 900 - height, width, height, index % 2 == 0 ? Panel : Raised);
+                building.GetComponent<Image>().raycastTarget = false;
+                var roof = Box(building, "Roof light", 0, 0, width, 4, Alpha(Cyan, .45f)).GetComponent<Image>();
+                roof.raycastTarget = false; menuLights.Add(roof);
+                for (int wx = 14; wx + 8 < width; wx += 24)
+                    for (int wy = 24; wy + 10 < height; wy += 30)
+                        if (random.NextDouble() < .3)
+                        {
+                            var window = Box(building, "Window", wx, wy, 8, 10,
+                                Alpha(random.NextDouble() < .7 ? Gold : Cyan, .85f)).GetComponent<Image>();
+                            window.raycastTarget = false; menuLights.Add(window);
+                        }
+                x += width + random.Next(6, 21); index++;
             }
-            else
+            ApplyMenuLightIntensity();
+        }
+        void ApplyMenuLightIntensity()
+        {
+            foreach (var light in menuLights)
+                if (light != null) light.color = Alpha(light.color, (light.name == "Roof light" ? .45f : .85f) * VfxScale);
+        }
+        RectTransform FrontPanel(string name, float width, float height)
+        {
+            if (frontLayer != null) { frontLayer.SetActive(false); Destroy(frontLayer); }
+            frontControls.Clear(); username = null;
+            menuGroup.interactable = false; menuGroup.blocksRaycasts = false;
+            frontLayer = Box(modal.transform, name + " scrim", 0, 0, 1600, 900, Alpha(Ink, .84f)).gameObject;
+            Stretch((RectTransform)frontLayer.transform);
+            var panel = Rounded(frontLayer.transform, name, 0, 0, width, height, Panel, 24, Alpha(Cyan, .3f)).rectTransform;
+            Anchor(panel, new Vector2(.5f, .5f), new Vector2(.5f, .5f), Vector2.zero);
+            frontOpenedFrame = Time.frameCount;
+            return panel;
+        }
+        public void ShowSettings()
+        {
+            if (modal == null || welcomeContent == null) ShowStart();
+            var panel = FrontPanel("Settings", 720, 691); frontScreen = FrontScreen.Settings;
+            MenuText(panel, L("settings.title"), 40, 36, 560, 46, 34, White, menuTitleFont);
+            var close = Rounded(panel, "Settings Close", 636, 36, 44, 44, Raised, 10);
+            var closeButton = close.gameObject.AddComponent<Button>(); closeButton.targetGraphic = close;
+            closeButton.onClick.AddListener(BackToMenu); closeButton.navigation = new Navigation { mode = Navigation.Mode.None };
+            MenuText(close.transform, L("icon.close"), 0, 0, 44, 44, 20, Muted, pixelFont, 0, TextAnchor.MiddleCenter);
+            MenuText(panel, L("settings.audio_visual"), 40, 104, 640, 24, 13, Muted, semiboldFont, .16f);
+            SettingSlider(panel, "SFX", "settings.sfx", 147, Mathf.RoundToInt(Game.effects.volume * 100), value => {
+                Game.effects.volume = value / 100f; PlayerPrefs.SetFloat(SfxPreference, Game.effects.volume); PlayerPrefs.Save();
+            });
+            SettingSlider(panel, "VFX", "settings.vfx", 233, Mathf.RoundToInt(VfxIntensity), SetVfxIntensity);
+            Box(panel, "Divider", 40, 325, 640, 1, Alpha(Muted, .2f)).GetComponent<Image>().raycastTarget = false;
+            MenuText(panel, L("settings.language"), 40, 352, 640, 24, 13, Muted, semiboldFont, .16f);
+            for (int i = 0; i < MenuLocale.Codes.Length; i++)
+                LanguageOption(panel, i, 40 + i % 2 * 328, 396 + i / 2 * 80);
+            MenuAction(panel, "Settings Back", L("key.escape"), "settings.back", 40, 579, 640, BackToMenu, MenuVariant.Secondary);
+            frontControls.Add(closeButton); SelectControl(0);
+        }
+        void SettingSlider(Transform parent, string name, string key, float y, int initial, Action<float> changed)
+        {
+            var root = Rect(parent, name + " Slider", 40, y, 640, 72);
+            MenuText(root, L(key), 0, 0, 540, 28, 15, Muted, semiboldFont, .14f);
+            var valueText = MenuText(root, initial.ToString(), 550, 0, 90, 28, 22, Gold, pixelFont, 0, TextAnchor.MiddleRight);
+            var hitArea = Rect(root, "Slider hit area", 0, 30, 640, 42);
+            var hitGraphic = hitArea.gameObject.AddComponent<Image>(); hitGraphic.color = Alpha(Ink, 0);
+            var track = Rounded(hitArea, "Track", 0, 14, 640, 12, Raised, 6); track.raycastTarget = false;
+            var fill = Rounded(track.transform, "Fill", 0, 0, 640, 12, Cyan, 6); fill.raycastTarget = false;
+            fill.rectTransform.offsetMin = fill.rectTransform.offsetMax = Vector2.zero;
+            var handleArea = Rect(track.transform, "Handle area", 0, 6, 640, 0);
+            var thumb = Rounded(handleArea, "Thumb", 0, 0, 36, 36, White, 18, Ink, 4);
+            thumb.rectTransform.pivot = new Vector2(.5f, .5f);
+            thumb.rectTransform.anchoredPosition = Vector2.zero;
+            thumb.raycastTarget = false;
+            var slider = hitArea.gameObject.AddComponent<Slider>();
+            slider.minValue = 0; slider.maxValue = 100; slider.wholeNumbers = true;
+            slider.fillRect = fill.rectTransform; slider.handleRect = thumb.rectTransform; slider.targetGraphic = thumb;
+            slider.direction = Slider.Direction.LeftToRight;
+            slider.navigation = new Navigation { mode = Navigation.Mode.None };
+            slider.SetValueWithoutNotify(initial);
+            slider.onValueChanged.AddListener(value => { valueText.text = Mathf.RoundToInt(value).ToString(); changed(value); });
+            frontControls.Add(slider);
+        }
+        public void SetVfxIntensity(float value)
+        {
+            VfxIntensity = Mathf.Clamp(value, 0, 100);
+            PlayerPrefs.SetFloat(VfxPreference, VfxIntensity); PlayerPrefs.Save(); ApplyMenuLightIntensity();
+            if (Game?.areas != null) foreach (var area in Game.areas) area.RefreshVfx();
+        }
+        void LanguageOption(Transform parent, int index, float x, float y)
+        {
+            string code = MenuLocale.Codes[index]; bool selected = Language == code;
+            var surface = Rounded(parent, "Language " + code, x, y, 312, 64, selected ? Raised : Panel, 16,
+                Alpha(selected ? Cyan : Muted, selected ? 1 : .25f));
+            var button = surface.gameObject.AddComponent<MenuButton>(); button.surface = surface;
+            button.restingStroke = surface.stroke; button.targetGraphic = surface;
+            button.navigation = new Navigation { mode = Navigation.Mode.None };
+            Rounded(surface.transform, "Radio", 18, 22, 20, 20, selected ? Cyan : Panel, 10,
+                selected ? Cyan : Alpha(Muted, .6f)).raycastTarget = false;
+            MenuText(surface.transform, MenuLocale.Names[index], 52, 0, 210, 64, 17, selected ? White : Muted, mediumFont);
+            MenuText(surface.transform, code.ToUpperInvariant(), 264, 0, 30, 64, 13, selected ? Cyan : Muted, semiboldFont, .12f, TextAnchor.MiddleRight);
+            button.onClick.AddListener(() => {
+                Game.Play(Game.clickSound); Language = code;
+                PlayerPrefs.SetString(LanguagePreference, code); PlayerPrefs.Save();
+                foreach (Transform child in welcomeContent) { child.gameObject.SetActive(false); Destroy(child.gameObject); }
+                BuildMenuContents(); ShowSettings(); SelectControl(2 + index);
+            });
+            frontControls.Add(button);
+        }
+        public void ShowUsername()
+        {
+            var panel = FrontPanel("Username", 640, 554); frontScreen = FrontScreen.Username;
+            MenuText(panel, L("name.eyebrow"), 40, 36, 560, 24, 13, Cyan, semiboldFont, .16f);
+            MenuText(panel, L("name.title"), 40, 78, 560, 64, 44, White, pixelFont, .02f);
+            MenuText(panel, L("name.body"), 40, 152, 560, 46, 17, Muted);
+            usernameSurface = Rounded(panel, "Username Field", 40, 208, 560, 64, Ink, 16, Cyan);
+            username = usernameSurface.gameObject.AddComponent<InputField>();
+            username.targetGraphic = usernameSurface; username.characterLimit = 16;
+            username.lineType = InputField.LineType.SingleLine;
+            username.navigation = new Navigation { mode = Navigation.Mode.None };
+            var value = MenuText(usernameSurface.transform, "", 20, 18, 430, 28, 22, White, mediumFont);
+            var hint = MenuText(usernameSurface.transform, L("name.placeholder"), 20, 18, 430, 28, 22, Muted, mediumFont);
+            value.verticalOverflow = hint.verticalOverflow = VerticalWrapMode.Overflow;
+            username.textComponent = value; username.placeholder = hint;
+            username.customCaretColor = true; username.caretColor = Cyan; username.caretWidth = 3;
+            var counter = MenuText(usernameSurface.transform, "", 456, 0, 84, 64, 14, Muted, semiboldFont, 0, TextAnchor.MiddleRight);
+            usernameHelp = MenuText(panel, L("name.helper"), 40, 288, 560, 40, 14, Muted);
+            username.onValueChanged.AddListener(text => {
+                counter.text = string.Format(L("name.counter"), text.Length);
+                usernameHelp.text = L("name.helper"); usernameHelp.color = Muted;
+                usernameSurface.stroke = Cyan; usernameSurface.SetVerticesDirty();
+            });
+            username.text = PlayerIdentity.TryValidate(Game.Progress.playerName, out var clean, out _) ? clean : "";
+            counter.text = string.Format(L("name.counter"), username.text.Length);
+            frontControls.Add(username);
+            MenuAction(panel, "Username Begin", L("key.enter"), "name.begin", 40, 344, 560, SubmitUsername, MenuVariant.Primary);
+            MenuAction(panel, "Username Back", L("key.escape"), "name.back", 40, 442, 560, BackToMenu, MenuVariant.Quiet);
+            SelectControl(0); username.ActivateInputField();
+        }
+        void SubmitUsername()
+        {
+            if (frontScreen != FrontScreen.Username) return;
+            if (!Game.SetPlayerName(username.text, out string error))
             {
-                var name = Input(welcome, 80, 620, 440, 48, "Choose your username (3–16 characters)");
-                name.characterLimit = 64; name.text = Game.Progress.playerName;
-                var error = Text(welcome, "Letters, numbers, spaces and underscore.", 80, 677, 510, 36, 15, Muted);
-                Button(welcome, "BEGIN YOUR PATROL   >", 80, 723, 440, 64, () => {
-                    if (!Game.SetPlayerName(name.text, out string reason)) { error.text = reason; error.color = Gold; return; }
-                    Game.Begin();
-                }, Cyan);
-                name.ActivateInputField();
+                usernameHelp.text = MenuLocale.ValidationError(error, Language); usernameHelp.color = Gold;
+                usernameSurface.stroke = Gold; usernameSurface.SetVerticesDirty();
+                username.ActivateInputField(); return;
             }
-            Text(welcome, Game.Campaign.missions.Length + " MISSIONS    /    " + Game.citizens.Length + " MENTORS    /    4 DISTRICTS", 80, 805, 590, 26, 13, Muted);
-            var card = Box(welcome, "Orientation", 1002, 668, 510, 150, Panel);
-            Text(card, "YOUR FIRST ASSIGNMENT", 24, 19, 460, 24, 12, Cyan, true);
-            Text(card, Game.Current == null ? "Patrol complete. Welcome back." : "Meet " + Game.Current.npc, 24, 52, 460, 34, 24, White, true);
-            Text(card, "Explore with WASD. Talk with E. Learn by doing.", 24, 103, 460, 26, 16, Muted);
-            Text(welcome, ProgressStore.LastError ?? CampaignLoader.Status + "   /   PROGRESS SAVED ON THIS DEVICE", 80, 848, 1400, 40, 12, Teal);
+            transitionRoutine = StartCoroutine(GameplayTransition());
+        }
+        void BackToMenu()
+        {
+            var previous = frontScreen;
+            if (frontLayer != null) { frontLayer.SetActive(false); Destroy(frontLayer); frontLayer = null; }
+            username = null; frontScreen = FrontScreen.Main; frontOpenedFrame = Time.frameCount;
+            menuGroup.interactable = true; menuGroup.blocksRaycasts = true;
+            frontControls.Clear(); frontControls.AddRange(welcomeContent.GetComponentsInChildren<Button>());
+            SelectControl(previous == FrontScreen.Settings ? 1 : 0);
+        }
+        IEnumerator GameplayTransition()
+        {
+            RemoveModal(); TakeNavigation(); frontScreen = FrontScreen.Transition;
+            modal = Box(CanvasRoot, "Gameplay transition", 0, 0, 1600, 900, Ink).gameObject;
+            Stretch((RectTransform)modal.transform);
+            EventSystem.current?.SetSelectedGameObject(null);
+            var card = Rect(modal.transform, "Welcome card", 0, 0, 1440, 280);
+            Anchor(card, new Vector2(.5f, .5f), new Vector2(.5f, .5f), Vector2.zero);
+            var vignette = Rect(card, "Vignette", -80, -310, 1600, 900).gameObject.AddComponent<MenuGradient>();
+            vignette.radial = true; vignette.color = Alpha(Raised, .55f * VfxScale); vignette.raycastTarget = false;
+            MenuText(card, L("loading.eyebrow"), 0, 44, 1440, 26, 14, Cyan, semiboldFont, .2f, TextAnchor.MiddleCenter);
+            var greeting = MenuText(card, L("loading.greeting"), 0, 92, 1440, 76, 52, White, pixelFont, .02f, TextAnchor.MiddleCenter);
+            greeting.resizeTextForBestFit = true; greeting.resizeTextMinSize = 32; greeting.resizeTextMaxSize = 52;
+            var track = Rounded(card, "Loading track", 480, 190, 480, 8, Raised, 4);
+            var fill = Rounded(track.transform, "Loading progress", 0, 0, 0, 8, Cyan, 4);
+            MenuText(card, L("loading.hint"), 0, 220, 1440, 30, 16, Muted, bodyFont, 0, TextAnchor.MiddleCenter);
+            for (float elapsed = 0; elapsed < 1.2f; elapsed += Time.unscaledDeltaTime)
+            {
+                fill.rectTransform.sizeDelta = new Vector2(480 * Mathf.Clamp01(elapsed / 1.2f), 8);
+                yield return null;
+            }
+            fill.rectTransform.sizeDelta = new Vector2(480, 8); yield return null;
+            transitionOverlay = Box(CanvasRoot, "Gameplay fade", 0, 0, 1600, 900, Ink).gameObject;
+            Stretch((RectTransform)transitionOverlay.transform);
+            var fade = transitionOverlay.AddComponent<CanvasGroup>();
+            RemoveModal(); Game.Begin(); TakeNavigation(); frontScreen = FrontScreen.Transition;
+            for (float elapsed = 0; elapsed < .25f; elapsed += Time.unscaledDeltaTime)
+            { fade.alpha = 1 - elapsed / .25f; yield return null; }
+            Destroy(transitionOverlay); transitionOverlay = null; RestoreNavigation(); frontScreen = FrontScreen.None;
+            transitionRoutine = null;
+        }
+        void CancelTransition()
+        {
+            if (transitionRoutine != null) StopCoroutine(transitionRoutine);
+            transitionRoutine = null;
+            if (transitionOverlay != null) { transitionOverlay.SetActive(false); Destroy(transitionOverlay); transitionOverlay = null; }
+        }
+        void SelectControl(int index)
+        {
+            if (frontControls.Count == 0) return;
+            var control = frontControls[(index + frontControls.Count) % frontControls.Count];
+            EventSystem.current?.SetSelectedGameObject(control.gameObject);
+        }
+        void Update()
+        {
+            if (!FrontEndActive || frontScreen == FrontScreen.Transition || Time.frameCount <= frontOpenedFrame) return;
+            var keyboard = Keyboard.current; if (keyboard == null || EventSystem.current == null) return;
+            if (keyboard.escapeKey.wasPressedThisFrame)
+            { if (frontScreen != FrontScreen.Main) BackToMenu(); return; }
+            int selected = frontControls.FindIndex(c => c != null && c.gameObject == EventSystem.current.currentSelectedGameObject);
+            bool editing = username != null && username.isFocused;
+            if (keyboard.tabKey.wasPressedThisFrame || (!editing && (keyboard.sKey.wasPressedThisFrame || keyboard.downArrowKey.wasPressedThisFrame)))
+                SelectControl(selected + (keyboard.shiftKey.isPressed ? -1 : 1));
+            else if (!editing && (keyboard.wKey.wasPressedThisFrame || keyboard.upArrowKey.wasPressedThisFrame)) SelectControl(selected - 1);
+            if (selected >= 0 && frontControls[selected] is Slider slider)
+            {
+                if (keyboard.leftArrowKey.wasPressedThisFrame || keyboard.aKey.wasPressedThisFrame) slider.value -= 1;
+                if (keyboard.rightArrowKey.wasPressedThisFrame || keyboard.dKey.wasPressedThisFrame) slider.value += 1;
+            }
+            if (keyboard.enterKey.wasPressedThisFrame || keyboard.numpadEnterKey.wasPressedThisFrame)
+            {
+                if (frontScreen == FrontScreen.Username && (editing || selected <= 0)) { Game.Play(Game.clickSound); SubmitUsername(); }
+                else if (selected >= 0 && frontControls[selected] is Button button) button.onClick.Invoke();
+            }
+        }
+        void QuitGame()
+        {
+            Game.Save(); PlayerPrefs.Save();
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
+        void OnDestroy()
+        {
+            CancelTransition(); RestoreNavigation();
+            if (CanvasRoot != null) Destroy(CanvasRoot.gameObject);
         }
 
         public void ShowBriefing(Mission mission)
