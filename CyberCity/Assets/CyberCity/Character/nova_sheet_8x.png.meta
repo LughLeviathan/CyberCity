@@ -1,0 +1,951 @@
+fileFormatVersion: 2
+guid: d0594f4a965696f408aeca1f3841862c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5074423384660698129
+    second: nova_sheet_8x_0
+  - first:
+      213: 1549165202965665956
+    second: nova_sheet_8x_1
+  - first:
+      213: 6592359149366669156
+    second: nova_sheet_8x_2
+  - first:
+      213: 2614822007749271688
+    second: nova_sheet_8x_3
+  - first:
+      213: -1242540143214181673
+    second: nova_sheet_8x_4
+  - first:
+      213: 5918026927228454579
+    second: nova_sheet_8x_5
+  - first:
+      213: 3827658220172388503
+    second: nova_sheet_8x_6
+  - first:
+      213: 3623466959830286188
+    second: nova_sheet_8x_7
+  - first:
+      213: -2601520567883857826
+    second: nova_sheet_8x_8
+  - first:
+      213: -4507733482955078727
+    second: nova_sheet_8x_9
+  - first:
+      213: 6268140355258298974
+    second: nova_sheet_8x_10
+  - first:
+      213: 7523678370923579622
+    second: nova_sheet_8x_11
+  - first:
+      213: -6367057317806056599
+    second: nova_sheet_8x_12
+  - first:
+      213: -1495111723857746518
+    second: nova_sheet_8x_13
+  - first:
+      213: 6964668583429344726
+    second: nova_sheet_8x_14
+  - first:
+      213: -497007427991716797
+    second: nova_sheet_8x_15
+  - first:
+      213: 6692902959298009003
+    second: nova_sheet_8x_16
+  - first:
+      213: -6584525434098650300
+    second: nova_sheet_8x_17
+  - first:
+      213: 2309459500372981210
+    second: nova_sheet_8x_18
+  - first:
+      213: -1540273144873638526
+    second: nova_sheet_8x_19
+  - first:
+      213: -2388575057812034563
+    second: nova_sheet_8x_20
+  - first:
+      213: 5804518358564631838
+    second: nova_sheet_8x_21
+  - first:
+      213: 39956830867316242
+    second: nova_sheet_8x_22
+  - first:
+      213: -4898762660264663414
+    second: nova_sheet_8x_23
+  - first:
+      213: -8767677001991868171
+    second: nova_sheet_8x_24
+  - first:
+      213: 6445924389535425678
+    second: nova_sheet_8x_25
+  - first:
+      213: -7531304594028859715
+    second: nova_sheet_8x_26
+  - first:
+      213: -1072648934413770130
+    second: nova_sheet_8x_27
+  - first:
+      213: -8778497685909779590
+    second: nova_sheet_8x_28
+  - first:
+      213: -2300735290487384794
+    second: nova_sheet_8x_29
+  - first:
+      213: 1363993528143833972
+    second: nova_sheet_8x_30
+  - first:
+      213: -5854971644905827873
+    second: nova_sheet_8x_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: nova_sheet_8x_0
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 2687
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: feb1d5d21d60499b0800000000000000
+      internalID: -5074423384660698129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_1
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 2687
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a81a255b8dbf7510800000000000000
+      internalID: 1549165202965665956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_2
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 2687
+        width: 178
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46febc1f7b3cc7b50800000000000000
+      internalID: 6592359149366669156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_3
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 2687
+        width: 178
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 880e4ca13c6b94420800000000000000
+      internalID: 2614822007749271688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_4
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 2303
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d24e80b25c91cee0800000000000000
+      internalID: -1242540143214181673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_5
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 2303
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b606a0a22e012250800000000000000
+      internalID: 5918026927228454579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_6
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 2303
+        width: 178
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 798aaf61fd29e1530800000000000000
+      internalID: 3827658220172388503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_7
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 2303
+        width: 178
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6f7c048004294230800000000000000
+      internalID: 3623466959830286188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_8
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 1919
+        width: 114
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e500963b3da85ebd0800000000000000
+      internalID: -2601520567883857826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_9
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 1919
+        width: 114
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b3045eb7405171c0800000000000000
+      internalID: -4507733482955078727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_10
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 1919
+        width: 114
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e52367d6178ecf650800000000000000
+      internalID: 6268140355258298974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_11
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 1919
+        width: 114
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e8803fbd99796860800000000000000
+      internalID: 7523678370923579622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_12
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 1535
+        width: 114
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96b5e938a1ba3a7a0800000000000000
+      internalID: -6367057317806056599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_13
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 1535
+        width: 114
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa5efeffecb404be0800000000000000
+      internalID: -1495111723857746518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_14
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 1535
+        width: 114
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dd01ad1d2977a060800000000000000
+      internalID: 6964668583429344726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_15
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 1535
+        width: 114
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34cb2d3a0664a19f0800000000000000
+      internalID: -497007427991716797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_16
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 1151
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba75e1de7c7f1ec50800000000000000
+      internalID: 6692902959298009003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_17
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 1151
+        width: 178
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 443760601011f94a0800000000000000
+      internalID: -6584525434098650300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_18
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 1151
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad5f1e6fd29dc0020800000000000000
+      internalID: 2309459500372981210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_19
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 1151
+        width: 178
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 285abb64cb9df9ae0800000000000000
+      internalID: -1540273144873638526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_20
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 767
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfb61cfd3a31aded0800000000000000
+      internalID: -2388575057812034563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_21
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 767
+        width: 178
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e157a7681bacd8050800000000000000
+      internalID: 5804518358564631838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_22
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 767
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21e5236a684fd8000800000000000000
+      internalID: 39956830867316242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_23
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 767
+        width: 178
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a862af3b059140cb0800000000000000
+      internalID: -4898762660264663414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_24
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 383
+        width: 138
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f0b9e64834f25680800000000000000
+      internalID: -8767677001991868171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_25
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 383
+        width: 114
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e84294f8416847950800000000000000
+      internalID: 6445924389535425678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_26
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 383
+        width: 138
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbe64a1df5e6b7790800000000000000
+      internalID: -7531304594028859715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_27
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 383
+        width: 114
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e62e09f2a7f2d11f0800000000000000
+      internalID: -1072648934413770130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_28
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 0
+        width: 138
+        height: 369
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7b42c97dd28c2680800000000000000
+      internalID: -8778497685909779590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_29
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 0
+        width: 114
+        height: 377
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6255b4071752210e0800000000000000
+      internalID: -2300735290487384794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_30
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 0
+        width: 138
+        height: 369
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47be1f813e0ede210800000000000000
+      internalID: 1363993528143833972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nova_sheet_8x_31
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 0
+        width: 114
+        height: 377
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd157675f46febea0800000000000000
+      internalID: -5854971644905827873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      nova_sheet_8x_0: -5074423384660698129
+      nova_sheet_8x_1: 1549165202965665956
+      nova_sheet_8x_10: 6268140355258298974
+      nova_sheet_8x_11: 7523678370923579622
+      nova_sheet_8x_12: -6367057317806056599
+      nova_sheet_8x_13: -1495111723857746518
+      nova_sheet_8x_14: 6964668583429344726
+      nova_sheet_8x_15: -497007427991716797
+      nova_sheet_8x_16: 6692902959298009003
+      nova_sheet_8x_17: -6584525434098650300
+      nova_sheet_8x_18: 2309459500372981210
+      nova_sheet_8x_19: -1540273144873638526
+      nova_sheet_8x_2: 6592359149366669156
+      nova_sheet_8x_20: -2388575057812034563
+      nova_sheet_8x_21: 5804518358564631838
+      nova_sheet_8x_22: 39956830867316242
+      nova_sheet_8x_23: -4898762660264663414
+      nova_sheet_8x_24: -8767677001991868171
+      nova_sheet_8x_25: 6445924389535425678
+      nova_sheet_8x_26: -7531304594028859715
+      nova_sheet_8x_27: -1072648934413770130
+      nova_sheet_8x_28: -8778497685909779590
+      nova_sheet_8x_29: -2300735290487384794
+      nova_sheet_8x_3: 2614822007749271688
+      nova_sheet_8x_30: 1363993528143833972
+      nova_sheet_8x_31: -5854971644905827873
+      nova_sheet_8x_4: -1242540143214181673
+      nova_sheet_8x_5: 5918026927228454579
+      nova_sheet_8x_6: 3827658220172388503
+      nova_sheet_8x_7: 3623466959830286188
+      nova_sheet_8x_8: -2601520567883857826
+      nova_sheet_8x_9: -4507733482955078727
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

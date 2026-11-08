@@ -1,0 +1,587 @@
+fileFormatVersion: 2
+guid: 01b5913e67f6ee44085cb65f67fad04c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3522010246829807669
+    second: admin_sheet_8x_0
+  - first:
+      213: 1219793580529330031
+    second: admin_sheet_8x_1
+  - first:
+      213: 4452325569996189898
+    second: admin_sheet_8x_2
+  - first:
+      213: -5457636959433884938
+    second: admin_sheet_8x_3
+  - first:
+      213: -7757771582337781394
+    second: admin_sheet_8x_4
+  - first:
+      213: -8516997856469937953
+    second: admin_sheet_8x_5
+  - first:
+      213: 1661248030899890804
+    second: admin_sheet_8x_6
+  - first:
+      213: -1454971890840161070
+    second: admin_sheet_8x_7
+  - first:
+      213: 4845427305710409559
+    second: admin_sheet_8x_8
+  - first:
+      213: -6206119246006739914
+    second: admin_sheet_8x_9
+  - first:
+      213: -4641538529300263474
+    second: admin_sheet_8x_10
+  - first:
+      213: 7787641364709273157
+    second: admin_sheet_8x_11
+  - first:
+      213: 8161167211950347103
+    second: admin_sheet_8x_12
+  - first:
+      213: -2123876045151408348
+    second: admin_sheet_8x_13
+  - first:
+      213: 1737179338710958156
+    second: admin_sheet_8x_14
+  - first:
+      213: -2555862267324012139
+    second: admin_sheet_8x_15
+  - first:
+      213: -5304011287566392085
+    second: admin_sheet_8x_16
+  - first:
+      213: -1045915295238800677
+    second: admin_sheet_8x_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: admin_sheet_8x_0
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 767
+        width: 178
+        height: 2305
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5389399b8a1b0e030800000000000000
+      internalID: 3522010246829807669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_1
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 1535
+        width: 178
+        height: 1537
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f67a0ca7cc39de010800000000000000
+      internalID: 1219793580529330031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_2
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 2687
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac0f2083486d9cd30800000000000000
+      internalID: 4452325569996189898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_3
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 2687
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fa76e7e9149244b0800000000000000
+      internalID: -5457636959433884938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_4
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 2303
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e61f22a29dbd65490800000000000000
+      internalID: -7757771582337781394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_5
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 2303
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd09854139b8dc980800000000000000
+      internalID: -8516997856469937953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_6
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 1919
+        width: 138
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47aea9d4840fd0710800000000000000
+      internalID: 1661248030899890804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_7
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 1919
+        width: 138
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d43b4826c6eecbe0800000000000000
+      internalID: -1454971890840161070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_8
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 767
+        width: 178
+        height: 1146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 757d8dd567a6e3340800000000000000
+      internalID: 4845427305710409559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_9
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 1535
+        width: 138
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63c9d0c5d6f6fd9a0800000000000000
+      internalID: -6206119246006739914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_10
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 1151
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecdc4cdac41f59fb0800000000000000
+      internalID: -4641538529300263474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_11
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 1151
+        width: 178
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54e62ad7f82431c60800000000000000
+      internalID: 7787641364709273157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_12
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 383
+        width: 162
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f539ddce65a424170800000000000000
+      internalID: 8161167211950347103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_13
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 0
+        width: 178
+        height: 1145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42fe9cd5df97682e0800000000000000
+      internalID: -2123876045151408348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_14
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 383
+        width: 162
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c40c3039763bb1810800000000000000
+      internalID: 1737179338710958156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_15
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 0
+        width: 178
+        height: 1145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 599e3553fc0c78cd0800000000000000
+      internalID: -2555862267324012139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_16
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 0
+        width: 162
+        height: 377
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be461f7f5dd5466b0800000000000000
+      internalID: -5304011287566392085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_sheet_8x_17
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 0
+        width: 162
+        height: 377
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdab42a94992c71f0800000000000000
+      internalID: -1045915295238800677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      admin_sheet_8x_0: 3522010246829807669
+      admin_sheet_8x_1: 1219793580529330031
+      admin_sheet_8x_10: -4641538529300263474
+      admin_sheet_8x_11: 7787641364709273157
+      admin_sheet_8x_12: 8161167211950347103
+      admin_sheet_8x_13: -2123876045151408348
+      admin_sheet_8x_14: 1737179338710958156
+      admin_sheet_8x_15: -2555862267324012139
+      admin_sheet_8x_16: -5304011287566392085
+      admin_sheet_8x_17: -1045915295238800677
+      admin_sheet_8x_2: 4452325569996189898
+      admin_sheet_8x_3: -5457636959433884938
+      admin_sheet_8x_4: -7757771582337781394
+      admin_sheet_8x_5: -8516997856469937953
+      admin_sheet_8x_6: 1661248030899890804
+      admin_sheet_8x_7: -1454971890840161070
+      admin_sheet_8x_8: 4845427305710409559
+      admin_sheet_8x_9: -6206119246006739914
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

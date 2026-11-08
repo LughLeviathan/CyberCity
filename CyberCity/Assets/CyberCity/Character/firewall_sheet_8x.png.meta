@@ -1,0 +1,587 @@
+fileFormatVersion: 2
+guid: 2ee2b2be8634e104883ffbe39fbf8838
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8591595104358514390
+    second: firewall_sheet_8x_0
+  - first:
+      213: -2203145672937769341
+    second: firewall_sheet_8x_1
+  - first:
+      213: -4222391954675475665
+    second: firewall_sheet_8x_2
+  - first:
+      213: 4453691300772263238
+    second: firewall_sheet_8x_3
+  - first:
+      213: 7700312509866333708
+    second: firewall_sheet_8x_4
+  - first:
+      213: 901091301167798031
+    second: firewall_sheet_8x_5
+  - first:
+      213: -273370627186925945
+    second: firewall_sheet_8x_6
+  - first:
+      213: 545364811520608223
+    second: firewall_sheet_8x_7
+  - first:
+      213: 1310182967106628936
+    second: firewall_sheet_8x_8
+  - first:
+      213: 7237217903466655239
+    second: firewall_sheet_8x_9
+  - first:
+      213: 6754604203462726105
+    second: firewall_sheet_8x_10
+  - first:
+      213: 4918890365948327884
+    second: firewall_sheet_8x_11
+  - first:
+      213: 4673758077555097828
+    second: firewall_sheet_8x_12
+  - first:
+      213: 8668868379919616349
+    second: firewall_sheet_8x_13
+  - first:
+      213: -3117256038739053588
+    second: firewall_sheet_8x_14
+  - first:
+      213: -9046827895914150935
+    second: firewall_sheet_8x_15
+  - first:
+      213: -5532451313775527905
+    second: firewall_sheet_8x_16
+  - first:
+      213: 253320789178258888
+    second: firewall_sheet_8x_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: firewall_sheet_8x_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 767
+        width: 226
+        height: 2305
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6de36492a3a7b3770800000000000000
+      internalID: 8591595104358514390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_1
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 1535
+        width: 226
+        height: 1537
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 386fa18eeaadc61e0800000000000000
+      internalID: -2203145672937769341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_2
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 2687
+        width: 226
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2bd91f63ec0765c0800000000000000
+      internalID: -4222391954675475665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_3
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 2687
+        width: 226
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64537c134a0becd30800000000000000
+      internalID: 4453691300772263238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_4
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 2303
+        width: 226
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0654120e610dda60800000000000000
+      internalID: 7700312509866333708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_5
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 2303
+        width: 226
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f071d44a3c1518c00800000000000000
+      internalID: 901091301167798031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_6
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 1919
+        width: 130
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78e5f7aecdac43cf0800000000000000
+      internalID: -273370627186925945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_7
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 1919
+        width: 130
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd70fa71866819700800000000000000
+      internalID: 545364811520608223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_8
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 767
+        width: 226
+        height: 1146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84d68298774be2210800000000000000
+      internalID: 1310182967106628936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_9
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 1535
+        width: 130
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70e2a3ab653cf6460800000000000000
+      internalID: 7237217903466655239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_10
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 1151
+        width: 226
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d191c15cbc2dbd50800000000000000
+      internalID: 6754604203462726105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_11
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 1151
+        width: 226
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc7f077f9b8634440800000000000000
+      internalID: 4918890365948327884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_12
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 383
+        width: 146
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e0c8ca75368cd040800000000000000
+      internalID: 4673758077555097828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_13
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 0
+        width: 226
+        height: 1145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5989b5acd10e4870800000000000000
+      internalID: 8668868379919616349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_14
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 383
+        width: 146
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce3740116284db4d0800000000000000
+      internalID: -3117256038739053588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_15
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 0
+        width: 226
+        height: 1145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e341f7f5f5337280800000000000000
+      internalID: -9046827895914150935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_16
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 0
+        width: 146
+        height: 377
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f183441a7d8c833b0800000000000000
+      internalID: -5532451313775527905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_sheet_8x_17
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 0
+        width: 146
+        height: 377
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c511356ae9f38300800000000000000
+      internalID: 253320789178258888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      firewall_sheet_8x_0: 8591595104358514390
+      firewall_sheet_8x_1: -2203145672937769341
+      firewall_sheet_8x_10: 6754604203462726105
+      firewall_sheet_8x_11: 4918890365948327884
+      firewall_sheet_8x_12: 4673758077555097828
+      firewall_sheet_8x_13: 8668868379919616349
+      firewall_sheet_8x_14: -3117256038739053588
+      firewall_sheet_8x_15: -9046827895914150935
+      firewall_sheet_8x_16: -5532451313775527905
+      firewall_sheet_8x_17: 253320789178258888
+      firewall_sheet_8x_2: -4222391954675475665
+      firewall_sheet_8x_3: 4453691300772263238
+      firewall_sheet_8x_4: 7700312509866333708
+      firewall_sheet_8x_5: 901091301167798031
+      firewall_sheet_8x_6: -273370627186925945
+      firewall_sheet_8x_7: 545364811520608223
+      firewall_sheet_8x_8: 1310182967106628936
+      firewall_sheet_8x_9: 7237217903466655239
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
