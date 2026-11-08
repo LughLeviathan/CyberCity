@@ -1,0 +1,38 @@
+PASS PlayerController accepts gameplay input
+PASS Game View capture resolution 1920x1080
+PASS Final CharacterPPU 340; height 1.129 units
+PASS IdleDown plays all four frames
+PASS Right movement delta=(2.86, 0.00)
+PASS Right walk cycles through all four correct frames
+PASS Right flipX=False
+PASS Right updates Y sorting
+PASS Right release returns to idle
+PASS Left movement delta=(-2.86, 0.00)
+PASS Left walk cycles through all four correct frames
+PASS Left flipX=True
+PASS Left updates Y sorting
+PASS Left release returns to idle
+PASS Up movement delta=(0.00, 1.25)
+PASS Up walk cycles through all four correct frames
+PASS Up flipX=False
+PASS Up updates Y sorting
+PASS Up release returns to idle
+PASS Down movement delta=(0.00, -2.77)
+PASS Down walk cycles through all four correct frames
+PASS Down flipX=False
+PASS Down updates Y sorting
+PASS Down release returns to idle
+PASS Professor Byte alternates idle frames 00/02
+PASS Professor Byte retains foot-based Y sorting
+PASS Alex alternates idle frames 00/02
+PASS Alex retains foot-based Y sorting
+PASS Maya alternates idle frames 00/02
+PASS Maya retains foot-based Y sorting
+PASS Detective Byte alternates idle frames 00/02
+PASS Detective Byte retains foot-based Y sorting
+PASS SysAdmin Tux alternates idle frames 00/02
+PASS SysAdmin Tux retains foot-based Y sorting
+PASS Red alternates idle frames 00/02
+PASS Red retains foot-based Y sorting
+PASS Blue alternates idle frames 00/02
+PASS Blue retains foot-based Y sorting

@@ -130,7 +130,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -141,10 +141,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 340
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -167,10 +167,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -195,705 +195,705 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: proxy_sheet_8x_0
+      name: proxy_00
       rect:
         serializedVersion: 2
-        x: 39
-        y: 2687
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a7e80f850bfb540f0800000000000000
-      internalID: -1133288967086502278
+      spriteID: 403c5b400452cf140bb5c2a88c1ccc7e
+      internalID: -1886174324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_1
+      name: proxy_01
       rect:
         serializedVersion: 2
-        x: 295
-        y: 2687
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 46f77d5100286dc00800000000000000
-      internalID: 925069710349270884
+      spriteID: b2dc60ddb3694f8408aed7290c7c86b4
+      internalID: 272092660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_2
+      name: proxy_02
       rect:
         serializedVersion: 2
-        x: 551
-        y: 2687
-        width: 178
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 512
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fa2d116ca11c3a370800000000000000
-      internalID: 8332716056301916847
+      spriteID: c2c887f7a406b0041b18c0ecb7e0348d
+      internalID: -658977800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_3
+      name: proxy_03
       rect:
         serializedVersion: 2
-        x: 807
-        y: 2687
-        width: 178
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4699f033f15bd8c80800000000000000
-      internalID: -8318793791078164124
+      spriteID: cea270148d79f4845be82e638cb87274
+      internalID: 1971390629
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_4
+      name: proxy_04
       rect:
         serializedVersion: 2
-        x: 39
-        y: 2303
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f474f66935b9eeae0800000000000000
-      internalID: -1518105241068812465
+      spriteID: 827feb3a8bfab3049bf265936049c5e6
+      internalID: 984013363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_5
+      name: proxy_05
       rect:
         serializedVersion: 2
-        x: 295
-        y: 2303
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 70e3029f4899fb0f0800000000000000
-      internalID: -1098990987660739065
+      spriteID: 638798272e82de34291874e8953dfcf0
+      internalID: 2079594367
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_6
+      name: proxy_06
       rect:
         serializedVersion: 2
-        x: 551
-        y: 2303
-        width: 178
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 512
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0975377613217f6e0800000000000000
-      internalID: -1803953122340284528
+      spriteID: 4b17591aa98ea0f41920b5704b10dd14
+      internalID: -12303105
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_7
+      name: proxy_07
       rect:
         serializedVersion: 2
-        x: 807
-        y: 2303
-        width: 178
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 13b64fda9825cf1d0800000000000000
-      internalID: -3315684474369053903
+      spriteID: 65c7a849d4b488d4bb2bef8609450f1e
+      internalID: -1770577460
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_8
+      name: proxy_08
       rect:
         serializedVersion: 2
-        x: 71
-        y: 1919
-        width: 114
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ac265a910a9fd6e60800000000000000
-      internalID: 7957290582653887178
+      spriteID: b68b5f0f8ba5c1942be7380c4bab8cf6
+      internalID: 870926257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_9
+      name: proxy_09
       rect:
         serializedVersion: 2
-        x: 327
-        y: 1919
-        width: 114
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 61adcac88832dab50800000000000000
-      internalID: 6605975297805048342
+      spriteID: 6775237bd448afe4a9872c662db45824
+      internalID: -511606277
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_10
+      name: proxy_10
       rect:
         serializedVersion: 2
-        x: 583
-        y: 1919
-        width: 114
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 512
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9fa392d51f485e820800000000000000
-      internalID: 2946907703368825593
+      spriteID: 29e555936ab76e341968ce021f824aaa
+      internalID: -1850079720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_11
+      name: proxy_11
       rect:
         serializedVersion: 2
-        x: 839
-        y: 1919
-        width: 114
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 561dac19131c97e50800000000000000
-      internalID: 6807684730390761829
+      spriteID: 5a21bfd717497cf4782ded83f7180207
+      internalID: 1232416276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_12
+      name: proxy_12
       rect:
         serializedVersion: 2
-        x: 71
-        y: 1535
-        width: 114
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 29e9d9ed1870eb800800000000000000
-      internalID: 629949252245495442
+      spriteID: f15aca6e82a2aa040a57db9bbde89d41
+      internalID: 64827912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_13
+      name: proxy_13
       rect:
         serializedVersion: 2
-        x: 327
-        y: 1535
-        width: 114
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e22ecc8bb5379dd50800000000000000
-      internalID: 6762563153253163566
+      spriteID: 338dabbed60aed9408332a9fa76c102f
+      internalID: 635118960
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_14
+      name: proxy_14
       rect:
         serializedVersion: 2
-        x: 583
-        y: 1535
-        width: 114
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 512
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e99a4d0c9480e3600800000000000000
-      internalID: 449806125644425630
+      spriteID: 3f4eaa11c144a8b429062667d1065054
+      internalID: -563983836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_15
+      name: proxy_15
       rect:
         serializedVersion: 2
-        x: 839
-        y: 1535
-        width: 114
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 471b7d96407112760800000000000000
-      internalID: 7431246167861080436
+      spriteID: 70939b09bbfc6f14683eebfbd83701d1
+      internalID: 255654563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_16
+      name: proxy_16
       rect:
         serializedVersion: 2
-        x: 39
-        y: 1151
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 20d7597e7d210ee10800000000000000
-      internalID: 2224798934433627394
+      spriteID: 2294125fa2c302e418b1015afa3f78f3
+      internalID: -1451523918
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_17
+      name: proxy_17
       rect:
         serializedVersion: 2
-        x: 295
-        y: 1151
-        width: 178
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 99d6acad676f263e0800000000000000
-      internalID: -2061814689044992615
+      spriteID: b36a041141fa0a244b35a927fb50a055
+      internalID: -869398368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_18
+      name: proxy_18
       rect:
         serializedVersion: 2
-        x: 551
-        y: 1151
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 512
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cf74baeb5c2400e00800000000000000
-      internalID: 1008879733605877756
+      spriteID: 7eb40e51c2fba3a4a9fcc849d51a61d9
+      internalID: -639890272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_19
+      name: proxy_19
       rect:
         serializedVersion: 2
-        x: 807
-        y: 1151
-        width: 178
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fac919c6ef6843f50800000000000000
-      internalID: 6860256559693405359
+      spriteID: b21c7ce3e2187bc48a3589751caf2b7e
+      internalID: -2086194656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_20
+      name: proxy_20
       rect:
         serializedVersion: 2
-        x: 39
-        y: 767
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ee5492e0cb0b82670800000000000000
-      internalID: 8514249417281848814
+      spriteID: 82c1831c129d50342a4c65cb46aa095f
+      internalID: 1598936367
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_21
+      name: proxy_21
       rect:
         serializedVersion: 2
-        x: 295
-        y: 767
-        width: 178
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: efa3bda22c1607270800000000000000
-      internalID: 8246198404285938430
+      spriteID: c0bbf26631b75854ba0e060cc3aed7d0
+      internalID: -2128175500
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_22
+      name: proxy_22
       rect:
         serializedVersion: 2
-        x: 551
-        y: 767
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 512
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7cc964e4abb86b280800000000000000
-      internalID: -9027874770724152121
+      spriteID: 440adf6e05261dd42a74f491ba4252a7
+      internalID: 604079957
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_23
+      name: proxy_23
       rect:
         serializedVersion: 2
-        x: 807
-        y: 767
-        width: 178
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f14618cd719b2cc30800000000000000
-      internalID: 4378265299892397087
+      spriteID: a07b136f493fd3248a114eb86305e38f
+      internalID: 860411912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_24
+      name: proxy_24
       rect:
         serializedVersion: 2
-        x: 47
-        y: 383
-        width: 138
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3a4c2cfd7412aa040800000000000000
-      internalID: 4659573357048677539
+      spriteID: 33eba1416af45d446858d687f440f8d5
+      internalID: -2125392272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_25
+      name: proxy_25
       rect:
         serializedVersion: 2
-        x: 327
-        y: 383
-        width: 114
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0c888d9fb752dcb70800000000000000
-      internalID: 8920827651293743296
+      spriteID: 49dc62dbd3fc9964598a06b009e215dd
+      internalID: 644708896
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_26
+      name: proxy_26
       rect:
         serializedVersion: 2
-        x: 559
-        y: 383
-        width: 138
-        height: 370
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 512
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e7e31f90dd43180d0800000000000000
-      internalID: -3422396117865644418
+      spriteID: da321e1c13012e54a82cc89761e80240
+      internalID: -479402116
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_27
+      name: proxy_27
       rect:
         serializedVersion: 2
-        x: 839
-        y: 383
-        width: 114
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1df21dbd3cf065090800000000000000
-      internalID: -8046226350369853487
+      spriteID: e538594bc5450344196cc77301b5010b
+      internalID: 326301943
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_28
+      name: proxy_28
       rect:
         serializedVersion: 2
-        x: 71
+        x: 0
         y: 0
-        width: 138
-        height: 369
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ee66bd3e33e8df720800000000000000
-      internalID: 2881615690104268526
+      spriteID: 23bd03068843e544a9af71d145b565d4
+      internalID: -1983641388
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_29
+      name: proxy_29
       rect:
         serializedVersion: 2
-        x: 327
+        x: 256
         y: 0
-        width: 114
-        height: 377
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fb5d003dfc201abe0800000000000000
-      internalID: -1467888911924537921
+      spriteID: 536c54cc10ab5164fa3351d6a3190b37
+      internalID: -205525527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_30
+      name: proxy_30
       rect:
         serializedVersion: 2
-        x: 583
+        x: 512
         y: 0
-        width: 138
-        height: 369
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 59561dd8a805e19c0800000000000000
-      internalID: -3954634866769697387
+      spriteID: bb2bad023a8a111419335e110b61bc80
+      internalID: 596064809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: proxy_sheet_8x_31
+      name: proxy_31
       rect:
         serializedVersion: 2
-        x: 839
+        x: 768
         y: 0
-        width: 114
-        height: 377
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c8a9f05f4b4289270800000000000000
-      internalID: 8257390276407958156
+      spriteID: 16172e9e3cb19844aacafdb533348248
+      internalID: 436094591
       vertices: []
       indices: 
       edges: []
@@ -902,7 +902,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9ac63569274451147a7974c4730a7839
     internalID: 0
     vertices: []
     indices: 
@@ -912,38 +912,38 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      proxy_sheet_8x_0: -1133288967086502278
-      proxy_sheet_8x_1: 925069710349270884
-      proxy_sheet_8x_10: 2946907703368825593
-      proxy_sheet_8x_11: 6807684730390761829
-      proxy_sheet_8x_12: 629949252245495442
-      proxy_sheet_8x_13: 6762563153253163566
-      proxy_sheet_8x_14: 449806125644425630
-      proxy_sheet_8x_15: 7431246167861080436
-      proxy_sheet_8x_16: 2224798934433627394
-      proxy_sheet_8x_17: -2061814689044992615
-      proxy_sheet_8x_18: 1008879733605877756
-      proxy_sheet_8x_19: 6860256559693405359
-      proxy_sheet_8x_2: 8332716056301916847
-      proxy_sheet_8x_20: 8514249417281848814
-      proxy_sheet_8x_21: 8246198404285938430
-      proxy_sheet_8x_22: -9027874770724152121
-      proxy_sheet_8x_23: 4378265299892397087
-      proxy_sheet_8x_24: 4659573357048677539
-      proxy_sheet_8x_25: 8920827651293743296
-      proxy_sheet_8x_26: -3422396117865644418
-      proxy_sheet_8x_27: -8046226350369853487
-      proxy_sheet_8x_28: 2881615690104268526
-      proxy_sheet_8x_29: -1467888911924537921
-      proxy_sheet_8x_3: -8318793791078164124
-      proxy_sheet_8x_30: -3954634866769697387
-      proxy_sheet_8x_31: 8257390276407958156
-      proxy_sheet_8x_4: -1518105241068812465
-      proxy_sheet_8x_5: -1098990987660739065
-      proxy_sheet_8x_6: -1803953122340284528
-      proxy_sheet_8x_7: -3315684474369053903
-      proxy_sheet_8x_8: 7957290582653887178
-      proxy_sheet_8x_9: 6605975297805048342
+      proxy_00: -1886174324
+      proxy_01: 272092660
+      proxy_02: -658977800
+      proxy_03: 1971390629
+      proxy_04: 984013363
+      proxy_05: 2079594367
+      proxy_06: -12303105
+      proxy_07: -1770577460
+      proxy_08: 870926257
+      proxy_09: -511606277
+      proxy_10: -1850079720
+      proxy_11: 1232416276
+      proxy_12: 64827912
+      proxy_13: 635118960
+      proxy_14: -563983836
+      proxy_15: 255654563
+      proxy_16: -1451523918
+      proxy_17: -869398368
+      proxy_18: -639890272
+      proxy_19: -2086194656
+      proxy_20: 1598936367
+      proxy_21: -2128175500
+      proxy_22: 604079957
+      proxy_23: 860411912
+      proxy_24: -2125392272
+      proxy_25: 644708896
+      proxy_26: -479402116
+      proxy_27: 326301943
+      proxy_28: -1983641388
+      proxy_29: -205525527
+      proxy_30: 596064809
+      proxy_31: 436094591
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

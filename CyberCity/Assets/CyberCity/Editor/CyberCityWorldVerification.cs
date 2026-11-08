@@ -39,8 +39,26 @@ namespace CyberCity.Editor
             var camera = Camera.main.GetComponent<PixelPerfectCamera>();
             Require(camera.assetsPPU == 32 && camera.refResolutionX == WorldLayout.CameraWidth && camera.refResolutionY == WorldLayout.CameraHeight, "Map camera matches map reference resolution");
             CyberCityFullscreenVerification.VerifyScene();
-            for (int i = 0; i < 8; i++)
-                Require(AssetDatabase.LoadAllAssetsAtPath("Assets/CyberCity/Generated/Citizen" + i + ".png").OfType<Sprite>().All(s => s.rect.width == 32 && s.rect.height == 32), "Character frames padded to 32x32");
+            for (int i = 0; i < CyberCityBuilder.CharacterSheets.Length; i++)
+            {
+                string path = CyberCityBuilder.CharacterPath(i);
+                var sprites = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().OrderBy(s => s.name, StringComparer.Ordinal).ToArray();
+                Require(sprites.Length == 32, "Exactly 32 character frames: " + path);
+                var importer = (TextureImporter)AssetImporter.GetAtPath(path);
+                var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+                Require(texture.width == 1024 && texture.height == 3072, "Character sheet is not downscaled: " + path);
+                Require(importer.spritePixelsPerUnit == CyberCityBuilder.CharacterPPU && importer.filterMode == FilterMode.Point &&
+                    !importer.mipmapEnabled && importer.textureCompression == TextureImporterCompression.Uncompressed && importer.maxTextureSize == 4096,
+                    "Character pixel import contract: " + path);
+                for (int frame = 0; frame < sprites.Length; frame++)
+                {
+                    Require(sprites[frame].name == CyberCityBuilder.CharacterSheets[i] + "_" + frame.ToString("00") &&
+                        sprites[frame].rect == new Rect(frame % 4 * 256, 3072 - (frame / 4 + 1) * 384, 256, 384),
+                        "Character frame is a 256x384 cell in top-to-bottom order: " + sprites[frame].name);
+                    Require(Vector2.Distance(sprites[frame].pivot, new Vector2(128, 384 * .03f)) < .01f,
+                        "Character foot pivot: " + sprites[frame].name);
+                }
+            }
             var world = GameObject.Find("CyberCity / Reference world");
             Require(GameObject.Find("CyberCity / Existing world art") == null, "Legacy prefab is absent");
             Require(world.GetComponentsInChildren<WorldArea>().Length == 4, "Only mission buildings have access visuals");

@@ -88,7 +88,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -99,10 +99,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 340
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -125,10 +125,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -153,397 +153,705 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: admin_sheet_8x_0
+      name: admin_00
       rect:
         serializedVersion: 2
-        x: 39
-        y: 767
-        width: 178
-        height: 2305
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5389399b8a1b0e030800000000000000
-      internalID: 3522010246829807669
+      spriteID: ff4709e139e550d47a4b0d0f0df147ba
+      internalID: -325308597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_1
+      name: admin_01
       rect:
         serializedVersion: 2
-        x: 295
-        y: 1535
-        width: 178
-        height: 1537
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f67a0ca7cc39de010800000000000000
-      internalID: 1219793580529330031
+      spriteID: ad28a9d49f393224cb36eba22c1b0016
+      internalID: 528081653
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_2
+      name: admin_02
       rect:
         serializedVersion: 2
-        x: 551
-        y: 2687
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 512
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ac0f2083486d9cd30800000000000000
-      internalID: 4452325569996189898
+      spriteID: c0c3b9f57cc39884c84bd8b04e37d95e
+      internalID: 712362259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_3
+      name: admin_03
       rect:
         serializedVersion: 2
-        x: 807
-        y: 2687
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6fa76e7e9149244b0800000000000000
-      internalID: -5457636959433884938
+      spriteID: 08c1bd36bd53a814691bcb8a15ac73ff
+      internalID: 1951568676
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_4
+      name: admin_04
       rect:
         serializedVersion: 2
-        x: 551
-        y: 2303
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e61f22a29dbd65490800000000000000
-      internalID: -7757771582337781394
+      spriteID: 15e16f8ffd89d0844bb7ad6df09e0c07
+      internalID: -1096090087
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_5
+      name: admin_05
       rect:
         serializedVersion: 2
-        x: 807
-        y: 2303
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fd09854139b8dc980800000000000000
-      internalID: -8516997856469937953
+      spriteID: 5dabd3252f6e4b04bb01cc993dc2a5f5
+      internalID: 1483860639
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_6
+      name: admin_06
       rect:
         serializedVersion: 2
-        x: 583
-        y: 1919
-        width: 138
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 512
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 47aea9d4840fd0710800000000000000
-      internalID: 1661248030899890804
+      spriteID: bf5383ec46ab60e46a19140f9a4fbeca
+      internalID: 1283228236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_7
+      name: admin_07
       rect:
         serializedVersion: 2
-        x: 839
-        y: 1919
-        width: 138
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2d43b4826c6eecbe0800000000000000
-      internalID: -1454971890840161070
+      spriteID: feb0253f58d914c4abdb49688badb639
+      internalID: -636371972
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_8
+      name: admin_08
       rect:
         serializedVersion: 2
-        x: 551
-        y: 767
-        width: 178
-        height: 1146
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 757d8dd567a6e3340800000000000000
-      internalID: 4845427305710409559
+      spriteID: 7647f4526ede9a84bbe948086e107a99
+      internalID: -504881028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_9
+      name: admin_09
       rect:
         serializedVersion: 2
-        x: 815
-        y: 1535
-        width: 138
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 63c9d0c5d6f6fd9a0800000000000000
-      internalID: -6206119246006739914
+      spriteID: bcf47a6b43e227c4880ebf64e6079fe4
+      internalID: 328497061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_10
+      name: admin_10
       rect:
         serializedVersion: 2
-        x: 295
-        y: 1151
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 512
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ecdc4cdac41f59fb0800000000000000
-      internalID: -4641538529300263474
+      spriteID: f32577a63e3301c439fc705c24528545
+      internalID: -366309531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_11
+      name: admin_11
       rect:
         serializedVersion: 2
-        x: 807
-        y: 1151
-        width: 178
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 54e62ad7f82431c60800000000000000
-      internalID: 7787641364709273157
+      spriteID: 6b427282169c44844a22b98e32cb2508
+      internalID: -1641150680
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_12
+      name: admin_12
       rect:
         serializedVersion: 2
-        x: 47
-        y: 383
-        width: 162
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f539ddce65a424170800000000000000
-      internalID: 8161167211950347103
+      spriteID: 2d9de4f6f048c504fbdd8a36eb83c1da
+      internalID: 1500684664
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_13
+      name: admin_13
       rect:
         serializedVersion: 2
-        x: 295
+        x: 256
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb5e8892abdaafe47b2c98c40466ff50
+      internalID: 1466083482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4edb2d6f448870643ba4c7072b1cf519
+      internalID: 1050248693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_15
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ee89b9270cc428458a0d004545884be
+      internalID: 1979561898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1744a05986511e446ba24b01b5234a4d
+      internalID: -989872928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_17
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8be36ef0f3ab77746acaa1f83a30042b
+      internalID: 1449228122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_18
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07b4f3e0063c8774e85a590607d882ec
+      internalID: -835406858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_19
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffbc058127930c149ad1463c8bcd0104
+      internalID: 1796510828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 200a4d3d306c81e4382a0be9a933e1de
+      internalID: -1776239084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_21
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71e2e84ac9bb80c43818f9939e6dec2c
+      internalID: 1129503425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cae02fd0932f7a54aad55a327d524a73
+      internalID: 1145112760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_23
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 220063d73ea9df146ac878748462544d
+      internalID: -1535254897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22671075a88f5cc4098b4531dd901013
+      internalID: -1942292803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_25
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0152dac6911b5c04da3e41ebc9cae155
+      internalID: 1471094180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_26
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98d9724e8072ad24ea53932246f21431
+      internalID: 621083119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_27
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5c4932793d8d334795a1a3bc9d7b90f
+      internalID: 422717960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: admin_28
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
-        width: 178
-        height: 1145
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 42fe9cd5df97682e0800000000000000
-      internalID: -2123876045151408348
+      spriteID: 2e2ea4d37af13ee4989e750e13f406a0
+      internalID: 1946012993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_14
+      name: admin_29
       rect:
         serializedVersion: 2
-        x: 559
-        y: 383
-        width: 162
-        height: 378
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c40c3039763bb1810800000000000000
-      internalID: 1737179338710958156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: admin_sheet_8x_15
-      rect:
-        serializedVersion: 2
-        x: 807
+        x: 256
         y: 0
-        width: 178
-        height: 1145
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 599e3553fc0c78cd0800000000000000
-      internalID: -2555862267324012139
+      spriteID: c8ffe5ef194a3e748b4a598cfac55ac8
+      internalID: -434359054
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_16
+      name: admin_30
       rect:
         serializedVersion: 2
-        x: 47
+        x: 512
         y: 0
-        width: 162
-        height: 377
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: be461f7f5dd5466b0800000000000000
-      internalID: -5304011287566392085
+      spriteID: 3eb2b17270c7f824083fa7b88ad6bc1f
+      internalID: -121080024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: admin_sheet_8x_17
+      name: admin_31
       rect:
         serializedVersion: 2
-        x: 559
+        x: 768
         y: 0
-        width: 162
-        height: 377
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bdab42a94992c71f0800000000000000
-      internalID: -1045915295238800677
+      spriteID: ef02f41d559edcc468022230d46a213c
+      internalID: -1235636976
       vertices: []
       indices: 
       edges: []
@@ -552,7 +860,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 288038cb500b054459a0e8aa7d0e3fff
     internalID: 0
     vertices: []
     indices: 
@@ -562,24 +870,38 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      admin_sheet_8x_0: 3522010246829807669
-      admin_sheet_8x_1: 1219793580529330031
-      admin_sheet_8x_10: -4641538529300263474
-      admin_sheet_8x_11: 7787641364709273157
-      admin_sheet_8x_12: 8161167211950347103
-      admin_sheet_8x_13: -2123876045151408348
-      admin_sheet_8x_14: 1737179338710958156
-      admin_sheet_8x_15: -2555862267324012139
-      admin_sheet_8x_16: -5304011287566392085
-      admin_sheet_8x_17: -1045915295238800677
-      admin_sheet_8x_2: 4452325569996189898
-      admin_sheet_8x_3: -5457636959433884938
-      admin_sheet_8x_4: -7757771582337781394
-      admin_sheet_8x_5: -8516997856469937953
-      admin_sheet_8x_6: 1661248030899890804
-      admin_sheet_8x_7: -1454971890840161070
-      admin_sheet_8x_8: 4845427305710409559
-      admin_sheet_8x_9: -6206119246006739914
+      admin_00: -325308597
+      admin_01: 528081653
+      admin_02: 712362259
+      admin_03: 1951568676
+      admin_04: -1096090087
+      admin_05: 1483860639
+      admin_06: 1283228236
+      admin_07: -636371972
+      admin_08: -504881028
+      admin_09: 328497061
+      admin_10: -366309531
+      admin_11: -1641150680
+      admin_12: 1500684664
+      admin_13: 1466083482
+      admin_14: 1050248693
+      admin_15: 1979561898
+      admin_16: -989872928
+      admin_17: 1449228122
+      admin_18: -835406858
+      admin_19: 1796510828
+      admin_20: -1776239084
+      admin_21: 1129503425
+      admin_22: 1145112760
+      admin_23: -1535254897
+      admin_24: -1942292803
+      admin_25: 1471094180
+      admin_26: 621083119
+      admin_27: 422717960
+      admin_28: 1946012993
+      admin_29: -434359054
+      admin_30: -121080024
+      admin_31: -1235636976
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
