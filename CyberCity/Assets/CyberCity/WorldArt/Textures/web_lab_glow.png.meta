@@ -1,0 +1,613 @@
+fileFormatVersion: 2
+guid: 6d282429b52097b469e6ed522d0a1d08
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7668030216530355677
+    second: web_lab_glow_0
+  - first:
+      213: 2629647904998097186
+    second: web_lab_glow_1
+  - first:
+      213: -7662778966551003403
+    second: web_lab_glow_2
+  - first:
+      213: 7510206074436952016
+    second: web_lab_glow_3
+  - first:
+      213: -2496380254686835346
+    second: web_lab_glow_4
+  - first:
+      213: 5625186629979072341
+    second: web_lab_glow_5
+  - first:
+      213: -2539263422508648876
+    second: web_lab_glow_6
+  - first:
+      213: -8182754465390811485
+    second: web_lab_glow_7
+  - first:
+      213: 8525291376842907709
+    second: web_lab_glow_8
+  - first:
+      213: -7933935926622816520
+    second: web_lab_glow_9
+  - first:
+      213: 7324195823114617196
+    second: web_lab_glow_10
+  - first:
+      213: 5307811423414497484
+    second: web_lab_glow_11
+  - first:
+      213: -7282471527557623602
+    second: web_lab_glow_12
+  - first:
+      213: 2674228629065000080
+    second: web_lab_glow_13
+  - first:
+      213: -3292598354051277234
+    second: web_lab_glow_14
+  - first:
+      213: -8326001375638460500
+    second: web_lab_glow_15
+  - first:
+      213: -7001103618952353346
+    second: web_lab_glow_16
+  - first:
+      213: -1220106020916784182
+    second: web_lab_glow_17
+  - first:
+      213: -7835193124338940805
+    second: web_lab_glow_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: web_lab_glow_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 56
+        width: 7
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32a1fb0252fa59590800000000000000
+      internalID: -7668030216530355677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_1
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 50
+        width: 116
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22103cd46d26e7420800000000000000
+      internalID: 2629647904998097186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_2
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 85
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fe746a012758a590800000000000000
+      internalID: -7662778966551003403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_3
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 53
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0df9bc842ac993860800000000000000
+      internalID: 7510206074436952016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_4
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 48
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6d871f72631b5dd0800000000000000
+      internalID: -2496380254686835346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_5
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 86
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 557ed2bbf6da01e40800000000000000
+      internalID: 5625186629979072341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_6
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 48
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 456ba3eee59b2ccd0800000000000000
+      internalID: -2539263422508648876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_7
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 37
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a6a326fa24017e80800000000000000
+      internalID: -8182754465390811485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_8
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 38
+        width: 130
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d302c6b965bef4670800000000000000
+      internalID: 8525291376842907709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_9
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 23
+        width: 29
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f6ffee7f4ff4e190800000000000000
+      internalID: -7933935926622816520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_10
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 48
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c61852ebb45c4a560800000000000000
+      internalID: 7324195823114617196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_11
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 81
+        width: 93
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc0b16b1e5229a940800000000000000
+      internalID: 5307811423414497484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_12
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 34
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec01809dab67fea90800000000000000
+      internalID: -7282471527557623602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_13
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 34
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 094699bf4c4cc1520800000000000000
+      internalID: 2674228629065000080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_14
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 13
+        width: 36
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4edcbeed375e42d0800000000000000
+      internalID: -3292598354051277234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_15
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 35
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca7e7a5acd9147c80800000000000000
+      internalID: -8326001375638460500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_16
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 12
+        width: 6
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb9a4ac1a5517de90800000000000000
+      internalID: -7001103618952353346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_17
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 28
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac390f2d900511fe0800000000000000
+      internalID: -1220106020916784182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_lab_glow_18
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 16
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b74c135bd5dc34390800000000000000
+      internalID: -7835193124338940805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      web_lab_glow_0: -7668030216530355677
+      web_lab_glow_1: 2629647904998097186
+      web_lab_glow_10: 7324195823114617196
+      web_lab_glow_11: 5307811423414497484
+      web_lab_glow_12: -7282471527557623602
+      web_lab_glow_13: 2674228629065000080
+      web_lab_glow_14: -3292598354051277234
+      web_lab_glow_15: -8326001375638460500
+      web_lab_glow_16: -7001103618952353346
+      web_lab_glow_17: -1220106020916784182
+      web_lab_glow_18: -7835193124338940805
+      web_lab_glow_2: -7662778966551003403
+      web_lab_glow_3: 7510206074436952016
+      web_lab_glow_4: -2496380254686835346
+      web_lab_glow_5: 5625186629979072341
+      web_lab_glow_6: -2539263422508648876
+      web_lab_glow_7: -8182754465390811485
+      web_lab_glow_8: 8525291376842907709
+      web_lab_glow_9: -7933935926622816520
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

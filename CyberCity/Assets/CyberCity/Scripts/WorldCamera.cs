@@ -2,16 +2,13 @@ using UnityEngine;
 
 namespace CyberCity
 {
-    // PixelPerfectCamera owns the projection. Keep the city centered in the HUD's left region.
+    // PixelPerfectCamera owns the aspect-preserving viewport and Point upscale.
     [RequireComponent(typeof(Camera))]
     public sealed class WorldCamera : MonoBehaviour
     {
-        Camera view;
-        void Awake() { view = GetComponent<Camera>(); }
         void LateUpdate()
         {
-            float halfWidth = view.orthographicSize * view.aspect;
-            transform.position = new Vector3(14 + halfWidth * .22f, -11, -10);
+            transform.position = new Vector3(WorldLayout.Center.x, WorldLayout.Center.y, -10);
         }
     }
 }

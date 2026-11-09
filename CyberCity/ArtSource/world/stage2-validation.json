@@ -1,0 +1,77 @@
+{
+  "status": "PASS (stage 2 artifact checks only)",
+  "canvas": [
+    1024,
+    576
+  ],
+  "frames": 1,
+  "visibleLayerCount": 11,
+  "visibleLayers": [
+    "ground",
+    "water",
+    "scenery_edge",
+    "buildings_academy",
+    "buildings_player_house",
+    "buildings_internet_cafe",
+    "buildings_linux_lab",
+    "buildings_web_lab",
+    "buildings_cyber_corp",
+    "props",
+    "glow"
+  ],
+  "hiddenExportExclusions": [
+    "reference_trace",
+    "guide_collision"
+  ],
+  "compositeMismatchPixels": 0,
+  "paletteColors": 47,
+  "brandColorsPresent": 8,
+  "files": {
+    "world.aseprite": {
+      "bytes": 2659724,
+      "sha256": "67ee4ee7938da117e551a34e137ed46764b94c4b26409cdbf08774a71dfcd9b0"
+    },
+    "ref_clean.aseprite": {
+      "bytes": 389939,
+      "sha256": "606f9490c6a7973638b0bbcc852757b5a6217c12ebe7aef2a142538e5bdbdf55"
+    },
+    "ref_clean.png": {
+      "bytes": 453808,
+      "sha256": "42f63b7cd8ee47c1ef94520960807877de12314e1ca82200a2eebb0725a311f8"
+    },
+    "world_preview.png": {
+      "bytes": 451983,
+      "sha256": "ad9fccdd08bc4a203b315ad6e5081fdb4f0d5a86b6bf0f53bf083e75754d5378"
+    },
+    "tree.aseprite": {
+      "bytes": 6509,
+      "sha256": "70c0bc50aed856f00883431b45e1d9c6a4eb50ac1c162af1f19a5f9f61c33e45"
+    },
+    "comparison.aseprite": {
+      "bytes": 2073271,
+      "sha256": "0b025f80bdf8c9d72f64ef51b4b7d0c5c3b8e635ae05d43faaf26f40297761ca"
+    },
+    "palette.json": {
+      "bytes": 846,
+      "sha256": "60384f080669b7d50a6dff4c2ece04d38201c2a752c27635144867d52d041807"
+    },
+    "world-manifest.json": {
+      "bytes": 12013,
+      "sha256": "6e1c2b28de2efa4efbe3fabba8d513a5cd6f7cb7d17de2d8c0f42362b5ec80bc"
+    },
+    "collision-guide.json": {
+      "bytes": 5324,
+      "sha256": "07b7faeb21c970163d2d76861f48c7306f72d561740f1565e8847ef29e9bd21a"
+    },
+    "similarity-metrics.json": {
+      "bytes": 6656,
+      "sha256": "cf85bb0eabbfe289cc893fb5eaa46e82a77ce25a9df815a82fd24a44f1db379b"
+    }
+  },
+  "unityVerification": "Deferred: user approval required before stage 3",
+  "visualLimitations": [
+    "Reference-derived quantized texture remains denser than fully hand-clustered pixel art.",
+    "Some foliage/lamps share building foundation silhouettes; final sprite/footprint separation is to be refined during stage 3 slicing.",
+    "Ground lint has 0 detached/lone alpha pixels but reports 15534 isolated-color pixels, including repeated hidden underpainting and intentional detail; this is not a zero-warning pixel-art lint pass."
+  ]
+}

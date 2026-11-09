@@ -1,0 +1,870 @@
+fileFormatVersion: 2
+guid: 43596f3994e5bd44391cec0673142787
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9086890725539521017
+    second: dr_crypto_sheet_8x_0
+  - first:
+      213: -6055720838949415033
+    second: dr_crypto_sheet_8x_1
+  - first:
+      213: 5662489073927839747
+    second: dr_crypto_sheet_8x_2
+  - first:
+      213: 9119561144911884009
+    second: dr_crypto_sheet_8x_3
+  - first:
+      213: 3026700773807469685
+    second: dr_crypto_sheet_8x_4
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 340
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dr_crypto_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90229a10771e2eb4297004edd9cc8ff1
+      internalID: 181022965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_01
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a23bf2a59002a6c40bfeacd1c72f7964
+      internalID: -295333009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_02
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93542f5acd07c02479d85211ec963f94
+      internalID: -1449935100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_03
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bea12a952cf4fac4a806d49dc5c0f80d
+      internalID: 1729449787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_04
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41e0aa5411e6a46459ed813623154aca
+      internalID: -1441398266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_05
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a84555e37a79f84d8ef4a1f92f0a1c1
+      internalID: 2057955310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_06
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7af93fcbf33b9443b753d9bd010bdaf
+      internalID: 1623676408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_07
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2abd40510893f145815d4aaa221d5f1
+      internalID: 674903740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_08
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 488fcc591a3105b4d849ff878b599e51
+      internalID: -1668396076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_09
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 001f575613adb0f4fa2c83f86079040f
+      internalID: 1724769324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc8e1dd8f6fd844478848d646284492a
+      internalID: -729780259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_11
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2c2ee1c7c7da2c469dacd450ffc6359
+      internalID: -1281640368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 925909816c2f0444cab871f268c58f19
+      internalID: 852589145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 194c356bc8267ca41860510b8d76e399
+      internalID: -1632230476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc40b39d5ed49d948935e66b1bd71ce3
+      internalID: -498128792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_15
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f9841a7d62489c43a98500d89b8e1d7
+      internalID: -143493284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fc344e93bf199a42ac546b5d137fc1d
+      internalID: 208837468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_17
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 156dbf52a14711f4e93f0a719384c647
+      internalID: 1979843768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_18
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e631f183fdd0ff42915973940890c51
+      internalID: 1133924096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_19
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bfade1320a0a244dbffd5ab3e74d192
+      internalID: 1461077855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fce6822191917044b851950e6c5cb7bd
+      internalID: -441378237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_21
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04d1786ba9d046c45a9d3fa6678361a3
+      internalID: -1109401155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dac1766404c22c40ad7c4c5e6946d7d
+      internalID: 395338384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_23
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4642c9b08aca6c4899a8ab480af3352
+      internalID: -1233040809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9ab97dece11b7e4cac29812b6ab0105
+      internalID: 1879518776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_25
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b09aa13e9dd9f74c83c81056c8729a3
+      internalID: 1509585530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_26
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cec232da41021ec4982e32f3c0d230eb
+      internalID: 1169860545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_27
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b4d9b8c36a5aab458a3d0fb3dadd1b9
+      internalID: 830955838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a5699f0e711df646b0085c5b721e4ca
+      internalID: 1209336993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_29
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b683405b182c4a4da9e578355aa2599
+      internalID: -2079223963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_30
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 403baef1ed5a206448e55a2d67aa3b9f
+      internalID: -979656616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr_crypto_31
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 214b5c72fb6df244e884370babae8c64
+      internalID: 238160361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: bdf9b2bc8e3fce44981a8b909edf200d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dr_crypto_00: 181022965
+      dr_crypto_01: -295333009
+      dr_crypto_02: -1449935100
+      dr_crypto_03: 1729449787
+      dr_crypto_04: -1441398266
+      dr_crypto_05: 2057955310
+      dr_crypto_06: 1623676408
+      dr_crypto_07: 674903740
+      dr_crypto_08: -1668396076
+      dr_crypto_09: 1724769324
+      dr_crypto_10: -729780259
+      dr_crypto_11: -1281640368
+      dr_crypto_12: 852589145
+      dr_crypto_13: -1632230476
+      dr_crypto_14: -498128792
+      dr_crypto_15: -143493284
+      dr_crypto_16: 208837468
+      dr_crypto_17: 1979843768
+      dr_crypto_18: 1133924096
+      dr_crypto_19: 1461077855
+      dr_crypto_20: -441378237
+      dr_crypto_21: -1109401155
+      dr_crypto_22: 395338384
+      dr_crypto_23: -1233040809
+      dr_crypto_24: 1879518776
+      dr_crypto_25: 1509585530
+      dr_crypto_26: 1169860545
+      dr_crypto_27: 830955838
+      dr_crypto_28: 1209336993
+      dr_crypto_29: -2079223963
+      dr_crypto_30: -979656616
+      dr_crypto_31: 238160361
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

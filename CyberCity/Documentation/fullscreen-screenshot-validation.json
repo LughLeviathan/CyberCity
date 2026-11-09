@@ -1,0 +1,205 @@
+{
+  "matrixImages": 28,
+  "totalFullscreenPng": 70,
+  "dimensions": "PASS",
+  "darkBars": "PASS",
+  "mapNotJournal": "PASS",
+  "captures": [
+    {
+      "file": "fullscreen-1920x1080-start.png",
+      "width": 1920,
+      "height": 1080,
+      "state": "start",
+      "sha256": "0d55b99e1dbb1a509025e146e9c789c37ef1a824d7489f38e073c5bdae0600be"
+    },
+    {
+      "file": "fullscreen-1920x1080-interact.png",
+      "width": 1920,
+      "height": 1080,
+      "state": "interact",
+      "sha256": "f53dc4fed36c4d14b42f0706e82fd4af236e5abee003fcb072d0dc1d2c2c8206"
+    },
+    {
+      "file": "fullscreen-1920x1080-journal.png",
+      "width": 1920,
+      "height": 1080,
+      "state": "journal",
+      "sha256": "d034f62ae15653d7da14682526e77aa568c1c01a3e4997c21424e0ee0a375941"
+    },
+    {
+      "file": "fullscreen-1920x1080-open.png",
+      "width": 1920,
+      "height": 1080,
+      "state": "open",
+      "sha256": "8a0d1af46f276b08d2055a671e25740605d7f8a6b794ea0eacb932e73260613a"
+    },
+    {
+      "file": "fullscreen-1366x768-start.png",
+      "width": 1366,
+      "height": 768,
+      "state": "start",
+      "sha256": "c95edf734f681e39d610dc10a96be83e56374cbf163b38b9507fe85ad2752cfb"
+    },
+    {
+      "file": "fullscreen-1366x768-interact.png",
+      "width": 1366,
+      "height": 768,
+      "state": "interact",
+      "sha256": "4d81da9c9183498449640c310ec947d30e604c347cfc159bc2e3ebe1c11a5cb2"
+    },
+    {
+      "file": "fullscreen-1366x768-journal.png",
+      "width": 1366,
+      "height": 768,
+      "state": "journal",
+      "sha256": "68c1da4fd4b93acbd65d18884cf333525ce3c8ae5ac91cdf569e04a2b96cf424"
+    },
+    {
+      "file": "fullscreen-1366x768-open.png",
+      "width": 1366,
+      "height": 768,
+      "state": "open",
+      "sha256": "3a9c0add58d9922eb5d3cf9fea4599740b22b8aaa3e6dde5684560076482ec2e"
+    },
+    {
+      "file": "fullscreen-2560x1440-start.png",
+      "width": 2560,
+      "height": 1440,
+      "state": "start",
+      "sha256": "024aa432c6cbd4b71cc19b9392eb2818734057b7878623d88a2b07c54762bf36"
+    },
+    {
+      "file": "fullscreen-2560x1440-interact.png",
+      "width": 2560,
+      "height": 1440,
+      "state": "interact",
+      "sha256": "d5f593d1cc52ebfd1a491413c0429f8c0fdcb3527acca74e6f75bd96c4ee8674"
+    },
+    {
+      "file": "fullscreen-2560x1440-journal.png",
+      "width": 2560,
+      "height": 1440,
+      "state": "journal",
+      "sha256": "a1d145afb7519d569184c328c243246628fa993491c0fa9744315f505aaa4a10"
+    },
+    {
+      "file": "fullscreen-2560x1440-open.png",
+      "width": 2560,
+      "height": 1440,
+      "state": "open",
+      "sha256": "fbe25f6ad48692c6a79cf77d1dbf9aef56bd33913ad4b14eaf382622dcdcdefb"
+    },
+    {
+      "file": "fullscreen-1280x720-start.png",
+      "width": 1280,
+      "height": 720,
+      "state": "start",
+      "sha256": "e0367aeb3915aff40a55a27f9cd22b227281ca16df3faba6282484ff12e768d7"
+    },
+    {
+      "file": "fullscreen-1280x720-interact.png",
+      "width": 1280,
+      "height": 720,
+      "state": "interact",
+      "sha256": "af7cc77bf4efce2ed4f7624a8b626360c2f9ebc523ab2fdd7ee98f41d4dee8da"
+    },
+    {
+      "file": "fullscreen-1280x720-journal.png",
+      "width": 1280,
+      "height": 720,
+      "state": "journal",
+      "sha256": "3c46702b467c005a3d92399bcf5d185dcf9ce0244562e76b1f91a1cd2d79fa77"
+    },
+    {
+      "file": "fullscreen-1280x720-open.png",
+      "width": 1280,
+      "height": 720,
+      "state": "open",
+      "sha256": "a9e578a2d592e1581860833fa51bae914f6ad5bd3563327714384b766a619a4c"
+    },
+    {
+      "file": "fullscreen-1920x1200-start.png",
+      "width": 1920,
+      "height": 1200,
+      "state": "start",
+      "sha256": "83ee4b67e8f960c05b2e3ab433119a62e0af708d0ba3c981672c46f82f4ce81d"
+    },
+    {
+      "file": "fullscreen-1920x1200-interact.png",
+      "width": 1920,
+      "height": 1200,
+      "state": "interact",
+      "sha256": "68b627f7bfd758d2bb0af1adc11719ff9f3956cc1211085e19e20edcf8d0475b"
+    },
+    {
+      "file": "fullscreen-1920x1200-journal.png",
+      "width": 1920,
+      "height": 1200,
+      "state": "journal",
+      "sha256": "1340b0ee8564dbaf822d5e6b10c6d1244e59883c23a19ae771afbcfc056c45d3"
+    },
+    {
+      "file": "fullscreen-1920x1200-open.png",
+      "width": 1920,
+      "height": 1200,
+      "state": "open",
+      "sha256": "5427549b2717ebc97af03a1ab8d7b37a0e5c533b34071e754b4aafa4fddc795c"
+    },
+    {
+      "file": "fullscreen-2560x1080-start.png",
+      "width": 2560,
+      "height": 1080,
+      "state": "start",
+      "sha256": "42bab9e87933b1e38088c6a48c67b3a80705e8a0b89854c35c0617ac008236e8"
+    },
+    {
+      "file": "fullscreen-2560x1080-interact.png",
+      "width": 2560,
+      "height": 1080,
+      "state": "interact",
+      "sha256": "f57f7f310d1ea9d4d62b6109bdf4f3e3577f9099292ff55ba93684cf9397e024"
+    },
+    {
+      "file": "fullscreen-2560x1080-journal.png",
+      "width": 2560,
+      "height": 1080,
+      "state": "journal",
+      "sha256": "b08b6dc5cde870d250468e3a9353c1f9413ab0f0ca90a0c967b93b30cd6c57d0"
+    },
+    {
+      "file": "fullscreen-2560x1080-open.png",
+      "width": 2560,
+      "height": 1080,
+      "state": "open",
+      "sha256": "d6bd9600e3e5f0ad0680af14134c497a3d1868db8581e64f054ed21811e98737"
+    },
+    {
+      "file": "fullscreen-1440x1080-start.png",
+      "width": 1440,
+      "height": 1080,
+      "state": "start",
+      "sha256": "c231984627919eb5929d31bea572fb5b97f565626effdd843ac375d32edcb8be"
+    },
+    {
+      "file": "fullscreen-1440x1080-interact.png",
+      "width": 1440,
+      "height": 1080,
+      "state": "interact",
+      "sha256": "9d3e6cd8b13a9038f9cd1b714e422530c06132918045ea1de22a36994b0dcb2a"
+    },
+    {
+      "file": "fullscreen-1440x1080-journal.png",
+      "width": 1440,
+      "height": 1080,
+      "state": "journal",
+      "sha256": "17c83f18f4af2c10e4d0081d31dcfe90b6b0b2e8b892cfb52dc5bb80b138be85"
+    },
+    {
+      "file": "fullscreen-1440x1080-open.png",
+      "width": 1440,
+      "height": 1080,
+      "state": "open",
+      "sha256": "18216fcd5b971dcb699f9b2935973a9ec31f70df202103492918457ec46e3fd5"
+    }
+  ]
+}

@@ -1,0 +1,909 @@
+fileFormatVersion: 2
+guid: 2ee2b2be8634e104883ffbe39fbf8838
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8591595104358514390
+    second: firewall_sheet_8x_0
+  - first:
+      213: -2203145672937769341
+    second: firewall_sheet_8x_1
+  - first:
+      213: -4222391954675475665
+    second: firewall_sheet_8x_2
+  - first:
+      213: 4453691300772263238
+    second: firewall_sheet_8x_3
+  - first:
+      213: 7700312509866333708
+    second: firewall_sheet_8x_4
+  - first:
+      213: 901091301167798031
+    second: firewall_sheet_8x_5
+  - first:
+      213: -273370627186925945
+    second: firewall_sheet_8x_6
+  - first:
+      213: 545364811520608223
+    second: firewall_sheet_8x_7
+  - first:
+      213: 1310182967106628936
+    second: firewall_sheet_8x_8
+  - first:
+      213: 7237217903466655239
+    second: firewall_sheet_8x_9
+  - first:
+      213: 6754604203462726105
+    second: firewall_sheet_8x_10
+  - first:
+      213: 4918890365948327884
+    second: firewall_sheet_8x_11
+  - first:
+      213: 4673758077555097828
+    second: firewall_sheet_8x_12
+  - first:
+      213: 8668868379919616349
+    second: firewall_sheet_8x_13
+  - first:
+      213: -3117256038739053588
+    second: firewall_sheet_8x_14
+  - first:
+      213: -9046827895914150935
+    second: firewall_sheet_8x_15
+  - first:
+      213: -5532451313775527905
+    second: firewall_sheet_8x_16
+  - first:
+      213: 253320789178258888
+    second: firewall_sheet_8x_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 340
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: firewall_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf56176d9be27594eae37da1a7399a9b
+      internalID: 1301696169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_01
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e1039439c729fd4a95d49e48867702c
+      internalID: -1189466974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_02
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf6858b8cc473f0458594f6412a0372f
+      internalID: -879253749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_03
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bac52da5922b4c743b8c0d50499cfa99
+      internalID: 41094605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_04
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b739a7dcd9a0a2b40b6ad94edf63c6e5
+      internalID: -215192961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_05
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bdfbf2e0c10e1b448aab37d2713b903
+      internalID: -701854328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_06
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09262f1f1fbce514d833a806fd28ccc0
+      internalID: -1791999105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_07
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3666456b210d5cb448b309c660718470
+      internalID: 335670039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_08
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d35de85ff4b30864d886588106f6f4ac
+      internalID: 12915927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_09
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44e882c6ae6ee074382a3958b100cf0c
+      internalID: 561817178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f53c4dc7c9a9d4439b1136a5cabb236
+      internalID: -840150659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_11
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf24c1762272be54c8326f77a05022c4
+      internalID: 455013755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e0241209c31ae24c81663e194db4548
+      internalID: 82159812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7952bf8a71dad9b489c04b823a709a24
+      internalID: 769509159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74522c2717131ec4690ede81d91af870
+      internalID: 2072346105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_15
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61317723ae6842344b800c90e699739a
+      internalID: 1464802046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f61929d8a38aa9a4cadef651d30ae8c1
+      internalID: 1632954600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_17
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d76a005005d86d14894310fe39397ba4
+      internalID: -199232998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_18
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 242ec9d3f0965ed408465ff0fce43c9a
+      internalID: -32561326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_19
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e958a53586ed8d46bcbf2de144acf7c
+      internalID: -2099983471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da66a7416fb8a7c46b5ee0742bbd0841
+      internalID: -826223117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_21
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cd2fc87f7207444b861fe36638d48d1
+      internalID: -1338061407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a6e47b029e551b479fc754d1ddd1379
+      internalID: -1735625522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_23
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8079f0b364a48bf46b53712a56dae065
+      internalID: 1595621637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 910d3ff7b259fe44eb84ff005b4a7fe0
+      internalID: 1354797117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_25
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8e324a658c19dd47b4f4a8a1ca3f8a0
+      internalID: 277011876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_26
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e63bd1d538c51154abcd3557970c5313
+      internalID: -459013162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_27
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95f349b33cf3d8e46aae357bf8c884f6
+      internalID: -966036729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ea5a36cb868e434a8ed15bb192baca2
+      internalID: 278337200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_29
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf9122481a4dc374fb4be60e366c4b94
+      internalID: 1681900637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_30
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07420b699d0c5aa409312d633cd59999
+      internalID: 242608834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firewall_31
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2da1be2318dec724393c8f08f9acfcab
+      internalID: -268508525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 0de2f89420634a747b55d28962b7de64
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      firewall_00: 1301696169
+      firewall_01: -1189466974
+      firewall_02: -879253749
+      firewall_03: 41094605
+      firewall_04: -215192961
+      firewall_05: -701854328
+      firewall_06: -1791999105
+      firewall_07: 335670039
+      firewall_08: 12915927
+      firewall_09: 561817178
+      firewall_10: -840150659
+      firewall_11: 455013755
+      firewall_12: 82159812
+      firewall_13: 769509159
+      firewall_14: 2072346105
+      firewall_15: 1464802046
+      firewall_16: 1632954600
+      firewall_17: -199232998
+      firewall_18: -32561326
+      firewall_19: -2099983471
+      firewall_20: -826223117
+      firewall_21: -1338061407
+      firewall_22: -1735625522
+      firewall_23: 1595621637
+      firewall_24: 1354797117
+      firewall_25: 277011876
+      firewall_26: -459013162
+      firewall_27: -966036729
+      firewall_28: 278337200
+      firewall_29: 1681900637
+      firewall_30: 242608834
+      firewall_31: -268508525
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

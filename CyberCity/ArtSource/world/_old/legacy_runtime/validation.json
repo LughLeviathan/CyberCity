@@ -1,0 +1,48 @@
+{
+  "tool": "Aseprite MCP + PNG byte validation",
+  "checks": [
+    {
+      "sheet": "terrain",
+      "size": [
+        384,
+        256
+      ],
+      "sprites": 96,
+      "colors": 8,
+      "transparentPixels": 0,
+      "passed": true
+    },
+    {
+      "sheet": "props",
+      "size": [
+        512,
+        192
+      ],
+      "sprites": 24,
+      "colors": 8,
+      "transparentPixels": 68486,
+      "passed": true
+    },
+    {
+      "sheet": "buildings",
+      "size": [
+        384,
+        256
+      ],
+      "sprites": 6,
+      "colors": 8,
+      "transparentPixels": 34600,
+      "passed": true
+    },
+    {
+      "scene": [
+        896,
+        704
+      ],
+      "tileCells": 616,
+      "objects": 70,
+      "layerComposite": true,
+      "passed": true
+    }
+  ]
+}

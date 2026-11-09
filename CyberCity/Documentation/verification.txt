@@ -1,13 +1,32 @@
 CyberCity verification
-PASS: 75 checks including twelve missions through runtime UI
-UTC: 2026-10-15T20:30:58.0304797Z
+PASS: 350 checks including all missions through runtime UI
+UTC: 2026-11-03T03:11:08.5732756Z
 
-PASS  Twelve validated offline missions
+PASS  Mission count follows scenario pack
+PASS  Validated offline missions
 PASS  Unique mission IDs
 PASS  Bundled campaign SHA-256 matches
 PASS  Invalid campaign rejected
 PASS  Missing learning questions rejected
 PASS  Unsupported scenario mentor rejected
+PASS  Username trims surrounding whitespace
+PASS  Valid username: ABC
+PASS  Valid username: A B
+PASS  Valid username: Byte_42
+PASS  Valid username: abcdefghijklmnop
+PASS  Valid username: Nadia42
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Invalid username rejected with inline reason
+PASS  Every player token resolves as plain text
+PASS  Invalid or missing identity uses a safe fallback
+PASS  Duplicate mission IDs rejected
+PASS  Non-quiz learning does not require questions
 PASS  Flag requires reading evidence first
 PASS  Normal listing hides dot entries
 PASS  Hidden folder appears with ls -a
@@ -17,11 +36,157 @@ PASS  Incorrect flag rejected
 PASS  Correct flag accepted
 PASS  Virtual path stays inside root
 PASS  External commands are unsupported
+PASS  Log flag needs evidence before submission
+PASS  find locates the authentication evidence
+PASS  Pipe isolates four failed sign-ins from noise
+PASS  Repeated attacker counted from evidence
+PASS  head and tail inspect boundaries
+PASS  Bad command arguments return useful errors
+PASS  Wrong log source rejected
+PASS  Log hunt solved by highest failed source
+PASS  Permissions show current owner and missing read access
+PASS  Unreadable evidence stays protected
+PASS  Excessive permissions cannot solve challenge
+PASS  Wrong permissions flag rejected
+PASS  Owner-only read permission solves challenge
+PASS  Symbolic owner read command supported
+PASS  Challenge filesystems are isolated
+PASS  Hints reduce reward without crossing minimum
+PASS  Cannot patch before observing flaw: idor
+PASS  Router keeps requests within fictional scenario: idor
+PASS  Benign or false condition cannot demonstrate attack: idor
+PASS  Varied attack demonstrated: idor /
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: idor
+PASS  Changed form body does not verify captured request: idor
+PASS  Different request does not verify captured attack: idor
+PASS  Same attack is rejected or encoded after patch and reload: idor
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Cannot patch before observing flaw: xss
+PASS  Router keeps requests within fictional scenario: xss
+PASS  Benign or false condition cannot demonstrate attack: xss
+PASS  Varied attack demonstrated: xss / <script>alert(1)</script>
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: xss
+PASS  Changed form body does not verify captured request: xss
+PASS  Different request does not verify captured attack: xss
+PASS  Same attack is rejected or encoded after patch and reload: xss
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Varied attack demonstrated: xss / <IMG SRC=x ONERROR=alert(2)>
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: xss
+PASS  Changed form body does not verify captured request: xss
+PASS  Different request does not verify captured attack: xss
+PASS  Same attack is rejected or encoded after patch and reload: xss
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Varied attack demonstrated: xss / <svg onload=alert(3)>
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: xss
+PASS  Changed form body does not verify captured request: xss
+PASS  Different request does not verify captured attack: xss
+PASS  Same attack is rejected or encoded after patch and reload: xss
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Cannot patch before observing flaw: sqli
+PASS  Router keeps requests within fictional scenario: sqli
+PASS  Benign or false condition cannot demonstrate attack: sqli
+PASS  Varied attack demonstrated: sqli / ' OR '1'='1
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: sqli
+PASS  Changed form body does not verify captured request: sqli
+PASS  Different request does not verify captured attack: sqli
+PASS  Same attack is rejected or encoded after patch and reload: sqli
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Varied attack demonstrated: sqli / ' OR 1=1 --
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: sqli
+PASS  Changed form body does not verify captured request: sqli
+PASS  Different request does not verify captured attack: sqli
+PASS  Same attack is rejected or encoded after patch and reload: sqli
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Varied attack demonstrated: sqli / admin'--
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: sqli
+PASS  Changed form body does not verify captured request: sqli
+PASS  Different request does not verify captured attack: sqli
+PASS  Same attack is rejected or encoded after patch and reload: sqli
+PASS  SQLi patch uses a bound value in displayed query
+PASS  Varied attack demonstrated: sqli / ' oR true --
+PASS  XSS produces a fake game alert only
+PASS  Applying source fix still requires retest: sqli
+PASS  Changed form body does not verify captured request: sqli
+PASS  Different request does not verify captured attack: sqli
+PASS  Same attack is rejected or encoded after patch and reload: sqli
+PASS  SQLi patch uses a bound value in displayed query
+PASS  SOC report cannot skip investigation stages
+PASS  Wrong triage verdict cannot advance
+PASS  Alert triaged from context: enumeration
+PASS  Alert triaged from context: unsafe-forms
+PASS  Alert triaged from context: maintenance
+PASS  All triage verdicts precede source identification
+PASS  Malformed filter explains expected syntax
+PASS  Invalid filter IP rejected
+PASS  DNS quick filter excludes web attacks
+PASS  Guessed source needs filtered packet evidence
+PASS  Free-text filter matches packet body
+PASS  Source filter correlates attacker traffic
+PASS  Maintenance source cannot impersonate attacker
+PASS  Attacker confirmed from actual filtered evidence
+PASS  Response cannot skip attack classification
+PASS  Wrong attack tag rejected: profile-enumeration
+PASS  Evidence classified: IDOR
+PASS  Wrong attack tag rejected: login-bypass
+PASS  Evidence classified: SQLi
+PASS  Wrong attack tag rejected: comment-injection
+PASS  Evidence classified: XSS
+PASS  Containment alone leaves root cause and accounts exposed
+PASS  Simulated response requires all correct actions
+PASS  Incomplete incident report rejected
+PASS  Evidence-aligned incident report closes the case
+PASS  SOC report and investigation stage survive reload
+PASS  Bundled course follows the revised route with no redundant team quizzes
+PASS  Six light questions are limited to orientation, awareness and graduation
+PASS  Red follows Linux CTF and Blue follows SQLi
+PASS  Two flags cannot complete Linux CTF
+PASS  Three flags satisfy Linux CTF
+PASS  Final chain begins without completion evidence
+PASS  Both browser fixes still require final incident analysis
+PASS  Final requires browser chain and incident analysis together
+PASS  Final browser stage supports attack, patch and retest: idor
+PASS  Final browser stage supports attack, patch and retest: sqli
+PASS  Verified local pack can use a different mission count
+PASS  Corrupt optional pack falls back to verified offline course
+PASS  Malformed but hashed pack falls back safely
+PASS  Completed practical missions require saved evidence or recover backup
+PASS  Invalid captured URL recovers usable backup
+PASS  Invalid captured body recovers usable backup
+PASS  Malformed filter cannot classify stale evidence
+PASS  Filtered-out evidence cannot advance classification
 PASS  Atomic save succeeds
-PASS  Save round trip preserves progress and position
+PASS  Save round trip preserves identity, progress and position
 PASS  Damaged primary save recovers backup
 PASS  Damaged primary and backup recover fresh data
+PASS  Legacy save resets safely with an explanation
+PASS  Retry storage follows mission count
+PASS  Dynamic maximum score accepted
+PASS  Over-maximum score recovers valid backup
+PASS  Different course route resets safely
+PASS  Flags and paid hints survive save/reload
 PASS  Runtime game initialized
+PASS  Welcome covers display and centers content at (2560, 1080)
+PASS  Welcome covers display and centers content at (1440, 1080)
+PASS  Welcome covers display and centers content at (1920, 1080)
+PASS  Username required before patrol
+PASS  Valid username is trimmed and persisted
+PASS  Invalid pause rename preserves stored identity
+PASS  Pause rename applies valid username
+PASS  Returning player sees saved name in popup
+PASS  Dynamic HUD resolves player token
+PASS  Refreshed browser source labels resolve player token
+PASS  Previously paid browser hints can be reviewed after reopen
+PASS  Unlocked hints render together with personalized text
+PASS  Reviewing unlocked hints is free
+PASS  Accepted eight-alert SOC packs have a scrollable queue
+PASS  Last alert scrolls into the visible viewport
 PASS  WASD input moves Rigidbody2D
 PASS  Water collision blocks movement from the bridge
 PASS  Seven main NPCs present
@@ -33,50 +198,157 @@ PASS  Walkable route to Detective Byte
 PASS  Walkable route to SysAdmin Tux
 PASS  Walkable route to Red
 PASS  Walkable route to Blue
+PASS  Walkable route to door / Cyber Academy
+PASS  Walkable route to door / Internet Cafe
+PASS  Walkable route to door / Linux Lab
+PASS  Walkable route to door / Web Security Lab
+PASS  Walkable bridge/edge route (5.63, -12.72)
+PASS  Walkable bridge/edge route (23.06, -12.91)
+PASS  Walkable bridge/edge route (20.81, -15.47)
+PASS  48 area/progression combinations and actual door gates
+PASS  Cafe entrance takes priority over a farther NPC
+PASS  E at Cafe door routes to current mentor Maya
+PASS  Reload path silently restores area visuals and subscriptions
+PASS  Minimal HUD, quest slot, XP and player identity refresh
+PASS  Complete centered map with preserved aspect at (1920, 1080)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (1920, 1080)
+PASS  J opens Journal at (1920, 1080)
+PASS  ESC closes Journal at (1920, 1080)
+PASS  Complete centered map with preserved aspect at (1366, 768)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (1366, 768)
+PASS  J opens Journal at (1366, 768)
+PASS  ESC closes Journal at (1366, 768)
+PASS  Complete centered map with preserved aspect at (2560, 1440)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (2560, 1440)
+PASS  J opens Journal at (2560, 1440)
+PASS  ESC closes Journal at (2560, 1440)
+PASS  Complete centered map with preserved aspect at (1280, 720)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (1280, 720)
+PASS  J opens Journal at (1280, 720)
+PASS  ESC closes Journal at (1280, 720)
+PASS  Complete centered map with preserved aspect at (1920, 1200)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (1920, 1200)
+PASS  J opens Journal at (1920, 1200)
+PASS  ESC closes Journal at (1920, 1200)
+PASS  Complete centered map with preserved aspect at (2560, 1080)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (2560, 1080)
+PASS  J opens Journal at (2560, 1080)
+PASS  ESC closes Journal at (2560, 1080)
+PASS  Complete centered map with preserved aspect at (1440, 1080)
+PASS  Fullscreen capture position is walkable
+PASS  NPC/player labels, gold marker and E prompt register at (1440, 1080)
+PASS  J opens Journal at (1440, 1080)
+PASS  ESC closes Journal at (1440, 1080)
+PASS  M opens Map with active objective
+PASS  H opens Field guide
+PASS  ESC opens Pause
+PASS  Quest slot Journal button opens Journal
 PASS  Mission 1 unlocks in order
 PASS  Wrong answer gives feedback without advancing
+PASS  UI renders plain text: orientation
+PASS  Player tokens resolved: orientation
 PASS  Mission 1 completes through its actual UI
 PASS  Mission 1 persists immediately
+PASS  Mission event animates unlock once: Internet Cafe
+PASS  Unlock settles into open state: Internet Cafe
+PASS  Atlas marks next mission building
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (1920, 1080)
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (1366, 768)
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (2560, 1440)
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (1280, 720)
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (1920, 1200)
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (2560, 1080)
+PASS  Fullscreen capture position is walkable
+PASS  Cafe remains unlocked at (1440, 1080)
 PASS  Mission 2 unlocks in order
+PASS  UI renders plain text: awareness
+PASS  Player tokens resolved: awareness
 PASS  Mission 2 completes through its actual UI
 PASS  Mission 2 persists immediately
 PASS  Mission 3 unlocks in order
 PASS  Evidence requires highlights before verdict: phishing
+PASS  UI renders plain text: phishing
+PASS  Player tokens resolved: phishing
 PASS  Mission 3 completes through its actual UI
 PASS  Mission 3 persists immediately
 PASS  Mission 4 unlocks in order
 PASS  Evidence requires highlights before verdict: fake-site
+PASS  UI renders plain text: fake-site
+PASS  Player tokens resolved: fake-site
 PASS  Mission 4 completes through its actual UI
 PASS  Mission 4 persists immediately
+PASS  Mission event animates unlock once: Linux Lab
+PASS  Unlock settles into open state: Linux Lab
+PASS  Atlas marks next mission building
 PASS  Mission 5 unlocks in order
+PASS  Practical evidence gates mission completion: linux-ctf
+PASS  Earned flag remains after reopening terminal UI
+PASS  UI renders plain text: linux-ctf
+PASS  Player tokens resolved: linux-ctf
 PASS  Mission 5 completes through its actual UI
 PASS  Mission 5 persists immediately
+PASS  Mission event animates unlock once: Web Security Lab
+PASS  Unlock settles into open state: Web Security Lab
+PASS  Atlas marks next mission building
 PASS  Mission 6 unlocks in order
-PASS  Web defense follows observation: idor
+PASS  Practical evidence gates mission completion: idor
+PASS  Source patch waits for observed attack: idor/idor
+PASS  Web patch cannot skip retest: idor
+PASS  UI renders plain text: idor
+PASS  Player tokens resolved: idor
 PASS  Mission 6 completes through its actual UI
 PASS  Mission 6 persists immediately
 PASS  Mission 7 unlocks in order
-PASS  Web defense follows observation: xss
+PASS  Practical evidence gates mission completion: xss
+PASS  Source patch waits for observed attack: xss/xss
+PASS  Web patch cannot skip retest: xss
+PASS  UI renders plain text: xss
+PASS  Player tokens resolved: xss
 PASS  Mission 7 completes through its actual UI
 PASS  Mission 7 persists immediately
 PASS  Mission 8 unlocks in order
-PASS  Web defense follows observation: sqli
+PASS  Practical evidence gates mission completion: sqli
+PASS  Source patch waits for observed attack: sqli/sqli
+PASS  Web patch cannot skip retest: sqli
+PASS  UI renders plain text: sqli
+PASS  Player tokens resolved: sqli
 PASS  Mission 8 completes through its actual UI
 PASS  Mission 8 persists immediately
 PASS  Mission 9 unlocks in order
+PASS  Practical evidence gates mission completion: blue-soc
+PASS  Malformed SOC filter has inline feedback
+PASS  UI renders plain text: blue-soc
+PASS  Player tokens resolved: blue-soc
 PASS  Mission 9 completes through its actual UI
 PASS  Mission 9 persists immediately
 PASS  Mission 10 unlocks in order
+PASS  Practical evidence gates mission completion: final
+PASS  Source patch waits for observed attack: final/idor
+PASS  Web patch cannot skip retest: final
+PASS  Source patch waits for observed attack: final/sqli
+PASS  Web patch cannot skip retest: final
+PASS  Malformed SOC filter has inline feedback
+PASS  UI renders plain text: final
+PASS  Player tokens resolved: final
 PASS  Mission 10 completes through its actual UI
 PASS  Mission 10 persists immediately
 PASS  Mission 11 unlocks in order
+PASS  UI renders plain text: graduation
+PASS  Player tokens resolved: graduation
 PASS  Mission 11 completes through its actual UI
 PASS  Mission 11 persists immediately
-PASS  Mission 12 unlocks in order
-PASS  Mission 12 completes through its actual UI
-PASS  Mission 12 persists immediately
 PASS  Complete campaign scores once with retry penalty
 PASS  Final campaign state has no pending mission
-
-PASS  Targeted editor reload: interface rebuilt with zero runtime exceptions
-PASS  Targeted editor reload: E-key NPC interaction and module callbacks recovered
+PASS  Completed campaign cannot grant XP twice

@@ -1,0 +1,62 @@
+PASS: 61 menu checks
+PASS Default language is Indonesian
+PASS Both title lines render with Silkscreen
+PASS S focuses Settings
+PASS W focuses Start
+PASS Enter opens focused username without starting gameplay
+PASS Pointer can reach Username Begin
+PASS Invalid short name reports localized Gold error
+PASS Pointer can reach Username Begin
+PASS Invalid character cannot begin
+PASS Input clamps pasted name to 16 characters
+PASS Input glyphs render within the field
+PASS Counter follows input length
+PASS ESC returns to menu without committing identity
+PASS Pointer can reach Menu Settings
+PASS Default SFX/VFX values are 70/85
+PASS Slider fill widths match percentages
+PASS Thumb stays circular with 4px external stroke
+PASS SFX Slider endpoint 0
+PASS Thumb center follows endpoint 0
+PASS SFX Slider endpoint 100
+PASS Thumb center follows endpoint 100
+PASS VFX Slider endpoint 0
+PASS Thumb center follows endpoint 0
+PASS VFX Slider endpoint 100
+PASS Thumb center follows endpoint 100
+PASS Zero SFX mutes source and persists
+PASS Zero VFX removes decorative glow
+PASS Pointer can reach Language id
+PASS Language applies and persists: id
+PASS Language refresh preserves both zero settings
+PASS Localized settings title: id
+PASS Pointer can reach Language en
+PASS Language applies and persists: en
+PASS Language refresh preserves both zero settings
+PASS Localized settings title: en
+PASS Pointer can reach Language jv
+PASS Language applies and persists: jv
+PASS Language refresh preserves both zero settings
+PASS Localized settings title: jv
+PASS Pointer can reach Language su
+PASS Language applies and persists: su
+PASS Language refresh preserves both zero settings
+PASS Localized settings title: su
+PASS Pointer can reach Language id
+PASS Pointer can reach Settings Close
+PASS Close button returns to menu
+PASS Pointer can reach Menu Settings
+PASS Settings reload from preferences, including zero
+PASS Pointer can reach Menu Settings
+PASS Settings remains on screen at (2560, 1080)
+PASS Pointer can reach Settings Back
+PASS Pointer can reach Menu Settings
+PASS Settings remains on screen at (1440, 1080)
+PASS Pointer can reach Settings Back
+PASS Pointer can reach Menu Start
+PASS Returning player is prefilled via the same Start flow
+PASS Valid Enter trims name and starts transition only
+PASS ESC cannot skip welcome transition
+PASS Transition finishes once and releases gameplay
+PASS Gameplay movement and navigation restored
+PASS Begin persists trimmed identity

@@ -1,0 +1,951 @@
+fileFormatVersion: 2
+guid: 5bd4235a477c6524ba8eff9198ea6aea
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6832592725413018046
+    second: cipher_sheet_8x_0
+  - first:
+      213: 8536099141885023339
+    second: cipher_sheet_8x_1
+  - first:
+      213: 7027259361541482322
+    second: cipher_sheet_8x_2
+  - first:
+      213: -4049018988144234710
+    second: cipher_sheet_8x_3
+  - first:
+      213: -7496686035475143813
+    second: cipher_sheet_8x_4
+  - first:
+      213: -1588700239683007492
+    second: cipher_sheet_8x_5
+  - first:
+      213: -4601715900150269874
+    second: cipher_sheet_8x_6
+  - first:
+      213: 7239858172180170473
+    second: cipher_sheet_8x_7
+  - first:
+      213: -9118969655861956745
+    second: cipher_sheet_8x_8
+  - first:
+      213: -3126042787484752173
+    second: cipher_sheet_8x_9
+  - first:
+      213: 3827053014615284870
+    second: cipher_sheet_8x_10
+  - first:
+      213: -1612236604501065634
+    second: cipher_sheet_8x_11
+  - first:
+      213: 4238692694028834634
+    second: cipher_sheet_8x_12
+  - first:
+      213: -6824704816906883285
+    second: cipher_sheet_8x_13
+  - first:
+      213: 7333082874354936180
+    second: cipher_sheet_8x_14
+  - first:
+      213: -8800012501821943296
+    second: cipher_sheet_8x_15
+  - first:
+      213: -3685388641390375615
+    second: cipher_sheet_8x_16
+  - first:
+      213: 1078768756441878081
+    second: cipher_sheet_8x_17
+  - first:
+      213: 6925481517504325819
+    second: cipher_sheet_8x_18
+  - first:
+      213: 5214982893270180591
+    second: cipher_sheet_8x_19
+  - first:
+      213: 379815879989520778
+    second: cipher_sheet_8x_20
+  - first:
+      213: -5349548129930698900
+    second: cipher_sheet_8x_21
+  - first:
+      213: 4492305802757681337
+    second: cipher_sheet_8x_22
+  - first:
+      213: 7267724586044378535
+    second: cipher_sheet_8x_23
+  - first:
+      213: 1422414646139000361
+    second: cipher_sheet_8x_24
+  - first:
+      213: 2842798123170266493
+    second: cipher_sheet_8x_25
+  - first:
+      213: 3128226123104391874
+    second: cipher_sheet_8x_26
+  - first:
+      213: 3667250329498726535
+    second: cipher_sheet_8x_27
+  - first:
+      213: -7824666272310248519
+    second: cipher_sheet_8x_28
+  - first:
+      213: 4286562758042042085
+    second: cipher_sheet_8x_29
+  - first:
+      213: 3524143245122012733
+    second: cipher_sheet_8x_30
+  - first:
+      213: 2984432716409585653
+    second: cipher_sheet_8x_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 340
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cipher_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ad8fbea87d5c894684d534fded6d1fe
+      internalID: 1906474325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_01
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96d3f80e857cc1a4f9cea610f06bcc08
+      internalID: 700621745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_02
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef3709908eecac542a4bfb297e72852b
+      internalID: 1209587171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_03
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2688
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c14b717c588004148a29cb57cd7aeccd
+      internalID: 1159332229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_04
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78346d93015c940409addff345de7e9a
+      internalID: -899389049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_05
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dceb4825f3554c48a5cbbad57d5aa48
+      internalID: 1556760767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_06
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61de5c428d0aa3d4595f4af680a137f0
+      internalID: -1086348969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_07
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2304
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfde10d638eba194ba4e69f1224e557a
+      internalID: -1302503481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_08
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cda01c3b28d9d5a4c9b4215bd022f325
+      internalID: -2113600305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_09
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 093998c9c0b92aa4abce3195693821d4
+      internalID: 605651592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f809b9a7b5b6e3499ff06e1b5698ef8
+      internalID: 174005246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_11
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1920
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d43e939a15957542a95c0c793ae8297
+      internalID: 243582876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6ae830b365c28f42a0a223896ec67d0
+      internalID: -1819410412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ae52f7bc61c4de40bfdedf107dc384b
+      internalID: 2128631716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfbc12e4f8ce1fc4db10a234a352e1be
+      internalID: -1875915331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_15
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1536
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e730a1549f7cbd14394baa178e8918db
+      internalID: 1065293800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95f2d7b34ea455b44b422e7890baa49c
+      internalID: -1831745012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_17
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79a557d95f02db54db3f48c4844ff57f
+      internalID: -23370633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_18
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 533690a510ddd7e4fb97c9849b4118ca
+      internalID: -564655942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_19
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1152
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a099f4ed905f1841b6ba7ee0dac5f81
+      internalID: 35690258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb1762bc656f2a245b32aca06b49245f
+      internalID: 1365944567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_21
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e1f2cf0c0131b541a391b76d72261e0
+      internalID: -525907422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a60b883fe039b54199f2866963ad263
+      internalID: 728257283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_23
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 449fb6d238adcaa4c8b4bc3bbb0e1bb7
+      internalID: 1248811488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfbcb2f4f949ab14fab557cc467b8a84
+      internalID: -105254455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_25
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bb6ee1df4bec6346bd5a58888138794
+      internalID: -135142799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_26
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 302d7fa58e9c8e749a2b545b24bdcd11
+      internalID: 1429620576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_27
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37dbb86387705d148a1a81f93c3043f4
+      internalID: -995019124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 916d0737729bae64f8dfc81f5588f4d7
+      internalID: 145814948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_29
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: defd783127f21cf42baf274ecacb4964
+      internalID: 861602309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_30
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 077f997ddf6a2a4409e1d1fef3460b2a
+      internalID: -593564390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cipher_31
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4542c6ea46fb6874cbcce181210fddc4
+      internalID: -1423565442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d7be6f6035486674b95701a425286a88
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cipher_00: 1906474325
+      cipher_01: 700621745
+      cipher_02: 1209587171
+      cipher_03: 1159332229
+      cipher_04: -899389049
+      cipher_05: 1556760767
+      cipher_06: -1086348969
+      cipher_07: -1302503481
+      cipher_08: -2113600305
+      cipher_09: 605651592
+      cipher_10: 174005246
+      cipher_11: 243582876
+      cipher_12: -1819410412
+      cipher_13: 2128631716
+      cipher_14: -1875915331
+      cipher_15: 1065293800
+      cipher_16: -1831745012
+      cipher_17: -23370633
+      cipher_18: -564655942
+      cipher_19: 35690258
+      cipher_20: 1365944567
+      cipher_21: -525907422
+      cipher_22: 728257283
+      cipher_23: 1248811488
+      cipher_24: -105254455
+      cipher_25: -135142799
+      cipher_26: 1429620576
+      cipher_27: -995019124
+      cipher_28: 145814948
+      cipher_29: 861602309
+      cipher_30: -593564390
+      cipher_31: -1423565442
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

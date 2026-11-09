@@ -8,9 +8,9 @@
       "npc": "Professor Byte",
       "area": "Cyber Academy",
       "kind": "quiz",
-      "briefing": "Welcome, citizen. Every connection is a choice. Our city needs people who pause, verify, and help others do the same. Your patrol begins with a simple habit.",
+      "briefing": "Welcome, {player}. Every connection is a choice. Our city needs people who pause, verify, and help others do the same. Your patrol begins with a simple habit.",
       "objective": "Learn the city controls and choose the first response to an unexpected request.",
-      "takeaway": "Pause before acting on an unexpected request. Verify it through an official channel you already trust. The Internet Cafe is now open.",
+      "takeaway": "{player}, pause before acting on an unexpected request. Verify it through an official channel you already trust. The Internet Cafe is now open.",
       "questions": [
         {
           "prompt": "A message says your student account will close in ten minutes. What is your first move?",
@@ -40,9 +40,9 @@
       "npc": "Alex",
       "area": "Internet Cafe",
       "kind": "quiz",
-      "briefing": "I used to reuse one password everywhere. Then one leaked account put all my others at risk. Help me build a better routine before we investigate the cafe inbox.",
+      "briefing": "{player}, i used to reuse one password everywhere. Then one leaked account put all my others at risk. Help me build a better routine before we investigate the cafe inbox.",
       "objective": "Choose safer habits for passwords, verification codes, and software updates.",
-      "takeaway": "Use a unique password for each account, enable MFA, keep software updated, and never share one-time verification codes.",
+      "takeaway": "{player}, use a unique password for each account, enable MFA, keep software updated, and never share one-time verification codes.",
       "questions": [
         {
           "prompt": "Which password habit limits damage if one service is breached?",
@@ -82,21 +82,10 @@
       "npc": "Maya",
       "area": "Internet Cafe",
       "kind": "evidence",
-      "briefing": "This message arrived in our student inbox. It looks official at first glance, but something feels wrong. Inspect the sender, request, and destination before deciding what to do.",
-      "objective": "Highlight all three suspicious indicators in the message and choose a safe response.",
-      "takeaway": "Check the actual sender and destination. Treat urgency and password requests as warning signs. Report the message, then verify through an official channel.",
-      "questions": [
-        {
-          "prompt": "The evidence points to phishing. What should Maya do next?",
-          "options": [
-            "Reply with her password to ask whether it is real.",
-            "Open the link to inspect the sign-in form.",
-            "Report the message and verify through her saved school portal."
-          ],
-          "answer": 2,
-          "explanation": "Reporting helps others. Independent verification avoids trusting the same suspicious message."
-        }
-      ],
+      "briefing": "{player}, this message arrived in our student inbox. It looks official at first glance, but something feels wrong. Inspect the sender, request, and destination before deciding what to do.",
+      "objective": "Inspect the fictional evidence, highlight all suspicious indicators, then report the evidence.",
+      "takeaway": "{player}, check the actual sender and destination. Treat urgency and password requests as warning signs. Report the message, then verify through an official channel.",
+      "questions": [],
       "sender": "Student Desk <support@campus-verify.example>",
       "subject": "ACTION REQUIRED: account suspension",
       "document": "Hello student, your access will be suspended. Review the details below.",
@@ -134,21 +123,10 @@
       "npc": "Detective Byte",
       "area": "Internet Cafe",
       "kind": "evidence",
-      "briefing": "The cafe received a link to a scholarship page. The logo looks familiar. Investigate the address and the form. The real scholarship service is scholarships.academy.example.",
-      "objective": "Inspect the fictional browser, identify three suspicious indicators, and classify the page.",
-      "takeaway": "Read the full domain, not just the logo. HTTPS protects a connection but does not prove the site is honest. A scholarship should not ask for your email password. The Linux Lab is now open.",
-      "questions": [
-        {
-          "prompt": "Which conclusion is supported by the evidence?",
-          "options": [
-            "This is a fake scholarship page. Leave it and report the URL.",
-            "The lock symbol proves the organization is trustworthy.",
-            "A familiar logo makes the password request reasonable."
-          ],
-          "answer": 0,
-          "explanation": "The mismatched domain and unnecessary password request outweigh the familiar branding."
-        }
-      ],
+      "briefing": "{player}, the cafe received a link to a scholarship page. The logo looks familiar. Investigate the address and the form. The real scholarship service is scholarships.academy.example.",
+      "objective": "Inspect the fictional evidence, highlight all suspicious indicators, then report the evidence.",
+      "takeaway": "{player}, read the full domain, not just the logo. HTTPS protects a connection but does not prove the site is honest. A scholarship should not ask for your email password. The Linux Lab is now open.",
+      "questions": [],
       "sender": "",
       "subject": "Academy Scholarship Portal",
       "address": "https://academy-scholarships.example/claim",
@@ -181,26 +159,15 @@
       ]
     },
     {
-      "id": "linux",
-      "title": "A flag in the filesystem",
+      "id": "linux-ctf",
+      "title": "Three flags, three investigations",
       "npc": "SysAdmin Tux",
       "area": "Linux Lab",
       "kind": "terminal",
-      "briefing": "Welcome to the command line. You do not need to memorize everything. Investigate one folder at a time. The hidden archive contains a flag that proves you read the evidence.",
-      "objective": "Use pwd, ls -a, cd, and cat to find the hidden flag. Submit it in the terminal.",
-      "takeaway": "The terminal is a way to inspect files deliberately. pwd shows location, ls -a includes hidden entries, cd changes folder, and cat reads evidence. The Web Security Lab is now open.",
-      "questions": [
-        {
-          "prompt": "What does ls -a add to a normal directory listing?",
-          "options": [
-            "It downloads every file.",
-            "It includes hidden entries whose names start with a dot.",
-            "It gives administrator rights."
-          ],
-          "answer": 1,
-          "explanation": "The -a option includes hidden entries. It does not change file permissions or execute files."
-        }
-      ]
+      "briefing": "{player}, each training filesystem hides a different clue. Explore an archive, investigate failed sign-ins, then restore the minimum file permission. Type help whenever you need a command reference.",
+      "objective": "Find and submit one flag in each of the three challenge filesystems.",
+      "takeaway": "{player}, investigate before acting. Hidden files, focused log searches and owner-only read permissions each reveal a different kind of evidence. The Web Security Lab is now open.",
+      "questions": []
     },
     {
       "id": "idor",
@@ -208,21 +175,29 @@
       "npc": "Red",
       "area": "Web Security Lab",
       "kind": "idor",
-      "briefing": "A training API checks that you are signed in, but forgets to check whose record you requested. Observe the flaw in our fictional profile service, then switch to defense.",
-      "objective": "Request training profile 1002 while signed in as Alex (1001), then select a server-side defense.",
-      "takeaway": "IDOR is an authorization failure. Every server request must verify that the current user is allowed to access the requested object. Hiding IDs in the interface is not sufficient.",
-      "questions": [
-        {
-          "prompt": "What removes the cause of this IDOR flaw?",
-          "options": [
-            "Hide the profile ID in the page.",
-            "Rename the API endpoint.",
-            "Verify record ownership or an allowed role on the server for every request."
-          ],
-          "answer": 2,
-          "explanation": "Server-side object authorization must run for each request. A signed-in user is not entitled to every object."
-        }
-      ]
+      "briefing": "{player}, investigate this fictional website using its editable URL, forms and DevTools. Capture a flaw, repair its cause, then prove the same request is safe.",
+      "objective": "Demonstrate the flaw in the fake browser, enable and apply the source patch, then replay the identical attack.",
+      "takeaway": "{player}, Every object request must check the caller owns it or has an allowed role. The repeated request now returns 403.",
+      "questions": [],
+      "web": {
+        "kind": "idor",
+        "host": "profiles.cybercity.example",
+        "title": "City Profile Service",
+        "path": "/api/profile",
+        "ownId": "1001",
+        "targetId": "1002",
+        "ownRecord": "200 OK / Alex (1001): your own profile. Reference: another trainee is 1002.",
+        "privateRecord": "200 OK / Mira (1002): private contact card exposed to Alex. This violates object ownership.",
+        "description": "Signed in as Alex (1001). Your profile ID is in the editable address bar.",
+        "vulnerableCode": "return profiles[id];",
+        "patchedCode": "if (profiles[id].owner != session.user) return 403;",
+        "patchLabel": "Server ownership check",
+        "debrief": "Every object request must check the caller owns it or has an allowed role. The repeated request now returns 403.",
+        "hints": [
+          "Compare your session identity with the object ID in the address bar.",
+          "Change the id query value to the other trainee reference shown on your profile."
+        ]
+      }
     },
     {
       "id": "xss",
@@ -230,21 +205,30 @@
       "npc": "Red",
       "area": "Web Security Lab",
       "kind": "xss",
-      "briefing": "An unsafe comment page can confuse user text with page markup. Use a harmless formatting marker to model the problem. The training preview is inert and runs no scripts.",
-      "objective": "Submit a harmless markup marker and choose the defense for untrusted output.",
-      "takeaway": "Treat user content as data. Encode output for its destination context, use safe rendering APIs, and sanitize deliberately allowed markup with a maintained allowlist.",
-      "questions": [
-        {
-          "prompt": "Which defense addresses untrusted comments rendered into a page?",
-          "options": [
-            "Encode output for the context and use safe text rendering.",
-            "Block only the word script.",
-            "Trust comments from signed-in users."
-          ],
-          "answer": 0,
-          "explanation": "Context-aware output encoding and safe rendering prevent text from being interpreted as code or markup."
-        }
-      ]
+      "briefing": "{player}, investigate this fictional website using its editable URL, forms and DevTools. Capture a flaw, repair its cause, then prove the same request is safe.",
+      "objective": "Demonstrate the flaw in the fake browser, enable and apply the source patch, then replay the identical attack.",
+      "takeaway": "{player}, Context-aware encoding and a safe text sink display user content as data. The same marker is now escaped and cannot trigger the fake alert.",
+      "questions": [],
+      "web": {
+        "kind": "xss",
+        "host": "comments.cybercity.example",
+        "title": "Commons Comment Board",
+        "path": "/comments",
+        "description": "Comments are mixed with markup. Try a training script or an image event handler.",
+        "vulnerableCode": "page.innerHTML = comment;",
+        "patchedCode": "page.textContent = comment; // encode for context",
+        "patchLabel": "Safe text + output encoding",
+        "debrief": "Context-aware encoding and a safe text sink display user content as data. The same marker is now escaped and cannot trigger the fake alert.",
+        "payloadPatterns": [
+          "<script\\b[^>]*>.*?</script\\s*>",
+          "<img\\b[^>]*\\bonerror\\s*=",
+          "<svg\\b[^>]*\\bonload\\s*="
+        ],
+        "hints": [
+          "A script element or an image event handler changes the modeled rendering context.",
+          "Try <script>alert(1)</script>, or an image with an onerror attribute."
+        ]
+      }
     },
     {
       "id": "sqli",
@@ -252,167 +236,307 @@
       "npc": "Red",
       "area": "Web Security Lab",
       "kind": "sqli",
-      "briefing": "This fictional sign-in builds a database query by joining strings. Observe how a training input could alter its structure. No database is connected to this exercise.",
-      "objective": "Inspect the simulated query and choose a defense that separates commands from values.",
-      "takeaway": "Use parameterized queries with bound values. This keeps user data separate from SQL structure. Input validation and limited database permissions add further protection.",
-      "questions": [
-        {
-          "prompt": "What is the primary defense against this SQL injection flaw?",
-          "options": [
-            "Remove spaces from every input.",
-            "Use parameterized queries and bind input as values.",
-            "Use a hidden login form."
-          ],
-          "answer": 1,
-          "explanation": "Bound parameters keep values separate from query syntax. Filters and hidden interfaces do not provide that separation."
-        }
-      ]
+      "briefing": "{player}, investigate this fictional website using its editable URL, forms and DevTools. Capture a flaw, repair its cause, then prove the same request is safe.",
+      "objective": "Demonstrate the flaw in the fake browser, enable and apply the source patch, then replay the identical attack.",
+      "takeaway": "{player}, Bound values cannot change the query structure. The same bypass now produces a denied login because the whole input is a username value.",
+      "questions": [],
+      "web": {
+        "kind": "sqli",
+        "host": "accounts.cybercity.example",
+        "title": "City Account Sign-in",
+        "path": "/login",
+        "description": "Training login joins strings into SQL. The password check is fictional; no database runs.",
+        "vulnerableCode": "query = \"name = '\" + username + \"'\";",
+        "patchedCode": "query = \"name = @name\"; bind(\"@name\", username);",
+        "patchLabel": "Bind query parameters",
+        "debrief": "Bound values cannot change the query structure. The same bypass now produces a denied login because the whole input is a username value.",
+        "payloadPatterns": [
+          "['\\\"]\\s*or\\s+['\\\"]?1['\\\"]?\\s*=\\s*['\\\"]?1(?:['\\\"]|\\b)",
+          "\\badmin['\\\"]\\s*--",
+          "['\\\"]\\s*or\\s+true\\b"
+        ],
+        "hints": [
+          "A quote may end the fictional name value. Compare the generated query in DevTools.",
+          "Try a true OR expression such as ' OR '1'='1, or admin'--."
+        ]
+      }
     },
     {
-      "id": "red-team",
-      "title": "Connect the evidence",
-      "npc": "Red",
-      "area": "Web Security Lab",
-      "kind": "quiz",
-      "briefing": "You have seen three weaknesses in isolation. Now explain the pattern from evidence, without guessing or touching external systems. Each finding must lead to a concrete defense.",
-      "objective": "Match three observations to IDOR, XSS, and SQL injection.",
-      "takeaway": "A useful finding connects the trigger, unauthorized effect, and root cause. Test only within authorized scope, then pair every finding with a defense. Blue is ready to help.",
-      "questions": [
-        {
-          "prompt": "Alex changes a training record number and receives Mira's private record. What failed?",
-          "options": [
-            "The color of the login button.",
-            "Server-side object authorization (IDOR).",
-            "The image compression setting."
-          ],
-          "answer": 1,
-          "explanation": "A different object ID should not bypass the ownership check on the server."
-        },
-        {
-          "prompt": "A comment is interpreted as page markup instead of being displayed as text. What class of risk does this model?",
-          "options": [
-            "Cross-site scripting (XSS).",
-            "A weak Wi-Fi signal.",
-            "A missing backup."
-          ],
-          "answer": 0,
-          "explanation": "Untrusted text entering an executable rendering context can lead to XSS. Use safe rendering and context-aware encoding."
-        },
-        {
-          "prompt": "User input changes the meaning of a dynamically joined database query. What is the flaw?",
-          "options": [
-            "IDOR.",
-            "Phishing.",
-            "SQL injection."
-          ],
-          "answer": 2,
-          "explanation": "The query mixed data with command syntax. Parameterized queries separate them."
-        }
-      ]
-    },
-    {
-      "id": "blue-team",
-      "title": "Repair the trust boundaries",
+      "id": "blue-soc",
+      "title": "Blue SOC: follow the traffic",
       "npc": "Blue",
       "area": "Web Security Lab",
-      "kind": "quiz",
-      "briefing": "A finding becomes valuable when we can fix it. Choose a mitigation for each root cause. Defense is more than hiding a symptom: the trust boundary must be enforced.",
-      "objective": "Choose a defense for authorization, output rendering, and database access.",
-      "takeaway": "Enforce authorization on the server, encode untrusted output for its context, and bind database parameters. Retest fixes, update dependencies, and monitor for suspicious activity.",
-      "questions": [
-        {
-          "prompt": "Which patch should protect GET /api/profile/{id}?",
-          "options": [
-            "Require login, then allow every numeric ID.",
-            "Hide the request from browser tools.",
-            "Check the caller's ownership or allowed role before returning the record."
-          ],
-          "answer": 2,
-          "explanation": "Authentication identifies a caller. Authorization checks what that caller may access."
-        },
-        {
-          "prompt": "Which approach is safest when displaying an untrusted comment as plain text?",
-          "options": [
-            "Insert it with a safe text API and context-aware output encoding.",
-            "Join it directly into HTML.",
-            "Reject only lowercase tags."
-          ],
-          "answer": 0,
-          "explanation": "A safe text sink treats the comment as data rather than interpreting it as markup."
-        },
-        {
-          "prompt": "Which query approach keeps the username separate from SQL syntax?",
-          "options": [
-            "Concatenate it after removing spaces.",
-            "Use a prepared statement with a bound username parameter.",
-            "Let the browser build the database query."
-          ],
-          "answer": 1,
-          "explanation": "Prepared statements with bound parameters preserve the intended query structure."
-        }
-      ]
+      "kind": "soc",
+      "briefing": "{player}, the training SIEM collected traces from our Web Lab alongside ordinary browsing and maintenance. Separate the real alerts from noise, correlate their source and file an evidence-based response.",
+      "objective": "Triage all alerts, filter and identify the attacker, tag each attack, apply the simulated response and file an incident report.",
+      "takeaway": "{player}, correlation turns isolated alerts into a case. Preserve evidence, contain the source, repair root causes, reset exposed credentials and document the impact.",
+      "questions": [],
+      "soc": {
+        "title": "Blue SOC: follow the traffic",
+        "attackerIp": "203.0.113.42",
+        "firstSeen": "09:10",
+        "packets": [
+          {
+            "id": "n01",
+            "time": "09:09",
+            "src": "10.0.0.8",
+            "dst": "10.0.0.53",
+            "protocol": "DNS",
+            "info": "DNS scholarships.academy.example -> 10.0.0.20; ordinary browsing"
+          },
+          {
+            "id": "p01",
+            "time": "09:10",
+            "src": "203.0.113.42",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "GET /api/profile?id=1001 -> 200; beginning of a rapid ID sequence"
+          },
+          {
+            "id": "n02",
+            "time": "09:10",
+            "src": "203.0.113.7",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "GET /health -> 200; approved scheduled maintenance probe"
+          },
+          {
+            "id": "p02",
+            "time": "09:11",
+            "src": "203.0.113.42",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "GET /api/profile?id=1002 -> 200; Alex session received another owner profile"
+          },
+          {
+            "id": "p03",
+            "time": "09:12",
+            "src": "203.0.113.42",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "GET /api/profile?id=1003 -> 200; another private profile exposed"
+          },
+          {
+            "id": "n03",
+            "time": "09:12",
+            "src": "10.0.0.8",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "GET /home -> 200; routine local student session"
+          },
+          {
+            "id": "p04",
+            "time": "09:13",
+            "src": "203.0.113.42",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "POST /login username=' OR '1'='1 -> 200; account check bypassed"
+          },
+          {
+            "id": "p05",
+            "time": "09:14",
+            "src": "203.0.113.42",
+            "dst": "10.0.0.20",
+            "protocol": "HTTP",
+            "info": "POST /comments body=<script>alert(1)</script> -> unsafe render in simulation"
+          }
+        ],
+        "alerts": [
+          {
+            "id": "enumeration",
+            "title": "Profile request burst",
+            "context": "A signed-in Alex session requested sequential IDs. Compare object ownership in p02 and p03.",
+            "packetIds": [
+              "p01",
+              "p02",
+              "p03"
+            ],
+            "truePositive": true
+          },
+          {
+            "id": "unsafe-forms",
+            "title": "Unusual form activity",
+            "context": "The same external source sent query syntax to login and markup to comments. Inspect request bodies.",
+            "packetIds": [
+              "p04",
+              "p05"
+            ],
+            "truePositive": true
+          },
+          {
+            "id": "maintenance",
+            "title": "Periodic HTTP probe",
+            "context": "The maintenance roster authorizes 203.0.113.7 to probe /health at 09:10. No private object or form was touched.",
+            "packetIds": [
+              "n02"
+            ],
+            "truePositive": false
+          }
+        ],
+        "attacks": [
+          {
+            "id": "profile-enumeration",
+            "kind": "IDOR",
+            "packetIds": [
+              "p02",
+              "p03"
+            ]
+          },
+          {
+            "id": "login-bypass",
+            "kind": "SQLi",
+            "packetIds": [
+              "p04"
+            ]
+          },
+          {
+            "id": "comment-injection",
+            "kind": "XSS",
+            "packetIds": [
+              "p05"
+            ]
+          }
+        ],
+        "requiredResponses": [
+          "block-ip",
+          "patch",
+          "reset-credentials"
+        ],
+        "impactTerms": [
+          "profile",
+          "account"
+        ]
+      }
     },
     {
       "id": "final",
       "title": "The citywide incident",
       "npc": "Detective Byte",
       "area": "Internet Cafe",
-      "kind": "quiz",
-      "briefing": "The city receives a scholarship email leading to a fake portal. A separate training API exposes records, and unsafe query construction appears in the logs. Coordinate a response using everything you learned.",
-      "objective": "Verify the message, investigate the file evidence, identify the API flaw, and select the repair plan.",
-      "takeaway": "A complete response verifies sources, contains exposure, preserves evidence, fixes root causes, and retests. Report what happened clearly so the next citizen can avoid the same trap.",
-      "questions": [
+      "kind": "final",
+      "briefing": "{player}, an exposed city casefile revealed the staff alias used against the account service. Reconstruct the IDOR to SQLi chain in our fake browser, patch and retest both boundaries, then correlate the short traffic record and apply one incident response plan.",
+      "objective": "Investigate and repair IDOR, follow the exposed alias to the SQLi lab, then analyze the linked logs and document your response.",
+      "takeaway": "{player}, the first flaw exposed data that supported the next attack. Fix every broken trust boundary, correlate the timeline, contain the source and preserve a clear incident record.",
+      "questions": [],
+      "finalLabs": [
         {
-          "prompt": "The scholarship email links to academy-awards.example. The known portal is scholarships.academy.example. What comes first?",
-          "options": [
-            "Sign in to see whether the form works.",
-            "Open the known portal independently and report the suspicious message.",
-            "Forward it to everyone to ask for help."
-          ],
-          "answer": 1,
-          "explanation": "Independent verification avoids trusting the suspicious message or spreading its link."
+          "kind": "idor",
+          "host": "casefiles.cybercity.example",
+          "title": "City Casefile Portal",
+          "path": "/api/profile",
+          "ownId": "1001",
+          "targetId": "1002",
+          "ownRecord": "200 OK / Alex (1001): case observer. Another training officer is record 1002.",
+          "privateRecord": "200 OK / private casefile (1002): exposed staff alias admin. The connected city account service accepts this alias. Profile data should not be exposed.",
+          "description": "Signed in as Alex (1001). Your profile ID is in the editable address bar.",
+          "vulnerableCode": "return profiles[id];",
+          "patchedCode": "if (profiles[id].owner != session.user) return 403;",
+          "patchLabel": "Server ownership check",
+          "debrief": "Every object request must check the caller owns it or has an allowed role. The repeated request now returns 403.",
+          "hints": [
+            "Compare your session identity with the object ID in the address bar.",
+            "Change the id query value to the other trainee reference shown on your profile."
+          ]
         },
         {
-          "prompt": "An audit clue is in a hidden folder. Which sequence reveals it without executing unknown files?",
-          "options": [
-            "ls -a, cd into the folder, then cat the evidence file.",
-            "Run every file until a flag appears.",
-            "Enter your password into the evidence file."
+          "kind": "sqli",
+          "host": "cityaccounts.cybercity.example",
+          "title": "City Staff Account Service",
+          "path": "/login",
+          "description": "The exposed casefile named staff alias admin. Investigate this fictional string-built sign-in.",
+          "vulnerableCode": "query = \"name = '\" + username + \"'\";",
+          "patchedCode": "query = \"name = @name\"; bind(\"@name\", username);",
+          "patchLabel": "Bind query parameters",
+          "debrief": "Bound values cannot change the query structure. The same bypass now produces a denied login because the whole input is a username value.",
+          "payloadPatterns": [
+            "['\\\"]\\s*or\\s+['\\\"]?1['\\\"]?\\s*=\\s*['\\\"]?1(?:['\\\"]|\\b)",
+            "\\badmin['\\\"]\\s*--",
+            "['\\\"]\\s*or\\s+true\\b"
           ],
-          "answer": 0,
-          "explanation": "List, navigate, and read. Investigation does not require executing unknown files."
-        },
-        {
-          "prompt": "A signed-in user receives another person's record after changing its ID. Which repair matters?",
-          "options": [
-            "A new logo.",
-            "A secret URL.",
-            "Server-side authorization for the requested record."
-          ],
-          "answer": 2,
-          "explanation": "Enforce object access on the server for every request, regardless of how the interface presents it."
-        },
-        {
-          "prompt": "Which plan addresses the unsafe comments and concatenated queries, then verifies the repair?",
-          "options": [
-            "Hide both forms and consider the case closed.",
-            "Use context-aware output encoding and bound parameters, then retest and monitor.",
-            "Ask users to avoid punctuation."
-          ],
-          "answer": 1,
-          "explanation": "Fix the rendering and query trust boundaries. Retest the same conditions and monitor for recurrence."
+          "hints": [
+            "A quote may end the fictional name value. Compare the generated query in DevTools.",
+            "Try a true OR expression such as ' OR '1'='1, or admin'--."
+          ]
         }
-      ]
+      ],
+      "soc": {
+        "title": "Final case: reconstruct the chain",
+        "attackerIp": "203.0.113.42",
+        "firstSeen": "11:20",
+        "packets": [
+          {
+            "id": "f01",
+            "time": "11:20",
+            "src": "203.0.113.42",
+            "dst": "10.0.0.30",
+            "protocol": "HTTP",
+            "info": "GET /api/profile?id=1002 -> 200; Alex session exposed another owner casefile and staff alias admin"
+          },
+          {
+            "id": "f02",
+            "time": "11:21",
+            "src": "203.0.113.42",
+            "dst": "10.0.0.31",
+            "protocol": "HTTP",
+            "info": "POST /login username=admin'-- -> 200; fictional staff account bypass followed casefile exposure"
+          },
+          {
+            "id": "f03",
+            "time": "11:22",
+            "src": "10.0.0.8",
+            "dst": "10.0.0.53",
+            "protocol": "DNS",
+            "info": "DNS city.academy.example; ordinary browsing"
+          }
+        ],
+        "alerts": [
+          {
+            "id": "city-chain",
+            "title": "Linked city incident",
+            "context": "One source exposed a casefile, learned the staff alias admin, then bypassed the connected account login. Follow the timestamps and object ownership.",
+            "packetIds": [
+              "f01",
+              "f02"
+            ],
+            "truePositive": true
+          }
+        ],
+        "attacks": [
+          {
+            "id": "casefile-idor",
+            "kind": "IDOR",
+            "packetIds": [
+              "f01"
+            ]
+          },
+          {
+            "id": "staff-sqli",
+            "kind": "SQLi",
+            "packetIds": [
+              "f02"
+            ]
+          }
+        ],
+        "requiredResponses": [
+          "block-ip",
+          "patch",
+          "reset-credentials"
+        ],
+        "impactTerms": [
+          "profile",
+          "account"
+        ]
+      }
     },
     {
       "id": "graduation",
-      "title": "A citizen worth trusting",
+      "title": "Your CyberCity graduation",
       "npc": "Professor Byte",
       "area": "Cyber Academy",
-      "kind": "quiz",
-      "briefing": "You followed the evidence, practiced the tools, and repaired the causes. The final lesson is a habit you can use every day: make trust a decision, not an assumption.",
+      "kind": "graduation",
+      "briefing": "{player}, your investigations, repairs and incident reports helped secure the city. Review your area badges and make one final everyday-security pledge.",
       "objective": "Choose the response that combines verification, privacy, and reporting.",
-      "takeaway": "Patrol complete. You are a CyberCity citizen defender. Pause, verify independently, protect your accounts, and help others recognize the warning signs.",
+      "takeaway": "Patrol complete, {player}. Your area badges reflect evidence gathering, Linux investigation, application defense and incident response. Pause, verify independently and report early.",
       "questions": [
         {
           "prompt": "An unexpected message asks for your login code to claim an urgent reward. Which habit will you carry forward?",

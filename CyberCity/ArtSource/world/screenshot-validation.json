@@ -1,0 +1,105 @@
+{
+  "gameViewScreenshots": [
+    {
+      "file": "Documentation/Screenshots/world-academy-open.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-all-open.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-atlas-internet-cafe.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-atlas-linux-lab.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-atlas-web-lab.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-bridge-east.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-bridge-west.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-cyber-corp.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-edge-south.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-internet-cafe-locked.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-internet-cafe-open.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-internet-cafe-unlock.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-linux-lab-locked.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-linux-lab-open.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-linux-lab-unlock.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-player-house.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-plaza-start.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-web-lab-locked.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-web-lab-open.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Documentation/Screenshots/world-web-lab-unlock.png",
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "count": 20
+}

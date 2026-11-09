@@ -1,0 +1,691 @@
+fileFormatVersion: 2
+guid: 82cd0b5e75d56b949b30c39504cfe12d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7968722550882799133
+    second: linux_lab_glow_0
+  - first:
+      213: 6088090147667274466
+    second: linux_lab_glow_1
+  - first:
+      213: -6592282678575045389
+    second: linux_lab_glow_2
+  - first:
+      213: -5304053003046129199
+    second: linux_lab_glow_3
+  - first:
+      213: -5262662155531214739
+    second: linux_lab_glow_4
+  - first:
+      213: -528316040239272042
+    second: linux_lab_glow_5
+  - first:
+      213: -6117239864676959466
+    second: linux_lab_glow_6
+  - first:
+      213: 7749330911633680335
+    second: linux_lab_glow_7
+  - first:
+      213: -8837591677131357228
+    second: linux_lab_glow_8
+  - first:
+      213: 3703372489141940998
+    second: linux_lab_glow_9
+  - first:
+      213: -3655873788328596545
+    second: linux_lab_glow_10
+  - first:
+      213: 3371587020200405211
+    second: linux_lab_glow_11
+  - first:
+      213: 4558117736484694162
+    second: linux_lab_glow_12
+  - first:
+      213: 6475570306068290823
+    second: linux_lab_glow_13
+  - first:
+      213: -3375843381076829874
+    second: linux_lab_glow_14
+  - first:
+      213: -4858607399779342852
+    second: linux_lab_glow_15
+  - first:
+      213: 3452217661835084818
+    second: linux_lab_glow_16
+  - first:
+      213: -8085564343737925729
+    second: linux_lab_glow_17
+  - first:
+      213: -621436122088519057
+    second: linux_lab_glow_18
+  - first:
+      213: -5015279155566268205
+    second: linux_lab_glow_19
+  - first:
+      213: -6640833481866551619
+    second: linux_lab_glow_20
+  - first:
+      213: 1202467539458350202
+    second: linux_lab_glow_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: linux_lab_glow_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 84
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e17cf06f09696190800000000000000
+      internalID: -7968722550882799133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 85
+        width: 38
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ea6344bbbd3d7450800000000000000
+      internalID: 6088090147667274466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_2
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 141
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f4e29cc4d18384a0800000000000000
+      internalID: -6592282678575045389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_3
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 75
+        width: 28
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d1779355e73466b0800000000000000
+      internalID: -5304053003046129199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_4
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 34
+        width: 21
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d60abaef6a447f6b0800000000000000
+      internalID: -5262662155531214739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_5
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 50
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69fa56c4c5b0ba8f0800000000000000
+      internalID: -528316040239272042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_6
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 41
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61b321ce0c23b1ba0800000000000000
+      internalID: -6117239864676959466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_7
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 34
+        width: 48
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc721ea08672b8b60800000000000000
+      internalID: 7749330911633680335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_8
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 47
+        width: 23
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d303a671319a5580800000000000000
+      internalID: -8837591677131357228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_9
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 43
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 603724658a5056330800000000000000
+      internalID: 3703372489141940998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_10
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 20
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbb230fb82ab34dc0800000000000000
+      internalID: -3655873788328596545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_11
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 20
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd8ec5c08884ace20800000000000000
+      internalID: 3371587020200405211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_12
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 32
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 298e39f6eefa14f30800000000000000
+      internalID: 4558117736484694162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_13
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 27
+        width: 21
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70d944362e8ddd950800000000000000
+      internalID: 6475570306068290823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_14
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 22
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e49df85b4589621d0800000000000000
+      internalID: -3375843381076829874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_15
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 30
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf56119df42c29cb0800000000000000
+      internalID: -4858607399779342852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_16
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 24
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 214820d3cadb8ef20800000000000000
+      internalID: 3452217661835084818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_17
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 10
+        width: 60
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9fbfea811e4acf80800000000000000
+      internalID: -8085564343737925729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_18
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 23
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6a4154b3273067f0800000000000000
+      internalID: -621436122088519057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_19
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 11
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d03d0b1e26266ab0800000000000000
+      internalID: -5015279155566268205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_20
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 6
+        width: 18
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbed2d4022507d3a0800000000000000
+      internalID: -6640833481866551619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_lab_glow_21
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 11
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7c5a5f2bd500b010800000000000000
+      internalID: 1202467539458350202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      linux_lab_glow_0: -7968722550882799133
+      linux_lab_glow_1: 6088090147667274466
+      linux_lab_glow_10: -3655873788328596545
+      linux_lab_glow_11: 3371587020200405211
+      linux_lab_glow_12: 4558117736484694162
+      linux_lab_glow_13: 6475570306068290823
+      linux_lab_glow_14: -3375843381076829874
+      linux_lab_glow_15: -4858607399779342852
+      linux_lab_glow_16: 3452217661835084818
+      linux_lab_glow_17: -8085564343737925729
+      linux_lab_glow_18: -621436122088519057
+      linux_lab_glow_19: -5015279155566268205
+      linux_lab_glow_2: -6592282678575045389
+      linux_lab_glow_20: -6640833481866551619
+      linux_lab_glow_21: 1202467539458350202
+      linux_lab_glow_3: -5304053003046129199
+      linux_lab_glow_4: -5262662155531214739
+      linux_lab_glow_5: -528316040239272042
+      linux_lab_glow_6: -6117239864676959466
+      linux_lab_glow_7: 7749330911633680335
+      linux_lab_glow_8: -8837591677131357228
+      linux_lab_glow_9: 3703372489141940998
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

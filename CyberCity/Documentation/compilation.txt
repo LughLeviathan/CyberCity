@@ -1,0 +1,9 @@
+Unity 6000.6.5f1 / script compilation verification
+UTC: 2026-10-25T19:47:58.536742+00:00
+Current game and editor assemblies compiled and loaded successfully.
+Assembly-CSharp.dll / assembly modified UTC: 2026-10-25T19:45:54.899960+00:00
+Assembly-CSharp-Editor.dll / assembly modified UTC: 2026-10-25T19:45:54.995838+00:00
+Unity Console checked after script reload: 0 C# compiler errors and 0 C# compiler warnings for Assets/CyberCity.
+MCP execution of current CyberCityVerification: PASS 169 core checks.
+Complete runtime UI playthrough result: see verification.txt.
+This report concerns CyberCity script compilation; expected optional-pack rejection warnings are runtime validation fixtures.

@@ -5,7 +5,6 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEditor.SceneManagement;
-using UnityEditor.U2D;
 using UnityEditor.U2D.Sprites;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -18,7 +17,12 @@ namespace CyberCity.Editor
     {
         const string Root = "Assets/CyberCity";
         const string Art = Root + "/Generated";
-        const string World = "Assets/CyberCityWorld/Assets/CyberCityWorld";
+        internal const float CharacterPPU = 340;
+        internal static readonly string[] CharacterSheets =
+        {
+            "main_hacker", "dr_crypto", "nova", "glitch", "firewall", "admin", "proxy", "cipher"
+        };
+        internal static string CharacterPath(int index) => Root + "/Character/" + CharacterSheets[index] + "_sheet_8x.png";
         public const string ScenePath = Root + "/Scenes/CyberCity.unity";
 
         [MenuItem("Tools/CyberCity/Build playable game")]
@@ -32,28 +36,30 @@ namespace CyberCity.Editor
             var controller = BuildAnimator(characters[0]);
             BuildAudio();
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-            var source = AssetDatabase.LoadAssetAtPath<GameObject>(World + "/Generated/CyberCityLobby.prefab");
-            if (source == null) throw new FileNotFoundException("The existing city prefab is missing.");
-            var world = (GameObject)PrefabUtility.InstantiatePrefab(source);
-            world.name = "CyberCity / Existing world art";
             var shader = Shader.Find("Universal Render Pipeline/2D/Sprite-Unlit-Default");
             var materialPath = Art + "/PixelUnlit.mat";
             var mat = AssetDatabase.LoadAssetAtPath<Material>(materialPath);
             if (mat == null) { mat = new Material(shader); AssetDatabase.CreateAsset(mat, materialPath); }
+            var world = CyberCityWorldBuilder.BuildWorld(mat);
             foreach (var sr in world.GetComponentsInChildren<SpriteRenderer>()) sr.sharedMaterial = mat;
             foreach (var tm in world.GetComponentsInChildren<UnityEngine.Tilemaps.TilemapRenderer>()) tm.sharedMaterial = mat;
             var cameraGo = new GameObject("Main Camera", typeof(Camera), typeof(AudioListener), typeof(UniversalAdditionalCameraData));
             cameraGo.tag = "MainCamera";
-            cameraGo.transform.position = new Vector3(14, -11, -10);
-            var camera = cameraGo.GetComponent<Camera>(); camera.orthographic = true; camera.orthographicSize = 12.5f;
+            cameraGo.transform.position = new Vector3(WorldLayout.Center.x, WorldLayout.Center.y, -10);
+            var camera = cameraGo.GetComponent<Camera>(); camera.orthographic = true; camera.orthographicSize = WorldLayout.Height / 2;
             camera.rect = new Rect(0, 0, 1, 1); camera.clearFlags = CameraClearFlags.SolidColor;
             camera.backgroundColor = GameUI.Ink; camera.nearClipPlane = .1f; camera.farClipPlane = 100;
             camera.allowHDR = false; camera.allowMSAA = false;
             var pixel = cameraGo.AddComponent<PixelPerfectCamera>();
-            pixel.assetsPPU = 32; pixel.refResolutionX = 960; pixel.refResolutionY = 768;
-            pixel.gridSnapping = PixelPerfectCamera.GridSnapping.PixelSnapping;
+            pixel.assetsPPU = 32; pixel.refResolutionX = WorldLayout.CameraWidth; pixel.refResolutionY = WorldLayout.CameraHeight;
+            pixel.gridSnapping = PixelPerfectCamera.GridSnapping.UpscaleRenderTexture;
+            pixel.cropFrame = PixelPerfectCamera.CropFrame.StretchFill;
+            // URP exposes this setting in its inspector, but has no public filter setter.
+            var pixelSettings = new SerializedObject(pixel);
+            pixelSettings.FindProperty("m_FilterMode").enumValueIndex = (int)PixelPerfectCamera.PixelPerfectFilterMode.Point;
+            pixelSettings.ApplyModifiedPropertiesWithoutUndo();
             cameraGo.AddComponent<WorldCamera>();
-            var playerGo = Actor("Citizen / Player", characters[0][0], new Vector2(14, -8.2f), mat);
+            var playerGo = Actor("Citizen / Player", characters[0][0], WorldLayout.Spawn, mat);
             playerGo.tag = "Player";
             var body = playerGo.AddComponent<Rigidbody2D>(); body.gravityScale = 0; body.freezeRotation = true;
             body.collisionDetectionMode = CollisionDetectionMode2D.Continuous; body.interpolation = RigidbodyInterpolation2D.Interpolate;
@@ -62,50 +68,52 @@ namespace CyberCity.Editor
             var player = playerGo.AddComponent<PlayerController>();
             var citizenRoot = new GameObject("Seven mentors");
             string[] names = { "Professor Byte", "Alex", "Maya", "Detective Byte", "SysAdmin Tux", "Red", "Blue" };
-            string[] roles = { "Cyber awareness mentor", "Student ambassador", "Message investigator", "Digital detective", "Linux mentor", "Red-team analyst", "Blue-team engineer" };
+            string[] roles = { "Cyber awareness mentor", "Student ambassador", "Message investigator", "Digital detective", "Linux mentor", "Web security analyst", "SOC analyst" };
             string[] areas = { "Cyber Academy", "Internet Cafe", "Internet Cafe", "Internet Cafe", "Linux Lab", "Web Security Lab", "Web Security Lab" };
-            Vector2[] positions = { new Vector2(14,-6), new Vector2(6.1f,-10.1f), new Vector2(5,-15.3f), new Vector2(8.9f,-12), new Vector2(23,-7.2f), new Vector2(22.2f,-15.2f), new Vector2(25.1f,-15.3f) };
+            Vector2[] positions = { WorldLayout.FromPixel(498,185), WorldLayout.FromPixel(214,398), WorldLayout.FromPixel(175,409), WorldLayout.FromPixel(252,390), WorldLayout.FromPixel(745,242), WorldLayout.FromPixel(817,391), WorldLayout.FromPixel(860,413) };
             Color[] colors = { GameUI.White, GameUI.Violet, GameUI.Pink, GameUI.Gold, GameUI.Teal, GameUI.Pink, GameUI.Cyan };
-            int[] unlock = { 0, 1, 1, 1, 4, 5, 9 };
+            var campaign = CampaignLoader.Load();
             var citizens = new Citizen[7];
             for (int i = 0; i < 7; i++)
             {
                 var go = Actor(names[i], characters[i + 1][0], positions[i], mat); go.transform.SetParent(citizenRoot.transform);
                 var col = go.AddComponent<CircleCollider2D>(); col.radius = .23f; col.offset = new Vector2(0,.17f);
                 var npc = go.AddComponent<Citizen>(); npc.citizenName = names[i]; npc.role = roles[i]; npc.area = areas[i];
-                npc.accent = colors[i]; npc.unlockAfter = unlock[i]; npc.idleFrames = new[] { characters[i + 1][0], characters[i + 1][3] };
+                npc.accent = colors[i]; npc.unlockAfter = CampaignLoader.UnlockForNpc(campaign, names[i]); npc.idleFrames = new[] { characters[i + 1][0], characters[i + 1][2] };
                 citizens[i] = npc;
             }
-            AddBoundary("North boundary", new Vector2(14,.15f), new Vector2(29,.3f));
-            AddBoundary("South boundary", new Vector2(14,-22.15f), new Vector2(29,.3f));
-            AddBoundary("West boundary", new Vector2(-.15f,-11), new Vector2(.3f,23));
-            AddBoundary("East boundary", new Vector2(28.15f,-11), new Vector2(.3f,23));
+            AddBoundary("North boundary", new Vector2(WorldLayout.Width/2,.15f), new Vector2(WorldLayout.Width+1,.3f));
+            AddBoundary("South boundary", new Vector2(WorldLayout.Width/2,-WorldLayout.Height-.15f), new Vector2(WorldLayout.Width+1,.3f));
+            AddBoundary("West boundary", new Vector2(-.15f,-WorldLayout.Height/2), new Vector2(.3f,WorldLayout.Height+1));
+            AddBoundary("East boundary", new Vector2(WorldLayout.Width+.15f,-WorldLayout.Height/2), new Vector2(.3f,WorldLayout.Height+1));
             var systems = new GameObject("CyberCity / Game systems");
             var ui = systems.AddComponent<GameUI>();
-            ConfigureTexture("Assets/CyberCityWorld/Previews/lobby_unity.png");
-            ui.cityPreview = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/CyberCityWorld/Previews/lobby_unity.png");
+            ui.cityPreview = AssetDatabase.LoadAssetAtPath<Sprite>(CyberCityWorldBuilder.Textures + "world_preview.png");
             var game = systems.AddComponent<CyberCityGame>(); game.player = player; game.citizens = citizens; game.worldCamera = camera;
+            game.areas = world.GetComponentsInChildren<WorldArea>();
             game.music = systems.AddComponent<AudioSource>(); game.music.clip = AssetDatabase.LoadAssetAtPath<AudioClip>(Art + "/CityAmbience.wav"); game.music.loop = true; game.music.playOnAwake = false;
             game.effects = systems.AddComponent<AudioSource>(); game.effects.playOnAwake = false;
             game.clickSound = AssetDatabase.LoadAssetAtPath<AudioClip>(Art + "/Interface.wav");
             game.successSound = AssetDatabase.LoadAssetAtPath<AudioClip>(Art + "/Success.wav");
             game.errorSound = AssetDatabase.LoadAssetAtPath<AudioClip>(Art + "/Retry.wav");
-            BuildAtlas();
             PlayerSettings.companyName = "Sijaw"; PlayerSettings.productName = "CyberCity";
             PlayerSettings.defaultScreenWidth = 1600; PlayerSettings.defaultScreenHeight = 900;
             PlayerSettings.fullScreenMode = FullScreenMode.Windowed; PlayerSettings.runInBackground = true;
             PlayerSettings.resizableWindow = false;
             QualitySettings.vSyncCount = 1;
-            EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene, ScenePath);
+            EditorSceneManager.MarkSceneDirty(scene);
+            if (!EditorSceneManager.SaveScene(scene, ScenePath))
+                throw new IOException("Could not save CyberCity scene; legacy character assets were retained.");
+            RemoveLegacyDummies();
             var prior = EditorBuildSettings.scenes.Where(s => s.path != ScenePath).Select(s => new EditorBuildSettingsScene(s.path, false));
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(ScenePath, true) }.Concat(prior).ToArray();
             AssetDatabase.SaveAssets();
             if (SceneView.lastActiveSceneView != null)
             {
                 SceneView.lastActiveSceneView.in2DMode = true;
-                SceneView.lastActiveSceneView.LookAt(new Vector3(14,-11,0), Quaternion.identity, 15);
+                SceneView.lastActiveSceneView.LookAt(new Vector3(WorldLayout.Center.x,WorldLayout.Center.y,0), Quaternion.identity, 18);
             }
-            Debug.Log("CyberCity playable scene built: twelve missions, seven mentors, local campaign and saves.");
+            Debug.Log("CyberCity playable scene built: " + campaign.missions.Length + " missions, seven mentors, local campaign and saves.");
         }
 
         static GameObject Actor(string name, Sprite sprite, Vector2 position, Material material)
@@ -121,68 +129,41 @@ namespace CyberCity.Editor
 
         static Sprite[] BuildCharacter(int index)
         {
-            string path = Art + "/Citizen" + index + ".png";
-            var texture = new Texture2D(96,96,TextureFormat.RGBA32,false); texture.SetPixels(new Color[96*96]);
-            Color outline = GameUI.Ink, skin = GameUI.White, pants = GameUI.Hex("1F2A68");
-            Color[] jackets = { GameUI.Cyan, GameUI.White, GameUI.Violet, GameUI.Pink, GameUI.Gold, GameUI.Teal, GameUI.Pink, GameUI.Cyan };
-            Color jacket = jackets[index];
-            for (int dir = 0; dir < 3; dir++)
-            for (int frame = 0; frame < 4; frame++)
-            {
-                int ox = frame * 24, oy = dir * 32;
-                Action<int,int,int,int,Color> fill = (x,y,w,h,color) => {
-                    for (int xx=x; xx<x+w; xx++) for (int yy=y; yy<y+h; yy++)
-                        texture.SetPixel(ox+xx, 95-(oy+yy), color);
-                };
-                int bob = frame == 1 || frame == 3 ? 1 : 0;
-                fill(5,29,14,2,outline); fill(3,30,18,1,outline);
-                int left = frame == 1 ? 1 : 0, right = frame == 3 ? 1 : 0;
-                fill(7,23,4,6-left,outline); fill(13,23,4,6-right,outline);
-                fill(8,23,2,4-left,pants); fill(14,23,2,4-right,pants);
-                fill(7,28-left,4,2,skin); fill(13,28-right,4,2,skin);
-                fill(6,14-bob,12,11,outline); fill(7,15-bob,10,9,jacket);
-                fill(4,16-bob+left,3,8,outline); fill(17,16-bob+right,3,8,outline);
-                fill(5,17-bob+left,2,5,jacket); fill(17,17-bob+right,2,5,jacket);
-                fill(5,22-bob+left,2,2,skin); fill(17,22-bob+right,2,2,skin);
-                fill(11,15-bob,2,8,pants); fill(8,23,8,2,outline); fill(11,23,2,1,GameUI.Gold);
-                fill(6,4-bob,12,11,outline); fill(7,5-bob,10,9,skin);
-                Color hair = index == 1 ? GameUI.Muted : pants;
-                fill(6,4-bob,12,4,hair); fill(5,6-bob,2,5,hair);
-                if (dir == 1) { fill(7,7-bob,10,6,hair); fill(8,13-bob,8,2,outline); }
-                else if (dir == 2) { fill(7,7-bob,5,6,hair); fill(16,9-bob,3,3,skin); fill(15,9-bob,2,2,outline); }
-                else
-                {
-                    fill(8,9-bob,2,2,outline); fill(14,9-bob,2,2,outline);
-                    fill(10,13-bob,4,1,GameUI.Gold);
-                    if (index == 0 || index == 1 || index == 5 || index == 7) fill(7,9-bob,10,2,GameUI.Cyan);
-                }
-                if (index == 4) { fill(5,5-bob,15,2,GameUI.Gold); fill(8,2-bob,9,4,GameUI.Gold); }
-                if (index == 1) { fill(7,12-bob,2,3,GameUI.White); fill(15,12-bob,2,3,GameUI.White); }
-                if (index == 3) fill(16,5-bob,3,10,GameUI.Pink);
-                if (index == 6 || index == 7) { fill(10,17-bob,4,3,outline); fill(11,18-bob,2,1,GameUI.White); }
-            }
-            File.WriteAllBytes(path, texture.EncodeToPNG()); UnityEngine.Object.DestroyImmediate(texture);
+            string path = CharacterPath(index);
+            if (!File.Exists(path)) throw new FileNotFoundException("Missing CyberCity character sheet: " + path, path);
             AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
+            importer.GetSourceTextureWidthAndHeight(out int width, out int height);
+            if (width != 1024 || height != 3072)
+                throw new InvalidOperationException("Character sheet " + path + " must be 1024x3072 (4x8 cells of 256x384); found " + width + "x" + height + ".");
             importer.textureType = TextureImporterType.Sprite; importer.spriteImportMode = SpriteImportMode.Multiple;
-            importer.spritePixelsPerUnit = 32; importer.filterMode = FilterMode.Point; importer.mipmapEnabled = false;
+            importer.spritePixelsPerUnit = CharacterPPU; importer.filterMode = FilterMode.Point; importer.mipmapEnabled = false;
             importer.textureCompression = TextureImporterCompression.Uncompressed; importer.alphaIsTransparency = true;
-            importer.npotScale = TextureImporterNPOTScale.None;
-            importer.SaveAndReimport();
+            importer.npotScale = TextureImporterNPOTScale.None; importer.maxTextureSize = 4096;
+            var textureSettings = new TextureImporterSettings(); importer.ReadTextureSettings(textureSettings);
+            textureSettings.spriteMeshType = SpriteMeshType.FullRect;
+            importer.SetTextureSettings(textureSettings);
+            // Apply settings and slicing together, then synchronously import once below.
             var factory = new SpriteDataProviderFactories(); factory.Init();
             var provider = factory.GetSpriteEditorDataProviderFromObject(importer); provider.InitSpriteEditorDataProvider();
             var existing = provider.GetSpriteRects().ToDictionary(r => r.name, r => r.spriteID);
-            var rectangles = new SpriteRect[12];
-            for (int i=0; i<12; i++)
+            var rectangles = new SpriteRect[32];
+            for (int i=0; i<rectangles.Length; i++)
             {
-                string name = "Citizen" + index + "_" + i.ToString("00");
-                rectangles[i] = new SpriteRect { name=name, rect=new Rect(i%4*24,96-(i/4+1)*32,24,32),
-                    alignment=SpriteAlignment.Custom,pivot=new Vector2(.5f,.1f),spriteID=existing.TryGetValue(name,out var id)?id:GUID.Generate() };
+                string name = CharacterSheets[index] + "_" + i.ToString("00");
+                // Source rows run top to bottom; Unity sprite rects use a bottom-left origin.
+                rectangles[i] = new SpriteRect { name=name, rect=new Rect(i%4*256,3072-(i/4+1)*384,256,384),
+                    alignment=SpriteAlignment.Custom,pivot=new Vector2(.5f,.03f),spriteID=existing.TryGetValue(name,out var id)?id:GUID.Generate() };
             }
             provider.SetSpriteRects(rectangles);
             provider.GetDataProvider<ISpriteNameFileIdDataProvider>().SetNameFileIdPairs(rectangles.Select(r => new SpriteNameFileIdPair(r.name,r.spriteID)));
-            provider.Apply(); importer.SaveAndReimport();
-            return AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().OrderBy(s=>s.name).ToArray();
+            provider.Apply();
+            AssetDatabase.WriteImportSettingsIfDirty(path);
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
+            var sprites = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().OrderBy(s=>s.name, StringComparer.Ordinal).ToArray();
+            if (sprites.Length != 32 || sprites.Any(s => s.rect.width != 256 || s.rect.height != 384 || s.pixelsPerUnit != CharacterPPU))
+                throw new InvalidOperationException("Character sheet " + path + " did not import as 32 full-resolution 256x384 sprites.");
+            return sprites;
         }
 
         static RuntimeAnimatorController BuildAnimator(Sprite[] sprites)
@@ -193,6 +174,7 @@ namespace CyberCity.Editor
             var machine = controller.layers[0].stateMachine;
             foreach (var child in machine.states) machine.RemoveState(child.state);
             string[] directions = { "Down", "Up", "Side" };
+            int[] idleRows = { 0, 1, 3 }, walkRows = { 4, 5, 7 };
             for (int d=0;d<3;d++)
             for (int walk=0;walk<2;walk++)
             {
@@ -200,9 +182,11 @@ namespace CyberCity.Editor
                 string clipPath = Art + "/" + name + ".anim";
                 var clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(clipPath);
                 if (clip == null) { clip = new AnimationClip(); AssetDatabase.CreateAsset(clip,clipPath); }
-                clip.frameRate = 8;
-                var keys = walk==1 ? Enumerable.Range(0,5).Select(i=>new ObjectReferenceKeyframe{time=i/8f,value=sprites[d*4+i%4]}).ToArray() :
-                    new[] {new ObjectReferenceKeyframe{time=0,value=sprites[d*4]},new ObjectReferenceKeyframe{time=1,value=sprites[d*4]}};
+                float fps = walk == 1 ? 8 : 4;
+                int row = walk == 1 ? walkRows[d] : idleRows[d];
+                clip.frameRate = fps;
+                // Unity holds the last sprite for one frame; four keys give a 4/fps loop.
+                var keys = Enumerable.Range(0,4).Select(i=>new ObjectReferenceKeyframe{time=i/fps,value=sprites[row*4+i]}).ToArray();
                 AnimationUtility.SetObjectReferenceCurve(clip, new EditorCurveBinding {path="",type=typeof(SpriteRenderer),propertyName="m_Sprite"},keys);
                 var settings = AnimationUtility.GetAnimationClipSettings(clip); settings.loopTime=true; AnimationUtility.SetAnimationClipSettings(clip,settings);
                 var state = machine.AddState(name); state.motion=clip; if(name=="IdleDown")machine.defaultState=state;
@@ -217,16 +201,11 @@ namespace CyberCity.Editor
             importer.filterMode=FilterMode.Point; importer.textureCompression=TextureImporterCompression.Uncompressed;
             importer.mipmapEnabled=false; importer.npotScale=TextureImporterNPOTScale.None; importer.SaveAndReimport();
         }
-        static void BuildAtlas()
+        static void RemoveLegacyDummies()
         {
-            string path=Art+"/Characters.spriteatlas";
-            var atlas=AssetDatabase.LoadAssetAtPath<SpriteAtlas>(path);
-            if(atlas==null) {atlas=new SpriteAtlas();AssetDatabase.CreateAsset(atlas,path);}
-            var prior=atlas.GetPackables(); if(prior.Length>0)atlas.Remove(prior);
-            atlas.Add(Enumerable.Range(0,8).Select(i=>(UnityEngine.Object)AssetDatabase.LoadAssetAtPath<Texture2D>(Art+"/Citizen"+i+".png")).ToArray());
-            atlas.SetTextureSettings(new SpriteAtlasTextureSettings{filterMode=FilterMode.Point,generateMipMaps=false,sRGB=true});
-            atlas.SetPlatformSettings(new TextureImporterPlatformSettings{name="DefaultTexturePlatform",maxTextureSize=1024,textureCompression=TextureImporterCompression.Uncompressed});
-            EditorUtility.SetDirty(atlas);
+            // Called only after the replacement scene has been saved successfully.
+            for (int i = 0; i < 8; i++) AssetDatabase.DeleteAsset(Art + "/Citizen" + i + ".png");
+            AssetDatabase.DeleteAsset(Art + "/Characters.spriteatlas");
         }
         static void BuildAudio()
         {

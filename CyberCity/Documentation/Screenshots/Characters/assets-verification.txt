@@ -1,0 +1,16 @@
+PASS all 256 sprite IDs stable across rebuild
+PASS IdleDown 4 fps, four frames, loop 1s
+PASS WalkDown 8 fps, four frames, loop 0.5s
+PASS IdleUp 4 fps, four frames, loop 1s
+PASS WalkUp 8 fps, four frames, loop 0.5s
+PASS IdleSide 4 fps, four frames, loop 1s
+PASS WalkSide 8 fps, four frames, loop 0.5s
+PASS Citizen / Player -> main_hacker, PPU340, scale one, supported shader
+PASS Professor Byte -> dr_crypto, PPU340, scale one, supported shader
+PASS Alex -> nova, PPU340, scale one, supported shader
+PASS Maya -> glitch, PPU340, scale one, supported shader
+PASS Detective Byte -> firewall, PPU340, scale one, supported shader
+PASS SysAdmin Tux -> admin, PPU340, scale one, supported shader
+PASS Red -> proxy, PPU340, scale one, supported shader
+PASS Blue -> cipher, PPU340, scale one, supported shader
+PASS unchanged actor colliders and legacy cleanup

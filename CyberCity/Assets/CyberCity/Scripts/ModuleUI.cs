@@ -23,6 +23,9 @@ namespace CyberCity
                 case "evidence": ShowEvidence(); break;
                 case "terminal": ShowTerminal(); break;
                 case "idor": case "xss": case "sqli": ShowWebLab(); break;
+                case "soc": new SocUI(ui, mission, game.SocState(mission), Finish).Show(); break;
+                case "final": ShowFinal(); break;
+                case "graduation": ui.ShowGraduation(ShowQuestion); break;
                 default: ShowQuestion(); break;
             }
         }
@@ -51,7 +54,7 @@ namespace CyberCity
                     {
                         answered = true;
                         foreach (var b in buttons) b.interactable = false;
-                        feedback.text = "CORRECT  /  " + q.explanation; feedback.color = GameUI.Teal;
+                        feedback.text = "CORRECT  /  " + game.Personalize(q.explanation); feedback.color = GameUI.Teal;
                         game.Play(game.successSound);
                         ui.Button(c, questionIndex == mission.questions.Length - 1 ? "COMPLETE MISSION   >" : "NEXT DECISION   >", 0, 424, 480, 56,
                             () => { questionIndex++; ShowQuestion(); }, GameUI.Cyan);
@@ -59,7 +62,7 @@ namespace CyberCity
                     else
                     {
                         game.WrongAnswer(); buttons[option].interactable = false;
-                        feedback.text = "TRY AGAIN  /  " + q.explanation; feedback.color = GameUI.Gold;
+                        feedback.text = "TRY AGAIN  /  " + game.Personalize(q.explanation); feedback.color = GameUI.Gold;
                     }
                 }));
             }
@@ -85,7 +88,7 @@ namespace CyberCity
             {
                 int index = i; var item = mission.evidence[i];
                 var button = ui.Button(document, item.label + "   " + item.text, 14, 178 + i * 53, 622, 46, () => {
-                    detail.text = item.explanation;
+                    detail.text = game.Personalize(item.explanation);
                     detail.color = item.suspicious ? GameUI.Gold : GameUI.Teal;
                     if (item.suspicious)
                     {
@@ -93,7 +96,7 @@ namespace CyberCity
                         progress.text = marked.Count + " / " + total + " indicators highlighted";
                         if (marked.Count == total)
                         {
-                            verdict.interactable = true; verdict.GetComponentInChildren<Text>().text = "SUBMIT YOUR VERDICT   >";
+                            verdict.interactable = true; verdict.GetComponentInChildren<Text>().text = "REPORT EVIDENCE / COMPLETE   >";
                         }
                     }
                 });
@@ -101,71 +104,71 @@ namespace CyberCity
             }
         }
 
-        void ShowTerminal()
+        void ShowTerminal(int selected = 0)
         {
-            var terminal = new VirtualTerminal();
-            var c = ui.OpenModal("LINUX LAB / SYSADMIN TUX", "A flag in the filesystem", "Use the virtual terminal to investigate. Every file lives only inside this simulation.");
+            var state = game.Progress.terminal[selected];
+            var terminal = new VirtualTerminal(state.id, state);
+            var challenge = terminal.Challenge;
+            int solved = game.Progress.terminal.Count(t => t.solved);
+            var c = ui.OpenModal("LINUX CTF / SYSADMIN TUX", mission.title, "FLAGS " + solved + "/" + TerminalChallenges.All.Length + "  /  Three isolated, fictional filesystems. Hints cost 5 XP each.");
             ui.Box(c, "Terminal", 0, 0, 740, 416, GameUI.Ink);
-            var transcript = ui.Text(c, "CyberCity Training Linux [offline]\nType help for commands. Start with cat README.txt\n\n", 18, 12, 702, 325, 18, GameUI.Teal);
-            var command = ui.Input(c, 16, 351, 566, 49, "citizen@cybercity:~$  command");
-            var history = new List<string> { "CyberCity Training Linux [offline]", "Type help. Start with cat README.txt", "" };
+            var log = ui.Scroll(c, "Terminal history", 14, 12, 710, 316, 316);
+            log.GetComponentInParent<ScrollRect>().GetComponent<Image>().color = GameUI.Ink;
+            var transcript = ui.Text(log, "", 0, 0, 700, 316, 17, GameUI.Teal);
+            var command = ui.Input(c, 14, 351, 566, 49, "trainee@cybercity:~$  command");
+            command.gameObject.name = "Terminal command";
+            var history = new List<string> { "CyberCity Training Linux / " + challenge.title, "Type help to inspect available commands.", "" };
+            for (int i = 0; i < state.hints; i++) history.Add("HINT: " + challenge.hints[i]);
+            System.Action refresh = () => {
+                while (history.Count > 120) history.RemoveAt(0);
+                transcript.text = game.Personalize(string.Join("\n", history));
+                float height = Mathf.Max(316, history.Count * 23f);
+                transcript.rectTransform.sizeDelta = new Vector2(700, height); log.sizeDelta = new Vector2(710, height);
+                Canvas.ForceUpdateCanvases(); log.GetComponentInParent<ScrollRect>().verticalNormalizedPosition = 0;
+            };
             System.Action run = () => {
                 string text = command.text.Trim(); if (text.Length == 0) return;
                 if (text == "clear") history.Clear();
-                else
-                {
-                    history.Add("> " + text);
-                    string output = terminal.Execute(text); history.AddRange(output.Split('\n'));
-                }
-                while (history.Count > 15) history.RemoveAt(0);
-                transcript.text = string.Join("\n", history); command.text = "";
-                if (terminal.Solved) ShowQuestion(); else command.ActivateInputField();
+                else { history.Add("> " + text); history.AddRange(terminal.Execute(text).Split('\n')); }
+                command.text = ""; refresh();
+                if (terminal.Solved) { game.Save(); ShowTerminal(selected); }
+                else { if (text.StartsWith("submit ")) game.WrongAnswer(); command.ActivateInputField(); }
             };
             ui.Button(c, "RUN", 594, 351, 128, 49, run, GameUI.Cyan);
             command.onEndEdit.AddListener(_ => { if (Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame) run(); });
-            ui.Text(c, "INVESTIGATION CHECKLIST", 770, 10, 280, 27, 13, GameUI.Cyan, true);
-            ui.Text(c, "1. Read README.txt\n\n2. List hidden files\n\n3. Enter the hidden folder\n\n4. Read access.txt\n\n5. submit <flag>", 770, 55, 280, 280, 21, GameUI.White);
-            ui.Button(c, "Need a hint?", 770, 351, 280, 49, () => {
-                history.Add("HINT: ls -a  >  cd .archive  >  cat access.txt");
-                while (history.Count > 15) history.RemoveAt(0); transcript.text = string.Join("\n", history);
+            for (int i = 0; i < TerminalChallenges.All.Length; i++)
+            {
+                int index = i; var item = TerminalChallenges.All[i];
+                ui.Button(c, (game.Progress.terminal[i].solved ? "OK  " : "0" + (i + 1) + "  ") + item.title, 770, i * 56, 280, 46, () => ShowTerminal(index), i == selected ? GameUI.Cyan : (Color?)null);
+            }
+            ui.Text(c, challenge.objective, 770, 184, 280, 124, 19, GameUI.White);
+            Button hintButton = null;
+            hintButton = ui.Button(c, "HINT " + (Mathf.Min(state.hints + 1, 2)) + "/2  (-5 XP)", 770, 351, 280, 49, () => {
+                if (state.hints < challenge.hints.Length && !state.solved) { state.hints++; game.Progress.hintUses[game.Progress.completed]++; game.Save(); }
+                history.Add("HINT: " + challenge.hints[Mathf.Max(0, state.hints - 1)]); refresh();
+                hintButton.GetComponentInChildren<Text>().text = "HINT " + Mathf.Min(state.hints + 1, 2) + "/2  (-5 XP)";
+                hintButton.interactable = state.hints < 2 && !state.solved;
             });
-            ui.Text(c, "SUPPORTED: help, pwd, ls, ls -a, cd, cat, clear, submit   /   No operating-system access.", 0, 447, 1050, 36, 14, GameUI.Muted);
-            command.ActivateInputField();
+            hintButton.interactable = state.hints < 2 && !state.solved;
+            if (solved == TerminalChallenges.All.Length)
+                ui.Button(c, "ALL FLAGS VERIFIED / COMPLETE MISSION", 0, 435, 740, 49, Finish, GameUI.Cyan);
+            else ui.Text(c, state.solved ? "Flag verified. Choose another challenge from the board." : "Read evidence, investigate and submit <flag>. All three flags are required.", 0, 435, 1040, 48, 18, GameUI.Muted);
+            refresh(); command.ActivateInputField();
         }
 
         void ShowWebLab()
         {
-            var c = ui.OpenModal("WEB SECURITY LAB / RED TEAM TO BLUE TEAM", mission.title, "First observe the simulated flaw. Then choose the defense that removes its cause.");
-            bool idor = mission.kind == "idor", xss = mission.kind == "xss";
-            ui.Text(c, idor ? "REQUEST INSPECTOR" : xss ? "COMMENT PREVIEW" : "QUERY INSPECTOR", 0, 0, 700, 25, 13, GameUI.Cyan, true);
-            ui.Text(c, idor ? "Signed in: Alex (1001). The API trusts a profile ID in the URL.\nTry requesting the other training profile: /api/profile/1002" : xss ?
-                "The training comment box mixes input and page markup.\nTry a harmless formatting marker: <b>hello</b>" :
-                "A fictional sign-in concatenates input into a query.\nTry this training value: ' OR '1'='1", 0, 43, 1020, 79, 21, GameUI.White);
-            var field = ui.Input(c, 0, 140, 820, 54, idor ? "/api/profile/1001" : xss ? "Enter a training comment" : "Enter a fictional username");
-            field.text = idor ? "/api/profile/1001" : "";
-            var outputBox = ui.Box(c, "Simulated response", 0, 218, 1056, 177, GameUI.Ink);
-            var output = ui.Text(outputBox, "SIMULATION READY\n\nRun a training request to inspect the result.", 20, 16, 1015, 151, 20, GameUI.Teal);
-            Button defend = ui.Button(c, "OBSERVE THE FLAW BEFORE CONTINUING", 0, 425, 670, 56, ShowQuestion, GameUI.Cyan); defend.interactable = false;
-            ui.Button(c, "SIMULATE", 838, 140, 218, 54, () => {
-                string value = field.text.Trim(); bool found = false;
-                if (idor)
-                {
-                    found = value == "/api/profile/1002";
-                    output.text = found ? "200 OK  /  Mira (1002): fictional private contact card\n\nFLAW: Alex received another user's record. A hidden button cannot enforce ownership." :
-                        value == "/api/profile/1001" ? "200 OK / Alex (1001): your own training record.\nTry the other profile ID shown above." : "404 / Only training profiles 1001 and 1002 exist.";
-                }
-                else if (xss)
-                {
-                    found = value.Contains("<") && value.Contains(">");
-                    output.text = found ? "INERT MARKER RECEIVED: " + value + "\n\nFLAW MODEL: raw input could be treated as markup by an unsafe renderer. This preview displays literal text; no script runs." : "Text comment received. Try the harmless markup marker shown above.";
-                }
-                else
-                {
-                    found = value.Contains("'") && value.ToUpperInvariant().Contains(" OR ");
-                    output.text = found ? "SIMULATED QUERY: SELECT * FROM users WHERE name = '" + value + "'\n\nFLAW MODEL: concatenated input changes query structure. The simulator flags this condition; no database is connected." : "No change in the fictional query. Try the training value shown above.";
-                }
-                if (found) { defend.interactable = true; defend.GetComponentInChildren<Text>().text = "SWITCH TO BLUE TEAM: CHOOSE A DEFENSE   >"; game.Play(game.successSound); }
-            }, GameUI.Cyan);
+            new FakeBrowser(ui, mission, mission.web, game.WebState(mission, mission.kind), Finish).Show();
+        }
+
+        void ShowFinal()
+        {
+            foreach (var lab in mission.finalLabs)
+            {
+                var state = game.WebState(mission, lab.kind);
+                if (!state.verified) { new FakeBrowser(ui, mission, lab, state, ShowFinal).Show(); return; }
+            }
+            new SocUI(ui, mission, game.SocState(mission), Finish).Show();
         }
     }
 }
