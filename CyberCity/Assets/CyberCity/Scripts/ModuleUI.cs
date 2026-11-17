@@ -17,6 +17,7 @@ namespace CyberCity
 
         public void Start(Mission value)
         {
+            if (value != game.Current || !game.CanTalk(game.Target)) return;
             mission = value; questionIndex = 0; finished = false;
             switch (mission.kind)
             {

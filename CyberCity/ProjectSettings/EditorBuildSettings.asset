@@ -11,6 +11,27 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/CyberCity/Scenes/Room_Professor_Byte.unity
+    guid: 5507feb5d0d3d7944ac2c07ce4ddcd61
+  - enabled: 1
+    path: Assets/CyberCity/Scenes/Room_Alex.unity
+    guid: 916448d290f46e84f8592016c7b4d525
+  - enabled: 1
+    path: Assets/CyberCity/Scenes/Room_Maya.unity
+    guid: b87cae303d8bdd7438eb54970dd4b4ba
+  - enabled: 1
+    path: Assets/CyberCity/Scenes/Room_Detective_Byte.unity
+    guid: 7cc3ab190789b8942b6dbdda622e627a
+  - enabled: 1
+    path: Assets/CyberCity/Scenes/Room_SysAdmin_Tux.unity
+    guid: 30eb5723b380f50448ab5bc8ff176189
+  - enabled: 1
+    path: Assets/CyberCity/Scenes/Room_Red.unity
+    guid: 1ec3b1de9e1ca004889317efa466c254
+  - enabled: 1
+    path: Assets/CyberCity/Scenes/Room_Blue.unity
+    guid: 3a064a3f8336599489e84e140a750e07
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

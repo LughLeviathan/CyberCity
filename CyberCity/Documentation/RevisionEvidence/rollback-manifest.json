@@ -1,0 +1,298 @@
+{
+  ".gitattributes": {
+    "original": null,
+    "modified": "71d1382cbb995fbb0928d83f7e81ceebacca4b47db7f4aab36550c83e0c5c5df"
+  },
+  "ArtSource/interiors/virus.aseprite": {
+    "original": null,
+    "modified": "adb16c91585c37ed182e86083afb9b25d3f2dbe0b3362af9b690668ae985d1a7"
+  },
+  "Assets/CyberCity/Editor/CyberCityBuilder.cs": {
+    "original": "8ea10e1ef37489699a5eec188b7900bbee1aed90c33dd08e83cb7353cc510b78",
+    "modified": "47545e0d2a46ded4bedd7914ed5299782b65e733e0a934ca4df2163fb6df168c"
+  },
+  "Assets/CyberCity/Editor/CyberCityFullscreenVerification.cs": {
+    "original": "3a6f3511c7c7c5ef987cc6c2a6e4e72ce5bb2a906c6c20cc31cd1e20df940469",
+    "modified": "589332555f8cb78c7096dbeb3d694eed362d576840a4503afd8609f47eef1b56"
+  },
+  "Assets/CyberCity/Editor/CyberCityInteriorBuilder.cs": {
+    "original": null,
+    "modified": "b84e6e6efba63fac4861bdb3ebff8da3d6200cef9cfbf2aba757ca21ed4138ee"
+  },
+  "Assets/CyberCity/Editor/CyberCityInteriorBuilder.cs.meta": {
+    "original": null,
+    "modified": "aa04f890a31d7e373e5aee35d35c67dc1a1cdb7d858f6c5488ea7a806c3bc6ba"
+  },
+  "Assets/CyberCity/Editor/CyberCityInteriorVerification.cs": {
+    "original": null,
+    "modified": "20d7edf8364dad02f74f5375ae7d555f5d339cce59a8d2af0ea4ab5e4d3b591f"
+  },
+  "Assets/CyberCity/Editor/CyberCityInteriorVerification.cs.meta": {
+    "original": null,
+    "modified": "ba712b4ba9d1cb8c6cbc8fd1c46bc44c12c585b9824b162006e149ef107c6436"
+  },
+  "Assets/CyberCity/Editor/CyberCityVerification.cs": {
+    "original": "3b28d0688dbcf5b1467dd75e87a177f95791ecdb33c4a4b68dbcc256fca47312",
+    "modified": "cb2f467187833c5f88ccbee817923a67e0ed034c8d5da4da648e869ff36517fe"
+  },
+  "Assets/CyberCity/Editor/CyberCityWorldVerification.cs": {
+    "original": "d94d3c915999846cbc00ebf105704449dfc3b2e67cf843064e906f51c14ffba0",
+    "modified": "d2d9d8f4d8c44b7f628cd96d9b51139c78dc6f49ef92525ceaa40fe4949df686"
+  },
+  "Assets/CyberCity/Resources/Interiors.meta": {
+    "original": null,
+    "modified": "d765b4ebe1e21f619b28e59f93191836a871da20ba376a6c5495bb2a61106e29"
+  },
+  "Assets/CyberCity/Resources/Interiors/board.png": {
+    "original": null,
+    "modified": "05b7117a275bf75ad4a1720520f41f2e614dc5f1267e4dda677f908f18b2078b"
+  },
+  "Assets/CyberCity/Resources/Interiors/board.png.meta": {
+    "original": null,
+    "modified": "e810b377bf692295c6c79c5f48293081fb4b93083d1738a633087314fd85bde8"
+  },
+  "Assets/CyberCity/Resources/Interiors/coffee.png": {
+    "original": null,
+    "modified": "c132722852e06743e6823879749a60661c1e0e8fc7b241fd97b05b4b20b5fe3a"
+  },
+  "Assets/CyberCity/Resources/Interiors/coffee.png.meta": {
+    "original": null,
+    "modified": "454307406f1c15ee3d6c9f6beae0aedce8febca7557c60a8175dd79e8f3ee28b"
+  },
+  "Assets/CyberCity/Resources/Interiors/console.png": {
+    "original": null,
+    "modified": "78bd00460384009d427356e4ea0a0f1d58ca017556379a673b11dc589d2807e1"
+  },
+  "Assets/CyberCity/Resources/Interiors/console.png.meta": {
+    "original": null,
+    "modified": "3a297a121711269943217d135632bc4c397655ab1115391b409f9cbbc97b2bff"
+  },
+  "Assets/CyberCity/Resources/Interiors/desk.png": {
+    "original": null,
+    "modified": "cb8f3cce4727a92d4f1fb44eab5096bb7c1f84002654e5f425ffdda9ac561c66"
+  },
+  "Assets/CyberCity/Resources/Interiors/desk.png.meta": {
+    "original": null,
+    "modified": "544768bd4ba36b5da1e87cf6a1fd71b1d595928a4b9af6869840f8861a38d521"
+  },
+  "Assets/CyberCity/Resources/Interiors/exit.png": {
+    "original": null,
+    "modified": "01ae24f4fb18e8763dc72f1bf8f8b76578782511e1a5e4b59cee4b5ce41f25fd"
+  },
+  "Assets/CyberCity/Resources/Interiors/exit.png.meta": {
+    "original": null,
+    "modified": "110940f12edd023124663d8d31ec100041f665fc18f717e174a7d8fc18bc1c0c"
+  },
+  "Assets/CyberCity/Resources/Interiors/floor.png": {
+    "original": null,
+    "modified": "7de3150cf05768a1d226b6aba2b67dcbaba3150b15efa63ead8a48e2a56b8fd3"
+  },
+  "Assets/CyberCity/Resources/Interiors/floor.png.meta": {
+    "original": null,
+    "modified": "a20bf42920d5075d3c3a8e5910ceea5a275ce2026d43e78ae4c677e0acc24759"
+  },
+  "Assets/CyberCity/Resources/Interiors/plant.png": {
+    "original": null,
+    "modified": "076637f0e2f562e085aca7df0cba89290337a50236b9909453955d3d1dead37d"
+  },
+  "Assets/CyberCity/Resources/Interiors/plant.png.meta": {
+    "original": null,
+    "modified": "57300a07428406cd8f6e08380a0b4d4b597120155868ea997eea6c3c416af73f"
+  },
+  "Assets/CyberCity/Resources/Interiors/rug.png": {
+    "original": null,
+    "modified": "ed982f8649eff0eb883b56656eb241f7df68eae94d0c875df4fa44e5a8bd6cc8"
+  },
+  "Assets/CyberCity/Resources/Interiors/rug.png.meta": {
+    "original": null,
+    "modified": "d0bc5dc762332bfb5b004b6b3dcb3be3f58571c8cff84f667d0aaad18d123d44"
+  },
+  "Assets/CyberCity/Resources/Interiors/server.png": {
+    "original": null,
+    "modified": "a76ca5644421ffc308676829c85a3f66acd32eb0fc74b87718ff80d0c56952d8"
+  },
+  "Assets/CyberCity/Resources/Interiors/server.png.meta": {
+    "original": null,
+    "modified": "f143a8926d66290312277a4b406e78a540be048445ac1a9d9dcef5be8c335754"
+  },
+  "Assets/CyberCity/Resources/Interiors/shelf.png": {
+    "original": null,
+    "modified": "96b087219d975f4cf2935b82d670965a7a406e86250cd2534951d12221c049da"
+  },
+  "Assets/CyberCity/Resources/Interiors/shelf.png.meta": {
+    "original": null,
+    "modified": "4207d3340aa8a36c59f8d4e0ce2147df5322d3bc26e4bf711cef7deefd5542e2"
+  },
+  "Assets/CyberCity/Resources/Interiors/sofa.png": {
+    "original": null,
+    "modified": "118090a3a373a58aafd1adeb83b9aa4545a9c8699f1db14f2e80b3922b74cbbc"
+  },
+  "Assets/CyberCity/Resources/Interiors/sofa.png.meta": {
+    "original": null,
+    "modified": "e5938f9354ce2b8e4bd62b80b5efcf986f3f76d0d2fb8eee54b28af18d1eea01"
+  },
+  "Assets/CyberCity/Resources/Interiors/virus.png": {
+    "original": null,
+    "modified": "5ffbcc049452fb937a2d03eb4e2641e85ea339874780c58787a6c2c9ad08bea5"
+  },
+  "Assets/CyberCity/Resources/Interiors/virus.png.meta": {
+    "original": null,
+    "modified": "1b90892c42401a52cd095b0618e4277ca3877519acb4f7c2c038231403917d09"
+  },
+  "Assets/CyberCity/Resources/Interiors/wall.png": {
+    "original": null,
+    "modified": "57c61a6ed65f43e2f48c9b13184fc38d1ac0aaffb31ca6e3e0089ad6d72903cd"
+  },
+  "Assets/CyberCity/Resources/Interiors/wall.png.meta": {
+    "original": null,
+    "modified": "a30a0c98ac58ceb054008a064cbea12a6ee85b8d3b57bf80e3229a283e749dae"
+  },
+  "Assets/CyberCity/Resources/Interiors/window.png": {
+    "original": null,
+    "modified": "2053e1a2190e217879c8237db861b869621ae610a686bb6ed4811393d77f8d82"
+  },
+  "Assets/CyberCity/Resources/Interiors/window.png.meta": {
+    "original": null,
+    "modified": "90dcc57dea4e52327b24b18c84dbed9ad3a8bda26934714d129c8249bb4bdc35"
+  },
+  "Assets/CyberCity/Resources/npc_dialogue.json": {
+    "original": null,
+    "modified": "71b0ae1f16e670b5b05a808cd4c145cb0b380ffdf0473f3ecc70cb006887c10f"
+  },
+  "Assets/CyberCity/Resources/npc_dialogue.json.meta": {
+    "original": null,
+    "modified": "8ba15932122a9c944727c945321536dc30119365e71b667c06e8307d4d1bd812"
+  },
+  "Assets/CyberCity/Scenes/Room_Alex.unity": {
+    "original": null,
+    "modified": "f496ef4485b7dee9ded79c7f64d1ffa9ee9a5ad7c5fe47e0a2feb90a9ccdd4b2"
+  },
+  "Assets/CyberCity/Scenes/Room_Alex.unity.meta": {
+    "original": null,
+    "modified": "85fb912743951fae01779c15805af4b931a3868a64068f762d3a3b1f75e32a17"
+  },
+  "Assets/CyberCity/Scenes/Room_Blue.unity": {
+    "original": null,
+    "modified": "91c8be7fe7aead359c9148b30f4d692cffee3adc361195b6179dc2e7770d92e4"
+  },
+  "Assets/CyberCity/Scenes/Room_Blue.unity.meta": {
+    "original": null,
+    "modified": "55b4bcdf1941a60ad1a003157c70c615b4a9f4ae05384e75cf9d7321ffe1c77f"
+  },
+  "Assets/CyberCity/Scenes/Room_Detective_Byte.unity": {
+    "original": null,
+    "modified": "c4a9ba21a1eebf7ddde082972c1b6e1ab5a92a8244cee04b28f759af8d243557"
+  },
+  "Assets/CyberCity/Scenes/Room_Detective_Byte.unity.meta": {
+    "original": null,
+    "modified": "ea29d00630bd4081e89e1b8b3134d3de642276d49c80eb96ae03cb535e31ed11"
+  },
+  "Assets/CyberCity/Scenes/Room_Maya.unity": {
+    "original": null,
+    "modified": "f300fe6ce00a86882889841af3c00f6770d74650b66ce5493ca0b9304b22756a"
+  },
+  "Assets/CyberCity/Scenes/Room_Maya.unity.meta": {
+    "original": null,
+    "modified": "f1150f1c7c993d79a2d443bbc2dcdfb04f7a04c54d2b69f6d6aaa0c3092a01cc"
+  },
+  "Assets/CyberCity/Scenes/Room_Professor_Byte.unity": {
+    "original": null,
+    "modified": "3a60226514576eb8a161ff9793bafe6cb4b096dafbbe4680c387d10515f79574"
+  },
+  "Assets/CyberCity/Scenes/Room_Professor_Byte.unity.meta": {
+    "original": null,
+    "modified": "467d79cf972bf65b4e9c6ef3b2bcc7ef62002195140d7b20543a8d57de0d6dd9"
+  },
+  "Assets/CyberCity/Scenes/Room_Red.unity": {
+    "original": null,
+    "modified": "3e083f44ae9f9ba4b2d9bf9a80369c0401f881c492debe03ef34abcb41e90c51"
+  },
+  "Assets/CyberCity/Scenes/Room_Red.unity.meta": {
+    "original": null,
+    "modified": "dd501523ff19014b99ab58112e1823efea115e0d41198a2ff6d247b0a9c47ea2"
+  },
+  "Assets/CyberCity/Scenes/Room_SysAdmin_Tux.unity": {
+    "original": null,
+    "modified": "9e91565d35b1a0d04fc73c9f6066656a3489d855a203c060c66f84707af18f03"
+  },
+  "Assets/CyberCity/Scenes/Room_SysAdmin_Tux.unity.meta": {
+    "original": null,
+    "modified": "f889108e3352595332bc6b7998ed5a3dbfdf00c76f876f0996846fff0464eabe"
+  },
+  "Assets/CyberCity/Scripts/Campaign.cs": {
+    "original": "f5fb8b25a6491693be8ee44d0b4726e7ac9e8e101cf2e8c324bee59ed1606711",
+    "modified": "01850f635465af0cb60514cfb34aee905ab947127e2711af284e99123b0967ff"
+  },
+  "Assets/CyberCity/Scripts/CyberCityGame.cs": {
+    "original": "589602af2ca2383622c021478a35ea09c096d397dc92f87cbdf2df9128dafd6e",
+    "modified": "f606620cd723caa39d7c3154840c9a1038047c641cb3464bd838bea4bb7cc128"
+  },
+  "Assets/CyberCity/Scripts/GameUI.Interiors.cs": {
+    "original": null,
+    "modified": "832b7fdc06e4332997ba0b78bf2b9341cd025551b6fb88326e309d7977b175a5"
+  },
+  "Assets/CyberCity/Scripts/GameUI.Interiors.cs.meta": {
+    "original": null,
+    "modified": "3f1968239eef7dac18d2161b2345f2681d349dcbe35e978e584eb7ba948712a3"
+  },
+  "Assets/CyberCity/Scripts/GameUI.cs": {
+    "original": "b5bf0f86cb26dbc9cb16b24749b2fc2327bd80fe01e784e0ee25beefbabae202",
+    "modified": "a040f80f2bfd24f953e49cfe219a3a3bdffafbd0b6e49f293cb60e916059bbf4"
+  },
+  "Assets/CyberCity/Scripts/InteriorRoom.cs": {
+    "original": null,
+    "modified": "86df3c7829fa31874dd3710e7e352793a50a9453d8d4e4cbe935017aab997a49"
+  },
+  "Assets/CyberCity/Scripts/InteriorRoom.cs.meta": {
+    "original": null,
+    "modified": "56779df7c7ed8c92da6473bc57b2c5ae257a6f0c26c01825ae0efd12de53ae39"
+  },
+  "Assets/CyberCity/Scripts/ModuleUI.cs": {
+    "original": "3f9d65548ec8f3aee526d053bebff07a67c6d22b1967d29f52e1fe84fa1e78db",
+    "modified": "dc787449c30dc9d182765a882305d1a3d323f3247e68870107dc92d5a8bc79e5"
+  },
+  "Assets/CyberCity/Scripts/ProgressStore.cs": {
+    "original": "231618363090785fc8c831a2c2d137325cfd240b7dd367168cdf921382cfd7df",
+    "modified": "031343ea6cc24f3b781999d18ad011a7ca75c00158267f2c382bafa4f9e1861c"
+  },
+  "Assets/CyberCity/Scripts/RoomTravel.cs": {
+    "original": null,
+    "modified": "3d35394622a7e4258f2b65902245386a8dcdd12a359d32315a0c8d14c5d22d98"
+  },
+  "Assets/CyberCity/Scripts/RoomTravel.cs.meta": {
+    "original": null,
+    "modified": "8fd934a438fb1f8ab5d5af4fe4da86e81fc572ad56b3e46ab77a9fd95c4d2d3a"
+  },
+  "Assets/CyberCity/Scripts/VirusRun.cs": {
+    "original": null,
+    "modified": "61742f09fede228e05ab93672561b766da92c28f8d3dbec85955b96f803ec36e"
+  },
+  "Assets/CyberCity/Scripts/VirusRun.cs.meta": {
+    "original": null,
+    "modified": "b866fa3183a1481d02be856969295512e6a489e245f7fa1ef4760be5cd7bd99c"
+  },
+  "Assets/CyberCity/Scripts/VirusSweep.cs": {
+    "original": null,
+    "modified": "fb0d1b9e323bd99223d434bf456cc8c85f6f52b92f6ddd1e9ba119f36dae6e9e"
+  },
+  "Assets/CyberCity/Scripts/VirusSweep.cs.meta": {
+    "original": null,
+    "modified": "ac623c2b755a11e297aa85b13edb57f01e0ea815aa1968a6c02d2d26240c7228"
+  },
+  "Assets/CyberCity/Scripts/WorldArea.cs": {
+    "original": "48e813dccd42cc6aae33ea9bd1b65b9c0ee04c382b42fa55be93bcee18c9d02e",
+    "modified": "4ee710d5cb9042efa187967f7a644a2e03ef065039d22ff15d1af9f0a5fde0ef"
+  },
+  "ProjectSettings/EditorBuildSettings.asset": {
+    "original": "83b4a1047bfee202e130a571c14a443523770916b5dce2625564d5d4193c8734",
+    "modified": "fab9b733364dd04bfbbab05e190e3f056b3beec0e3f22a3101f1b29f982390ce"
+  },
+  "ProjectSettings/ProjectSettings.asset": {
+    "original": "4a2747f932499276b052f7718f2771732d7242e0a7c83b94ec836e7b5459d713",
+    "modified": "57cc0c7949943e112c0128c4e5e8419ee77437ec3beaa369e4330a087660a143"
+  },
+  "Tools/verify_bundled_campaign.ps1": {
+    "original": null,
+    "modified": "d6dae4c4d804e5ca585fde33ff1cf09dcaa35e194d8d7e60a0511dfc6045834d"
+  }
+}

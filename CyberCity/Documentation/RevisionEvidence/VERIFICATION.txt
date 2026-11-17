@@ -1,0 +1,91 @@
+CYBERCITY REVISION VERIFICATION — 2026-11-17 (Asia/Bangkok)
+
+Current: CyberCity / checksum, seven interiors, dialogue, Virus Sweep implemented / ready to play
+
+CHANGED BRANCH / FIELDS
+- CampaignLoader.Load: bundled check uses BundledHash(local), which normalizes CRLF to LF before SHA-256. Content changes still fail. Optional pack Hash(candidate) remains byte-exact.
+- CyberCityGame interaction: inactive outdoor NPCs are excluded; only the resident in the loaded room can be spoken to or complete a mission.
+- RoomTravel: additive room scene, 0.28s fade each way, movement/input lock, city-position saves, resident-only visibility, collider retirement before returning to city.
+- ProgressData: virusAccepted, virusCleared, virusReported, virusBestKills; v2 compatibility retained. Eleven campaign mission IDs/order and campaign XP remain unchanged.
+- BuildWindows uses enabled EditorBuildSettings scenes. Unity's build registered the existing Input Actions asset in PlayerSettings.preloadedAssets.
+
+FOUR ARTIFACT PATHS
+MODIFIED_FILE: D:/CyberCity/CyberCity/Documentation/RevisionEvidence/MODIFIED_FILE.zip
+DIFF_FILE: D:/CyberCity/CyberCity/Documentation/RevisionEvidence/DIFF_FILE.patch
+VERIFICATION: D:/CyberCity/CyberCity/Documentation/RevisionEvidence/VERIFICATION.txt
+ROLLBACK: D:/CyberCity/CyberCity/Documentation/RevisionEvidence/ROLLBACK.sh
+
+ORIGINAL HASHES
+Original Campaign.cs SHA-256: f5fb8b25a6491693be8ee44d0b4726e7ac9e8e101cf2e8c324bee59ed1606711
+Modified Campaign.cs SHA-256: 01850f635465af0cb60514cfb34aee905ab947127e2711af284e99123b0967ff
+Original campaign.json raw SHA-256: 0277fa03f47a7f7694bdf80cde7fa3c987be0ab219dff3641bb51d35bd3ddf88
+Expected LF checksum: f71fb3609a411799f004d5c91602a6399c453389c379a48eeb1f6d1f153464c7
+All 69 initial backup hashes reopened and verified. No player-save files are included in the archive or rollback.
+
+BASELINE
+Command: pwsh -NoProfile -File D:/CyberCity/CyberCity/Tools/verify_bundled_campaign.ps1 -ProjectRoot D:/CyberCity/CyberCity/Documentation/RevisionEvidence/original
+Input: preserved original Campaign.cs hashing methods, original CRLF campaign.json, campaign_hash.txt.
+Literal output: FAIL: Bundled campaign checksum failed.
+Exit status: 1 (expected baseline regression).
+The original Unity CampaignLoader.Load also produced: BASELINE FAIL: Bundled campaign checksum failed.
+Original scene observation: 7 outdoor NPCs; 0 interior scenes.
+
+MODIFIED
+Command: pwsh -NoProfile -File D:/CyberCity/CyberCity/Tools/verify_bundled_campaign.ps1 -ProjectRoot D:/CyberCity/CyberCity
+Input: current Campaign.cs hashing methods compiled by Add-Type, actual campaign files, generated LF/CRLF variants and modified-content negative test.
+Literal output: PASS: LF/CRLF bundle verified; changed content rejected; optional hash unchanged.
+Exit status: 0.
+
+ROLLBACK (TESTED ON ANOTHER COPY; WORKSPACE LEFT MODIFIED)
+Command: & 'D:/Git/bin/bash.exe' D:/CyberCity/CyberCity/Documentation/RevisionEvidence/ROLLBACK.sh D:/CyberCity/CyberCity/Temp/RevisionRollbackFixture
+Input: isolated copy of all 74 packaged revision paths, original backups and rollback-manifest.json.
+Literal output: PASS: restored 74 revision paths; original hashes match; replaced files retained.
+Exit status: 0.
+Restored behavior command: pwsh -NoProfile -File D:/CyberCity/CyberCity/Tools/verify_bundled_campaign.ps1 -ProjectRoot D:/CyberCity/CyberCity/Temp/RevisionRollbackFixture
+Literal output: FAIL: Bundled campaign checksum failed.
+Exit status: 1 (expected: original checksum bug restored on the rollback copy).
+A subsequent MODIFIED command still returned the PASS output above with exit 0. The working project and MODIFIED_FILE.zip retain the changes.
+
+DIFF CHECK
+Command (cwd=D:/CyberCity/CyberCity/Temp/RevisionRollbackFixture, GIT_CEILING_DIRECTORIES=D:/CyberCity/CyberCity/Temp): git apply --check --verbose --ignore-space-change --ignore-whitespace D:/CyberCity/CyberCity/Documentation/RevisionEvidence/DIFF_FILE.patch
+Result: every patch checked against the restored fixture, exit 0; literal per-file output is in diff-apply-check.txt.
+ZIP CRC and every packaged file's SHA-256 were verified against rollback-manifest.json.
+
+UNITY EXECUTION — 6000.6.5f1
+In-process methods (no separate shell exit code; methods returned and reports below recorded PASS):
+CyberCity.Editor.CyberCityInteriorBuilder.Build()
+CyberCity.Editor.CyberCityInteriorVerification.VerifyCore(): PASS: 34 revision core checks
+CyberCity.Editor.CyberCityInteriorVerification.VerifyPlayMode(): PASS: 172 revision checks (core + play mode)
+CyberCity.Editor.CyberCityVerification.StartPlaythrough(): PASS: 353 checks including all missions through runtime UI
+CyberCity.Editor.CyberCityBuilder.BuildWindows(): CyberCity Windows player built successfully. Size: 253495933 bytes.
+The temporary fixed-sequence driver was archived here and removed from Assets after execution.
+
+COVERAGE OBSERVED
+- Real initial checksum error reproduced; LF/CRLF fix, tamper rejection, optional-pack exact hashing.
+- All seven rooms loaded/unloaded; one resident visible, no outdoor NPC leakage, open navigation path to resident and exit, exact city return position, indoor saves use city coordinates.
+- NPC/MC dialogue, player-name substitution, mission briefing from dialogue, locked-room feedback, outdoor/remote interaction rejected.
+- Keyboard Space held through the actual arcade UI cleared all 24 viruses in three waves; pause/resume, victory, reporting badge to Red and replay entry verified.
+- Pure simulation tests cover defeat/contact damage, collision sweep, diagonal movement, boundaries and fresh retry.
+- Old v2 save without new fields preserves completed missions and earned XP. Optional quest state persists without altering campaign score/order. Invalid data recovers a backup.
+- All 11 campaign missions completed through their runtime UI with practical-evidence gates, save/reload checks, unlock effects and final score checks.
+- Existing UI checks cover 1280x720, 1366x768, 1920x1080, 2560x1440, 1920x1200, 2560x1080 and 1440x1080.
+- Actual built globalgamemanagers contains CyberCity plus all seven Room_*.unity scenes (build-scenes.json).
+- Asset checker: 1044 files checked, 0 errors, 0 warnings; exit 0 (asset-check.json).
+
+WINDOWS STARTUP SMOKE
+File: D:/CyberCity/CyberCity/Builds/CyberCity/CyberCity.exe
+Arguments: -batchmode -nographics -logFile D:/CyberCity/CyberCity/Documentation/RevisionEvidence/windows-smoke.log
+Launched via Start-Process -WindowStyle Hidden -PassThru, observed for 8 seconds, then stopped only that harness-owned process.
+Literal result: STARTUP: alive_after_8s=True; logged_errors=0; stopped_by_harness=True
+Harness exit status: 0. The player was deliberately stopped, not claimed to exit naturally.
+Old build preserved at: D:/CyberCity/CyberCity/Builds/CyberCity-before-interiors-20261117
+
+REVIEW / CORRECTED TEST FINDINGS
+- Retired interior colliders before reactivating city on exit.
+- Fixed test fixtures that initially teleported into building footprints; final approach uses a verified clear 0.9-unit offset.
+- Waited for the 0.85-second unlock animation before asserting its settled state.
+- Bounded test cleanup and rejected starting the interior suite during another room transition.
+
+LIMITS
+Visual gameplay was inspected in the Editor; standalone Windows received a headless startup smoke test, not a full manual visual playthrough. No Android/gamepad validation. New dialogue uses Indonesian/English; other menu locales use English for this new dialogue. Room pixel art is procedural and reuses the existing characters/fonts/audio.
+Rollback intentionally restores the old checksum behavior. Run it only to undo this revision, with Unity closed. The script rejects unexpected target hashes and retains replaced files under the target's Temp/RevisionRollback-* directory.

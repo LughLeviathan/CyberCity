@@ -15,6 +15,7 @@ namespace CyberCity
         public int UnlockAnimations { get; private set; }
         public int UnlockAfter => CampaignLoader.UnlockForArea(game.Campaign, areaName);
         CyberCityGame game;
+        bool pendingUnlock;
         static readonly Color LockedTint = new Color(.38f, .42f, .55f, 1);
         float VfxScale => game != null && game.UI != null ? game.UI.VfxScale : .85f;
         public void RefreshVfx()
@@ -26,15 +27,24 @@ namespace CyberCity
         {
             if (game != null) game.ProgressChanged -= ProgressChanged;
             game = owner; game.ProgressChanged += ProgressChanged;
-            StopAllCoroutines(); Apply(game.Progress.completed >= UnlockAfter);
+            StopAllCoroutines(); pendingUnlock = false; Apply(game.Progress.completed >= UnlockAfter);
+        }
+        void OnEnable()
+        {
+            if (pendingUnlock && game != null) { pendingUnlock = false; StartCoroutine(Unlock()); }
+            else if (game != null) Apply(game.Progress.completed >= UnlockAfter);
         }
         void OnDestroy() { if (game != null) game.ProgressChanged -= ProgressChanged; }
         void ProgressChanged(int before, int after)
         {
-            if (after == 0) UnlockAnimations = 0;
+            if (after == 0) { UnlockAnimations = 0; pendingUnlock = false; }
             bool open = after >= UnlockAfter;
             StopAllCoroutines();
-            if (open && !IsOpen && after > before) { IsOpen = true; StartCoroutine(Unlock()); }
+            if (open && !IsOpen && after > before)
+            {
+                IsOpen = true;
+                if (gameObject.activeInHierarchy) StartCoroutine(Unlock()); else pendingUnlock = true;
+            }
             else Apply(open);
         }
         void Apply(bool open)

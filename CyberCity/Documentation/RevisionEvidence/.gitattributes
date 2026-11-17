@@ -1,0 +1,3 @@
+# Preserve captured evidence and rollback hashes across Git checkouts.
+** -text
+ROLLBACK.sh text eol=lf

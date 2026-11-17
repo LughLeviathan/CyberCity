@@ -11,7 +11,7 @@ using UnityEngine.UI;
 namespace CyberCity
 {
     [DefaultExecutionOrder(20)]
-    public sealed class GameUI : MonoBehaviour
+    public sealed partial class GameUI : MonoBehaviour
     {
         public Sprite cityPreview;
         public static readonly Color Ink = Hex("090F22"), Panel = Hex("101A33"), Raised = Hex("1B2947"),
@@ -22,7 +22,7 @@ namespace CyberCity
         public RectTransform Content { get; private set; }
         // After Initialize, replace the Journal child with your own button under this slot.
         public RectTransform QuestButtonSlot { get; private set; }
-        public bool HasModal => modal != null || transitionOverlay != null;
+        public bool HasModal => modal != null || transitionOverlay != null || roomFade != null;
         public bool FrontEndActive => frontScreen != FrontScreen.None;
         public const string LanguagePreference = "CyberCityLanguage", SfxPreference = "CyberCityEffects", VfxPreference = "CyberCityVfx";
         public string Language { get; private set; } = "id";
@@ -231,13 +231,19 @@ namespace CyberCity
             labels.gameObject.SetActive(Game.Started && !HasModal);
             foreach (var n in Game.citizens)
             {
-                nameLabels[n].gameObject.SetActive(n == Game.Target || n == Game.Nearest);
-                PositionLabel(nameLabels[n], n.transform.position + Vector3.down * .12f);
-                markers[n].gameObject.SetActive(n == Game.Target);
-                PositionLabel(markers[n], n.transform.position + Vector3.up * (1.25f + Mathf.Sin(Time.time * 3) * .08f));
+                bool visible = n.gameObject.activeInHierarchy;
+                bool destination = n == Game.Target;
+                var door = Game.areas.FirstOrDefault(a => a.areaName == n.area);
+                bool outside = Game.Travel != null && !Game.Travel.IsInside && !Game.Travel.IsTransitioning;
+                Vector3 position = outside && door != null ? door.door.position : n.transform.position;
+                nameLabels[n].gameObject.SetActive((visible && (destination || n == Game.Nearest)) || (outside && destination));
+                nameLabels[n].text = outside ? n.citizenName + " / INDOOR" : n.citizenName;
+                PositionLabel(nameLabels[n], position + Vector3.down * .12f);
+                markers[n].gameObject.SetActive(destination && (outside || visible));
+                PositionLabel(markers[n], position + Vector3.up * (1.25f + Mathf.Sin(Time.time * 3) * .08f));
             }
             PositionLabel(playerLabel, Game.player.transform.position + (Game.Nearest != null ? Vector3.down * .3f : Vector3.up * 1.05f));
-            prompt.text = HasModal ? "" : Game.DoorIsNearest ? "[ E ]  " + Game.NearestDoor.areaName :
+            prompt.text = HasModal ? "" : Game.Travel != null && Game.Travel.NearExit ? "[ E ]  Keluar / Return to city" : Game.DoorIsNearest ? "[ E ]  Masuk / Enter " + Game.NearestDoor.areaName :
                 Game.Nearest != null ? "[ E ]  Talk to " + Game.Nearest.citizenName : "";
             // All interactable doors/NPCs are above the southern waterfront. Keep this hint
             // in that clear lower strip so it cannot cover their sprites or the plaza globe.
@@ -249,6 +255,7 @@ namespace CyberCity
 
         public void CloseModal()
         {
+            if (Game?.Travel != null && Game.Travel.IsTransitioning) return;
             if (frontScreen == FrontScreen.Transition) return;
             if (frontScreen == FrontScreen.Settings || frontScreen == FrontScreen.Username) { BackToMenu(); return; }
             if (Game != null && !Game.Started) return;
@@ -615,7 +622,7 @@ namespace CyberCity
             Text(task, mission.objective, 24, 57, 1000, 79, 21, White);
             Text(c, "Fictional evidence. No external connections. Mistakes include an explanation and a retry.", 0, 340, 1020, 55, 17, Muted);
             Button(c, "START MISSION   >", 0, 416, 370, 58, () => modules.Start(mission), Cyan);
-            Button(c, "Return to the city", 390, 416, 300, 58, CloseModal);
+            Button(c, "Kembali ke ruangan / Back", 390, 416, 360, 58, CloseModal);
         }
 
         public void ShowMessage(string title, string message, string button)
@@ -627,9 +634,9 @@ namespace CyberCity
         public void ShowDebrief(Mission mission, int xp)
         {
             var c = OpenModal("MISSION COMPLETE / " + mission.area, "Connection secured.", "+" + xp + " XP  /  " + Game.Progress.completed + " of " + Game.Campaign.missions.Length + " missions complete");
-            Text(c, mission.takeaway, 0, 18, 1020, 150, 25);
+            Text(c, mission.npc + ": " + mission.takeaway + "\n\n{player}: " + (Language == "id" ? "Siap. Aku akan menerapkan pelajaran ini di patroli berikutnya." : "Understood. I'll put this into practice on my next patrol."), 0, 18, 1020, 185, 22);
             Text(c, Game.Current == null ? "{player}, you completed the Citizen Security Program." : "NEXT ASSIGNMENT FOR {player}\n\n" + Game.Current.title + "\nFind " + Game.Current.npc + " at " + Game.Current.area + ".", 0, 205, 1000, 160, 21, Teal);
-            Button(c, Game.Current == null ? "VIEW PATROL REPORT   >" : "BACK TO THE CITY   >", 0, 414, 440, 60,
+            Button(c, Game.Current == null ? "VIEW PATROL REPORT   >" : "BACK TO THE ROOM   >", 0, 414, 440, 60,
                 () => { if (Game.Current == null) ShowEnding(); else CloseModal(); }, Cyan);
         }
         public void ShowEnding()
@@ -664,7 +671,7 @@ namespace CyberCity
         {
             var c = OpenModal("FIELD JOURNAL", "Your learning route", "Complete assignments in order to unlock each district and its simulations.");
             int rows = (Game.Campaign.missions.Length + 1) / 2;
-            var journal = Scroll(c, "Mission list", 0, 0, 1056, 425, rows * 70);
+            var journal = Scroll(c, "Mission list", 0, 0, 1056, 350, rows * 70);
             for (int i = 0; i < Game.Campaign.missions.Length; i++)
             {
                 int col = i / rows, row = i % rows; var m = Game.Campaign.missions[i];
@@ -674,11 +681,15 @@ namespace CyberCity
                 Text(line, m.title, 60, 8, 446, 27, 18, color, true);
                 Text(line, m.npc + " / " + m.area, 60, 36, 446, 20, 12, Muted);
             }
-            Button(c, "Return to the city", 0, 435, 350, 48, CloseModal, Cyan);
+            var special = Box(c, "Virus Sweep quest", 0, 362, 1056, 58, Raised);
+            string state = Game.Progress.virusReported ? "VIRUS DEFENDER / COMPLETE" : Game.Progress.virusCleared ? "REPORT TO RED" : Game.Progress.virusAccepted ? "IN PROGRESS" : "AVAILABLE";
+            Text(special, "VIRUS SWEEP  /  " + state, 16, 6, 1024, 24, 17, Game.Progress.virusReported ? Teal : Gold, true);
+            Text(special, "Optional quest • Red's room / Web Security Lab • Best: " + Game.Progress.virusBestKills + "/24", 16, 31, 1024, 22, 15, Muted);
+            Button(c, "Back to exploring", 0, 435, 350, 48, CloseModal, Cyan);
         }
         public void ShowMap()
         {
-            var c = OpenModal("CITY ATLAS", "Four districts. One connected city.", "Gold marker = current mentor. Walk to them and press E to begin.");
+            var c = OpenModal("CITY ATLAS", "Four districts. Seven personal rooms.", "Gold marker = building entrance. Press E at the door, choose a room, then talk to its mentor.");
             var p = Rect(c, "Map image", 0, -2, 620, 486).gameObject.AddComponent<Image>(); p.sprite = cityPreview; p.preserveAspect = true;
             var destination = Game.Current == null ? null : Game.areas.FirstOrDefault(a => a.areaName == Game.Current.area);
             if (destination != null)

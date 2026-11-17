@@ -18,6 +18,7 @@ namespace CyberCity
         public Campaign Campaign { get; private set; }
         public ProgressData Progress { get; private set; }
         public GameUI UI { get; private set; }
+        public RoomTravel Travel { get; private set; }
         public bool Started { get; private set; }
         public Mission Current => Progress.completed < Campaign.missions.Length ? Campaign.missions[Progress.completed] : null;
         public Citizen Target => Current == null ? null : citizens.FirstOrDefault(n => n.citizenName == Current.npc);
@@ -56,6 +57,8 @@ namespace CyberCity
             effects.volume = PlayerPrefs.GetFloat("CyberCityEffects", .7f);
             UI.Initialize(this);
             foreach (var area in areas) area.Initialize(this);
+            Travel = GetComponent<RoomTravel>() ?? gameObject.AddComponent<RoomTravel>();
+            Travel.Initialize(this);
         }
 
         public void Begin()
@@ -70,17 +73,23 @@ namespace CyberCity
         void Update()
         {
             if (Campaign == null) return;
-            Nearest = citizens.OrderBy(n => Vector2.Distance(player.transform.position, n.transform.position)).FirstOrDefault();
+            Nearest = citizens.Where(n => n.gameObject.activeInHierarchy).OrderBy(n => Vector2.Distance(player.transform.position, n.transform.position)).FirstOrDefault();
             if (Nearest != null && Vector2.Distance(player.transform.position, Nearest.transform.position) > 1.65f) Nearest = null;
-            NearestDoor = areas.OrderBy(a => Vector2.Distance(player.transform.position, a.door.position)).FirstOrDefault();
+            NearestDoor = Travel != null && (Travel.IsInside || Travel.IsTransitioning) ? null : areas.OrderBy(a => Vector2.Distance(player.transform.position, a.door.position)).FirstOrDefault();
             if (NearestDoor != null && Vector2.Distance(player.transform.position, NearestDoor.door.position) > 1.65f) NearestDoor = null;
-            player.CanMove = Started && !UI.HasModal;
+            player.CanMove = Started && !UI.HasModal && Travel != null && !Travel.IsTransitioning;
             var k = Keyboard.current;
+            if (Travel == null || Travel.IsTransitioning) return;
+            if (UI.Arcade != null)
+            {
+                if (k != null && k.escapeKey.wasPressedThisFrame) UI.Arcade.TogglePause();
+                return;
+            }
             if (Started && k != null && !UI.FrontEndActive)
             {
                 if (k.escapeKey.wasPressedThisFrame) { if (UI.HasModal) UI.CloseModal(); else UI.ShowPause(); }
                 else if (!UI.HasModal && k.eKey.wasPressedThisFrame)
-                { if (DoorIsNearest) InteractArea(NearestDoor); else if (Nearest != null) Interact(Nearest); }
+                { if (Travel.NearExit) Travel.Exit(); else if (DoorIsNearest) InteractArea(NearestDoor); else if (Nearest != null) Interact(Nearest); }
                 else if (!UI.HasModal && k.jKey.wasPressedThisFrame) UI.ShowJournal();
                 else if (!UI.HasModal && k.hKey.wasPressedThisFrame) UI.ShowHelp();
                 else if (!UI.HasModal && k.mKey.wasPressedThisFrame) UI.ShowMap();
@@ -90,21 +99,23 @@ namespace CyberCity
 
         public void Interact(Citizen npc)
         {
-            if (!Started || UI.HasModal) return;
+            if (!CanTalk(npc) || UI.HasModal) return;
             Play(clickSound);
             if (Progress.completed < npc.unlockAfter)
             { UI.ShowMessage(npc.citizenName, "{player}, this lab is still locked. Complete your current mission to earn access.", "Return to the city"); return; }
-            if (Current == null) { UI.ShowEnding(); return; }
-            if (npc.citizenName != Current.npc)
-            { UI.ShowMessage(npc.citizenName + "  /  " + npc.role, "{player}, your next mission is \"" + Current.title + "\". Find " + Current.npc + " at " + Current.area + ". Follow the gold marker on the map.", "Keep exploring"); return; }
-            UI.ShowBriefing(Current);
+            UI.ShowConversation(npc);
         }
+
+        public bool CanTalk(Citizen npc) => Started && npc != null && Travel != null && !Travel.IsTransitioning &&
+            Travel.Occupant == npc && npc.gameObject.activeInHierarchy && Vector2.Distance(player.transform.position, npc.transform.position) <= 1.8f;
 
         public void InteractArea(WorldArea area)
         {
-            var mentor = citizens.FirstOrDefault(n => n.area == area.areaName && n == Target)
-                ?? citizens.FirstOrDefault(n => n.area == area.areaName);
-            if (mentor != null) Interact(mentor);
+            if (!Started || UI.HasModal || Travel == null || Travel.IsInside || Travel.IsTransitioning || area == null ||
+                Vector2.Distance(player.transform.position, area.door.position) > 1.8f) return;
+            if (!area.IsOpen)
+            { UI.ShowMessage(area.areaName, "This lab is still locked. Complete your current mission to earn access.", "Kembali / Back"); return; }
+            UI.ShowRoomDirectory(area);
         }
 
         public void WrongAnswer()
@@ -115,7 +126,7 @@ namespace CyberCity
 
         public void CompleteMission()
         {
-            if (Current == null) return;
+            if (Current == null || !CanTalk(Target)) return;
             if (!MissionRequirements.IsSatisfied(Current, Progress)) { UI.Toast("{player}, finish all required practical evidence before completing this mission."); return; }
             Mission finished = Current;
             int reward = ProgressStore.Reward(Progress.attempts[Progress.completed], Progress.hintUses[Progress.completed]);
@@ -127,12 +138,15 @@ namespace CyberCity
         public void Save()
         {
             if (Progress == null || !Started) return;
-            Progress.x = player.transform.position.x; Progress.y = player.transform.position.y;
+            Vector2 position = Travel != null ? Travel.SavePosition : (Vector2)player.transform.position;
+            Progress.x = position.x; Progress.y = position.y;
             if (!ProgressStore.Save(Progress)) UI.Toast(ProgressStore.LastError);
         }
 
         public void NewPatrol()
         {
+            if (Travel != null && Travel.IsTransitioning) return;
+            if (Travel != null && Travel.IsInside) { Travel.Exit(NewPatrol); return; }
             int before = Progress.completed;
             Progress = ProgressStore.Create(Campaign); player.GetComponent<Rigidbody2D>().position = WorldLayout.Spawn;
             Started = false; UI.RefreshHud(); UI.ShowStart();

@@ -1,0 +1,1 @@
+STARTUP: alive_after_8s=True; logged_errors=0; stopped_by_harness=True

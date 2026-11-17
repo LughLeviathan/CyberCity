@@ -48,6 +48,9 @@ namespace CyberCity
                 return BitConverter.ToString(sha.ComputeHash(Encoding.UTF8.GetBytes(text))).Replace("-", "").ToLowerInvariant();
         }
 
+        // Git can check text out as CRLF; bundled hashes are generated from LF.
+        public static string BundledHash(string text) => Hash(text.Replace("\r\n", "\n"));
+
         public static Campaign Parse(string json)
         {
             var data = JsonUtility.FromJson<Campaign>(json);
@@ -86,9 +89,13 @@ namespace CyberCity
         public static Campaign Load()
         {
             // A hash detects corruption. It is not a signature or proof of a pack's author.
-            string local = Resources.Load<TextAsset>("campaign").text;
-            string expected = Resources.Load<TextAsset>("campaign_hash").text.Trim();
-            if (!string.Equals(Hash(local), expected, StringComparison.OrdinalIgnoreCase))
+            var content = Resources.Load<TextAsset>("campaign");
+            var checksumAsset = Resources.Load<TextAsset>("campaign_hash");
+            if (content == null || checksumAsset == null)
+                throw new InvalidDataException("Bundled campaign or checksum is missing.");
+            string local = content.text;
+            string expected = checksumAsset.text.Trim();
+            if (!string.Equals(BundledHash(local), expected, StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException("Bundled campaign checksum failed.");
             string path = Path.Combine(Application.persistentDataPath, "ScenarioPacks", "campaign.json");
             try

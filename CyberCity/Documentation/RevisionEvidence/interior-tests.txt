@@ -1,0 +1,173 @@
+PASS: 172 revision checks (core + play mode)
+PASS Actual bundled campaign verifies
+PASS LF and CRLF hash identically for bundle only
+PASS Optional pack hashing remains byte-exact
+PASS Content changes still fail integrity
+PASS Existing eleven-mission campaign order retained
+PASS Seven unique conversations map to existing NPC names
+PASS NPC and MC lines in Indonesian and English: Professor Byte
+PASS NPC and MC lines in Indonesian and English: Alex
+PASS NPC and MC lines in Indonesian and English: Maya
+PASS NPC and MC lines in Indonesian and English: Detective Byte
+PASS NPC and MC lines in Indonesian and English: SysAdmin Tux
+PASS NPC and MC lines in Indonesian and English: Red
+PASS NPC and MC lines in Indonesian and English: Blue
+PASS Room exists and ships in build: Professor Byte
+PASS Room exists and ships in build: Alex
+PASS Room exists and ships in build: Maya
+PASS Room exists and ships in build: Detective Byte
+PASS Room exists and ships in build: SysAdmin Tux
+PASS Room exists and ships in build: Red
+PASS Room exists and ships in build: Blue
+PASS Pixel virus sprite bundled
+PASS Diagonal movement normalized
+PASS Pause freezes movement, timers and fire
+PASS Arena movement remains in bounds
+PASS Swept shot collision prevents tunnelling
+PASS Real firing clears all 24 viruses across three waves
+PASS Victory cannot advance or grant additional kills
+PASS Contact damage leads to loss, not victory
+PASS Retry starts clean
+PASS Legacy-compatible save writes
+PASS Old v2 save without new fields keeps earned XP and campaign progress
+PASS Special quest saves
+PASS Badge persists without changing campaign XP or order
+PASS Malformed save recovers valid backup
+PASS No fatal checksum screen at startup
+PASS No outdoor NPCs
+PASS Remote outdoor NPC interaction rejected
+PASS Locked room entry rejected
+PASS Locked door gives feedback
+PASS Door approach is walkable
+PASS Door opens room directory: Professor Byte
+PASS Entry fade locks input: Professor Byte
+PASS Correct separate scene loaded: Professor Byte
+PASS Only resident visible: Professor Byte
+PASS Outdoor scenery and colliders hidden indoors
+PASS Interior spawn clear
+PASS Walkable route from spawn to resident
+PASS Walkable route from spawn to exit
+PASS Indoor save keeps outdoor return point
+PASS Saved coordinates stay in city
+PASS NPC dialogue personalizes player name
+PASS MC speaks in conversation
+PASS Dialogue leads to existing mission briefing
+PASS South exit reachable: Professor Byte
+PASS Room scene unloaded on exit
+PASS Return position restored: expected=(15.56, -5.74) actual=(15.56, -5.74)
+PASS No outdoor NPC leak
+PASS Door approach is walkable
+PASS Door opens room directory: Alex
+PASS Entry fade locks input: Alex
+PASS Correct separate scene loaded: Alex
+PASS Only resident visible: Alex
+PASS Outdoor scenery and colliders hidden indoors
+PASS Interior spawn clear
+PASS Walkable route from spawn to resident
+PASS Walkable route from spawn to exit
+PASS Indoor save keeps outdoor return point
+PASS Saved coordinates stay in city
+PASS NPC dialogue personalizes player name
+PASS MC speaks in conversation
+PASS Dialogue leads to existing mission briefing
+PASS South exit reachable: Alex
+PASS Room scene unloaded on exit
+PASS Return position restored: expected=(6.69, -12.09) actual=(6.69, -12.09)
+PASS No outdoor NPC leak
+PASS Door approach is walkable
+PASS Door opens room directory: Maya
+PASS Entry fade locks input: Maya
+PASS Correct separate scene loaded: Maya
+PASS Only resident visible: Maya
+PASS Outdoor scenery and colliders hidden indoors
+PASS Interior spawn clear
+PASS Walkable route from spawn to resident
+PASS Walkable route from spawn to exit
+PASS Indoor save keeps outdoor return point
+PASS Saved coordinates stay in city
+PASS NPC dialogue personalizes player name
+PASS MC speaks in conversation
+PASS Dialogue leads to existing mission briefing
+PASS South exit reachable: Maya
+PASS Room scene unloaded on exit
+PASS Return position restored: expected=(6.69, -12.09) actual=(6.69, -12.09)
+PASS No outdoor NPC leak
+PASS Door approach is walkable
+PASS Door opens room directory: Detective Byte
+PASS Entry fade locks input: Detective Byte
+PASS Correct separate scene loaded: Detective Byte
+PASS Only resident visible: Detective Byte
+PASS Outdoor scenery and colliders hidden indoors
+PASS Interior spawn clear
+PASS Walkable route from spawn to resident
+PASS Walkable route from spawn to exit
+PASS Indoor save keeps outdoor return point
+PASS Saved coordinates stay in city
+PASS NPC dialogue personalizes player name
+PASS MC speaks in conversation
+PASS Dialogue leads to existing mission briefing
+PASS South exit reachable: Detective Byte
+PASS Room scene unloaded on exit
+PASS Return position restored: expected=(6.69, -12.09) actual=(6.69, -12.09)
+PASS No outdoor NPC leak
+PASS Door approach is walkable
+PASS Door opens room directory: SysAdmin Tux
+PASS Entry fade locks input: SysAdmin Tux
+PASS Correct separate scene loaded: SysAdmin Tux
+PASS Only resident visible: SysAdmin Tux
+PASS Outdoor scenery and colliders hidden indoors
+PASS Interior spawn clear
+PASS Walkable route from spawn to resident
+PASS Walkable route from spawn to exit
+PASS Indoor save keeps outdoor return point
+PASS Saved coordinates stay in city
+PASS NPC dialogue personalizes player name
+PASS MC speaks in conversation
+PASS Dialogue leads to existing mission briefing
+PASS South exit reachable: SysAdmin Tux
+PASS Room scene unloaded on exit
+PASS Return position restored: expected=(23.09, -7.37) actual=(23.09, -7.37)
+PASS No outdoor NPC leak
+PASS Door approach is walkable
+PASS Door opens room directory: Red
+PASS Entry fade locks input: Red
+PASS Correct separate scene loaded: Red
+PASS Only resident visible: Red
+PASS Outdoor scenery and colliders hidden indoors
+PASS Interior spawn clear
+PASS Walkable route from spawn to resident
+PASS Walkable route from spawn to exit
+PASS Indoor save keeps outdoor return point
+PASS Saved coordinates stay in city
+PASS NPC dialogue personalizes player name
+PASS MC speaks in conversation
+PASS Dialogue leads to existing mission briefing
+PASS Red starts special quest arena
+PASS Arcade UI pause freezes simulation
+PASS Arcade resumes after pause
+PASS Held SPACE fires through actual UI and wins all three waves
+PASS Arcade result returns to same room
+PASS Reporting victory to Red grants badge without campaign XP duplication
+PASS Completed special quest can be replayed
+PASS South exit reachable: Red
+PASS Room scene unloaded on exit
+PASS Return position restored: expected=(25.75, -12.09) actual=(25.75, -12.09)
+PASS No outdoor NPC leak
+PASS Door approach is walkable
+PASS Door opens room directory: Blue
+PASS Entry fade locks input: Blue
+PASS Correct separate scene loaded: Blue
+PASS Only resident visible: Blue
+PASS Outdoor scenery and colliders hidden indoors
+PASS Interior spawn clear
+PASS Walkable route from spawn to resident
+PASS Walkable route from spawn to exit
+PASS Indoor save keeps outdoor return point
+PASS Saved coordinates stay in city
+PASS NPC dialogue personalizes player name
+PASS MC speaks in conversation
+PASS Dialogue leads to existing mission briefing
+PASS South exit reachable: Blue
+PASS Room scene unloaded on exit
+PASS Return position restored: expected=(25.75, -12.09) actual=(25.75, -12.09)
+PASS No outdoor NPC leak

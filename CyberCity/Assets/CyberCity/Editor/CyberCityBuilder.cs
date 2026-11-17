@@ -108,6 +108,7 @@ namespace CyberCity.Editor
             var prior = EditorBuildSettings.scenes.Where(s => s.path != ScenePath).Select(s => new EditorBuildSettingsScene(s.path, false));
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(ScenePath, true) }.Concat(prior).ToArray();
             AssetDatabase.SaveAssets();
+            CyberCityInteriorBuilder.Build();
             if (SceneView.lastActiveSceneView != null)
             {
                 SceneView.lastActiveSceneView.in2DMode = true;
@@ -240,7 +241,8 @@ namespace CyberCity.Editor
         public static void BuildWindows()
         {
             Directory.CreateDirectory("Builds/CyberCity");
-            var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{ScenePath},locationPathName="Builds/CyberCity/CyberCity.exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
+            var scenes = EditorBuildSettings.scenes.Where(s => s.enabled).Select(s => s.path).ToArray();
+            var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=scenes,locationPathName="Builds/CyberCity/CyberCity.exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
             if(report.summary.result!=UnityEditor.Build.Reporting.BuildResult.Succeeded) throw new Exception("CyberCity player build failed: "+report.summary.result);
             Debug.Log("CyberCity Windows player built successfully. Size: "+report.summary.totalSize+" bytes.");
         }

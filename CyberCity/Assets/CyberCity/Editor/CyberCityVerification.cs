@@ -45,7 +45,11 @@ namespace CyberCity.Editor
             Check(CampaignLoader.Parse(JsonUtility.ToJson(shortPack)).missions.Length == 2, "Mission count follows scenario pack");
             Check(campaign.missions.Length > 0, "Validated offline missions");
             Check(campaign.missions.Select(m => m.id).Distinct().Count() == campaign.missions.Length, "Unique mission IDs");
-            Check(CampaignLoader.Hash(Resources.Load<TextAsset>("campaign").text) == Resources.Load<TextAsset>("campaign_hash").text.Trim(), "Bundled campaign SHA-256 matches");
+            string bundled = Resources.Load<TextAsset>("campaign").text.Replace("\r\n", "\n");
+            string expected = Resources.Load<TextAsset>("campaign_hash").text.Trim();
+            Check(CampaignLoader.BundledHash(bundled) == expected, "Bundled campaign SHA-256 matches");
+            Check(CampaignLoader.BundledHash(bundled.Replace("\n", "\r\n")) == expected, "Windows CRLF checkout verifies like LF");
+            Check(CampaignLoader.BundledHash(bundled.Replace("Professor Byte", "Professor Bite")) != expected, "Changed campaign content still fails checksum");
             bool rejected = false; try { CampaignLoader.Parse("{\"version\":2}"); } catch (InvalidDataException) { rejected = true; }
             Check(rejected, "Invalid campaign rejected");
             var malformed = JsonUtility.FromJson<Campaign>(Resources.Load<TextAsset>("campaign").text);
@@ -405,7 +409,9 @@ namespace CyberCity.Editor
             });
             Add(() => {
                 Check(game.citizens.Length == 7, "Seven main NPCs present");
-                var blue = game.citizens.First(n => n.citizenName == "Blue"); game.Interact(blue);
+                var web = game.areas.Single(a => a.areaName == "Web Security Lab");
+                game.player.GetComponent<Rigidbody2D>().position = web.door.position;
+                game.player.transform.position = web.door.position; game.InteractArea(web);
             });
             Add(() => {
                 Check(VisibleText().Any(t => t.Contains("still locked")), "Later mentor content is locked"); game.UI.CloseModal();
@@ -418,7 +424,8 @@ namespace CyberCity.Editor
                 game.player.GetComponent<Rigidbody2D>().position = WorldLayout.FromPixel(214,376);
             });
             Add(() => { Check(game.DoorIsNearest && game.NearestDoor.areaName == "Internet Cafe", "Cafe entrance takes priority over a farther NPC"); Press(Key.E); });
-            Add(() => { Release(); Check(VisibleText().Any(t => t.Contains(game.Current.title)) && FindButton("START MISSION") != null, "E at Cafe door routes to current mentor Maya"); game.UI.CloseModal(); });
+            Add(() => { Release(); Check(FindButton("!  Maya") != null, "E at Cafe door lists Maya's personal room"); Click("!  Maya"); });
+            Add(() => { Check(game.Travel.Occupant.citizenName == "Maya", "Cafe room loads Maya indoors"); game.Travel.Exit(); });
             Add(() => {
                 game.Progress.completed = 0;
                 foreach (var area in game.areas) area.Initialize(game);
@@ -465,10 +472,17 @@ namespace CyberCity.Editor
             for (int i = 0; i < game.Campaign.missions.Length; i++)
             {
                 int index = i; Mission mission = game.Campaign.missions[index];
-                Add(() => { game.UI.CloseModal(); Check(game.Progress.completed == index, "Mission " + (index+1) + " unlocks in order"); game.player.GetComponent<Rigidbody2D>().position = (Vector2)game.Target.transform.position + Vector2.down; });
+                Add(() => { game.UI.CloseModal(); if (game.Travel.IsInside) game.Travel.Exit(); });
+                Add(() => {
+                    Check(game.Progress.completed == index, "Mission " + (index+1) + " unlocks in order");
+                    var door = game.areas.Single(a => a.areaName == game.Target.area).door;
+                    game.player.GetComponent<Rigidbody2D>().position = door.position + Vector3.down * .9f;
+                    game.player.transform.position = game.player.GetComponent<Rigidbody2D>().position; game.Travel.Enter(game.Target);
+                });
+                Add(() => { game.player.GetComponent<Rigidbody2D>().position = (Vector2)game.Target.transform.position + Vector2.down; game.player.transform.position = game.player.GetComponent<Rigidbody2D>().position; });
                 if (mission.kind != "quiz" && mission.kind != "evidence" && mission.kind != "graduation")
                     Add(() => { game.CompleteMission(); Check(game.Progress.completed == index, "Practical evidence gates mission completion: " + mission.id); });
-                Add(() => game.Interact(game.Target));
+                Add(() => { game.Interact(game.Target); game.UI.ShowConversation(game.Target, 3); Click(game.UI.Language == "id" ? "Tugas utama" : "Main assignment"); });
                 Add(() => Click("START MISSION"));
                 if (mission.kind == "evidence")
                 {
@@ -482,7 +496,7 @@ namespace CyberCity.Editor
                     foreach (string cmd in new[] { "ls -a", "cd .archive", "cat access.txt", "submit CYBER{verify_first}" })
                     { string value = cmd; Add(() => { FindInput().text = value; Click("RUN"); }); }
                     Add(() => game.UI.CloseModal());
-                    Add(() => game.Interact(game.Target));
+                    Add(() => { game.Interact(game.Target); game.UI.ShowConversation(game.Target, 3); Click(game.UI.Language == "id" ? "Tugas utama" : "Main assignment"); });
                     Add(() => Click("START MISSION"));
                     Add(() => { Check(VisibleText().Any(t => t.Contains("FLAGS 1/3")), "Earned flag remains after reopening terminal UI"); Click("02  Log hunt"); });
                     foreach (string cmd in new[] { "find . -name auth.log", "grep Failed logs/auth.log", "submit CYBER{203.0.113.42}" })
@@ -523,13 +537,13 @@ namespace CyberCity.Editor
                 {
                     string areaName = index == 0 ? "Internet Cafe" : index == 3 ? "Linux Lab" : "Web Security Lab";
                     string slug = index == 0 ? "internet-cafe" : index == 3 ? "linux-lab" : "web-lab";
-                    Add(() => game.UI.CloseModal());
+                    Add(() => { game.UI.CloseModal(); game.Travel.Exit(); });
                     Add(() => {
                         var area = game.areas.Single(a => a.areaName == areaName);
                         Check(area.IsOpen && area.IsAnimating && area.UnlockAnimations == 1, "Mission event animates unlock once: " + areaName);
                         Capture("world-" + slug + "-unlock");
                     });
-                    Add(() => { });
+                    Add(() => next = Time.unscaledTimeAsDouble + 1);
                     Add(() => {
                         var area = game.areas.Single(a => a.areaName == areaName);
                         Check(area.IsOpen && !area.IsAnimating && area.glow.enabled && !area.lockIcon.enabled, "Unlock settles into open state: " + areaName);
@@ -551,7 +565,8 @@ namespace CyberCity.Editor
                     }
                 }
             }
-            Add(() => { game.UI.CloseModal(); game.player.GetComponent<Rigidbody2D>().position = WorldLayout.Spawn; });
+            Add(() => { game.UI.CloseModal(); if (game.Travel.IsInside) game.Travel.Exit(); });
+            Add(() => { game.player.GetComponent<Rigidbody2D>().position = WorldLayout.Spawn; });
             Add(() => Capture("world-all-open"));
             Add(() => {
                 Check(game.Progress.completed == game.Campaign.missions.Length && game.Progress.score == ProgressStore.MaximumScore(game.Campaign) - ProgressStore.RetryPenalty, "Complete campaign scores once with retry penalty");
@@ -650,7 +665,7 @@ namespace CyberCity.Editor
         {
             // Editor wall time advances during screenshot/import stalls while no player loop runs.
             // Give input, physics, coroutines and deferred UI destruction actual game frames.
-            if (!running || Time.unscaledTimeAsDouble < next || Time.frameCount < nextFrame) return;
+            if (!running || Time.unscaledTimeAsDouble < next || Time.frameCount < nextFrame || (game?.Travel != null && game.Travel.IsTransitioning)) return;
             next = Time.unscaledTimeAsDouble + .4; nextFrame = Time.frameCount + 2;
             try
             {
@@ -758,7 +773,7 @@ namespace CyberCity.Editor
         {
             Directory.CreateDirectory("Documentation");
             var lines = new List<string> { "CyberCity verification", Status, "UTC: " + DateTime.UtcNow.ToString("O"), "" };
-            lines.AddRange(checks.Select(c => "PASS  " + c)); if (failure != null) lines.Add(failure);
+            lines.AddRange(checks.Select(c => "PASS  " + c.TrimEnd())); if (failure != null) lines.Add(failure);
             File.WriteAllLines("Documentation/verification.txt", lines);
         }
 

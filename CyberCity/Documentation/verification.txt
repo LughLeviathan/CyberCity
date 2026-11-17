@@ -1,11 +1,13 @@
 CyberCity verification
-PASS: 350 checks including all missions through runtime UI
-UTC: 2026-11-03T03:11:08.5732756Z
+PASS: 353 checks including all missions through runtime UI
+UTC: 2026-11-17T00:38:57.5899596Z
 
 PASS  Mission count follows scenario pack
 PASS  Validated offline missions
 PASS  Unique mission IDs
 PASS  Bundled campaign SHA-256 matches
+PASS  Windows CRLF checkout verifies like LF
+PASS  Changed campaign content still fails checksum
 PASS  Invalid campaign rejected
 PASS  Missing learning questions rejected
 PASS  Unsupported scenario mentor rejected
@@ -207,7 +209,8 @@ PASS  Walkable bridge/edge route (23.06, -12.91)
 PASS  Walkable bridge/edge route (20.81, -15.47)
 PASS  48 area/progression combinations and actual door gates
 PASS  Cafe entrance takes priority over a farther NPC
-PASS  E at Cafe door routes to current mentor Maya
+PASS  E at Cafe door lists Maya's personal room
+PASS  Cafe room loads Maya indoors
 PASS  Reload path silently restores area visuals and subscriptions
 PASS  Minimal HUD, quest slot, XP and player identity refresh
 PASS  Complete centered map with preserved aspect at (1920, 1080)

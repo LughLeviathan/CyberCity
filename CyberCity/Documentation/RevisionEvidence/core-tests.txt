@@ -1,0 +1,35 @@
+PASS: 34 revision core checks
+PASS Actual bundled campaign verifies
+PASS LF and CRLF hash identically for bundle only
+PASS Optional pack hashing remains byte-exact
+PASS Content changes still fail integrity
+PASS Existing eleven-mission campaign order retained
+PASS Seven unique conversations map to existing NPC names
+PASS NPC and MC lines in Indonesian and English: Professor Byte
+PASS NPC and MC lines in Indonesian and English: Alex
+PASS NPC and MC lines in Indonesian and English: Maya
+PASS NPC and MC lines in Indonesian and English: Detective Byte
+PASS NPC and MC lines in Indonesian and English: SysAdmin Tux
+PASS NPC and MC lines in Indonesian and English: Red
+PASS NPC and MC lines in Indonesian and English: Blue
+PASS Room exists and ships in build: Professor Byte
+PASS Room exists and ships in build: Alex
+PASS Room exists and ships in build: Maya
+PASS Room exists and ships in build: Detective Byte
+PASS Room exists and ships in build: SysAdmin Tux
+PASS Room exists and ships in build: Red
+PASS Room exists and ships in build: Blue
+PASS Pixel virus sprite bundled
+PASS Diagonal movement normalized
+PASS Pause freezes movement, timers and fire
+PASS Arena movement remains in bounds
+PASS Swept shot collision prevents tunnelling
+PASS Real firing clears all 24 viruses across three waves
+PASS Victory cannot advance or grant additional kills
+PASS Contact damage leads to loss, not victory
+PASS Retry starts clean
+PASS Legacy-compatible save writes
+PASS Old v2 save without new fields keeps earned XP and campaign progress
+PASS Special quest saves
+PASS Badge persists without changing campaign XP or order
+PASS Malformed save recovers valid backup

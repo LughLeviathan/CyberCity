@@ -1,0 +1,5 @@
+RUNNING: interiors, arcade input, campaign playthrough, Windows build
+PASS: 172 revision checks (core + play mode)
+PASS: 353 checks including all missions through runtime UI
+PASS: Windows build includes enabled scenes.
+COMPLETE: all requested verification stages finished.

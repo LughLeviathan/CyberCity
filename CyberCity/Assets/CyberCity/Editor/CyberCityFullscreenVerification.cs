@@ -71,7 +71,9 @@ namespace CyberCity.Editor
         {
             Canvas.ForceUpdateCanvases(); game.UI.UpdateWorldLabels();
             var labels = game.UI.CanvasRoot.Find("World labels").GetComponentsInChildren<Text>();
-            var targetName = labels.Single(t => t.text == game.Target.citizenName);
+            bool indoors = game.Travel != null && game.Travel.IsInside;
+            Vector3 targetPosition = indoors ? game.Target.transform.position : game.areas.Single(a => a.areaName == game.Target.area).door.position;
+            var targetName = labels.Single(t => t.text == game.Target.citizenName + (indoors ? "" : " / INDOOR"));
             var playerName = labels.Single(t => t.text == game.Progress.playerName);
             var marker = labels.Single(t => t.text == "!");
             float scale = Mathf.Min(Screen.width / 1024f, Screen.height / 576f);
@@ -82,9 +84,9 @@ namespace CyberCity.Editor
                 Vector2 actual = r.TransformPoint(new Vector3(r.rect.center.x, r.rect.yMax));
                 Require(Vector2.Distance(actual, expected) < 2, "World label registration: " + text.text);
             };
-            registered(targetName, game.Target.transform.position + Vector3.down * .12f);
+            registered(targetName, targetPosition + Vector3.down * .12f);
             registered(playerName, game.player.transform.position + (game.Nearest != null ? Vector3.down * .3f : Vector3.up * 1.05f));
-            registered(marker, game.Target.transform.position + Vector3.up * (1.25f + Mathf.Sin(Time.time * 3) * .08f));
+            registered(marker, targetPosition + Vector3.up * (1.25f + Mathf.Sin(Time.time * 3) * .08f));
             var prompt = game.UI.CanvasRoot.Find("Patrol HUD/Interaction prompt").GetComponent<Text>();
             Require(prompt.text.StartsWith("[ E ]"), "Nearby mentor or door exposes E prompt");
             var corners = new Vector3[4]; prompt.rectTransform.GetWorldCorners(corners);

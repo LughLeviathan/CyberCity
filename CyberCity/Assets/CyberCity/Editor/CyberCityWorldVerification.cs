@@ -80,6 +80,7 @@ namespace CyberCity.Editor
             string[] names = { "Cyber Academy", "Internet Cafe", "Linux Lab", "Web Security Lab" };
             int[] thresholds = { 0, 1, 4, 5 };
             int saved = game.Progress.completed;
+            Vector3 savedPosition = game.player.transform.position;
             try
             {
                 Require(game.areas.Length == 4, "Exactly four mission doors; decorations have no locks");
@@ -93,6 +94,8 @@ namespace CyberCity.Editor
                         Require(area.UnlockAfter == thresholds[i] && area.IsOpen == expected, "Progression " + completed + ": " + names[i]);
                         Require(area.glow.enabled == expected && area.lockIcon.enabled != expected, "Lock/glow matches access");
                         Require(game.citizens.Where(n => n.area == names[i]).Any(n => completed >= n.unlockAfter) == expected, "Area opens with its first mentor; later mentor mission gates remain intact");
+                        game.player.GetComponent<Rigidbody2D>().position = area.door.position;
+                        game.player.transform.position = area.door.position;
                         game.UI.CloseModal(); game.InteractArea(area);
                         bool locked = UnityEngine.Object.FindObjectsByType<Text>(FindObjectsInactive.Exclude).Any(t => t.text.Contains("still locked"));
                         Require(locked != expected, "Door uses existing interaction gate at " + completed);
@@ -104,6 +107,8 @@ namespace CyberCity.Editor
             finally
             {
                 game.Progress.completed = saved;
+                game.player.GetComponent<Rigidbody2D>().position = savedPosition;
+                game.player.transform.position = savedPosition;
                 foreach (var area in game.areas) area.Initialize(game);
                 game.UI.CloseModal(); game.UI.RefreshHud();
             }

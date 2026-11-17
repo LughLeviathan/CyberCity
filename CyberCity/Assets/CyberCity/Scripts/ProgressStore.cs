@@ -18,6 +18,8 @@ namespace CyberCity
         public WebProgress[] web = Array.Empty<WebProgress>();
         public SocProgress[] soc = Array.Empty<SocProgress>();
         public bool started;
+        public bool virusAccepted, virusCleared, virusReported;
+        public int virusBestKills;
         public float x = WorldLayout.SpawnX, y = WorldLayout.SpawnY;
     }
 
@@ -56,6 +58,10 @@ namespace CyberCity
                     throw new InvalidDataException("Invalid save or different course route.");
                     if (Array.Exists(data.attempts, value => value < 0 || value > 100000))
                         throw new InvalidDataException("Invalid retry counts.");
+                    if (data.virusBestKills < 0 || data.virusBestKills > VirusRun.TotalViruses ||
+                        (data.virusCleared && (!data.virusAccepted || data.virusBestKills != VirusRun.TotalViruses)) ||
+                        (data.virusReported && !data.virusCleared))
+                        throw new InvalidDataException("Invalid Virus Sweep progress.");
                     if (data.hintUses == null || data.hintUses.Length == 0) data.hintUses = new int[count];
                     if (data.hintUses.Length != count || Array.Exists(data.hintUses, value => value < 0 || value > 100))
                         throw new InvalidDataException("Invalid hint counts.");
